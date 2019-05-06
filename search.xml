@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[【leetcode】5.最长回文子串]]></title>
+    <url>%2F2019%2F05%2F06%2F%E3%80%90leetcode%E3%80%915-%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E5%AD%90%E4%B8%B2%2F</url>
+    <content type="text"><![CDATA[方法一:中心扩展算法 解题思路:从左到右每一个字符都作为中心轴,然后逐渐往两边扩展,只要发现有不相等的字符,则确定了以该字符为轴的最长回文串,但需要考虑长度为奇数和偶数的不同情况的处理(长度为偶数时轴心为中间两个数的中心,长度为奇数时轴心为中间那个数) 算法时间复杂度:$O(n^{2})$12345678910111213141516171819202122232425262728string longestPalindrome(string s) &#123; int idx = 0, maxL = 0; for (int i = 0; i &lt; s.size(); ++i) // i为轴的位置,j为回文串半径 &#123; for (int j = 0; i - j &gt;= 0 &amp;&amp; i + j &lt; s.size(); ++j) // 奇数 &#123; if (s[i - j] != s[i + j]) break; if (2 * j + 1 &gt; maxL) &#123; maxL = 2 * j + 1; idx = i - j; &#125; &#125; for (int j = 0; i - j &gt;= 0 &amp;&amp; i + j + 1 &lt; s.size(); ++j) // 偶数 &#123; if (s[i-j]!=s[i+j+1]) break; if (2 * j + 2 &gt; maxL) &#123; maxL = 2 * j + 2; idx = i - j; &#125; &#125; &#125; return s.substr(idx, maxL);&#125;方法二:manacher(马拉车法) 解题思路:详见P3805【模板】manacher算法 算法时间复杂度为:$O(n)$1234567891011121314151617181920212223242526272829303132333435363738394041int pos[2005],p[2005];string longestPalindrome(string s) &#123; /* 填充字符,统一为奇数串 */ string s_new="~"; for (int i=0,k=1;i&lt;s.size();++i) &#123; s_new+="#"; s_new+=s[i]; pos[k++]=i; // 记录新字串与原始字串的位置关系 pos[k++]=i; &#125; s_new+="#"; /* manacher */ int m=0,r=0,maxL=0,idx=0; for (int i=1;i&lt;s_new.size();++i) &#123; // 获取已知的最小回文半径 if (i&lt;r) p[i]=min(p[2*m-i],r-i); else p[i]=1; // 暴力拓展左右两侧 while (s_new[i-p[i]]==s_new[i+p[i]]) p[i]++; // 新的回文半径比较大,则更新 if (r-i&lt;p[i]) &#123; m=i; r=i+p[i]; &#125; // 更新回文长度(原始字串的回文长度为新字串回文半径-1) if (p[i]-1&gt;maxL) &#123; maxL=p[i]-1; idx=pos[i]-maxL/2; // 更新原始回文字串的起始位置 &#125; &#125; return s.substr(idx,maxL);&#125;]]></content>
+      <categories>
+        <category>OJ</category>
+      </categories>
+      <tags>
+        <tag>回文串</tag>
+        <tag>leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Hello World]]></title>
+    <url>%2F2019%2F05%2F06%2Fhello-world%2F</url>
+    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
+      <categories>
+        <category>未分类</category>
+      </categories>
+  </entry>
+</search>

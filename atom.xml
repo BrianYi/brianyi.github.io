@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Brian&#39;s Home</title>
+  
+  <subtitle>Stay Hungry, Stay Foolish</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://brianyi.github.io/"/>
+  <updated>2019-05-06T10:25:18.454Z</updated>
+  <id>https://brianyi.github.io/</id>
+  
+  <author>
+    <name>Brian Yi</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【leetcode】5.最长回文子串</title>
+    <link href="https://brianyi.github.io/2019/05/06/%E3%80%90leetcode%E3%80%915-%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E5%AD%90%E4%B8%B2/"/>
+    <id>https://brianyi.github.io/2019/05/06/【leetcode】5-最长回文子串/</id>
+    <published>2019-05-06T10:05:20.000Z</published>
+    <updated>2019-05-06T10:25:18.454Z</updated>
+    
+    <content type="html"><![CDATA[<img src="/2019/05/06/【leetcode】5-最长回文子串/453425-20190505125039549-1852205917.png"><p>方法一:中心扩展算法</p><p>解题思路:从左到右每一个字符都作为中心轴,然后逐渐往两边扩展,只要发现有不相等的字符,则确定了以该字符为轴的最长回文串,但需要考虑长度为奇数和偶数的不同情况的处理(长度为偶数时轴心为中间两个数的中心,长度为奇数时轴心为中间那个数)</p><p>算法时间复杂度:$O(n^{2})$<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">longestPalindrome</span><span class="params">(<span class="built_in">string</span> s)</span> </span></span><br><span class="line"><span class="function"></span>&#123;        </span><br><span class="line">    <span class="keyword">int</span> idx = <span class="number">0</span>, maxL = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.size(); ++i)　　<span class="comment">// i为轴的位置,j为回文串半径</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; i - j &gt;= <span class="number">0</span> &amp;&amp; i + j &lt; s.size(); ++j)    <span class="comment">// 奇数</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (s[i - j] != s[i + j])</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">if</span> (<span class="number">2</span> * j + <span class="number">1</span> &gt; maxL)</span><br><span class="line">            &#123;</span><br><span class="line">                maxL = <span class="number">2</span> * j + <span class="number">1</span>;</span><br><span class="line">                idx = i - j;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; i - j &gt;= <span class="number">0</span> &amp;&amp; i + j + <span class="number">1</span> &lt; s.size(); ++j)    <span class="comment">// 偶数</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (s[i-j]!=s[i+j+<span class="number">1</span>])</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">if</span> (<span class="number">2</span> * j + <span class="number">2</span> &gt; maxL)</span><br><span class="line">            &#123;</span><br><span class="line">                maxL = <span class="number">2</span> * j + <span class="number">2</span>;</span><br><span class="line">                idx = i - j;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> s.substr(idx, maxL);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>方法二:manacher(马拉车法)</p><p>解题思路:详见<a href="https://www.luogu.org/problemnew/solution/P3805" target="_blank" rel="noopener">P3805【模板】manacher算法</a></p><p>算法时间复杂度为:$O(n)$<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> pos[<span class="number">2005</span>],p[<span class="number">2005</span>];</span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">longestPalindrome</span><span class="params">(<span class="built_in">string</span> s)</span> </span></span><br><span class="line"><span class="function"></span>&#123;        </span><br><span class="line">    <span class="comment">/* 填充字符,统一为奇数串 */</span></span><br><span class="line">    <span class="built_in">string</span> s_new=<span class="string">"~"</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>,k=<span class="number">1</span>;i&lt;s.size();++i)</span><br><span class="line">    &#123;</span><br><span class="line">        s_new+=<span class="string">"#"</span>;</span><br><span class="line">        s_new+=s[i];</span><br><span class="line">        pos[k++]=i; <span class="comment">// 记录新字串与原始字串的位置关系</span></span><br><span class="line">        pos[k++]=i;</span><br><span class="line">    &#125;</span><br><span class="line">    s_new+=<span class="string">"#"</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/* manacher */</span></span><br><span class="line">    <span class="keyword">int</span> m=<span class="number">0</span>,r=<span class="number">0</span>,maxL=<span class="number">0</span>,idx=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;s_new.size();++i)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 获取已知的最小回文半径</span></span><br><span class="line">        <span class="keyword">if</span> (i&lt;r)</span><br><span class="line">            p[i]=min(p[<span class="number">2</span>*m-i],r-i);</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            p[i]=<span class="number">1</span>;</span><br><span class="line">        <span class="comment">// 暴力拓展左右两侧</span></span><br><span class="line">        <span class="keyword">while</span> (s_new[i-p[i]]==s_new[i+p[i]])</span><br><span class="line">            p[i]++;</span><br><span class="line">        <span class="comment">// 新的回文半径比较大,则更新</span></span><br><span class="line">        <span class="keyword">if</span> (r-i&lt;p[i])</span><br><span class="line">        &#123;</span><br><span class="line">            m=i;</span><br><span class="line">            r=i+p[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 更新回文长度(原始字串的回文长度为新字串回文半径-1)</span></span><br><span class="line">        <span class="keyword">if</span> (p[i]<span class="number">-1</span>&gt;maxL)</span><br><span class="line">        &#123;</span><br><span class="line">            maxL=p[i]<span class="number">-1</span>;</span><br><span class="line">            idx=pos[i]-maxL/<span class="number">2</span>;  <span class="comment">// 更新原始回文字串的起始位置</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> s.substr(idx,maxL);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;img src=&quot;/2019/05/06/【leetcode】5-最长回文子串/453425-20190505125039549-1852205917.png&quot;&gt;
+&lt;p&gt;方法一:中心扩展算法&lt;/p&gt;
+&lt;p&gt;解题思路:从左到右每一个字符都作为中心轴,然后逐渐往两边扩展,只要发现有
+      
+    
+    </summary>
+    
+      <category term="OJ" scheme="https://brianyi.github.io/categories/OJ/"/>
+    
+    
+      <category term="回文串" scheme="https://brianyi.github.io/tags/%E5%9B%9E%E6%96%87%E4%B8%B2/"/>
+    
+      <category term="leetcode" scheme="https://brianyi.github.io/tags/leetcode/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="https://brianyi.github.io/2019/05/06/hello-world/"/>
+    <id>https://brianyi.github.io/2019/05/06/hello-world/</id>
+    <published>2019-05-06T06:13:38.294Z</published>
+    <updated>2019-05-06T10:30:08.510Z</updated>
+    
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
+      
+    
+    </summary>
+    
+      <category term="未分类" scheme="https://brianyi.github.io/categories/%E6%9C%AA%E5%88%86%E7%B1%BB/"/>
+    
+    
+  </entry>
+  
+</feed>
