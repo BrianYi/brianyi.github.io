@@ -3,10 +3,15 @@
   <entry>
     <title><![CDATA[[leetcode]133.克隆图]]></title>
     <url>%2F2019%2F05%2F06%2Fleetcode-133-%E5%85%8B%E9%9A%86%E5%9B%BE%2F</url>
-    <content type="text"></content>
+    <content type="text"><![CDATA[方法一:dfs(递归)1234567891011121314map&lt;Node*,Node*&gt; dict;Node* clone(Node* node)&#123; if (!node) return node; if (dict.count(node)) return dict[node]; dict[node]=new Node(node-&gt;val,vector&lt;Node*&gt;&#123;&#125;); // 这里不能写clone(node),会导致死循环,记住,在new的时候千万不要再递归,递归最低层一定有一个明确结果,所以要把截止条件写清楚 for(auto it:node-&gt;neighbors) dict[node]-&gt;neighbors.push_back(clone(it)); return dict[node];&#125;Node* cloneGraph(Node* node) &#123; return clone(node);&#125; 方法二:dfs(非递归)1234567891011121314151617181920212223map&lt;Node*,Node*&gt; dict;Node* cloneGraph(Node* node) &#123; stack&lt;Node*&gt; S; S.push(node); while (!S.empty()) &#123; Node *p = S.top(); S.pop(); if (!dict.count(p)) // 从栈中出来的都是没有进行访问过的点 dict[p]=new Node(p-&gt;val,vector&lt;Node*&gt;&#123;&#125;); for (auto it:p-&gt;neighbors) &#123; if (!dict.count(it)) // 判断是否已经访问过该点 &#123; dict[it]=new Node(it-&gt;val,vector&lt;Node*&gt;&#123;&#125;); S.push(it); &#125; dict[p]-&gt;neighbors.push_back(dict[it]); // 将新点的拷贝放入neighbors中 &#125; &#125; return dict[node];&#125;]]></content>
       <categories>
         <category>OJ</category>
       </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>dfs</tag>
+        <tag>图</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[[leetcode]138.复制带随机指针的链表]]></title>
@@ -28,18 +33,23 @@
         <category>OJ</category>
       </categories>
       <tags>
-        <tag>leetcode</tag>
         <tag>树</tag>
         <tag>递归</tag>
+        <tag>leetcode</tag>
       </tags>
   </entry>
   <entry>
     <title><![CDATA[[leetcode]94.二叉树的中序遍历]]></title>
     <url>%2F2019%2F05%2F06%2Fleetcode-94-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86%2F</url>
-    <content type="text"><![CDATA[]]></content>
+    <content type="text"><![CDATA[前往二叉树的:前序,中序,后序 遍历算法 方法一:递归123456789vector&lt;int&gt; res;vector&lt;int&gt; inorderTraversal(TreeNode* root) &#123; if (!root) return res; if (root-&gt;left) inorderTraversal(root-&gt;left); res.push_back(root-&gt;val); if (root-&gt;right) inorderTraversal(root-&gt;right); return res;&#125; 方法二:非递归1234567891011121314151617181920212223vector&lt;int&gt; inorderTraversal(TreeNode* root) &#123; vector&lt;int&gt; res; if (!root) return res; stack&lt;TreeNode*&gt; S; TreeNode* p = root; while(p||!S.empty()) &#123; if (p) &#123; S.push(p); p=p-&gt;left; &#125; else &#123; p=S.top(); S.pop(); res.push_back(p-&gt;val); p=p-&gt;right; &#125; &#125; return res;&#125;]]></content>
       <categories>
-        <category>未分类</category>
+        <category>OJ</category>
       </categories>
+      <tags>
+        <tag>树</tag>
+        <tag>递归</tag>
+        <tag>leetcode</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[[leetcode]145.二叉树的后序遍历]]></title>
@@ -49,9 +59,9 @@
         <category>OJ</category>
       </categories>
       <tags>
-        <tag>leetcode</tag>
         <tag>树</tag>
         <tag>递归</tag>
+        <tag>leetcode</tag>
       </tags>
   </entry>
   <entry>
@@ -75,9 +85,9 @@
         <category>OJ</category>
       </categories>
       <tags>
-        <tag>leetcode</tag>
         <tag>树</tag>
         <tag>递归</tag>
+        <tag>leetcode</tag>
       </tags>
   </entry>
   <entry>
@@ -88,9 +98,9 @@
         <category>OJ</category>
       </categories>
       <tags>
-        <tag>leetcode</tag>
         <tag>树</tag>
         <tag>递归</tag>
+        <tag>leetcode</tag>
       </tags>
   </entry>
   <entry>
@@ -101,9 +111,9 @@
         <category>OJ</category>
       </categories>
       <tags>
-        <tag>leetcode</tag>
         <tag>树</tag>
         <tag>递归</tag>
+        <tag>leetcode</tag>
       </tags>
   </entry>
   <entry>
@@ -150,8 +160,8 @@
         <category>OJ</category>
       </categories>
       <tags>
-        <tag>leetcode</tag>
         <tag>树</tag>
+        <tag>leetcode</tag>
       </tags>
   </entry>
   <entry>

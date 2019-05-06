@@ -128,14 +128,20 @@
 
 
 
-  <meta property="og:type" content="article">
+  <meta name="description" content="方法一:dfs(递归)1234567891011121314map&amp;lt;Node*,Node*&amp;gt; dict;Node* clone(Node* node)&amp;#123;    if (!node) return node;    if (dict.count(node)) return dict[node];    dict[node]=new Node(node-&amp;gt;val,vect">
+<meta name="keywords" content="leetcode,dfs,图">
+<meta property="og:type" content="article">
 <meta property="og:title" content="[leetcode]133.克隆图">
 <meta property="og:url" content="https://brianyi.github.io/2019/05/06/leetcode-133-克隆图/index.html">
 <meta property="og:site_name" content="Brian&#39;s Home">
+<meta property="og:description" content="方法一:dfs(递归)1234567891011121314map&amp;lt;Node*,Node*&amp;gt; dict;Node* clone(Node* node)&amp;#123;    if (!node) return node;    if (dict.count(node)) return dict[node];    dict[node]=new Node(node-&amp;gt;val,vect">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-05-06T13:21:48.645Z">
+<meta property="og:image" content="https://brianyi.github.io/2019/05/06/leetcode-133-克隆图/453425-20190430181854853-2091334093.png">
+<meta property="og:updated_time" content="2019-05-06T13:27:25.958Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[leetcode]133.克隆图">
+<meta name="twitter:description" content="方法一:dfs(递归)1234567891011121314map&amp;lt;Node*,Node*&amp;gt; dict;Node* clone(Node* node)&amp;#123;    if (!node) return node;    if (dict.count(node)) return dict[node];    dict[node]=new Node(node-&amp;gt;val,vect">
+<meta name="twitter:image" content="https://brianyi.github.io/2019/05/06/leetcode-133-克隆图/453425-20190430181854853-2091334093.png">
 
 
 
@@ -324,7 +330,7 @@
       
     
 
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">2</span></a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">1</span></a>
 
   </li>
         
@@ -474,9 +480,13 @@
                 
               
 
-              <time title="创建时间：2019-05-06 21:21:48" itemprop="dateCreated datePublished" datetime="2019-05-06T21:21:48+08:00">2019-05-06</time>
+              <time title="创建时间：2019-05-06 21:21:48 / 修改时间：21:27:25" itemprop="dateCreated datePublished" datetime="2019-05-06T21:21:48+08:00">2019-05-06</time>
             
 
+            
+              
+
+              
             
           </span>
 
@@ -532,7 +542,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">0</span>
+                <span title="本文字数">1.1k</span>
               
 
               
@@ -566,7 +576,9 @@
       
 
       
-        
+        <img src="/2019/05/06/leetcode-133-克隆图/453425-20190430181854853-2091334093.png">
+<h3 id="方法一-dfs-递归"><a href="#方法一-dfs-递归" class="headerlink" title="方法一:dfs(递归)"></a>方法一:dfs(递归)</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">map</span>&lt;Node*,Node*&gt; dict;</span><br><span class="line"><span class="function">Node* <span class="title">clone</span><span class="params">(Node* node)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!node) <span class="keyword">return</span> node;</span><br><span class="line">    <span class="keyword">if</span> (dict.count(node)) <span class="keyword">return</span> dict[node];</span><br><span class="line">    dict[node]=<span class="keyword">new</span> Node(node-&gt;val,<span class="built_in">vector</span>&lt;Node*&gt;&#123;&#125;);　　<span class="comment">// 这里不能写clone(node),会导致死循环,记住,在new的时候千万不要再递归,递归最低层一定有一个明确结果,所以要把截止条件写清楚</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> it:node-&gt;neighbors)</span><br><span class="line">        dict[node]-&gt;neighbors.push_back(clone(it));</span><br><span class="line">    <span class="keyword">return</span> dict[node];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">Node* <span class="title">cloneGraph</span><span class="params">(Node* node)</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> clone(node);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="方法二-dfs-非递归"><a href="#方法二-dfs-非递归" class="headerlink" title="方法二:dfs(非递归)"></a>方法二:dfs(非递归)</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">map</span>&lt;Node*,Node*&gt; dict;</span><br><span class="line"><span class="function">Node* <span class="title">cloneGraph</span><span class="params">(Node* node)</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">stack</span>&lt;Node*&gt; S;</span><br><span class="line">    S.push(node);</span><br><span class="line">    <span class="keyword">while</span> (!S.empty())</span><br><span class="line">    &#123;</span><br><span class="line">        Node *p = S.top();</span><br><span class="line">        S.pop();</span><br><span class="line">        <span class="keyword">if</span> (!dict.count(p))　　<span class="comment">// 从栈中出来的都是没有进行访问过的点</span></span><br><span class="line">            dict[p]=<span class="keyword">new</span> Node(p-&gt;val,<span class="built_in">vector</span>&lt;Node*&gt;&#123;&#125;);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> it:p-&gt;neighbors)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (!dict.count(it))　　<span class="comment">// 判断是否已经访问过该点</span></span><br><span class="line">            &#123;</span><br><span class="line">                dict[it]=<span class="keyword">new</span> Node(it-&gt;val,<span class="built_in">vector</span>&lt;Node*&gt;&#123;&#125;);</span><br><span class="line">                S.push(it);</span><br><span class="line">            &#125;</span><br><span class="line">            dict[p]-&gt;neighbors.push_back(dict[it]);　　<span class="comment">// 将新点的拷贝放入neighbors中</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dict[node];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -619,6 +631,16 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/leetcode/" rel="tag"># leetcode</a>
+          
+            <a href="/tags/dfs/" rel="tag"># dfs</a>
+          
+            <a href="/tags/图/" rel="tag"># 图</a>
+          
+        </div>
       
 
       
@@ -698,8 +720,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -735,9 +766,7 @@
                     
                       
                     
-                      
-                    
-                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-count">1</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -831,6 +860,23 @@
       </div>
 
       
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#方法一-dfs-递归"><span class="nav-number">1.</span> <span class="nav-text">方法一:dfs(递归)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法二-dfs-非递归"><span class="nav-number">2.</span> <span class="nav-text">方法二:dfs(非递归)</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
 
       
 
@@ -857,7 +903,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">16k</span>
+    <span title="站点总字数">18k</span>
   
 
   
@@ -866,7 +912,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">15 分钟</span>
+    <span title="站点阅读时长">16 分钟</span>
   
 </div>
 

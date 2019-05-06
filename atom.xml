@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://brianyi.github.io/"/>
-  <updated>2019-05-06T13:21:48.645Z</updated>
+  <updated>2019-05-06T13:27:25.958Z</updated>
   <id>https://brianyi.github.io/</id>
   
   <author>
@@ -21,14 +21,28 @@
     <link href="https://brianyi.github.io/2019/05/06/leetcode-133-%E5%85%8B%E9%9A%86%E5%9B%BE/"/>
     <id>https://brianyi.github.io/2019/05/06/leetcode-133-克隆图/</id>
     <published>2019-05-06T13:21:48.000Z</published>
-    <updated>2019-05-06T13:21:48.645Z</updated>
+    <updated>2019-05-06T13:27:25.958Z</updated>
+    
+    <content type="html"><![CDATA[<img src="/2019/05/06/leetcode-133-克隆图/453425-20190430181854853-2091334093.png"><h3 id="方法一-dfs-递归"><a href="#方法一-dfs-递归" class="headerlink" title="方法一:dfs(递归)"></a>方法一:dfs(递归)</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">map</span>&lt;Node*,Node*&gt; dict;</span><br><span class="line"><span class="function">Node* <span class="title">clone</span><span class="params">(Node* node)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!node) <span class="keyword">return</span> node;</span><br><span class="line">    <span class="keyword">if</span> (dict.count(node)) <span class="keyword">return</span> dict[node];</span><br><span class="line">    dict[node]=<span class="keyword">new</span> Node(node-&gt;val,<span class="built_in">vector</span>&lt;Node*&gt;&#123;&#125;);　　<span class="comment">// 这里不能写clone(node),会导致死循环,记住,在new的时候千万不要再递归,递归最低层一定有一个明确结果,所以要把截止条件写清楚</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> it:node-&gt;neighbors)</span><br><span class="line">        dict[node]-&gt;neighbors.push_back(clone(it));</span><br><span class="line">    <span class="keyword">return</span> dict[node];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">Node* <span class="title">cloneGraph</span><span class="params">(Node* node)</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> clone(node);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="方法二-dfs-非递归"><a href="#方法二-dfs-非递归" class="headerlink" title="方法二:dfs(非递归)"></a>方法二:dfs(非递归)</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">map</span>&lt;Node*,Node*&gt; dict;</span><br><span class="line"><span class="function">Node* <span class="title">cloneGraph</span><span class="params">(Node* node)</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">stack</span>&lt;Node*&gt; S;</span><br><span class="line">    S.push(node);</span><br><span class="line">    <span class="keyword">while</span> (!S.empty())</span><br><span class="line">    &#123;</span><br><span class="line">        Node *p = S.top();</span><br><span class="line">        S.pop();</span><br><span class="line">        <span class="keyword">if</span> (!dict.count(p))　　<span class="comment">// 从栈中出来的都是没有进行访问过的点</span></span><br><span class="line">            dict[p]=<span class="keyword">new</span> Node(p-&gt;val,<span class="built_in">vector</span>&lt;Node*&gt;&#123;&#125;);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> it:p-&gt;neighbors)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (!dict.count(it))　　<span class="comment">// 判断是否已经访问过该点</span></span><br><span class="line">            &#123;</span><br><span class="line">                dict[it]=<span class="keyword">new</span> Node(it-&gt;val,<span class="built_in">vector</span>&lt;Node*&gt;&#123;&#125;);</span><br><span class="line">                S.push(it);</span><br><span class="line">            &#125;</span><br><span class="line">            dict[p]-&gt;neighbors.push_back(dict[it]);　　<span class="comment">// 将新点的拷贝放入neighbors中</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dict[node];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
     
     <summary type="html">
+    
+      
+      
+        &lt;img src=&quot;/2019/05/06/leetcode-133-克隆图/453425-20190430181854853-2091334093.png&quot;&gt;
+&lt;h3 id=&quot;方法一-dfs-递归&quot;&gt;&lt;a href=&quot;#方法一-dfs-递归&quot; class=&quot;headerlink
+      
     
     </summary>
     
       <category term="OJ" scheme="https://brianyi.github.io/categories/OJ/"/>
     
+    
+      <category term="leetcode" scheme="https://brianyi.github.io/tags/leetcode/"/>
+    
+      <category term="dfs" scheme="https://brianyi.github.io/tags/dfs/"/>
+    
+      <category term="图" scheme="https://brianyi.github.io/tags/%E5%9B%BE/"/>
     
   </entry>
   
@@ -83,11 +97,11 @@
       <category term="OJ" scheme="https://brianyi.github.io/categories/OJ/"/>
     
     
-      <category term="leetcode" scheme="https://brianyi.github.io/tags/leetcode/"/>
-    
       <category term="树" scheme="https://brianyi.github.io/tags/%E6%A0%91/"/>
     
       <category term="递归" scheme="https://brianyi.github.io/tags/%E9%80%92%E5%BD%92/"/>
+    
+      <category term="leetcode" scheme="https://brianyi.github.io/tags/leetcode/"/>
     
   </entry>
   
@@ -96,21 +110,28 @@
     <link href="https://brianyi.github.io/2019/05/06/leetcode-94-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86/"/>
     <id>https://brianyi.github.io/2019/05/06/leetcode-94-二叉树的中序遍历/</id>
     <published>2019-05-06T13:14:44.000Z</published>
-    <updated>2019-05-06T13:15:06.973Z</updated>
+    <updated>2019-05-06T13:27:19.026Z</updated>
     
-    <content type="html"><![CDATA[<img src="/2019/05/06/leetcode-94-二叉树的中序遍历/453425-20190501120139941-1568037684.png">]]></content>
+    <content type="html"><![CDATA[<img src="/2019/05/06/leetcode-94-二叉树的中序遍历/453425-20190501120139941-1568037684.png"><p>前往二叉树的:<a href>前序</a>,<a href>中序</a>,<a href>后序</a> 遍历算法</p><h3 id="方法一-递归"><a href="#方法一-递归" class="headerlink" title="方法一:递归"></a>方法一:递归</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; inorderTraversal(TreeNode* root) </span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (!root) <span class="keyword">return</span> res;</span><br><span class="line">    <span class="keyword">if</span> (root-&gt;left) inorderTraversal(root-&gt;left);      </span><br><span class="line">    res.push_back(root-&gt;val);</span><br><span class="line">    <span class="keyword">if</span> (root-&gt;right) inorderTraversal(root-&gt;right);</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="方法二-非递归"><a href="#方法二-非递归" class="headerlink" title="方法二:非递归"></a>方法二:非递归</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; inorderTraversal(TreeNode* root) </span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res;</span><br><span class="line">    <span class="keyword">if</span> (!root) <span class="keyword">return</span> res;</span><br><span class="line">    <span class="built_in">stack</span>&lt;TreeNode*&gt; S;</span><br><span class="line">    TreeNode* p = root;</span><br><span class="line">    <span class="keyword">while</span>(p||!S.empty())</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (p)</span><br><span class="line">        &#123;</span><br><span class="line">            S.push(p);</span><br><span class="line">            p=p-&gt;left;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            p=S.top();</span><br><span class="line">            S.pop();</span><br><span class="line">            res.push_back(p-&gt;val);</span><br><span class="line">            p=p-&gt;right;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
     
     <summary type="html">
     
       
       
         &lt;img src=&quot;/2019/05/06/leetcode-94-二叉树的中序遍历/453425-20190501120139941-1568037684.png&quot;&gt;
+&lt;p&gt;前往二叉树的:&lt;a href&gt;前序&lt;/a&gt;,&lt;a href&gt;中序&lt;/a&gt;,&lt;a href&gt;后序&lt;/a&gt; 
       
     
     </summary>
     
-      <category term="未分类" scheme="https://brianyi.github.io/categories/%E6%9C%AA%E5%88%86%E7%B1%BB/"/>
+      <category term="OJ" scheme="https://brianyi.github.io/categories/OJ/"/>
     
+    
+      <category term="树" scheme="https://brianyi.github.io/tags/%E6%A0%91/"/>
+    
+      <category term="递归" scheme="https://brianyi.github.io/tags/%E9%80%92%E5%BD%92/"/>
+    
+      <category term="leetcode" scheme="https://brianyi.github.io/tags/leetcode/"/>
     
   </entry>
   
@@ -137,11 +158,11 @@
       <category term="OJ" scheme="https://brianyi.github.io/categories/OJ/"/>
     
     
-      <category term="leetcode" scheme="https://brianyi.github.io/tags/leetcode/"/>
-    
       <category term="树" scheme="https://brianyi.github.io/tags/%E6%A0%91/"/>
     
       <category term="递归" scheme="https://brianyi.github.io/tags/%E9%80%92%E5%BD%92/"/>
+    
+      <category term="leetcode" scheme="https://brianyi.github.io/tags/leetcode/"/>
     
   </entry>
   
@@ -180,7 +201,7 @@
     <link href="https://brianyi.github.io/2019/05/06/leetcode-106-%E4%BB%8E%E4%B8%AD%E5%BA%8F%E4%B8%8E%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91/"/>
     <id>https://brianyi.github.io/2019/05/06/leetcode-106-从中序与后序遍历序列构造二叉树/</id>
     <published>2019-05-06T12:16:02.000Z</published>
-    <updated>2019-05-06T12:44:36.937Z</updated>
+    <updated>2019-05-06T13:27:31.595Z</updated>
     
     <content type="html"><![CDATA[<img src="/2019/05/06/leetcode-106-从中序与后序遍历序列构造二叉树/453425-20190502213938801-1912607084.png"><p>前往 中序,后序遍历构造二叉树, 中序,前序遍历构造二叉树<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">TreeNode* <span class="title">build</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; inorder, <span class="keyword">int</span> l1, <span class="keyword">int</span> r1, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp;postorder, <span class="keyword">int</span> l2, <span class="keyword">int</span> r2)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (l1&gt;r1) <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">    <span class="keyword">int</span> x = postorder[r2], i = <span class="number">0</span>;   <span class="comment">// 确定当前根节点</span></span><br><span class="line">    <span class="keyword">for</span> (i = l1; i &lt;= r1 &amp;&amp; inorder[i] != x; ++i);  <span class="comment">// 在中序遍历序列中找到当前根节点位置(该位置可以划分出左右两个分支)</span></span><br><span class="line">    <span class="keyword">int</span> llen = i - l1;  <span class="comment">// 左子树结点数量</span></span><br><span class="line">    <span class="keyword">int</span> rlen = r1 - i;  <span class="comment">// 右子树结点数量</span></span><br><span class="line">    TreeNode* p = <span class="keyword">new</span> TreeNode(x);  <span class="comment">// 建立根节点</span></span><br><span class="line">    p-&gt;left = build(inorder, l1, l1 + llen - <span class="number">1</span>, postorder, l2, l2 + llen - <span class="number">1</span>);  <span class="comment">// 递归建立左子树,-1,-1是把当前根节点位置去掉</span></span><br><span class="line">    p-&gt;right = build(inorder, r1 - rlen + <span class="number">1</span>, r1, postorder, r2 - rlen, r2 - <span class="number">1</span>); <span class="comment">// 递归建立右子树,+1,-1是把当前根节点位置去掉</span></span><br><span class="line">    <span class="keyword">return</span> p;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">TreeNode* <span class="title">buildTree</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; inorder, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; postorder)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (inorder.empty()||postorder.empty()) <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">    <span class="keyword">return</span> build(inorder, <span class="number">0</span>, inorder.size() - <span class="number">1</span>, postorder, <span class="number">0</span>, postorder.size() - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>]]></content>
     
@@ -197,11 +218,11 @@
       <category term="OJ" scheme="https://brianyi.github.io/categories/OJ/"/>
     
     
-      <category term="leetcode" scheme="https://brianyi.github.io/tags/leetcode/"/>
-    
       <category term="树" scheme="https://brianyi.github.io/tags/%E6%A0%91/"/>
     
       <category term="递归" scheme="https://brianyi.github.io/tags/%E9%80%92%E5%BD%92/"/>
+    
+      <category term="leetcode" scheme="https://brianyi.github.io/tags/leetcode/"/>
     
   </entry>
   
@@ -227,11 +248,11 @@
       <category term="OJ" scheme="https://brianyi.github.io/categories/OJ/"/>
     
     
-      <category term="leetcode" scheme="https://brianyi.github.io/tags/leetcode/"/>
-    
       <category term="树" scheme="https://brianyi.github.io/tags/%E6%A0%91/"/>
     
       <category term="递归" scheme="https://brianyi.github.io/tags/%E9%80%92%E5%BD%92/"/>
+    
+      <category term="leetcode" scheme="https://brianyi.github.io/tags/leetcode/"/>
     
   </entry>
   
@@ -257,11 +278,11 @@
       <category term="OJ" scheme="https://brianyi.github.io/categories/OJ/"/>
     
     
-      <category term="leetcode" scheme="https://brianyi.github.io/tags/leetcode/"/>
-    
       <category term="树" scheme="https://brianyi.github.io/tags/%E6%A0%91/"/>
     
       <category term="递归" scheme="https://brianyi.github.io/tags/%E9%80%92%E5%BD%92/"/>
+    
+      <category term="leetcode" scheme="https://brianyi.github.io/tags/leetcode/"/>
     
   </entry>
   
@@ -375,9 +396,9 @@
       <category term="OJ" scheme="https://brianyi.github.io/categories/OJ/"/>
     
     
-      <category term="leetcode" scheme="https://brianyi.github.io/tags/leetcode/"/>
-    
       <category term="树" scheme="https://brianyi.github.io/tags/%E6%A0%91/"/>
+    
+      <category term="leetcode" scheme="https://brianyi.github.io/tags/leetcode/"/>
     
   </entry>
   
