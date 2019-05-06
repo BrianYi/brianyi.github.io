@@ -128,17 +128,20 @@
 
 
 
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+  <meta name="description" content="解题思路: 由于叶子节点一定不要安装监视器,这样才能使总监视器数量比较少,因此需要从下往上进行判断当前节点的状态(共:3种状态):  0: 当前节点安装了监视器 1: 当前节点可观,但没有安装监视器 2: 当前节点不可观对于空节点,我们认为是可观,但没有安装监视器,因此,叶子节点就为不可观的了,设想一个节点的左右孩子(为空)都可观且没有安装监视器,那该节点必然是不可观即2  有了以上对空节点和叶">
+<meta name="keywords" content="leetcode,dp,二叉树">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="https://brianyi.github.io/2019/05/06/hello-world/index.html">
+<meta property="og:title" content="[leetcode]968.监控二叉树">
+<meta property="og:url" content="https://brianyi.github.io/2019/05/06/leetcode-968-监控二叉树/index.html">
 <meta property="og:site_name" content="Brian&#39;s Home">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="解题思路: 由于叶子节点一定不要安装监视器,这样才能使总监视器数量比较少,因此需要从下往上进行判断当前节点的状态(共:3种状态):  0: 当前节点安装了监视器 1: 当前节点可观,但没有安装监视器 2: 当前节点不可观对于空节点,我们认为是可观,但没有安装监视器,因此,叶子节点就为不可观的了,设想一个节点的左右孩子(为空)都可观且没有安装监视器,那该节点必然是不可观即2  有了以上对空节点和叶">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-05-06T10:30:08.510Z">
+<meta property="og:image" content="https://brianyi.github.io/2019/05/06/leetcode-968-监控二叉树/453425-20190501230642291-677698823.png">
+<meta property="og:updated_time" content="2019-05-06T13:11:46.627Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="[leetcode]968.监控二叉树">
+<meta name="twitter:description" content="解题思路: 由于叶子节点一定不要安装监视器,这样才能使总监视器数量比较少,因此需要从下往上进行判断当前节点的状态(共:3种状态):  0: 当前节点安装了监视器 1: 当前节点可观,但没有安装监视器 2: 当前节点不可观对于空节点,我们认为是可观,但没有安装监视器,因此,叶子节点就为不可观的了,设想一个节点的左右孩子(为空)都可观且没有安装监视器,那该节点必然是不可观即2  有了以上对空节点和叶">
+<meta name="twitter:image" content="https://brianyi.github.io/2019/05/06/leetcode-968-监控二叉树/453425-20190501230642291-677698823.png">
 
 
 
@@ -148,7 +151,7 @@
 
   
   
-  <link rel="canonical" href="https://brianyi.github.io/2019/05/06/hello-world/">
+  <link rel="canonical" href="https://brianyi.github.io/2019/05/06/leetcode-968-监控二叉树/">
 
 
 
@@ -158,7 +161,7 @@
   };
 </script>
 
-  <title>Hello World | Brian's Home</title>
+  <title>[leetcode]968.监控二叉树 | Brian's Home</title>
   
 
 
@@ -308,7 +311,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">7</span></a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">10</span></a>
 
   </li>
         
@@ -346,64 +349,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">10</span></a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-books">
-
-    
-    
-    
-      
-    
-
-    
-      
-    
-
-    <a href="/books" rel="section"><i class="menu-item-icon fa fa-fw fa-book"></i> <br>书籍</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-movies">
-
-    
-    
-    
-      
-    
-
-    
-      
-    
-
-    <a href="/movies" rel="section"><i class="menu-item-icon fa fa-fw fa-film"></i> <br>电影</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-games">
-
-    
-    
-    
-      
-    
-
-    
-      
-    
-
-    <a href="/games" rel="section"><i class="menu-item-icon fa fa-fw fa-gamepad"></i> <br>游戏</a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">15</span></a>
 
   </li>
 
@@ -491,7 +437,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://brianyi.github.io/2019/05/06/hello-world/">
+    <link itemprop="mainEntityOfPage" href="https://brianyi.github.io/2019/05/06/leetcode-968-监控二叉树/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Brian Yi">
@@ -508,7 +454,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hello World
+          <h1 class="post-title" itemprop="name headline">[leetcode]968.监控二叉树
 
               
             
@@ -534,7 +480,7 @@
                 
               
 
-              <time title="创建时间：2019-05-06 14:13:38 / 修改时间：18:30:08" itemprop="dateCreated datePublished" datetime="2019-05-06T14:13:38+08:00">2019-05-06</time>
+              <time title="创建时间：2019-05-06 21:08:13 / 修改时间：21:11:46" itemprop="dateCreated datePublished" datetime="2019-05-06T21:08:13+08:00">2019-05-06</time>
             
 
             
@@ -556,7 +502,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/未分类/" itemprop="url" rel="index"><span itemprop="name">未分类</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a></span>
 
                 
                 
@@ -571,7 +517,7 @@
 
           
           
-            <span id="/2019/05/06/hello-world/" class="leancloud_visitors" data-flag-title="Hello World">
+            <span id="/2019/05/06/leetcode-968-监控二叉树/" class="leancloud_visitors" data-flag-title="[leetcode]968.监控二叉树">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -596,7 +542,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">426</span>
+                <span title="本文字数">1.6k</span>
               
 
               
@@ -630,15 +576,23 @@
       
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+        <img src="/2019/05/06/leetcode-968-监控二叉树/453425-20190501230642291-677698823.png">
+<p>解题思路: 由于叶子节点一定不要安装监视器,这样才能使总监视器数量比较少,因此需要从下往上进行判断当前节点的状态(共:3种状态):</p>
+<ul>
+<li>0: 当前节点安装了监视器</li>
+<li>1: 当前节点可观,但没有安装监视器</li>
+<li>2: 当前节点不可观<br>对于空节点,我们认为是可观,但没有安装监视器,因此,叶子节点就为不可观的了,设想一个节点的左右孩子(为空)都可观且没有安装监视器,那该节点必然是不可观即2</li>
+</ul>
+<p>有了以上对空节点和叶子节点的处理,我们再来正式分析非终端节点:</p>
+<ul>
+<li>若一个节点的左孩子或右孩子不可观,那么该节点必然不可观,需要安装监视器,因此返回0状态</li>
+<li>若一个节点的左孩子或右孩子都可观且至少有一个安装了监视器,那么该节点必然是可观的,返回1状态</li>
+<li>若一个节点的左右孩子都可观且没安装监视器,那么该节点必然是不可观的,返回2状态<br>记住,我们以上的分析都是基于从整个二叉树的叶子节点往根部,即从下往上进行,而且要做的就是将不可观的节点变得可观才行(因此要根据左右孩子的节点的状态来判断当前节点状态并做出调整)</li>
+</ul>
+<p>这里可能会有疑惑,以上的第一条得出当前节点不可观,然后安装了监视器,而第三条也得出当前节点不可观,但却没有安装监视器,而是直接返回的2状态(当前节点不可观).这是为什么?</p>
+<p>因为,对于第一条,因为左右孩子都不可观,为了让左右孩子都可观,则必须给当前节点安装监视器才行,而第三条中,左右孩子都是可观的(没有安装监视器),当前节点的可以直接返回不可观状态,因为后面可以由他的父节点进行摄像头安装,使其变得可观.</p>
+<h3 id="方法一-递归"><a href="#方法一-递归" class="headerlink" title="方法一:递归"></a>方法一:递归</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 0：该节点安装了监视器 1：该节点可观，但没有安装监视器 2：该节点不可观</span></span><br><span class="line"><span class="keyword">int</span> monitor = <span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">state</span><span class="params">(TreeNode* node)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (node == <span class="literal">nullptr</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> left  = state(node-&gt;left);</span><br><span class="line">    <span class="keyword">int</span> right = state(node-&gt;right);</span><br><span class="line">    <span class="comment">// 该节点为0的情况</span></span><br><span class="line">    <span class="keyword">if</span> (left == <span class="number">2</span> || right == <span class="number">2</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        monitor++;  <span class="comment">// 由于左或右节点不可观,则需要给当前节点安装监视器,为0状态</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125; <span class="comment">// 为1的情况</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (left == <span class="number">0</span> || right == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;   <span class="comment">// 当(left!=2&amp;&amp;right!=2)时,才会进行该判断,也就是左右节点一定是可观的,再判断是否有一个安装了监视器,如有安装,则当前节点就不需要安装监视器也可观了,为1状态</span></span><br><span class="line">    <span class="comment">// 为2的情况</span></span><br><span class="line">    <span class="keyword">else</span>    <span class="comment">// 其他:党(left!=2&amp;&amp;right!=2)&amp;&amp;(left!=0&amp;&amp;right!=0),即left==1&amp;&amp;right==1时,左右节点都可观,但没有监视器,当前节点不可观,为2状态</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">minCameraCover</span><span class="params">(TreeNode *root)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (root == <span class="literal">nullptr</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> (state(root) == <span class="number">2</span>) monitor++;    <span class="comment">// 如果根节点为2的状态,需要加一个监视器</span></span><br><span class="line">    <span class="keyword">return</span> monitor;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意:这里的if,else if,else的顺序是不能变的,先判断左右都是不可观的,再就是都可观,左或右至少有一个为监视器,最后才是都可观都无监视器.</p>
 
       
     </div>
@@ -657,12 +611,12 @@
   <!-- JS库 sweetalert 可修改路径 -->
   <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <p><span>本文标题:</span><a href="/2019/05/06/hello-world/">Hello World</a></p>
+  <p><span>本文标题:</span><a href="/2019/05/06/leetcode-968-监控二叉树/">[leetcode]968.监控二叉树</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 Brian Yi 的个人博客">Brian Yi</a></p>
-  <p><span>发布时间:</span>2019年05月06日 - 14:05</p>
-  <p><span>最后更新:</span>2019年05月06日 - 18:05</p>
-  <p><span>原始链接:</span><a href="/2019/05/06/hello-world/" title="Hello World">https://brianyi.github.io/2019/05/06/hello-world/</a>
-    <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://brianyi.github.io/2019/05/06/hello-world/" aria-label="复制成功！"></i></span>
+  <p><span>发布时间:</span>2019年05月06日 - 21:05</p>
+  <p><span>最后更新:</span>2019年05月06日 - 21:05</p>
+  <p><span>原始链接:</span><a href="/2019/05/06/leetcode-968-监控二叉树/" title="[leetcode]968.监控二叉树">https://brianyi.github.io/2019/05/06/leetcode-968-监控二叉树/</a>
+    <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://brianyi.github.io/2019/05/06/leetcode-968-监控二叉树/" aria-label="复制成功！"></i></span>
   </p>
   <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
 </div>
@@ -693,6 +647,16 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/leetcode/" rel="tag"># leetcode</a>
+          
+            <a href="/tags/dp/" rel="tag"># dp</a>
+          
+            <a href="/tags/二叉树/" rel="tag"># 二叉树</a>
+          
+        </div>
+      
 
       
       
@@ -714,14 +678,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2019/05/06/leetcode-106-从中序与后序遍历序列构造二叉树/" rel="next" title="[leetcode]106.从中序与后序遍历序列构造二叉树">
+                <i class="fa fa-chevron-left"></i> [leetcode]106.从中序与后序遍历序列构造二叉树
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/05/06/leetcode-5-最长回文子串/" rel="prev" title="[leetcode]5.最长回文子串">
-                [leetcode]5.最长回文子串 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/05/06/leetcode-145-二叉树的后序遍历/" rel="prev" title="[leetcode]145.二叉树的后序遍历">
+                [leetcode]145.二叉树的后序遍历 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -798,7 +766,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-count">15</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -850,7 +818,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">7</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">10</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -917,7 +891,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#方法一-递归"><span class="nav-number">1.</span> <span class="nav-text">方法一:递归</span></a></li></ol></div>
             
 
           </div>
@@ -950,7 +924,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">11k</span>
+    <span title="站点总字数">16k</span>
   
 
   
@@ -959,20 +933,14 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">10 分钟</span>
+    <span title="站点阅读时长">15 分钟</span>
   
 </div>
 
 
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
 
 
 
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.1</div>
 
 
 
@@ -1094,7 +1062,7 @@
   
     <script>
   window.livereOptions = {
-    refer: '2019/05/06/hello-world/'
+    refer: '2019/05/06/leetcode-968-监控二叉树/'
   };
   (function(d, s) {
     var j, e = d.getElementsByTagName(s)[0];

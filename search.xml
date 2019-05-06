@@ -1,6 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[[leetcode]133.克隆图]]></title>
+    <url>%2F2019%2F05%2F06%2Fleetcode-133-%E5%85%8B%E9%9A%86%E5%9B%BE%2F</url>
+    <content type="text"></content>
+      <categories>
+        <category>OJ</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[[leetcode]138.复制带随机指针的链表]]></title>
+    <url>%2F2019%2F05%2F06%2Fleetcode-138-%E5%A4%8D%E5%88%B6%E5%B8%A6%E9%9A%8F%E6%9C%BA%E6%8C%87%E9%92%88%E7%9A%84%E9%93%BE%E8%A1%A8%2F</url>
+    <content type="text"><![CDATA[方法一:递归12345678910unordered_map&lt;Node*,Node*&gt; dict;Node* copyRandomList(Node* head) &#123; if (!head) return head; if (dict.count(head)) return dict[head]; dict[head]=new Node(head-&gt;val, nullptr, nullptr); dict[head]-&gt;next=copyRandomList(head-&gt;next); dict[head]-&gt;random=copyRandomList(head-&gt;random); return dict[head];&#125; 方法二:非递归12345678910111213141516171819Node* copyRandomList(Node* head) &#123; if (!head) return head; unordered_map&lt;Node*,Node*&gt; m; Node *p=head; while(p) // make a copy of nodes &#123; m[p]=new Node(p-&gt;val,nullptr,nullptr); p=p-&gt;next; &#125; p=head; while(p) // link everyone and fill the random field &#123; m[p]-&gt;next=m[p-&gt;next]; m[p]-&gt;random=m[p-&gt;random]; p=p-&gt;next; &#125; return m[head];&#125;]]></content>
+      <categories>
+        <category>OJ</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>链表</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[[leetcode]144.二叉树的前序遍历]]></title>
+    <url>%2F2019%2F05%2F06%2Fleetcode-144-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%89%8D%E5%BA%8F%E9%81%8D%E5%8E%86%2F</url>
+    <content type="text"><![CDATA[前往二叉树的:前序,中序,后序 遍历算法 方法一:递归123456789vector&lt;int&gt; res;vector&lt;int&gt; preorderTraversal(TreeNode* root) &#123; if (!root) return res; res.push_back(root-&gt;val); if (root-&gt;left) preorderTraversal(root-&gt;left); if (root-&gt;right) preorderTraversal(root-&gt;right); return res;&#125; 方法二:非递归1234567891011121314151617181920212223vector&lt;int&gt; preorderTraversal(TreeNode* root) &#123; vector&lt;int&gt; res; if (!root) return res; stack&lt;TreeNode*&gt; S; TreeNode* p = root; while(p||!S.empty()) &#123; if (p) // 访问左子树 &#123; res.push_back(p-&gt;val); S.push(p); p=p-&gt;left; &#125; else // 访问右子树 &#123; p=S.top(); S.pop(); p=p-&gt;right; &#125; &#125; return res;&#125; 方法三:非递归(该方法可用于后序遍历,需要修改几处代码)12345678910111213141516vector&lt;int&gt; res;vector&lt;int&gt; preorderTraversal(TreeNode* root) &#123; if (!root) return res; stack&lt;TreeNode*&gt; S; S.push(root); while (!S.empty()) &#123; root=S.top(); S.pop(); if (root-&gt;right) S.push(root-&gt;right); // 要实现后序遍历,需要以下两行调换 if (root-&gt;left) S.push(root-&gt;left); res.push_back(root-&gt;val); // res.insert(0,root-&gt;val)即为后序遍历 &#125; return res;&#125; 结论: 方法三这种形式只适合前序和后序遍历,不适合中序遍历,中序遍历较为麻烦 方法二这种形式只适合前序和中序遍历,不适合后序遍历,后序遍历较为麻烦]]></content>
+      <categories>
+        <category>OJ</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>树</tag>
+        <tag>递归</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[[leetcode]94.二叉树的中序遍历]]></title>
+    <url>%2F2019%2F05%2F06%2Fleetcode-94-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86%2F</url>
+    <content type="text"><![CDATA[]]></content>
+      <categories>
+        <category>未分类</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[[leetcode]145.二叉树的后序遍历]]></title>
+    <url>%2F2019%2F05%2F06%2Fleetcode-145-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86%2F</url>
+    <content type="text"><![CDATA[前往二叉树的:前序,中序,后序 遍历算法 方法一:递归123456789vector&lt;int&gt; res;vector&lt;int&gt; postorderTraversal(TreeNode* root) &#123; if (!root) return res; if (root-&gt;left) postorderTraversal(root-&gt;left); if (root-&gt;right) postorderTraversal(root-&gt;right); res.push_back(root-&gt;val); return res;&#125; 方法二:非递归1234567891011121314151617181920212223242526272829vector&lt;int&gt; postorderTraversal(TreeNode* root) &#123; vector&lt;int&gt; res; if (!root) return res; stack&lt;TreeNode*&gt; S; TreeNode* p=root, *r=nullptr; while (p||!S.empty()) &#123; if (p) &#123; S.push(p); p=p-&gt;left; &#125; else &#123; p=S.top(); if (p-&gt;right&amp;&amp;p-&gt;right!=r) p=p-&gt;right; else &#123; S.pop(); res.push_back(p-&gt;val); r=p; p=nullptr; &#125; &#125; &#125; return res; &#125; 方法三:非递归1234567891011121314151617vector&lt;int&gt; postorderTraversal(TreeNode* root) &#123; vector&lt;int&gt; res; if (!root) return res; stack&lt;TreeNode*&gt; S; TreeNode* p=root; S.push(p); while (!S.empty()) &#123; p=S.top(); S.pop(); if (p-&gt;left) S.push(p-&gt;left); if (p-&gt;right) S.push(p-&gt;right); res.insert(res.begin(),p-&gt;val); &#125; return res;&#125;]]></content>
+      <categories>
+        <category>OJ</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>树</tag>
+        <tag>递归</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[[leetcode]968.监控二叉树]]></title>
+    <url>%2F2019%2F05%2F06%2Fleetcode-968-%E7%9B%91%E6%8E%A7%E4%BA%8C%E5%8F%89%E6%A0%91%2F</url>
+    <content type="text"><![CDATA[解题思路: 由于叶子节点一定不要安装监视器,这样才能使总监视器数量比较少,因此需要从下往上进行判断当前节点的状态(共:3种状态): 0: 当前节点安装了监视器 1: 当前节点可观,但没有安装监视器 2: 当前节点不可观对于空节点,我们认为是可观,但没有安装监视器,因此,叶子节点就为不可观的了,设想一个节点的左右孩子(为空)都可观且没有安装监视器,那该节点必然是不可观即2 有了以上对空节点和叶子节点的处理,我们再来正式分析非终端节点: 若一个节点的左孩子或右孩子不可观,那么该节点必然不可观,需要安装监视器,因此返回0状态 若一个节点的左孩子或右孩子都可观且至少有一个安装了监视器,那么该节点必然是可观的,返回1状态 若一个节点的左右孩子都可观且没安装监视器,那么该节点必然是不可观的,返回2状态记住,我们以上的分析都是基于从整个二叉树的叶子节点往根部,即从下往上进行,而且要做的就是将不可观的节点变得可观才行(因此要根据左右孩子的节点的状态来判断当前节点状态并做出调整) 这里可能会有疑惑,以上的第一条得出当前节点不可观,然后安装了监视器,而第三条也得出当前节点不可观,但却没有安装监视器,而是直接返回的2状态(当前节点不可观).这是为什么? 因为,对于第一条,因为左右孩子都不可观,为了让左右孩子都可观,则必须给当前节点安装监视器才行,而第三条中,左右孩子都是可观的(没有安装监视器),当前节点的可以直接返回不可观状态,因为后面可以由他的父节点进行摄像头安装,使其变得可观. 方法一:递归12345678910111213141516171819202122232425// 0：该节点安装了监视器 1：该节点可观，但没有安装监视器 2：该节点不可观int monitor = 0;int state(TreeNode* node)&#123; if (node == nullptr) return 1; int left = state(node-&gt;left); int right = state(node-&gt;right); // 该节点为0的情况 if (left == 2 || right == 2) &#123; monitor++; // 由于左或右节点不可观,则需要给当前节点安装监视器,为0状态 return 0; &#125; // 为1的情况 else if (left == 0 || right == 0) return 1; // 当(left!=2&amp;&amp;right!=2)时,才会进行该判断,也就是左右节点一定是可观的,再判断是否有一个安装了监视器,如有安装,则当前节点就不需要安装监视器也可观了,为1状态 // 为2的情况 else // 其他:党(left!=2&amp;&amp;right!=2)&amp;&amp;(left!=0&amp;&amp;right!=0),即left==1&amp;&amp;right==1时,左右节点都可观,但没有监视器,当前节点不可观,为2状态 return 2;&#125;int minCameraCover(TreeNode *root)&#123; if (root == nullptr) return 0; if (state(root) == 2) monitor++; // 如果根节点为2的状态,需要加一个监视器 return monitor;&#125; 注意:这里的if,else if,else的顺序是不能变的,先判断左右都是不可观的,再就是都可观,左或右至少有一个为监视器,最后才是都可观都无监视器.]]></content>
+      <categories>
+        <category>OJ</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>dp</tag>
+        <tag>二叉树</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[[leetcode]106.从中序与后序遍历序列构造二叉树]]></title>
     <url>%2F2019%2F05%2F06%2Fleetcode-106-%E4%BB%8E%E4%B8%AD%E5%BA%8F%E4%B8%8E%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91%2F</url>
     <content type="text"><![CDATA[前往 中序,后序遍历构造二叉树, 中序,前序遍历构造二叉树12345678910111213141516TreeNode* build(vector&lt;int&gt;&amp; inorder, int l1, int r1, vector&lt;int&gt;&amp;postorder, int l2, int r2)&#123; if (l1&gt;r1) return nullptr; int x = postorder[r2], i = 0; // 确定当前根节点 for (i = l1; i &lt;= r1 &amp;&amp; inorder[i] != x; ++i); // 在中序遍历序列中找到当前根节点位置(该位置可以划分出左右两个分支) int llen = i - l1; // 左子树结点数量 int rlen = r1 - i; // 右子树结点数量 TreeNode* p = new TreeNode(x); // 建立根节点 p-&gt;left = build(inorder, l1, l1 + llen - 1, postorder, l2, l2 + llen - 1); // 递归建立左子树,-1,-1是把当前根节点位置去掉 p-&gt;right = build(inorder, r1 - rlen + 1, r1, postorder, r2 - rlen, r2 - 1); // 递归建立右子树,+1,-1是把当前根节点位置去掉 return p;&#125;TreeNode* buildTree(vector&lt;int&gt;&amp; inorder, vector&lt;int&gt;&amp; postorder) &#123; if (inorder.empty()||postorder.empty()) return nullptr; return build(inorder, 0, inorder.size() - 1, postorder, 0, postorder.size() - 1);&#125;]]></content>
@@ -111,13 +178,5 @@
         <tag>leetcode</tag>
         <tag>回文串</tag>
       </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Hello World]]></title>
-    <url>%2F2019%2F05%2F06%2Fhello-world%2F</url>
-    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
-      <categories>
-        <category>未分类</category>
-      </categories>
   </entry>
 </search>

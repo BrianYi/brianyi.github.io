@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://brianyi.github.io/"/>
-  <updated>2019-05-06T12:17:14.560Z</updated>
+  <updated>2019-05-06T13:21:48.645Z</updated>
   <id>https://brianyi.github.io/</id>
   
   <author>
@@ -17,11 +17,170 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>[leetcode]133.克隆图</title>
+    <link href="https://brianyi.github.io/2019/05/06/leetcode-133-%E5%85%8B%E9%9A%86%E5%9B%BE/"/>
+    <id>https://brianyi.github.io/2019/05/06/leetcode-133-克隆图/</id>
+    <published>2019-05-06T13:21:48.000Z</published>
+    <updated>2019-05-06T13:21:48.645Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="OJ" scheme="https://brianyi.github.io/categories/OJ/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>[leetcode]138.复制带随机指针的链表</title>
+    <link href="https://brianyi.github.io/2019/05/06/leetcode-138-%E5%A4%8D%E5%88%B6%E5%B8%A6%E9%9A%8F%E6%9C%BA%E6%8C%87%E9%92%88%E7%9A%84%E9%93%BE%E8%A1%A8/"/>
+    <id>https://brianyi.github.io/2019/05/06/leetcode-138-复制带随机指针的链表/</id>
+    <published>2019-05-06T13:20:18.000Z</published>
+    <updated>2019-05-06T13:21:26.651Z</updated>
+    
+    <content type="html"><![CDATA[<img src="/2019/05/06/leetcode-138-复制带随机指针的链表/453425-20190430193735900-662137168.png"><h3 id="方法一-递归"><a href="#方法一-递归" class="headerlink" title="方法一:递归"></a>方法一:递归</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">unordered_map</span>&lt;Node*,Node*&gt; dict;</span><br><span class="line"><span class="function">Node* <span class="title">copyRandomList</span><span class="params">(Node* head)</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!head) <span class="keyword">return</span> head;</span><br><span class="line">    <span class="keyword">if</span> (dict.count(head)) <span class="keyword">return</span> dict[head];</span><br><span class="line">    dict[head]=<span class="keyword">new</span> Node(head-&gt;val, <span class="literal">nullptr</span>, <span class="literal">nullptr</span>);</span><br><span class="line">    dict[head]-&gt;next=copyRandomList(head-&gt;next);</span><br><span class="line">    dict[head]-&gt;random=copyRandomList(head-&gt;random);</span><br><span class="line">    <span class="keyword">return</span> dict[head];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="方法二-非递归"><a href="#方法二-非递归" class="headerlink" title="方法二:非递归"></a>方法二:非递归</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Node* <span class="title">copyRandomList</span><span class="params">(Node* head)</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!head) <span class="keyword">return</span> head;</span><br><span class="line">    <span class="built_in">unordered_map</span>&lt;Node*,Node*&gt; m;</span><br><span class="line">    Node *p=head;</span><br><span class="line">    <span class="keyword">while</span>(p)    <span class="comment">// make a copy of nodes</span></span><br><span class="line">    &#123;</span><br><span class="line">        m[p]=<span class="keyword">new</span> Node(p-&gt;val,<span class="literal">nullptr</span>,<span class="literal">nullptr</span>);</span><br><span class="line">        p=p-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    p=head;</span><br><span class="line">    <span class="keyword">while</span>(p)    <span class="comment">// link everyone and fill the random field</span></span><br><span class="line">    &#123;</span><br><span class="line">        m[p]-&gt;next=m[p-&gt;next];</span><br><span class="line">        m[p]-&gt;random=m[p-&gt;random];</span><br><span class="line">        p=p-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> m[head];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;img src=&quot;/2019/05/06/leetcode-138-复制带随机指针的链表/453425-20190430193735900-662137168.png&quot;&gt;
+&lt;h3 id=&quot;方法一-递归&quot;&gt;&lt;a href=&quot;#方法一-递归&quot; class=&quot;headerlink&quot; 
+      
+    
+    </summary>
+    
+      <category term="OJ" scheme="https://brianyi.github.io/categories/OJ/"/>
+    
+    
+      <category term="leetcode" scheme="https://brianyi.github.io/tags/leetcode/"/>
+    
+      <category term="链表" scheme="https://brianyi.github.io/tags/%E9%93%BE%E8%A1%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>[leetcode]144.二叉树的前序遍历</title>
+    <link href="https://brianyi.github.io/2019/05/06/leetcode-144-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%89%8D%E5%BA%8F%E9%81%8D%E5%8E%86/"/>
+    <id>https://brianyi.github.io/2019/05/06/leetcode-144-二叉树的前序遍历/</id>
+    <published>2019-05-06T13:17:07.000Z</published>
+    <updated>2019-05-06T13:19:44.482Z</updated>
+    
+    <content type="html"><![CDATA[<img src="/2019/05/06/leetcode-144-二叉树的前序遍历/453425-20190501113746021-447522744.png"><p>前往二叉树的:前序,中序,后序 遍历算法</p><h3 id="方法一-递归"><a href="#方法一-递归" class="headerlink" title="方法一:递归"></a>方法一:递归</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; preorderTraversal(TreeNode* root) </span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (!root) <span class="keyword">return</span> res;</span><br><span class="line">    res.push_back(root-&gt;val);</span><br><span class="line">    <span class="keyword">if</span> (root-&gt;left) preorderTraversal(root-&gt;left);</span><br><span class="line">    <span class="keyword">if</span> (root-&gt;right) preorderTraversal(root-&gt;right);</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="方法二-非递归"><a href="#方法二-非递归" class="headerlink" title="方法二:非递归"></a>方法二:非递归</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; preorderTraversal(TreeNode* root) </span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res;</span><br><span class="line">    <span class="keyword">if</span> (!root) <span class="keyword">return</span> res;</span><br><span class="line">    <span class="built_in">stack</span>&lt;TreeNode*&gt; S;</span><br><span class="line">    TreeNode* p = root;</span><br><span class="line">    <span class="keyword">while</span>(p||!S.empty())</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (p)  <span class="comment">// 访问左子树</span></span><br><span class="line">        &#123;</span><br><span class="line">            res.push_back(p-&gt;val);</span><br><span class="line">            S.push(p);</span><br><span class="line">            p=p-&gt;left;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>    <span class="comment">// 访问右子树</span></span><br><span class="line">        &#123;</span><br><span class="line">            p=S.top();</span><br><span class="line">            S.pop();</span><br><span class="line">            p=p-&gt;right;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="方法三-非递归-该方法可用于后序遍历-需要修改几处代码"><a href="#方法三-非递归-该方法可用于后序遍历-需要修改几处代码" class="headerlink" title="方法三:非递归(该方法可用于后序遍历,需要修改几处代码)"></a>方法三:非递归(该方法可用于后序遍历,需要修改几处代码)</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; preorderTraversal(TreeNode* root) </span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (!root) <span class="keyword">return</span> res;</span><br><span class="line">    <span class="built_in">stack</span>&lt;TreeNode*&gt; S;</span><br><span class="line">    S.push(root);</span><br><span class="line">    <span class="keyword">while</span> (!S.empty())</span><br><span class="line">    &#123;</span><br><span class="line">        root=S.top();</span><br><span class="line">        S.pop();</span><br><span class="line">        <span class="keyword">if</span> (root-&gt;right) S.push(root-&gt;right);  <span class="comment">// 要实现后序遍历,需要以下两行调换</span></span><br><span class="line">        <span class="keyword">if</span> (root-&gt;left) S.push(root-&gt;left);</span><br><span class="line">        res.push_back(root-&gt;val);   <span class="comment">// res.insert(0,root-&gt;val)即为后序遍历</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>结论:</p><ul><li>方法三这种形式只适合前序和后序遍历,不适合中序遍历,中序遍历较为麻烦</li><li>方法二这种形式只适合前序和中序遍历,不适合后序遍历,后序遍历较为麻烦</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;img src=&quot;/2019/05/06/leetcode-144-二叉树的前序遍历/453425-20190501113746021-447522744.png&quot;&gt;
+&lt;p&gt;前往二叉树的:前序,中序,后序 遍历算法&lt;/p&gt;
+&lt;h3 id=&quot;方法一-递归&quot;&gt;&lt;a href=&quot;#方
+      
+    
+    </summary>
+    
+      <category term="OJ" scheme="https://brianyi.github.io/categories/OJ/"/>
+    
+    
+      <category term="leetcode" scheme="https://brianyi.github.io/tags/leetcode/"/>
+    
+      <category term="树" scheme="https://brianyi.github.io/tags/%E6%A0%91/"/>
+    
+      <category term="递归" scheme="https://brianyi.github.io/tags/%E9%80%92%E5%BD%92/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>[leetcode]94.二叉树的中序遍历</title>
+    <link href="https://brianyi.github.io/2019/05/06/leetcode-94-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86/"/>
+    <id>https://brianyi.github.io/2019/05/06/leetcode-94-二叉树的中序遍历/</id>
+    <published>2019-05-06T13:14:44.000Z</published>
+    <updated>2019-05-06T13:15:06.973Z</updated>
+    
+    <content type="html"><![CDATA[<img src="/2019/05/06/leetcode-94-二叉树的中序遍历/453425-20190501120139941-1568037684.png">]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;img src=&quot;/2019/05/06/leetcode-94-二叉树的中序遍历/453425-20190501120139941-1568037684.png&quot;&gt;
+      
+    
+    </summary>
+    
+      <category term="未分类" scheme="https://brianyi.github.io/categories/%E6%9C%AA%E5%88%86%E7%B1%BB/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>[leetcode]145.二叉树的后序遍历</title>
+    <link href="https://brianyi.github.io/2019/05/06/leetcode-145-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86/"/>
+    <id>https://brianyi.github.io/2019/05/06/leetcode-145-二叉树的后序遍历/</id>
+    <published>2019-05-06T13:12:06.000Z</published>
+    <updated>2019-05-06T13:14:29.228Z</updated>
+    
+    <content type="html"><![CDATA[<img src="/2019/05/06/leetcode-145-二叉树的后序遍历/453425-20190501122117295-85727166.png"><p>前往二叉树的:前序,中序,后序 遍历算法</p><h3 id="方法一-递归"><a href="#方法一-递归" class="headerlink" title="方法一:递归"></a>方法一:递归</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; postorderTraversal(TreeNode* root) </span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (!root) <span class="keyword">return</span> res;</span><br><span class="line">    <span class="keyword">if</span> (root-&gt;left) postorderTraversal(root-&gt;left);</span><br><span class="line">    <span class="keyword">if</span> (root-&gt;right) postorderTraversal(root-&gt;right);</span><br><span class="line">    res.push_back(root-&gt;val);</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="方法二-非递归"><a href="#方法二-非递归" class="headerlink" title="方法二:非递归"></a>方法二:非递归</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; postorderTraversal(TreeNode* root) </span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res;</span><br><span class="line">    <span class="keyword">if</span> (!root) <span class="keyword">return</span> res;</span><br><span class="line">    <span class="built_in">stack</span>&lt;TreeNode*&gt; S;</span><br><span class="line">    TreeNode* p=root, *r=<span class="literal">nullptr</span>;</span><br><span class="line">    <span class="keyword">while</span> (p||!S.empty())</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (p)</span><br><span class="line">        &#123;</span><br><span class="line">            S.push(p);</span><br><span class="line">            p=p-&gt;left;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            p=S.top();</span><br><span class="line">            <span class="keyword">if</span> (p-&gt;right&amp;&amp;p-&gt;right!=r)</span><br><span class="line">                p=p-&gt;right;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                S.pop();</span><br><span class="line">                res.push_back(p-&gt;val);</span><br><span class="line">                r=p;</span><br><span class="line">                p=<span class="literal">nullptr</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><h3 id="方法三-非递归"><a href="#方法三-非递归" class="headerlink" title="方法三:非递归"></a>方法三:非递归</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; postorderTraversal(TreeNode* root) </span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res;</span><br><span class="line">    <span class="keyword">if</span> (!root) <span class="keyword">return</span> res;</span><br><span class="line">    <span class="built_in">stack</span>&lt;TreeNode*&gt; S;</span><br><span class="line">    TreeNode* p=root;</span><br><span class="line">    S.push(p);</span><br><span class="line">    <span class="keyword">while</span> (!S.empty())</span><br><span class="line">    &#123;</span><br><span class="line">        p=S.top();</span><br><span class="line">        S.pop();</span><br><span class="line">        <span class="keyword">if</span> (p-&gt;left) S.push(p-&gt;left);</span><br><span class="line">        <span class="keyword">if</span> (p-&gt;right) S.push(p-&gt;right);</span><br><span class="line">        res.insert(res.begin(),p-&gt;val);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;img src=&quot;/2019/05/06/leetcode-145-二叉树的后序遍历/453425-20190501122117295-85727166.png&quot;&gt;
+&lt;p&gt;前往二叉树的:前序,中序,后序 遍历算法&lt;/p&gt;
+&lt;h3 id=&quot;方法一-递归&quot;&gt;&lt;a href=&quot;#方法
+      
+    
+    </summary>
+    
+      <category term="OJ" scheme="https://brianyi.github.io/categories/OJ/"/>
+    
+    
+      <category term="leetcode" scheme="https://brianyi.github.io/tags/leetcode/"/>
+    
+      <category term="树" scheme="https://brianyi.github.io/tags/%E6%A0%91/"/>
+    
+      <category term="递归" scheme="https://brianyi.github.io/tags/%E9%80%92%E5%BD%92/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>[leetcode]968.监控二叉树</title>
+    <link href="https://brianyi.github.io/2019/05/06/leetcode-968-%E7%9B%91%E6%8E%A7%E4%BA%8C%E5%8F%89%E6%A0%91/"/>
+    <id>https://brianyi.github.io/2019/05/06/leetcode-968-监控二叉树/</id>
+    <published>2019-05-06T13:08:13.000Z</published>
+    <updated>2019-05-06T13:11:46.627Z</updated>
+    
+    <content type="html"><![CDATA[<img src="/2019/05/06/leetcode-968-监控二叉树/453425-20190501230642291-677698823.png"><p>解题思路: 由于叶子节点一定不要安装监视器,这样才能使总监视器数量比较少,因此需要从下往上进行判断当前节点的状态(共:3种状态):</p><ul><li>0: 当前节点安装了监视器</li><li>1: 当前节点可观,但没有安装监视器</li><li>2: 当前节点不可观<br>对于空节点,我们认为是可观,但没有安装监视器,因此,叶子节点就为不可观的了,设想一个节点的左右孩子(为空)都可观且没有安装监视器,那该节点必然是不可观即2</li></ul><p>有了以上对空节点和叶子节点的处理,我们再来正式分析非终端节点:</p><ul><li>若一个节点的左孩子或右孩子不可观,那么该节点必然不可观,需要安装监视器,因此返回0状态</li><li>若一个节点的左孩子或右孩子都可观且至少有一个安装了监视器,那么该节点必然是可观的,返回1状态</li><li>若一个节点的左右孩子都可观且没安装监视器,那么该节点必然是不可观的,返回2状态<br>记住,我们以上的分析都是基于从整个二叉树的叶子节点往根部,即从下往上进行,而且要做的就是将不可观的节点变得可观才行(因此要根据左右孩子的节点的状态来判断当前节点状态并做出调整)</li></ul><p>这里可能会有疑惑,以上的第一条得出当前节点不可观,然后安装了监视器,而第三条也得出当前节点不可观,但却没有安装监视器,而是直接返回的2状态(当前节点不可观).这是为什么?</p><p>因为,对于第一条,因为左右孩子都不可观,为了让左右孩子都可观,则必须给当前节点安装监视器才行,而第三条中,左右孩子都是可观的(没有安装监视器),当前节点的可以直接返回不可观状态,因为后面可以由他的父节点进行摄像头安装,使其变得可观.</p><h3 id="方法一-递归"><a href="#方法一-递归" class="headerlink" title="方法一:递归"></a>方法一:递归</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 0：该节点安装了监视器 1：该节点可观，但没有安装监视器 2：该节点不可观</span></span><br><span class="line"><span class="keyword">int</span> monitor = <span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">state</span><span class="params">(TreeNode* node)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (node == <span class="literal">nullptr</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> left  = state(node-&gt;left);</span><br><span class="line">    <span class="keyword">int</span> right = state(node-&gt;right);</span><br><span class="line">    <span class="comment">// 该节点为0的情况</span></span><br><span class="line">    <span class="keyword">if</span> (left == <span class="number">2</span> || right == <span class="number">2</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        monitor++;  <span class="comment">// 由于左或右节点不可观,则需要给当前节点安装监视器,为0状态</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125; <span class="comment">// 为1的情况</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (left == <span class="number">0</span> || right == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;   <span class="comment">// 当(left!=2&amp;&amp;right!=2)时,才会进行该判断,也就是左右节点一定是可观的,再判断是否有一个安装了监视器,如有安装,则当前节点就不需要安装监视器也可观了,为1状态</span></span><br><span class="line">    <span class="comment">// 为2的情况</span></span><br><span class="line">    <span class="keyword">else</span>    <span class="comment">// 其他:党(left!=2&amp;&amp;right!=2)&amp;&amp;(left!=0&amp;&amp;right!=0),即left==1&amp;&amp;right==1时,左右节点都可观,但没有监视器,当前节点不可观,为2状态</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">minCameraCover</span><span class="params">(TreeNode *root)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (root == <span class="literal">nullptr</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> (state(root) == <span class="number">2</span>) monitor++;    <span class="comment">// 如果根节点为2的状态,需要加一个监视器</span></span><br><span class="line">    <span class="keyword">return</span> monitor;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>注意:这里的if,else if,else的顺序是不能变的,先判断左右都是不可观的,再就是都可观,左或右至少有一个为监视器,最后才是都可观都无监视器.</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;img src=&quot;/2019/05/06/leetcode-968-监控二叉树/453425-20190501230642291-677698823.png&quot;&gt;
+&lt;p&gt;解题思路: 由于叶子节点一定不要安装监视器,这样才能使总监视器数量比较少,因此需要从下往上进行判断当前节点的状
+      
+    
+    </summary>
+    
+      <category term="OJ" scheme="https://brianyi.github.io/categories/OJ/"/>
+    
+    
+      <category term="leetcode" scheme="https://brianyi.github.io/tags/leetcode/"/>
+    
+      <category term="dp" scheme="https://brianyi.github.io/tags/dp/"/>
+    
+      <category term="二叉树" scheme="https://brianyi.github.io/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/"/>
+    
+  </entry>
+  
+  <entry>
     <title>[leetcode]106.从中序与后序遍历序列构造二叉树</title>
     <link href="https://brianyi.github.io/2019/05/06/leetcode-106-%E4%BB%8E%E4%B8%AD%E5%BA%8F%E4%B8%8E%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91/"/>
     <id>https://brianyi.github.io/2019/05/06/leetcode-106-从中序与后序遍历序列构造二叉树/</id>
     <published>2019-05-06T12:16:02.000Z</published>
-    <updated>2019-05-06T12:17:14.560Z</updated>
+    <updated>2019-05-06T12:44:36.937Z</updated>
     
     <content type="html"><![CDATA[<img src="/2019/05/06/leetcode-106-从中序与后序遍历序列构造二叉树/453425-20190502213938801-1912607084.png"><p>前往 中序,后序遍历构造二叉树, 中序,前序遍历构造二叉树<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">TreeNode* <span class="title">build</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; inorder, <span class="keyword">int</span> l1, <span class="keyword">int</span> r1, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp;postorder, <span class="keyword">int</span> l2, <span class="keyword">int</span> r2)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (l1&gt;r1) <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">    <span class="keyword">int</span> x = postorder[r2], i = <span class="number">0</span>;   <span class="comment">// 确定当前根节点</span></span><br><span class="line">    <span class="keyword">for</span> (i = l1; i &lt;= r1 &amp;&amp; inorder[i] != x; ++i);  <span class="comment">// 在中序遍历序列中找到当前根节点位置(该位置可以划分出左右两个分支)</span></span><br><span class="line">    <span class="keyword">int</span> llen = i - l1;  <span class="comment">// 左子树结点数量</span></span><br><span class="line">    <span class="keyword">int</span> rlen = r1 - i;  <span class="comment">// 右子树结点数量</span></span><br><span class="line">    TreeNode* p = <span class="keyword">new</span> TreeNode(x);  <span class="comment">// 建立根节点</span></span><br><span class="line">    p-&gt;left = build(inorder, l1, l1 + llen - <span class="number">1</span>, postorder, l2, l2 + llen - <span class="number">1</span>);  <span class="comment">// 递归建立左子树,-1,-1是把当前根节点位置去掉</span></span><br><span class="line">    p-&gt;right = build(inorder, r1 - rlen + <span class="number">1</span>, r1, postorder, r2 - rlen, r2 - <span class="number">1</span>); <span class="comment">// 递归建立右子树,+1,-1是把当前根节点位置去掉</span></span><br><span class="line">    <span class="keyword">return</span> p;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">TreeNode* <span class="title">buildTree</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; inorder, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; postorder)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (inorder.empty()||postorder.empty()) <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">    <span class="keyword">return</span> build(inorder, <span class="number">0</span>, inorder.size() - <span class="number">1</span>, postorder, <span class="number">0</span>, postorder.size() - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>]]></content>
     
@@ -278,29 +437,6 @@
       <category term="leetcode" scheme="https://brianyi.github.io/tags/leetcode/"/>
     
       <category term="回文串" scheme="https://brianyi.github.io/tags/%E5%9B%9E%E6%96%87%E4%B8%B2/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="https://brianyi.github.io/2019/05/06/hello-world/"/>
-    <id>https://brianyi.github.io/2019/05/06/hello-world/</id>
-    <published>2019-05-06T06:13:38.294Z</published>
-    <updated>2019-05-06T10:30:08.510Z</updated>
-    
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
-      
-    
-    </summary>
-    
-      <category term="未分类" scheme="https://brianyi.github.io/categories/%E6%9C%AA%E5%88%86%E7%B1%BB/"/>
-    
     
   </entry>
   
