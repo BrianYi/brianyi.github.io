@@ -305,7 +305,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">2</span></a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">7</span></a>
 
   </li>
         
@@ -343,7 +343,64 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">2</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">10</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-books">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/books" rel="section"><i class="menu-item-icon fa fa-fw fa-book"></i> <br>书籍</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-movies">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/movies" rel="section"><i class="menu-item-icon fa fa-fw fa-film"></i> <br>电影</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-games">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/games" rel="section"><i class="menu-item-icon fa fa-fw fa-gamepad"></i> <br>游戏</a>
 
   </li>
 
@@ -431,7 +488,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://brianyi.github.io/2019/05/06/【leetcode】5-最长回文子串/">
+    <link itemprop="mainEntityOfPage" href="https://brianyi.github.io/2019/05/06/leetcode-106-从中序与后序遍历序列构造二叉树/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Brian Yi">
@@ -451,7 +508,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/05/06/【leetcode】5-最长回文子串/" class="post-title-link" itemprop="url">【leetcode】5.最长回文子串</a>
+                <a href="/2019/05/06/leetcode-106-从中序与后序遍历序列构造二叉树/" class="post-title-link" itemprop="url">[leetcode]106.从中序与后序遍历序列构造二叉树</a>
               
             
           </h1>
@@ -476,7 +533,7 @@
                 
               
 
-              <time title="创建时间：2019-05-06 18:05:20 / 修改时间：18:25:18" itemprop="dateCreated datePublished" datetime="2019-05-06T18:05:20+08:00">2019-05-06</time>
+              <time title="创建时间：2019-05-06 20:16:02 / 修改时间：20:17:14" itemprop="dateCreated datePublished" datetime="2019-05-06T20:16:02+08:00">2019-05-06</time>
             
 
             
@@ -513,7 +570,1636 @@
 
           
           
-            <span id="/2019/05/06/【leetcode】5-最长回文子串/" class="leancloud_visitors" data-flag-title="【leetcode】5.最长回文子串">
+            <span id="/2019/05/06/leetcode-106-从中序与后序遍历序列构造二叉树/" class="leancloud_visitors" data-flag-title="[leetcode]106.从中序与后序遍历序列构造二叉树">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">920</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">1 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <img src="/2019/05/06/leetcode-106-从中序与后序遍历序列构造二叉树/453425-20190502213938801-1912607084.png">
+<p>前往 中序,后序遍历构造二叉树, 中序,前序遍历构造二叉树<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">TreeNode* <span class="title">build</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; inorder, <span class="keyword">int</span> l1, <span class="keyword">int</span> r1, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp;postorder, <span class="keyword">int</span> l2, <span class="keyword">int</span> r2)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (l1&gt;r1) <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">    <span class="keyword">int</span> x = postorder[r2], i = <span class="number">0</span>;   <span class="comment">// 确定当前根节点</span></span><br><span class="line">    <span class="keyword">for</span> (i = l1; i &lt;= r1 &amp;&amp; inorder[i] != x; ++i);  <span class="comment">// 在中序遍历序列中找到当前根节点位置(该位置可以划分出左右两个分支)</span></span><br><span class="line">    <span class="keyword">int</span> llen = i - l1;  <span class="comment">// 左子树结点数量</span></span><br><span class="line">    <span class="keyword">int</span> rlen = r1 - i;  <span class="comment">// 右子树结点数量</span></span><br><span class="line">    TreeNode* p = <span class="keyword">new</span> TreeNode(x);  <span class="comment">// 建立根节点</span></span><br><span class="line">    p-&gt;left = build(inorder, l1, l1 + llen - <span class="number">1</span>, postorder, l2, l2 + llen - <span class="number">1</span>);  <span class="comment">// 递归建立左子树,-1,-1是把当前根节点位置去掉</span></span><br><span class="line">    p-&gt;right = build(inorder, r1 - rlen + <span class="number">1</span>, r1, postorder, r2 - rlen, r2 - <span class="number">1</span>); <span class="comment">// 递归建立右子树,+1,-1是把当前根节点位置去掉</span></span><br><span class="line">    <span class="keyword">return</span> p;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">TreeNode* <span class="title">buildTree</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; inorder, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; postorder)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (inorder.empty()||postorder.empty()) <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">    <span class="keyword">return</span> build(inorder, <span class="number">0</span>, inorder.size() - <span class="number">1</span>, postorder, <span class="number">0</span>, postorder.size() - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+    <div>
+      
+    </div>
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://brianyi.github.io/2019/05/06/leetcode-105-从前序与中序遍历序列构造二叉树/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Brian Yi">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brian's Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/05/06/leetcode-105-从前序与中序遍历序列构造二叉树/" class="post-title-link" itemprop="url">[leetcode]105.从前序与中序遍历序列构造二叉树</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-06 20:14:01 / 修改时间：20:15:26" itemprop="dateCreated datePublished" datetime="2019-05-06T20:14:01+08:00">2019-05-06</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+            <span id="/2019/05/06/leetcode-105-从前序与中序遍历序列构造二叉树/" class="leancloud_visitors" data-flag-title="[leetcode]105.从前序与中序遍历序列构造二叉树">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">814</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">1 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <img src="/2019/05/06/leetcode-105-从前序与中序遍历序列构造二叉树/453425-20190502215802448-663626721.png">
+<p>前往 中序,后序遍历构造二叉树, 中序,前序遍历构造二叉树<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">TreeNode* <span class="title">build</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; preorder, <span class="keyword">int</span> l1, <span class="keyword">int</span> r1, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; inorder, <span class="keyword">int</span> l2, <span class="keyword">int</span> r2)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (l1&gt;r1) <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">    <span class="keyword">int</span> x=preorder[l1], i=<span class="number">0</span>;    <span class="comment">// 确定当前根节点</span></span><br><span class="line">    <span class="keyword">for</span>(i=l2;inorder[i]!=x&amp;&amp;i&lt;r2;++i);  <span class="comment">// 在中序遍历序列中找到当前根节点位置(该位置可以划分出左右两个分支)</span></span><br><span class="line">    <span class="keyword">int</span> llen=i-l2;  <span class="comment">// 左子树结点数量</span></span><br><span class="line">    <span class="keyword">int</span> rlen=r2-i;  <span class="comment">// 右子树结点数量</span></span><br><span class="line">    TreeNode *p = <span class="keyword">new</span> TreeNode(x);  <span class="comment">// 建立根节点</span></span><br><span class="line">    p-&gt;left = build(preorder, l1+<span class="number">1</span>, l1+llen, inorder, l2, l2+llen<span class="number">-1</span>);   <span class="comment">// 递归建立左子树,+1,-1是把当前根节点位置去掉</span></span><br><span class="line">    p-&gt;right= build(preorder, r1-rlen+<span class="number">1</span>, r1, inorder, r2-rlen+<span class="number">1</span>, r2);   <span class="comment">// 递归建立右子树,+1,+1是把当前根节点位置去掉</span></span><br><span class="line">    <span class="keyword">return</span> p;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">TreeNode* <span class="title">buildTree</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; preorder, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; inorder)</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> build(preorder, <span class="number">0</span>, preorder.size()<span class="number">-1</span>, inorder, <span class="number">0</span>, inorder.size()<span class="number">-1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+    <div>
+      
+    </div>
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://brianyi.github.io/2019/05/06/leetcode-114-二叉树展开为链表/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Brian Yi">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brian's Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/05/06/leetcode-114-二叉树展开为链表/" class="post-title-link" itemprop="url">[leetcode]114.二叉树展开为链表</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-06 20:12:04 / 修改时间：20:13:26" itemprop="dateCreated datePublished" datetime="2019-05-06T20:12:04+08:00">2019-05-06</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+            <span id="/2019/05/06/leetcode-114-二叉树展开为链表/" class="leancloud_visitors" data-flag-title="[leetcode]114.二叉树展开为链表">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">479</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">1 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <img src="/2019/05/06/leetcode-114-二叉树展开为链表/453425-20190502231706813-609020347.png">
+<p>思路:递归,将左子树变成单链表形式,再将右子树变成单链表形式,最后将左子树单链表的末端连接到右子树单链表表头,将根节点的左孩子置空</p>
+<h3 id="方法一-递归"><a href="#方法一-递归" class="headerlink" title="方法一: 递归"></a>方法一: 递归</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">flatten</span><span class="params">(TreeNode* root)</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (root==<span class="literal">nullptr</span>) <span class="keyword">return</span>;</span><br><span class="line">    flatten(root-&gt;left);    <span class="comment">// 将左子树变成单链表形式</span></span><br><span class="line">    flatten(root-&gt;right);   <span class="comment">// 将右子树变成单链表形式</span></span><br><span class="line">    <span class="keyword">if</span> (root-&gt;left) <span class="comment">// 将左子树单链表的末端连接到右子树单链表表头</span></span><br><span class="line">    &#123;</span><br><span class="line">        TreeNode* p=root-&gt;left;</span><br><span class="line">        <span class="keyword">while</span>(p-&gt;right) p=p-&gt;right;</span><br><span class="line">        p-&gt;right=root-&gt;right;</span><br><span class="line">        root-&gt;right=root-&gt;left;</span><br><span class="line">        root-&gt;left=<span class="literal">nullptr</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+    <div>
+      
+    </div>
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://brianyi.github.io/2019/05/06/leetcode-239-滑动窗口最大值/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Brian Yi">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brian's Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/05/06/leetcode-239-滑动窗口最大值/" class="post-title-link" itemprop="url">[leetcode]239.滑动窗口最大值</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-06 20:10:15 / 修改时间：20:11:33" itemprop="dateCreated datePublished" datetime="2019-05-06T20:10:15+08:00">2019-05-06</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+            <span id="/2019/05/06/leetcode-239-滑动窗口最大值/" class="leancloud_visitors" data-flag-title="[leetcode]239.滑动窗口最大值">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">586</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">1 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <img src="/2019/05/06/leetcode-239-滑动窗口最大值/453425-20190503094513334-1691572073.png">
+<p>思路:滑动窗口的思想,只要是求连续子序列或者子串问题,都可用滑动窗口的思想</p>
+<h3 id="方法一-滑动窗口"><a href="#方法一-滑动窗口" class="headerlink" title="方法一: 滑动窗口"></a>方法一: 滑动窗口</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; maxSlidingWindow(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> k) </span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res;</span><br><span class="line">    <span class="keyword">if</span> (nums.size()==<span class="number">0</span>) <span class="keyword">return</span> res;</span><br><span class="line">    <span class="keyword">int</span> i=<span class="number">0</span>;</span><br><span class="line">    <span class="built_in">deque</span>&lt;<span class="keyword">int</span>&gt; dq;　　</span><br><span class="line">    <span class="keyword">for</span> (i=<span class="number">0</span>;i&lt;nums.size();++i)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">while</span>(!dq.empty()&amp;&amp;nums[i]&gt;nums[dq.back()]) <span class="comment">//在尾部添加元素，并保证左边元素都比尾部大</span></span><br><span class="line">            dq.pop_back();</span><br><span class="line">        dq.push_back(i);</span><br><span class="line">        <span class="keyword">if</span> (i-k==dq.front())    <span class="comment">//在头部移除元素</span></span><br><span class="line">            dq.pop_front();</span><br><span class="line">        <span class="keyword">if</span> (i&gt;=k<span class="number">-1</span>)</span><br><span class="line">            res.push_back(nums[dq.front()]);    <span class="comment">// 存放每次窗口内的最大值</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+    <div>
+      
+    </div>
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://brianyi.github.io/2019/05/06/leetcode-76-最小覆盖子串/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Brian Yi">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brian's Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/05/06/leetcode-76-最小覆盖子串/" class="post-title-link" itemprop="url">[leetcode]76.最小覆盖子串</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-06 20:08:01 / 修改时间：20:09:32" itemprop="dateCreated datePublished" datetime="2019-05-06T20:08:01+08:00">2019-05-06</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+            <span id="/2019/05/06/leetcode-76-最小覆盖子串/" class="leancloud_visitors" data-flag-title="[leetcode]76.最小覆盖子串">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">1.2k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">1 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <img src="/2019/05/06/leetcode-76-最小覆盖子串/453425-20190503105807149-1455260747.png">
+<p>思路:滑动窗口思想</p>
+<h3 id="方法一-滑动窗口"><a href="#方法一-滑动窗口" class="headerlink" title="方法一:滑动窗口"></a>方法一:滑动窗口</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">minWindow</span><span class="params">(<span class="built_in">string</span> s, <span class="built_in">string</span> t)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 1.tdict记录T中每个字母与字母个数</span></span><br><span class="line">    <span class="comment">// 2.维护一个滑动窗口字母的计数表sdict,计数当前窗口内T中字母出现的次数</span></span><br><span class="line">    <span class="comment">// 3.当窗口内T中字母出现的次数大于等于T中每个字母出现的次数一样,这时第一个最短子串出现,再逐步从左边缩短窗口,直到不满足上述条件,然后再从右边扩大窗口,直到满足条件时,再进行最短子串长度对比,一直更新最短长度子串直到结束</span></span><br><span class="line">    <span class="keyword">if</span> (s.size()&lt;t.size()||s.size()==<span class="number">0</span>) <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">    <span class="built_in">unordered_map</span>&lt;<span class="keyword">char</span>,<span class="keyword">int</span>&gt; tdict,sdict;</span><br><span class="line">    <span class="keyword">int</span> l=<span class="number">0</span>,r=<span class="number">0</span>,k=t.size();</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> it:t)  <span class="comment">// 填充T的字母与字母计数表</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (!tdict.count(it)) tdict[it]=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span> tdict[it]++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">string</span> res=<span class="string">""</span>;</span><br><span class="line">    <span class="keyword">for</span>(r=<span class="number">0</span>;r&lt;s.size();++r)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (tdict.count(s[r])) <span class="comment">// 有字符,则进行记录</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (!sdict.count(s[r]))</span><br><span class="line">                sdict[s[r]]=<span class="number">0</span>;</span><br><span class="line">            sdict[s[r]]++;</span><br><span class="line">            <span class="keyword">if</span> (sdict[s[r]]&lt;=tdict[s[r]])</span><br><span class="line">                k--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span>(k==<span class="number">0</span>) <span class="comment">// 满足条件,滑动窗口从左边逐步缩短,直到剔除第一个属于T中的字符为止</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (res.empty()||r-l+<span class="number">1</span>&lt;res.size())  <span class="comment">// 最短子串更新</span></span><br><span class="line">                res=s.substr(l,r-l+<span class="number">1</span>);</span><br><span class="line">            <span class="keyword">if</span>(tdict.count(s[l]))</span><br><span class="line">            &#123;</span><br><span class="line">                sdict[s[l]]--;</span><br><span class="line">                <span class="keyword">if</span> (sdict[s[l]]&lt;tdict[s[l]])</span><br><span class="line">                    k++;</span><br><span class="line">            &#125;</span><br><span class="line">            l++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+    <div>
+      
+    </div>
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://brianyi.github.io/2019/05/06/leetcode-3-无重复字符的最长子串/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Brian Yi">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brian's Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/05/06/leetcode-3-无重复字符的最长子串/" class="post-title-link" itemprop="url">[leetcode]3.无重复字符的最长子串</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-06 20:05:28 / 修改时间：20:07:13" itemprop="dateCreated datePublished" datetime="2019-05-06T20:05:28+08:00">2019-05-06</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+            <span id="/2019/05/06/leetcode-3-无重复字符的最长子串/" class="leancloud_visitors" data-flag-title="[leetcode]3.无重复字符的最长子串">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">633</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">1 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <img src="/2019/05/06/leetcode-3-无重复字符的最长子串/453425-20190503112154412-1836563639.png">
+<p>思路:滑动窗口的思想</p>
+<h3 id="方法一-滑动窗口"><a href="#方法一-滑动窗口" class="headerlink" title="方法一:滑动窗口"></a>方法一:滑动窗口</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">lengthOfLongestSubstring</span><span class="params">(<span class="built_in">string</span> s)</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">        控制一个滑动窗口,窗口内的字符都是不重复的,通过set可以做到判断字符是否重复</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="built_in">unordered_set</span>&lt;<span class="keyword">char</span>&gt; <span class="built_in">set</span>;</span><br><span class="line">    <span class="keyword">size_t</span> maxL=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> l=<span class="number">0</span>,r=<span class="number">0</span>;r&lt;s.size();++r)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (!<span class="built_in">set</span>.count(s[r]))   <span class="comment">// 当前判断的元素不存在于滑动窗口[l,r-1]中</span></span><br><span class="line">            <span class="built_in">set</span>.insert(s[r]);   <span class="comment">// 将元素放入滑动窗口(即记录不重复字符)</span></span><br><span class="line">        <span class="keyword">else</span>    <span class="comment">// 当前判断的元素已经存在于滑动窗口[l,r-1]中</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">while</span>(<span class="built_in">set</span>.count(s[r]))  <span class="comment">// 从左缩短窗口,直到剔除当前判断的元素为止</span></span><br><span class="line">                <span class="built_in">set</span>.erase(s[l++]);</span><br><span class="line">            <span class="built_in">set</span>.insert(s[r]);   <span class="comment">// 将当前判断元素放入到滑动窗口中</span></span><br><span class="line">        &#125;</span><br><span class="line">        maxL=max(maxL,<span class="built_in">set</span>.size());  <span class="comment">// 更新无重复字符的最长子串</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> maxL;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+    <div>
+      
+    </div>
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://brianyi.github.io/2019/05/06/leetcode-1028-从先序遍历还原二叉树/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Brian Yi">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brian's Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/05/06/leetcode-1028-从先序遍历还原二叉树/" class="post-title-link" itemprop="url">[leetcode]1028.从先序遍历还原二叉树</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-06 20:00:45 / 修改时间：20:05:01" itemprop="dateCreated datePublished" datetime="2019-05-06T20:00:45+08:00">2019-05-06</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+            <span id="/2019/05/06/leetcode-1028-从先序遍历还原二叉树/" class="leancloud_visitors" data-flag-title="[leetcode]1028.从先序遍历还原二叉树">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">964</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">1 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <img src="/2019/05/06/leetcode-1028-从先序遍历还原二叉树/453425-20190503131537591-466226739.png">
+<p>思路:用一个栈来管理树的层次关系,索引代表节点的深度</p>
+<h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一:"></a>方法一:</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">TreeNode* <span class="title">recoverFromPreorder</span><span class="params">(<span class="built_in">string</span> S)</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">        由题意知,最上层节点深度为0(数字前面0条横线),而第二层节点前有1条横线,表示深度为1</span></span><br><span class="line"><span class="comment">        树的前序遍历: 根-左-右</span></span><br><span class="line"><span class="comment">        因此,</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="keyword">if</span> (S.empty()) <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">    <span class="built_in">vector</span>&lt;TreeNode*&gt; <span class="built_in">stack</span>;  <span class="comment">// 结果栈</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>,depth=<span class="number">0</span>,val=<span class="number">0</span>;i&lt;S.size();)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span>(depth=<span class="number">0</span>;i&lt;S.size()&amp;&amp;S[i]==<span class="string">'-'</span>;++i)  <span class="comment">// 计算节点的深度</span></span><br><span class="line">            depth++;</span><br><span class="line">        <span class="keyword">for</span>(val=<span class="number">0</span>;i&lt;S.size()&amp;&amp;S[i]!=<span class="string">'-'</span>;++i)    <span class="comment">// 计算数值</span></span><br><span class="line">            val=val*<span class="number">10</span>+S[i]-<span class="string">'0'</span>;</span><br><span class="line">        <span class="keyword">while</span> (<span class="built_in">stack</span>.size()&gt;depth)    <span class="comment">// 若当前栈的长度(树的高度)大于节点的深度,则可以把栈中最后几个节点pop掉(这些节点各已经成为完整的子树,可以pop掉了)</span></span><br><span class="line">            <span class="built_in">stack</span>.pop_back();</span><br><span class="line">        TreeNode* node=<span class="keyword">new</span> TreeNode(val);   <span class="comment">// 新建节点用于存放当前深度的结点</span></span><br><span class="line">        <span class="keyword">if</span> (!<span class="built_in">stack</span>.empty()) <span class="comment">// 节点间关联</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (!<span class="built_in">stack</span>.back()-&gt;left)      <span class="built_in">stack</span>.back()-&gt;left=node;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(!<span class="built_in">stack</span>.back()-&gt;right) <span class="built_in">stack</span>.back()-&gt;right=node;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">stack</span>.push_back(node);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">stack</span>[<span class="number">0</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+    <div>
+      
+    </div>
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://brianyi.github.io/2019/05/06/leetcode-5040-边框着色/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Brian Yi">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brian's Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/05/06/leetcode-5040-边框着色/" class="post-title-link" itemprop="url">[leetcode]5040.边框着色</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-06 19:39:46 / 修改时间：20:02:58" itemprop="dateCreated datePublished" datetime="2019-05-06T19:39:46+08:00">2019-05-06</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+            <span id="/2019/05/06/leetcode-5040-边框着色/" class="leancloud_visitors" data-flag-title="[leetcode]5040.边框着色">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">3.5k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">3 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <img src="/2019/05/06/leetcode-5040-边框着色/453425-20190430173552247-46622747.png">
+<h3 id="方法一：dfs的非递归形式"><a href="#方法一：dfs的非递归形式" class="headerlink" title="方法一：dfs的非递归形式"></a>方法一：dfs的非递归形式</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> ll=<span class="keyword">long</span> <span class="keyword">long</span>;</span><br><span class="line"><span class="keyword">const</span> ll MAXN=<span class="number">50L</span>L;</span><br><span class="line"><span class="built_in">unordered_set</span>&lt;ll&gt; vis,mark;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; colorBorder(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; G, <span class="keyword">int</span> r0, <span class="keyword">int</span> c0, <span class="keyword">int</span> color) &#123;</span><br><span class="line">    <span class="built_in">queue</span>&lt;ll&gt; Q;</span><br><span class="line">    Q.push(r0*MAXN+c0);</span><br><span class="line">    <span class="keyword">int</span> c=G[r0][c0];</span><br><span class="line">    <span class="keyword">int</span> dx[]=&#123;<span class="number">-1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>&#125;,dy[]=&#123;<span class="number">0</span>,<span class="number">0</span>,<span class="number">-1</span>,<span class="number">1</span>&#125;;</span><br><span class="line">    <span class="keyword">while</span> (!Q.empty())</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> x=Q.front()/MAXN;</span><br><span class="line">        <span class="keyword">int</span> y=Q.front()%MAXN;</span><br><span class="line">        Q.pop();</span><br><span class="line">        vis.insert(x*MAXN+y);</span><br><span class="line">        <span class="keyword">if</span> (x==<span class="number">0</span>||x==G.size()<span class="number">-1</span>||y==<span class="number">0</span>||y==G[<span class="number">0</span>].size()<span class="number">-1</span>)    <span class="comment">// 边界方块可变色</span></span><br><span class="line">            mark.insert(x*MAXN+y);</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (G[x<span class="number">-1</span>][y]!=c||G[x+<span class="number">1</span>][y]!=c||G[x][y<span class="number">-1</span>]!=c||G[x][y+<span class="number">1</span>]!=c)    <span class="comment">// 四个方向中,任意一个方块颜色不同,则可变色</span></span><br><span class="line">            mark.insert(x*MAXN+y);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> d=<span class="number">0</span>;d&lt;<span class="number">4</span>;d++)   <span class="comment">// 放入连通分量的所有方块</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> nx=x+dx[d],ny=y+dy[d];</span><br><span class="line">            <span class="keyword">if</span> (<span class="number">0</span>&lt;=nx&amp;&amp;nx&lt;G.size()&amp;&amp;<span class="number">0</span>&lt;=ny&amp;&amp;ny&lt;G[<span class="number">0</span>].size()&amp;&amp;!vis.count(nx*MAXN+ny)&amp;&amp;G[nx][ny]==c)</span><br><span class="line">                Q.push(nx*MAXN+ny);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> it:mark)</span><br><span class="line">        G[it/MAXN][it%MAXN]=color;</span><br><span class="line">    <span class="keyword">return</span> G;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>思路:用vis记录访问过的方块,mark标记连通分量中需要修改颜色的方块,并非连通分量中所有的方块都要修改颜色,比如:一个方块如果四周(四个方向邻接的)都是相同颜色,那么只需要修改四周方块的颜色,而自己颜色不变(开始的时候没理解题意,以为只要是连通分量内的方块颜色都需要改变)</p>
+<h3 id="方法二-dfs递归形式-只不过把上面的非递归改为递归了"><a href="#方法二-dfs递归形式-只不过把上面的非递归改为递归了" class="headerlink" title="方法二: dfs递归形式,只不过把上面的非递归改为递归了"></a>方法二: dfs递归形式,只不过把上面的非递归改为递归了</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> ll=<span class="keyword">long</span> <span class="keyword">long</span>;</span><br><span class="line"><span class="keyword">const</span> ll MAXN=<span class="number">50L</span>L;</span><br><span class="line"><span class="built_in">unordered_set</span>&lt;ll&gt; vis,mark;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; G, <span class="keyword">int</span> x, <span class="keyword">int</span> y, <span class="keyword">int</span> c)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> dx[]=&#123;<span class="number">-1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>&#125;,dy[]=&#123;<span class="number">0</span>,<span class="number">0</span>,<span class="number">-1</span>,<span class="number">1</span>&#125;;</span><br><span class="line">    vis.insert(x*MAXN+y);</span><br><span class="line">    <span class="keyword">if</span> (x==<span class="number">0</span>||x==G.size()<span class="number">-1</span>||y==<span class="number">0</span>||y==G[<span class="number">0</span>].size()<span class="number">-1</span>)    <span class="comment">// 边界方块可变色</span></span><br><span class="line">        mark.insert(x*MAXN+y);</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (G[x<span class="number">-1</span>][y]!=c||G[x+<span class="number">1</span>][y]!=c||G[x][y<span class="number">-1</span>]!=c||G[x][y+<span class="number">1</span>]!=c)    <span class="comment">// 四个方向中,任意一个方块颜色不同,则可变色</span></span><br><span class="line">        mark.insert(x*MAXN+y);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> d=<span class="number">0</span>;d&lt;<span class="number">4</span>;d++)   <span class="comment">// 放入连通分量的所有方块</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> nx=x+dx[d],ny=y+dy[d];</span><br><span class="line">        <span class="keyword">if</span> (<span class="number">0</span>&lt;=nx&amp;&amp;nx&lt;G.size()&amp;&amp;<span class="number">0</span>&lt;=ny&amp;&amp;ny&lt;G[<span class="number">0</span>].size()&amp;&amp;!vis.count(nx*MAXN+ny)&amp;&amp;G[nx][ny]==c)</span><br><span class="line">            dfs(G,nx,ny,c);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; colorBorder(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; G, <span class="keyword">int</span> r0, <span class="keyword">int</span> c0, <span class="keyword">int</span> color) &#123;</span><br><span class="line">    dfs(G,r0,c0,G[r0][c0]);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> it:mark)</span><br><span class="line">        G[it/MAXN][it%MAXN]=color;</span><br><span class="line">    <span class="keyword">return</span> G;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="方法三-dfs递归-但通过修改G中的数据-来记录是否访问过-和是否需要修改颜色-国外的一个大佬写的"><a href="#方法三-dfs递归-但通过修改G中的数据-来记录是否访问过-和是否需要修改颜色-国外的一个大佬写的" class="headerlink" title="方法三:dfs递归,但通过修改G中的数据,来记录是否访问过,和是否需要修改颜色,国外的一个大佬写的"></a>方法三:dfs递归,但通过修改G中的数据,来记录是否访问过,和是否需要修改颜色,国外的一个<a href="https://leetcode.com/problems/coloring-a-border/discuss/282847/C%2B%2B-with-picture-DFS" target="_blank" rel="noopener">大佬</a>写的</h3><p>From an initial point, perform DFS and flip the cell color to negative to track visited cells.<br>After DFS is complete for the cell, check if this cell is inside. If so, flip its color back to the positive.<br>In the end, cells with the negative color are on the border. Change their color to the target color.<br><img src="/2019/05/06/leetcode-5040-边框着色/image_1556425139.png"><br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; g, <span class="keyword">int</span> r, <span class="keyword">int</span> c, <span class="keyword">int</span> cl)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (r &lt; <span class="number">0</span> || c &lt; <span class="number">0</span> || r &gt;= g.size() || c &gt;= g[r].size() || g[r][c] != cl) <span class="keyword">return</span>;    <span class="comment">// 剪枝(越界,非着色块)</span></span><br><span class="line">    g[r][c] = -cl;    <span class="comment">// 着色</span></span><br><span class="line">    dfs(g, r - <span class="number">1</span>, c, cl), dfs(g, r + <span class="number">1</span>, c, cl), dfs(g, r, c - <span class="number">1</span>, cl), dfs(g, r, c + <span class="number">1</span>, cl);</span><br><span class="line">    <span class="keyword">if</span> (r &gt; <span class="number">0</span> &amp;&amp; r &lt; g.size() - <span class="number">1</span> &amp;&amp; c &gt; <span class="number">0</span> &amp;&amp; c &lt; g[r].size() - <span class="number">1</span> &amp;&amp; cl == <span class="built_in">abs</span>(g[r - <span class="number">1</span>][c]) &amp;&amp;</span><br><span class="line">        cl == <span class="built_in">abs</span>(g[r + <span class="number">1</span>][c]) &amp;&amp; cl == <span class="built_in">abs</span>(g[r][c - <span class="number">1</span>]) &amp;&amp; cl == <span class="built_in">abs</span>(g[r][c + <span class="number">1</span>]))    <span class="comment">// 将原四周同色的块,颜色还原</span></span><br><span class="line">        g[r][c] = cl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; colorBorder(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; grid, <span class="keyword">int</span> r0, <span class="keyword">int</span> c0, <span class="keyword">int</span> color) &#123;</span><br><span class="line">    dfs(grid, r0, c0, grid[r0][c0]);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> i = <span class="number">0</span>; i &lt; grid.size(); ++i)    <span class="comment">// 根据dfs标记(负数)过的方块进行着色</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> j = <span class="number">0</span>; j &lt; grid[i].size(); ++j) grid[i][j] = grid[i][j] &lt; <span class="number">0</span> ? color : grid[i][j];</span><br><span class="line">    <span class="keyword">return</span> grid;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>结论: 无论是递归还是非递归,先标记(标记vis),再遍历</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+    <div>
+      
+    </div>
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://brianyi.github.io/2019/05/06/leetcode-5-最长回文子串/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Brian Yi">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brian's Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/05/06/leetcode-5-最长回文子串/" class="post-title-link" itemprop="url">[leetcode]5.最长回文子串</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-06 18:05:20 / 修改时间：19:42:44" itemprop="dateCreated datePublished" datetime="2019-05-06T18:05:20+08:00">2019-05-06</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+            <span id="/2019/05/06/leetcode-5-最长回文子串/" class="leancloud_visitors" data-flag-title="[leetcode]5.最长回文子串">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -574,7 +2260,7 @@
       
         
           
-            <img src="/2019/05/06/【leetcode】5-最长回文子串/453425-20190505125039549-1852205917.png">
+            <img src="/2019/05/06/leetcode-5-最长回文子串/453425-20190505125039549-1852205917.png">
 <p>方法一:中心扩展算法</p>
 <p>解题思路:从左到右每一个字符都作为中心轴,然后逐渐往两边扩展,只要发现有不相等的字符,则确定了以该字符为轴的最长回文串,但需要考虑长度为奇数和偶数的不同情况的处理(长度为偶数时轴心为中间两个数的中心,长度为奇数时轴心为中间那个数)</p>
 <p>算法时间复杂度:$O(n^{2})$<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">longestPalindrome</span><span class="params">(<span class="built_in">string</span> s)</span> </span></span><br><span class="line"><span class="function"></span>&#123;        </span><br><span class="line">    <span class="keyword">int</span> idx = <span class="number">0</span>, maxL = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.size(); ++i)　　<span class="comment">// i为轴的位置,j为回文串半径</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; i - j &gt;= <span class="number">0</span> &amp;&amp; i + j &lt; s.size(); ++j)    <span class="comment">// 奇数</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (s[i - j] != s[i + j])</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">if</span> (<span class="number">2</span> * j + <span class="number">1</span> &gt; maxL)</span><br><span class="line">            &#123;</span><br><span class="line">                maxL = <span class="number">2</span> * j + <span class="number">1</span>;</span><br><span class="line">                idx = i - j;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; i - j &gt;= <span class="number">0</span> &amp;&amp; i + j + <span class="number">1</span> &lt; s.size(); ++j)    <span class="comment">// 偶数</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (s[i-j]!=s[i+j+<span class="number">1</span>])</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">if</span> (<span class="number">2</span> * j + <span class="number">2</span> &gt; maxL)</span><br><span class="line">            &#123;</span><br><span class="line">                maxL = <span class="number">2</span> * j + <span class="number">2</span>;</span><br><span class="line">                idx = i - j;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> s.substr(idx, maxL);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>方法二:manacher(马拉车法)</p>
@@ -877,7 +2563,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-count">10</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -919,7 +2605,17 @@
                     
                       
                     
-                    <span class="site-state-item-count">2</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1002,7 +2698,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">2k</span>
+    <span title="站点总字数">11k</span>
   
 
   
@@ -1011,7 +2707,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">2 分钟</span>
+    <span title="站点阅读时长">10 分钟</span>
   
 </div>
 
@@ -1542,6 +3238,22 @@
 
   
   
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
     
       
         
