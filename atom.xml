@@ -51,7 +51,7 @@
     <link href="https://brianyi.github.io/2019/05/06/leetcode-138-%E5%A4%8D%E5%88%B6%E5%B8%A6%E9%9A%8F%E6%9C%BA%E6%8C%87%E9%92%88%E7%9A%84%E9%93%BE%E8%A1%A8/"/>
     <id>https://brianyi.github.io/2019/05/06/leetcode-138-复制带随机指针的链表/</id>
     <published>2019-05-06T13:20:18.000Z</published>
-    <updated>2019-05-06T13:21:26.651Z</updated>
+    <updated>2019-05-06T14:40:47.056Z</updated>
     
     <content type="html"><![CDATA[<img src="/2019/05/06/leetcode-138-复制带随机指针的链表/453425-20190430193735900-662137168.png"><h3 id="方法一-递归"><a href="#方法一-递归" class="headerlink" title="方法一:递归"></a>方法一:递归</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">unordered_map</span>&lt;Node*,Node*&gt; dict;</span><br><span class="line"><span class="function">Node* <span class="title">copyRandomList</span><span class="params">(Node* head)</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!head) <span class="keyword">return</span> head;</span><br><span class="line">    <span class="keyword">if</span> (dict.count(head)) <span class="keyword">return</span> dict[head];</span><br><span class="line">    dict[head]=<span class="keyword">new</span> Node(head-&gt;val, <span class="literal">nullptr</span>, <span class="literal">nullptr</span>);</span><br><span class="line">    dict[head]-&gt;next=copyRandomList(head-&gt;next);</span><br><span class="line">    dict[head]-&gt;random=copyRandomList(head-&gt;random);</span><br><span class="line">    <span class="keyword">return</span> dict[head];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="方法二-非递归"><a href="#方法二-非递归" class="headerlink" title="方法二:非递归"></a>方法二:非递归</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Node* <span class="title">copyRandomList</span><span class="params">(Node* head)</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!head) <span class="keyword">return</span> head;</span><br><span class="line">    <span class="built_in">unordered_map</span>&lt;Node*,Node*&gt; m;</span><br><span class="line">    Node *p=head;</span><br><span class="line">    <span class="keyword">while</span>(p)    <span class="comment">// make a copy of nodes</span></span><br><span class="line">    &#123;</span><br><span class="line">        m[p]=<span class="keyword">new</span> Node(p-&gt;val,<span class="literal">nullptr</span>,<span class="literal">nullptr</span>);</span><br><span class="line">        p=p-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    p=head;</span><br><span class="line">    <span class="keyword">while</span>(p)    <span class="comment">// link everyone and fill the random field</span></span><br><span class="line">    &#123;</span><br><span class="line">        m[p]-&gt;next=m[p-&gt;next];</span><br><span class="line">        m[p]-&gt;random=m[p-&gt;random];</span><br><span class="line">        p=p-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> m[head];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
     
@@ -97,11 +97,11 @@
       <category term="OJ" scheme="https://brianyi.github.io/categories/OJ/"/>
     
     
+      <category term="leetcode" scheme="https://brianyi.github.io/tags/leetcode/"/>
+    
       <category term="树" scheme="https://brianyi.github.io/tags/%E6%A0%91/"/>
     
       <category term="递归" scheme="https://brianyi.github.io/tags/%E9%80%92%E5%BD%92/"/>
-    
-      <category term="leetcode" scheme="https://brianyi.github.io/tags/leetcode/"/>
     
   </entry>
   
@@ -127,11 +127,11 @@
       <category term="OJ" scheme="https://brianyi.github.io/categories/OJ/"/>
     
     
+      <category term="leetcode" scheme="https://brianyi.github.io/tags/leetcode/"/>
+    
       <category term="树" scheme="https://brianyi.github.io/tags/%E6%A0%91/"/>
     
       <category term="递归" scheme="https://brianyi.github.io/tags/%E9%80%92%E5%BD%92/"/>
-    
-      <category term="leetcode" scheme="https://brianyi.github.io/tags/leetcode/"/>
     
   </entry>
   
@@ -158,11 +158,11 @@
       <category term="OJ" scheme="https://brianyi.github.io/categories/OJ/"/>
     
     
+      <category term="leetcode" scheme="https://brianyi.github.io/tags/leetcode/"/>
+    
       <category term="树" scheme="https://brianyi.github.io/tags/%E6%A0%91/"/>
     
       <category term="递归" scheme="https://brianyi.github.io/tags/%E9%80%92%E5%BD%92/"/>
-    
-      <category term="leetcode" scheme="https://brianyi.github.io/tags/leetcode/"/>
     
   </entry>
   
@@ -218,11 +218,11 @@
       <category term="OJ" scheme="https://brianyi.github.io/categories/OJ/"/>
     
     
+      <category term="leetcode" scheme="https://brianyi.github.io/tags/leetcode/"/>
+    
       <category term="树" scheme="https://brianyi.github.io/tags/%E6%A0%91/"/>
     
       <category term="递归" scheme="https://brianyi.github.io/tags/%E9%80%92%E5%BD%92/"/>
-    
-      <category term="leetcode" scheme="https://brianyi.github.io/tags/leetcode/"/>
     
   </entry>
   
@@ -248,11 +248,11 @@
       <category term="OJ" scheme="https://brianyi.github.io/categories/OJ/"/>
     
     
+      <category term="leetcode" scheme="https://brianyi.github.io/tags/leetcode/"/>
+    
       <category term="树" scheme="https://brianyi.github.io/tags/%E6%A0%91/"/>
     
       <category term="递归" scheme="https://brianyi.github.io/tags/%E9%80%92%E5%BD%92/"/>
-    
-      <category term="leetcode" scheme="https://brianyi.github.io/tags/leetcode/"/>
     
   </entry>
   
@@ -278,11 +278,11 @@
       <category term="OJ" scheme="https://brianyi.github.io/categories/OJ/"/>
     
     
+      <category term="leetcode" scheme="https://brianyi.github.io/tags/leetcode/"/>
+    
       <category term="树" scheme="https://brianyi.github.io/tags/%E6%A0%91/"/>
     
       <category term="递归" scheme="https://brianyi.github.io/tags/%E9%80%92%E5%BD%92/"/>
-    
-      <category term="leetcode" scheme="https://brianyi.github.io/tags/leetcode/"/>
     
   </entry>
   
@@ -349,7 +349,7 @@
     <link href="https://brianyi.github.io/2019/05/06/leetcode-3-%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%90%E4%B8%B2/"/>
     <id>https://brianyi.github.io/2019/05/06/leetcode-3-无重复字符的最长子串/</id>
     <published>2019-05-06T12:05:28.000Z</published>
-    <updated>2019-05-06T12:07:13.942Z</updated>
+    <updated>2019-05-06T14:39:45.897Z</updated>
     
     <content type="html"><![CDATA[<img src="/2019/05/06/leetcode-3-无重复字符的最长子串/453425-20190503112154412-1836563639.png"><p>思路:滑动窗口的思想</p><h3 id="方法一-滑动窗口"><a href="#方法一-滑动窗口" class="headerlink" title="方法一:滑动窗口"></a>方法一:滑动窗口</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">lengthOfLongestSubstring</span><span class="params">(<span class="built_in">string</span> s)</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">        控制一个滑动窗口,窗口内的字符都是不重复的,通过set可以做到判断字符是否重复</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="built_in">unordered_set</span>&lt;<span class="keyword">char</span>&gt; <span class="built_in">set</span>;</span><br><span class="line">    <span class="keyword">size_t</span> maxL=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> l=<span class="number">0</span>,r=<span class="number">0</span>;r&lt;s.size();++r)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (!<span class="built_in">set</span>.count(s[r]))   <span class="comment">// 当前判断的元素不存在于滑动窗口[l,r-1]中</span></span><br><span class="line">            <span class="built_in">set</span>.insert(s[r]);   <span class="comment">// 将元素放入滑动窗口(即记录不重复字符)</span></span><br><span class="line">        <span class="keyword">else</span>    <span class="comment">// 当前判断的元素已经存在于滑动窗口[l,r-1]中</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">while</span>(<span class="built_in">set</span>.count(s[r]))  <span class="comment">// 从左缩短窗口,直到剔除当前判断的元素为止</span></span><br><span class="line">                <span class="built_in">set</span>.erase(s[l++]);</span><br><span class="line">            <span class="built_in">set</span>.insert(s[r]);   <span class="comment">// 将当前判断元素放入到滑动窗口中</span></span><br><span class="line">        &#125;</span><br><span class="line">        maxL=max(maxL,<span class="built_in">set</span>.size());  <span class="comment">// 更新无重复字符的最长子串</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> maxL;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
     
@@ -396,9 +396,9 @@
       <category term="OJ" scheme="https://brianyi.github.io/categories/OJ/"/>
     
     
-      <category term="树" scheme="https://brianyi.github.io/tags/%E6%A0%91/"/>
-    
       <category term="leetcode" scheme="https://brianyi.github.io/tags/leetcode/"/>
+    
+      <category term="树" scheme="https://brianyi.github.io/tags/%E6%A0%91/"/>
     
   </entry>
   
