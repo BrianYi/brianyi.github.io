@@ -1240,18 +1240,18 @@
 
 <script>
   var GUEST = ['nick', 'mail', 'link'];
-  var guest = 'nick,mail,link';
+  var guest = 'nick,mail';
   guest = guest.split(',').filter(function(item) {
     return GUEST.indexOf(item) > -1;
   });
   new Valine({
     el: '#comments',
-    verify: false,
-    notify: false,
+    verify: true,
+    notify: true,
     appId: 'w63e2LQ8OdmB34En763YIlqy-gzGzoHsz',
     appKey: 'tS6NvoSvx3zOIyodVKLiJJaS',
     placeholder: '请在这里留下你的评论...',
-    avatar: 'mm',
+    avatar: '',
     meta: guest,
     pageSize: '10' || 10,
     visitor: false,
