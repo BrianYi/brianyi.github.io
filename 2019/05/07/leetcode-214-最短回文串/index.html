@@ -137,7 +137,7 @@
 <meta property="og:description" content="方法一: KMP算法时间复杂度: $O(m+n)$  解题思路: 实际就是求原串从左到右的最长回文串(必须包含左边所有字符),此处采用倒置+KMP算法来缩短匹配时间  将字符串倒置,原串作为模式串pat,倒置串作为主串txt 求出模式串pat的nextval[]值,然后进行字符串匹配,得到的模式串pat最长匹配长度即为模式串pat从第一个字符开始的最大回文串(匹配过程时间复杂度只需要$O(m+n">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://brianyi.github.io/2019/05/07/leetcode-214-最短回文串/Image21.png">
-<meta property="og:updated_time" content="2019-05-07T05:06:07.090Z">
+<meta property="og:updated_time" content="2019-05-07T09:10:32.826Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[leetcode]214.最短回文串">
 <meta name="twitter:description" content="方法一: KMP算法时间复杂度: $O(m+n)$  解题思路: 实际就是求原串从左到右的最长回文串(必须包含左边所有字符),此处采用倒置+KMP算法来缩短匹配时间  将字符串倒置,原串作为模式串pat,倒置串作为主串txt 求出模式串pat的nextval[]值,然后进行字符串匹配,得到的模式串pat最长匹配长度即为模式串pat从第一个字符开始的最大回文串(匹配过程时间复杂度只需要$O(m+n">
@@ -311,7 +311,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">13</span></a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">17</span></a>
 
   </li>
         
@@ -349,7 +349,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">18</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">23</span></a>
 
   </li>
 
@@ -481,7 +481,7 @@
                 
               
 
-              <time title="创建时间：2019-05-07 12:00:26 / 修改时间：13:06:07" itemprop="dateCreated datePublished" datetime="2019-05-07T12:00:26+08:00">2019-05-07</time>
+              <time title="创建时间：2019-05-07 12:00:26 / 修改时间：17:10:32" itemprop="dateCreated datePublished" datetime="2019-05-07T12:00:26+08:00">2019-05-07</time>
             
 
             
@@ -556,7 +556,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">978</span>
+                <span title="本文字数">1.1k</span>
               
 
               
@@ -599,7 +599,9 @@
 <li>求出模式串pat的nextval[]值,然后进行字符串匹配,得到的模式串pat最长匹配长度即为模式串pat从第一个字符开始的最大回文串(匹配过程时间复杂度只需要$O(m+n)$)</li>
 </ol>
 </blockquote>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> nextval[<span class="number">40005</span>];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">get_nextval</span><span class="params">(<span class="built_in">string</span> pat)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i=<span class="number">0</span>,j=<span class="number">-1</span>,len=pat.size();</span><br><span class="line">    nextval[<span class="number">0</span>]=<span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">for</span> (;i&lt;len&amp;&amp;j&lt;len;)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (j==<span class="number">-1</span>||pat[i]==pat[j])</span><br><span class="line">        &#123;</span><br><span class="line">            i++,j++;</span><br><span class="line">            <span class="keyword">if</span> (pat[i]==pat[j])</span><br><span class="line">                nextval[i]=nextval[j];</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                nextval[i]=j;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> j=nextval[j];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">shortestPalindrome</span><span class="params">(<span class="built_in">string</span> txt)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">string</span> pat=txt;</span><br><span class="line">    reverse(txt.begin(),txt.end()); <span class="comment">// O(n)</span></span><br><span class="line">    get_nextval(pat); <span class="comment">// </span></span><br><span class="line">    <span class="keyword">int</span> i=<span class="number">0</span>,j=<span class="number">0</span>,lenTxt=txt.size(),lenPat=pat.size();</span><br><span class="line">    <span class="keyword">for</span>(;i&lt;lenTxt&amp;&amp;j&lt;lenPat;)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (j==<span class="number">-1</span>||txt[i]==pat[j])</span><br><span class="line">            i++,j++;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            j = nextval[j];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> txt.substr(<span class="number">0</span>,lenTxt-j)+pat;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>对于<strong>KMP(Knuth–Morris–Pratt)</strong>算法,可以借鉴关于[查找][1]部分的介绍</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> nextval[<span class="number">40005</span>];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">get_nextval</span><span class="params">(<span class="built_in">string</span> pat)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i=<span class="number">0</span>,j=<span class="number">-1</span>,len=pat.size();</span><br><span class="line">    nextval[<span class="number">0</span>]=<span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">for</span> (;i&lt;len&amp;&amp;j&lt;len;)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (j==<span class="number">-1</span>||pat[i]==pat[j])</span><br><span class="line">        &#123;</span><br><span class="line">            i++,j++;</span><br><span class="line">            <span class="keyword">if</span> (pat[i]==pat[j])</span><br><span class="line">                nextval[i]=nextval[j];</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                nextval[i]=j;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> j=nextval[j];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">shortestPalindrome</span><span class="params">(<span class="built_in">string</span> txt)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">string</span> pat=txt;</span><br><span class="line">    reverse(txt.begin(),txt.end()); <span class="comment">// 字符串倒置</span></span><br><span class="line">    get_nextval(pat); <span class="comment">// 计算模式串的nextval值</span></span><br><span class="line">    <span class="keyword">int</span> i=<span class="number">0</span>,j=<span class="number">0</span>,lenTxt=txt.size(),lenPat=pat.size();</span><br><span class="line">    <span class="keyword">for</span>(;i&lt;lenTxt&amp;&amp;j&lt;lenPat;)   <span class="comment">// 进行模式串匹配,找出最大匹配长度</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (j==<span class="number">-1</span>||txt[i]==pat[j])</span><br><span class="line">            i++,j++;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            j = nextval[j];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> txt.substr(<span class="number">0</span>,lenTxt-j)+pat;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
       
     </div>
 
@@ -620,7 +622,7 @@
   <p><span>本文标题:</span><a href="/2019/05/07/leetcode-214-最短回文串/">[leetcode]214.最短回文串</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 Brian Yi 的个人博客">Brian Yi</a></p>
   <p><span>发布时间:</span>2019年05月07日 - 12:05</p>
-  <p><span>最后更新:</span>2019年05月07日 - 13:05</p>
+  <p><span>最后更新:</span>2019年05月07日 - 17:05</p>
   <p><span>原始链接:</span><a href="/2019/05/07/leetcode-214-最短回文串/" title="[leetcode]214.最短回文串">https://brianyi.github.io/2019/05/07/leetcode-214-最短回文串/</a>
     <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://brianyi.github.io/2019/05/07/leetcode-214-最短回文串/" aria-label="复制成功！"></i></span>
   </p>
@@ -693,6 +695,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/07/algorithm-查找/" rel="prev" title="[algorithm]查找">
+                [algorithm]查找 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -767,7 +773,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">18</span>
+                    <span class="site-state-item-count">23</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -831,7 +837,15 @@
                     
                       
                     
-                    <span class="site-state-item-count">13</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">17</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -931,7 +945,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">30k</span>
+    <span title="站点总字数">79k</span>
   
 
   
@@ -940,7 +954,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">27 分钟</span>
+    <span title="站点阅读时长">1:12</span>
   
 </div>
 
