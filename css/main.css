@@ -1391,6 +1391,7 @@ pre .javascript .function {
   box-sizing: border-box;
   margin: 0 auto 25px;
   padding: 3px;
+  border: 1px solid #ddd;
 }
 @media (max-width: 767px) {
   .posts-collapse {
@@ -1938,7 +1939,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #0ddfff;
+  background: #ffff18;
 }
 .feed-link,
 .chat {
@@ -3116,5 +3117,11 @@ ul.breadcrumb li+li:last-child {
   }
 }
 body {
-  background: url("/images/background.jpg");
+  background: url("/images/background.jpg") 50% 50%;
+}
+.posts-expand .post-body img {
+  border: none;
+}
+.post-nav-item a {
+  font-size: 20px;
 }
