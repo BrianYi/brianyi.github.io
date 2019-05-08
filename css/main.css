@@ -1938,7 +1938,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #144ae7;
+  background: #0ddfff;
 }
 .feed-link,
 .chat {
@@ -3114,4 +3114,7 @@ ul.breadcrumb li+li:last-child {
   .pagination {
     margin: 8px 0 0;
   }
+}
+body {
+  background: url("/images/background.jpg");
 }

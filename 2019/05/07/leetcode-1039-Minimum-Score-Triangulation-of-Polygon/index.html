@@ -128,19 +128,19 @@
 
 
 
-  <meta name="description" content="解题思路: DP动态规划的思想核心公式为:$$dp[i][j] = min(dp[i][j], dp[i][k]+dp[k][j]+A[i]\cdot{A[k]}\cdot{A[j]})$$ 12345678910111213141516int dp[100][100];int minScoreTriangulation(vector&amp;lt;int&amp;gt;&amp;amp; A) &amp;#123;    i">
+  <meta name="description" content="解题思路: DP动态规划的思想核心公式为:  $$dp[i][j] = min(dp[i][j], dp[i][k]+dp[k][j]+A[i]\cdot{A[k]}\cdot{A[j]})$$ 首先,dp[i][j]表示顺时针,从i到j的最小12345678910111213141516int dp[100][100];int minScoreTriangulation(vector&amp;lt;i">
 <meta name="keywords" content="leetcode,dp">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[leetcode]1039. Minimum Score Triangulation of Polygon">
 <meta property="og:url" content="https://brianyi.github.io/2019/05/07/leetcode-1039-Minimum-Score-Triangulation-of-Polygon/index.html">
 <meta property="og:site_name" content="Brian&#39;s Home">
-<meta property="og:description" content="解题思路: DP动态规划的思想核心公式为:$$dp[i][j] = min(dp[i][j], dp[i][k]+dp[k][j]+A[i]\cdot{A[k]}\cdot{A[j]})$$ 12345678910111213141516int dp[100][100];int minScoreTriangulation(vector&amp;lt;int&amp;gt;&amp;amp; A) &amp;#123;    i">
+<meta property="og:description" content="解题思路: DP动态规划的思想核心公式为:  $$dp[i][j] = min(dp[i][j], dp[i][k]+dp[k][j]+A[i]\cdot{A[k]}\cdot{A[j]})$$ 首先,dp[i][j]表示顺时针,从i到j的最小12345678910111213141516int dp[100][100];int minScoreTriangulation(vector&amp;lt;i">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://brianyi.github.io/2019/05/07/leetcode-1039-Minimum-Score-Triangulation-of-Polygon/20190507422058.png">
-<meta property="og:updated_time" content="2019-05-07T13:43:32.122Z">
+<meta property="og:updated_time" content="2019-05-07T15:56:27.700Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[leetcode]1039. Minimum Score Triangulation of Polygon">
-<meta name="twitter:description" content="解题思路: DP动态规划的思想核心公式为:$$dp[i][j] = min(dp[i][j], dp[i][k]+dp[k][j]+A[i]\cdot{A[k]}\cdot{A[j]})$$ 12345678910111213141516int dp[100][100];int minScoreTriangulation(vector&amp;lt;int&amp;gt;&amp;amp; A) &amp;#123;    i">
+<meta name="twitter:description" content="解题思路: DP动态规划的思想核心公式为:  $$dp[i][j] = min(dp[i][j], dp[i][k]+dp[k][j]+A[i]\cdot{A[k]}\cdot{A[j]})$$ 首先,dp[i][j]表示顺时针,从i到j的最小12345678910111213141516int dp[100][100];int minScoreTriangulation(vector&amp;lt;i">
 <meta name="twitter:image" content="https://brianyi.github.io/2019/05/07/leetcode-1039-Minimum-Score-Triangulation-of-Polygon/20190507422058.png">
 
 
@@ -481,7 +481,7 @@
                 
               
 
-              <time title="创建时间：2019-05-07 20:11:08 / 修改时间：21:43:32" itemprop="dateCreated datePublished" datetime="2019-05-07T20:11:08+08:00">2019-05-07</time>
+              <time title="创建时间：2019-05-07 20:11:08 / 修改时间：23:56:27" itemprop="dateCreated datePublished" datetime="2019-05-07T20:11:08+08:00">2019-05-07</time>
             
 
             
@@ -556,7 +556,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">515</span>
+                <span title="本文字数">542</span>
               
 
               
@@ -591,8 +591,10 @@
 
       
         <img src="/2019/05/07/leetcode-1039-Minimum-Score-Triangulation-of-Polygon/20190507422058.png">
-<p>解题思路: DP动态规划的思想<br>核心公式为:<br>$$<br>dp[i][j] = min(dp[i][j], dp[i][k]+dp[k][j]+A[i]\cdot{A[k]}\cdot{A[j]})<br>$$</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> dp[<span class="number">100</span>][<span class="number">100</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">minScoreTriangulation</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; A)</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> len=A.size();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> d=<span class="number">2</span>;d&lt;len;++d) <span class="comment">// d作为i与j之间的间距</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i+d&lt;len; ++i)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> j=i+d;</span><br><span class="line">            dp[i][j]=INT_MAX;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> k=i+<span class="number">1</span>;k&lt;j;++k)</span><br><span class="line">                dp[i][j]=min(dp[i][j],dp[i][k]+dp[k][j]+A[i]*A[k]*A[j]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp[<span class="number">0</span>][len<span class="number">-1</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>解题思路: DP动态规划的思想<br>核心公式为: </p>
+<p>$$<br>dp[i][j] = min(dp[i][j], dp[i][k]+dp[k][j]+A[i]\cdot{A[k]}\cdot{A[j]})<br>$$</p>
+<p>首先,dp[i][j]表示顺时针,从i到j的最小<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> dp[<span class="number">100</span>][<span class="number">100</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">minScoreTriangulation</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; A)</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> len=A.size();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> d=<span class="number">2</span>;d&lt;len;++d) <span class="comment">// d作为i与j之间的间距</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i+d&lt;len; ++i)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> j=i+d;</span><br><span class="line">            dp[i][j]=INT_MAX;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> k=i+<span class="number">1</span>;k&lt;j;++k)</span><br><span class="line">                dp[i][j]=min(dp[i][j],dp[i][k]+dp[k][j]+A[i]*A[k]*A[j]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp[<span class="number">0</span>][len<span class="number">-1</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
       
     </div>
 
@@ -613,7 +615,7 @@
   <p><span>本文标题:</span><a href="/2019/05/07/leetcode-1039-Minimum-Score-Triangulation-of-Polygon/">[leetcode]1039. Minimum Score Triangulation of Polygon</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 Brian Yi 的个人博客">Brian Yi</a></p>
   <p><span>发布时间:</span>2019年05月07日 - 20:05</p>
-  <p><span>最后更新:</span>2019年05月07日 - 21:05</p>
+  <p><span>最后更新:</span>2019年05月07日 - 23:05</p>
   <p><span>原始链接:</span><a href="/2019/05/07/leetcode-1039-Minimum-Score-Triangulation-of-Polygon/" title="[leetcode]1039. Minimum Score Triangulation of Polygon">https://brianyi.github.io/2019/05/07/leetcode-1039-Minimum-Score-Triangulation-of-Polygon/</a>
     <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://brianyi.github.io/2019/05/07/leetcode-1039-Minimum-Score-Triangulation-of-Polygon/" aria-label="复制成功！"></i></span>
   </p>
