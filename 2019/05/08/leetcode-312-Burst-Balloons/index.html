@@ -128,20 +128,20 @@
 
 
 
-  <meta name="description" content="题目含义: $n$个气球,下标从$0$到$n-1$,对应于数组$nums$.每个气球都有一个编号$nums[i]$,每当你扎破一个气球就可以得到$nums[left]\cdot{nums[i]}\cdot{nums[right]}$的硬币,这里的$left$和$right$是紧挨着气球i的两个气球,当气球$i$被扎破后,气球$left$和$right$就相邻了.请你求出将所有气球扎破后,你能获">
+  <meta name="description" content="题目含义: n个气球,下标从0到n-1,对应于数组nums.每个气球都有一个编号nums[i],每当你扎破一个气球就可以得到$nums[left]\cdot{nums[i]}\cdot{nums[right]}$的硬币,这里的left和right是紧挨着气球i的两个气球,当气球i被扎破后,气球left和right就相邻了.请你求出将所有气球扎破后,你能获取的最大的金币数.  注意: 题目要求你">
 <meta name="keywords" content="leetcode,dp">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[leetcode]312. Burst Balloons">
 <meta property="og:url" content="https://brianyi.github.io/2019/05/08/leetcode-312-Burst-Balloons/index.html">
 <meta property="og:site_name" content="Brian&#39;s Home">
-<meta property="og:description" content="题目含义: $n$个气球,下标从$0$到$n-1$,对应于数组$nums$.每个气球都有一个编号$nums[i]$,每当你扎破一个气球就可以得到$nums[left]\cdot{nums[i]}\cdot{nums[right]}$的硬币,这里的$left$和$right$是紧挨着气球i的两个气球,当气球$i$被扎破后,气球$left$和$right$就相邻了.请你求出将所有气球扎破后,你能获">
+<meta property="og:description" content="题目含义: n个气球,下标从0到n-1,对应于数组nums.每个气球都有一个编号nums[i],每当你扎破一个气球就可以得到$nums[left]\cdot{nums[i]}\cdot{nums[right]}$的硬币,这里的left和right是紧挨着气球i的两个气球,当气球i被扎破后,气球left和right就相邻了.请你求出将所有气球扎破后,你能获取的最大的金币数.  注意: 题目要求你">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://brianyi.github.io/2019/05/08/leetcode-312-Burst-Balloons/2019050817052623.png">
 <meta property="og:image" content="https://brianyi.github.io/2019/05/08/leetcode-312-Burst-Balloons/20190508052601.png">
-<meta property="og:updated_time" content="2019-05-08T10:55:56.340Z">
+<meta property="og:updated_time" content="2019-05-09T01:29:27.999Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[leetcode]312. Burst Balloons">
-<meta name="twitter:description" content="题目含义: $n$个气球,下标从$0$到$n-1$,对应于数组$nums$.每个气球都有一个编号$nums[i]$,每当你扎破一个气球就可以得到$nums[left]\cdot{nums[i]}\cdot{nums[right]}$的硬币,这里的$left$和$right$是紧挨着气球i的两个气球,当气球$i$被扎破后,气球$left$和$right$就相邻了.请你求出将所有气球扎破后,你能获">
+<meta name="twitter:description" content="题目含义: n个气球,下标从0到n-1,对应于数组nums.每个气球都有一个编号nums[i],每当你扎破一个气球就可以得到$nums[left]\cdot{nums[i]}\cdot{nums[right]}$的硬币,这里的left和right是紧挨着气球i的两个气球,当气球i被扎破后,气球left和right就相邻了.请你求出将所有气球扎破后,你能获取的最大的金币数.  注意: 题目要求你">
 <meta name="twitter:image" content="https://brianyi.github.io/2019/05/08/leetcode-312-Burst-Balloons/2019050817052623.png">
 
 
@@ -312,7 +312,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">17</span></a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">20</span></a>
 
   </li>
         
@@ -331,7 +331,7 @@
       
     
 
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">2</span></a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">4</span></a>
 
   </li>
         
@@ -350,7 +350,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">25</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">28</span></a>
 
   </li>
 
@@ -482,12 +482,24 @@
                 
               
 
-              <time title="创建时间：2019-05-08 17:01:59 / 修改时间：18:55:56" itemprop="dateCreated datePublished" datetime="2019-05-08T17:01:59+08:00">2019-05-08</time>
+              <time title="创建时间：2019-05-08 17:01:59" itemprop="dateCreated datePublished" datetime="2019-05-08T17:01:59+08:00">2019-05-08</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-05-09 09:29:27" itemprop="dateModified" datetime="2019-05-09T09:29:27+08:00">2019-05-09</time>
               
             
           </span>
@@ -593,9 +605,9 @@
       
         <img src="/2019/05/08/leetcode-312-Burst-Balloons/2019050817052623.png">
 <blockquote>
-<p>题目含义: $n$个气球,下标从$0$到$n-1$,对应于数组$nums$.每个气球都有一个编号$nums[i]$,每当你扎破一个气球就可以得到$nums[left]\cdot{nums[i]}\cdot{nums[right]}$的硬币,这里的$left$和$right$是紧挨着气球i的两个气球,当气球$i$被扎破后,气球$left$和$right$就相邻了.请你求出将所有气球扎破后,你能获取的最大的金币数.</p>
+<p>题目含义: n个气球,下标从0到n-1,对应于数组nums.每个气球都有一个编号nums[i],每当你扎破一个气球就可以得到$nums[left]\cdot{nums[i]}\cdot{nums[right]}$的硬币,这里的left和right是紧挨着气球i的两个气球,当气球i被扎破后,气球left和right就相邻了.请你求出将所有气球扎破后,你能获取的最大的金币数.</p>
 </blockquote>
-<p>注意: 题目要求你假设$nums[-1]=nums[n]=1$,也就是说当你要扎破第一个气球时,得到的硬币是$nums[-1]\cdot{nums[0]}\cdot{nums<a href="/2019/05/07/leetcode-1039-Minimum-Score-Triangulation-of-Polygon/">1</a>}$,扎破最后一个气球时,得到的硬币是$nums[n-2]\cdot{nums[n-1]}\cdot{nums[n]}$的,即假设只有一个气球,且编号为3,那么扎破它得到的硬币数为$nums[-1]\cdot{nums[0]}\cdot{nums<a href="/2019/05/07/leetcode-1039-Minimum-Score-Triangulation-of-Polygon/">1</a>} = 1\cdot{3}\cdot{1} = 3$</p>
+<p>注意: 题目要求你假设nums[-1]=nums[n]=1,也就是说当你要扎破第一个气球时,得到的硬币是$nums[-1]\cdot{nums[0]}\cdot nums[1]$,扎破最后一个气球时,得到的硬币是$nums[n-2]\cdot{nums[n-1]}\cdot{nums[n]}$的,即假设只有一个气球,且编号为3,那么扎破它得到的硬币数为$nums[-1]\cdot{nums[0]}\cdot{nums[1]} = 1\cdot{3}\cdot{1} = 3$</p>
 <h3 id="解题思路-DP的思想"><a href="#解题思路-DP的思想" class="headerlink" title="解题思路: DP的思想"></a>解题思路: DP的思想</h3><p>该问题与<a href="/2019/05/07/leetcode-1039-Minimum-Score-Triangulation-of-Polygon/">[leetcode]1039. Minimum Score Triangulation of Polygon</a>相似,DP的思想即将一个大问题,划分为多个小问题来求解,并且大问题和小问题应当存在一种递推(堆叠)的关系.<br>在此问题中,我们将$dp[i][j]$用于表示把气球$i$到气球$j$全部扎破后所得到的最大金币数.假设我们最后扎破的气球为$k$,满足$i\leq{k}\leq{j}$的关系,那么这里就有一个递推关系,如下图所示</p>
 <img src="/2019/05/08/leetcode-312-Burst-Balloons/20190508052601.png">
 <blockquote>
@@ -613,10 +625,9 @@
 <li>$k=j$,即最后扎破的气球为序号最后的气球,那么最大硬币数为$dp[i][j]=dp[i][k-1]+0+nums[i-1]\cdot{nums[k]}\cdot{nums[k]}$</li>
 <li>$i\le{k}\le{j}$,即最后扎破的气球为中间的这些气球的一个(不在两端),那么最大硬币数为$dp[i][j]=dp[i][k-1]+dp[k+1][j]+nums[i-1]\cdot{nums[k]}\cdot{nums[k]}$</li>
 </ul>
-<p>将以上两种情况都考虑进去(包含两端和不包含两端的),则即为代码部分的特殊处理,代码用A来代表nums了,将A的首部插入一个1,尾部也插入一个1,而气球真正的数量为n个,气球的标号为A<a href="/2019/05/07/leetcode-1039-Minimum-Score-Triangulation-of-Polygon/">1</a>~A[n],A[0]和A<a href="/2019/05/07/leetcode-1039-Minimum-Score-Triangulation-of-Polygon/">1</a>设置为1,即为题目的条件nums[-1]=nums[n]=1,则计算过程中无论是否是端点的情况,都可以正常计算了,说起来很麻烦,如果文字部分没理解的话可以看看下面的视频讲解</p>
+<p>将以上两种情况都考虑进去(包含两端和不包含两端的),则即为代码部分的特殊处理,代码用A来代表nums了,将A的首部插入一个1,尾部也插入一个1,而气球真正的数量为n个,气球的标号为A[1]~A[n],A[0]和A[1]设置为1,即为题目的条件nums[-1]=nums[n]=1,则计算过程中无论是否是端点的情况,都可以正常计算了,说起来很麻烦,如果文字部分没理解的话可以看看下面的视频讲解</p>
 <p>下面是一位老哥的视频讲解:<br><div class="video-container"><iframe src="//www.youtube.com/embed/IFNibRVgFBo" frameborder="0" allowfullscreen></iframe></div></p>
 <h3 id="实现代码-DP的思想"><a href="#实现代码-DP的思想" class="headerlink" title="实现代码: DP的思想"></a>实现代码: DP的思想</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> dp[<span class="number">600</span>][<span class="number">600</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">maxCoins</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; A)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (A.empty()) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> len=A.size();</span><br><span class="line">    A.insert(A.begin(),<span class="number">1</span>);</span><br><span class="line">    A.push_back(<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> d=<span class="number">0</span>;d&lt;len;++d) <span class="comment">// d为i与j之间的间隔</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i+d&lt;=len;++i)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> j=i+d;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> k=i;k&lt;=j;++k)  <span class="comment">// 在i与j之间(包含i,j)枚举k</span></span><br><span class="line">                <span class="comment">// start i, end j, final burst k</span></span><br><span class="line">                dp[i][j] = max(dp[i][j], dp[i][k<span class="number">-1</span>]+A[i<span class="number">-1</span>]*A[k]*A[j+<span class="number">1</span>]+dp[k+<span class="number">1</span>][j]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp[<span class="number">1</span>][len];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
       
     </div>
 
@@ -637,7 +648,7 @@
   <p><span>本文标题:</span><a href="/2019/05/08/leetcode-312-Burst-Balloons/">[leetcode]312. Burst Balloons</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 Brian Yi 的个人博客">Brian Yi</a></p>
   <p><span>发布时间:</span>2019年05月08日 - 17:05</p>
-  <p><span>最后更新:</span>2019年05月08日 - 18:05</p>
+  <p><span>最后更新:</span>2019年05月09日 - 09:05</p>
   <p><span>原始链接:</span><a href="/2019/05/08/leetcode-312-Burst-Balloons/" title="[leetcode]312. Burst Balloons">https://brianyi.github.io/2019/05/08/leetcode-312-Burst-Balloons/</a>
     <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://brianyi.github.io/2019/05/08/leetcode-312-Burst-Balloons/" aria-label="复制成功！"></i></span>
   </p>
@@ -708,6 +719,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/08/leetcode-375-Guess-Number-Higher-or-Lower-II/" rel="prev" title="[leetcode]375. Guess Number Higher or Lower II">
+                [leetcode]375. Guess Number Higher or Lower II <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -782,7 +797,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">25</span>
+                    <span class="site-state-item-count">28</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -803,7 +818,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">2</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -854,7 +873,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">17</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">20</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -954,7 +979,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">82k</span>
+    <span title="站点总字数">94k</span>
   
 
   
@@ -963,7 +988,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">1:15</span>
+    <span title="站点阅读时长">1:26</span>
   
 </div>
 
