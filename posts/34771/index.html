@@ -128,19 +128,19 @@
 
 
 
-  <meta name="description" content="前往二叉树的:前序,中序,后序 遍历算法  方法一:递归 123456789vector&amp;lt;int&amp;gt; res;vector&amp;lt;int&amp;gt; postorderTraversal(TreeNode* root) &amp;#123;    if (!root) return res;    if (root-&amp;gt;left) postorderTraversal(root-&amp;gt;lef">
-<meta name="keywords" content="leetcode,树,递归">
+  <meta name="description" content="前往二叉树的: 前序,中序,后序 遍历算法  方法一:递归 123456789vector&amp;lt;int&amp;gt; res;vector&amp;lt;int&amp;gt; postorderTraversal(TreeNode* root) &amp;#123;    if (!root) return res;    if (root-&amp;gt;left) postorderTraversal(root-&amp;gt;le">
+<meta name="keywords" content="leetcode,二叉树,树,递归">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[leetcode]145.二叉树的后序遍历">
 <meta property="og:url" content="https://brianyi.github.io/posts/34771/index.html">
 <meta property="og:site_name" content="Brian&#39;s Home">
-<meta property="og:description" content="前往二叉树的:前序,中序,后序 遍历算法  方法一:递归 123456789vector&amp;lt;int&amp;gt; res;vector&amp;lt;int&amp;gt; postorderTraversal(TreeNode* root) &amp;#123;    if (!root) return res;    if (root-&amp;gt;left) postorderTraversal(root-&amp;gt;lef">
+<meta property="og:description" content="前往二叉树的: 前序,中序,后序 遍历算法  方法一:递归 123456789vector&amp;lt;int&amp;gt; res;vector&amp;lt;int&amp;gt; postorderTraversal(TreeNode* root) &amp;#123;    if (!root) return res;    if (root-&amp;gt;left) postorderTraversal(root-&amp;gt;le">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://brianyi.github.io/posts/34771/453425-20190501122117295-85727166.png">
-<meta property="og:updated_time" content="2019-05-18T03:43:20.314Z">
+<meta property="og:updated_time" content="2019-05-20T07:36:08.906Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[leetcode]145.二叉树的后序遍历">
-<meta name="twitter:description" content="前往二叉树的:前序,中序,后序 遍历算法  方法一:递归 123456789vector&amp;lt;int&amp;gt; res;vector&amp;lt;int&amp;gt; postorderTraversal(TreeNode* root) &amp;#123;    if (!root) return res;    if (root-&amp;gt;left) postorderTraversal(root-&amp;gt;lef">
+<meta name="twitter:description" content="前往二叉树的: 前序,中序,后序 遍历算法  方法一:递归 123456789vector&amp;lt;int&amp;gt; res;vector&amp;lt;int&amp;gt; postorderTraversal(TreeNode* root) &amp;#123;    if (!root) return res;    if (root-&amp;gt;left) postorderTraversal(root-&amp;gt;le">
 <meta name="twitter:image" content="https://brianyi.github.io/posts/34771/453425-20190501122117295-85727166.png">
 
 
@@ -311,7 +311,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">29</span></a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">37</span></a>
 
   </li>
         
@@ -330,7 +330,7 @@
       
     
 
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">8</span></a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">11</span></a>
 
   </li>
         
@@ -349,7 +349,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">39</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">54</span></a>
 
   </li>
 
@@ -498,7 +498,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-18 11:43:20" itemprop="dateModified" datetime="2019-05-18T11:43:20+08:00">2019-05-18</time>
+                <time title="修改时间：2019-05-20 15:36:08" itemprop="dateModified" datetime="2019-05-20T15:36:08+08:00">2019-05-20</time>
               
             
           </span>
@@ -603,7 +603,7 @@
 
       
         <img src="/posts/34771/453425-20190501122117295-85727166.png">
-<p>前往二叉树的:前序,中序,后序 遍历算法</p>
+<p>前往二叉树的: <a href="https://brianyi.github.io/post/11169"><strong>前序</strong></a>,<a href="https://brianyi.github.io/post/40851"><strong>中序</strong></a>,<a href="https://brianyi.github.io/post/34771"><strong>后序</strong></a> 遍历算法</p>
 <h3 id="方法一递归"><a class="markdownIt-Anchor" href="#方法一递归"></a> 方法一:递归</h3>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; postorderTraversal(TreeNode* root) </span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (!root) <span class="keyword">return</span> res;</span><br><span class="line">    <span class="keyword">if</span> (root-&gt;left) postorderTraversal(root-&gt;left);</span><br><span class="line">    <span class="keyword">if</span> (root-&gt;right) postorderTraversal(root-&gt;right);</span><br><span class="line">    res.push_back(root-&gt;val);</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="方法二非递归"><a class="markdownIt-Anchor" href="#方法二非递归"></a> 方法二:非递归</h3>
@@ -612,6 +612,50 @@
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; postorderTraversal(TreeNode* root) </span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res;</span><br><span class="line">    <span class="keyword">if</span> (!root) <span class="keyword">return</span> res;</span><br><span class="line">    <span class="built_in">stack</span>&lt;TreeNode*&gt; S;</span><br><span class="line">    TreeNode* p=root;</span><br><span class="line">    S.push(p);</span><br><span class="line">    <span class="keyword">while</span> (!S.empty())</span><br><span class="line">    &#123;</span><br><span class="line">        p=S.top();</span><br><span class="line">        S.pop();</span><br><span class="line">        <span class="keyword">if</span> (p-&gt;left) S.push(p-&gt;left);</span><br><span class="line">        <span class="keyword">if</span> (p-&gt;right) S.push(p-&gt;right);</span><br><span class="line">        res.insert(res.begin(),p-&gt;val);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
+
+    
+      
+
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\11169\" rel="bookmark">[leetcode]144.二叉树的前序遍历</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\40851\" rel="bookmark">[leetcode]94.二叉树的中序遍历</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\49088\" rel="bookmark">[leetcode]106.从中序与后序遍历序列构造二叉树</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\8827\" rel="bookmark">[leetcode]105.从前序与中序遍历序列构造二叉树</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\52504\" rel="bookmark">[leetcode]114.二叉树展开为链表</a></div>
+      
+    </li>
+  
+  </ul>
+
 
     
 
@@ -630,7 +674,7 @@
   <p><span>本文标题:</span><a href="/posts/34771/">[leetcode]145.二叉树的后序遍历</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 Brian Yi 的个人博客">Brian Yi</a></p>
   <p><span>发布时间:</span>2019年05月06日 - 21:05</p>
-  <p><span>最后更新:</span>2019年05月18日 - 11:05</p>
+  <p><span>最后更新:</span>2019年05月20日 - 15:05</p>
   <p><span>原始链接:</span><a href="/posts/34771/" title="[leetcode]145.二叉树的后序遍历">https://brianyi.github.io/posts/34771/</a>
     <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://brianyi.github.io/posts/34771/" aria-label="复制成功！"></i></span>
   </p>
@@ -666,6 +710,8 @@
         <div class="post-tags">
           
             <a href="/tags/leetcode/" class="fa fa-tag" style="font-size:16px;border-bottom:none;">leetcode</a>
+          
+            <a href="/tags/二叉树/" class="fa fa-tag" style="font-size:16px;border-bottom:none;">二叉树</a>
           
             <a href="/tags/树/" class="fa fa-tag" style="font-size:16px;border-bottom:none;">树</a>
           
@@ -781,7 +827,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">39</span>
+                    <span class="site-state-item-count">54</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -814,7 +860,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">8</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">11</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -889,7 +941,23 @@
                     
                       
                     
-                    <span class="site-state-item-count">29</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">37</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -996,7 +1064,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">137k</span>
+    <span title="站点总字数">356k</span>
   
 
   
@@ -1005,7 +1073,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">2:04</span>
+    <span title="站点阅读时长">5:24</span>
   
 </div>
 
@@ -1016,6 +1084,14 @@
 
 
 
+
+
+  <script src="https://unpkg.com/mermaid@/dist/mermaid.min.js"></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize("");
+    }
+  </script>
 
         
 
@@ -1565,6 +1641,26 @@
   
 
   
+<script>
+if ($('body').find('pre.mermaid').length) {
+  $.ajax({
+    type: 'GET',
+    url: '//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js',
+    dataType: 'script',
+    cache: true,
+    success: function() {
+      mermaid.initialize({
+        theme: 'forest',
+        logLevel: 3,
+        flowchart: { curve: 'linear' },
+        gantt: { axisFormat: '%m/%d/%Y' },
+        sequence: { actorMargin: 50 }
+      });
+    }
+  });
+}
+</script>
+
 
   
 

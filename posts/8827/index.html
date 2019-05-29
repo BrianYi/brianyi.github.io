@@ -129,7 +129,7 @@
 
 
   <meta name="description" content="前往 中序,后序遍历构造二叉树, 中序,前序遍历构造二叉树 12345678910111213141516TreeNode* build(vector&amp;lt;int&amp;gt;&amp;amp; preorder, int l1, int r1, vector&amp;lt;int&amp;gt;&amp;amp; inorder, int l2, int r2)&amp;#123;    if (l1&amp;gt;r1) return nul">
-<meta name="keywords" content="leetcode,树,递归">
+<meta name="keywords" content="leetcode,二叉树,树,递归">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[leetcode]105.从前序与中序遍历序列构造二叉树">
 <meta property="og:url" content="https://brianyi.github.io/posts/8827/index.html">
@@ -137,7 +137,7 @@
 <meta property="og:description" content="前往 中序,后序遍历构造二叉树, 中序,前序遍历构造二叉树 12345678910111213141516TreeNode* build(vector&amp;lt;int&amp;gt;&amp;amp; preorder, int l1, int r1, vector&amp;lt;int&amp;gt;&amp;amp; inorder, int l2, int r2)&amp;#123;    if (l1&amp;gt;r1) return nul">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://brianyi.github.io/posts/8827/453425-20190502215802448-663626721.png">
-<meta property="og:updated_time" content="2019-05-18T03:43:20.284Z">
+<meta property="og:updated_time" content="2019-05-20T07:36:52.368Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[leetcode]105.从前序与中序遍历序列构造二叉树">
 <meta name="twitter:description" content="前往 中序,后序遍历构造二叉树, 中序,前序遍历构造二叉树 12345678910111213141516TreeNode* build(vector&amp;lt;int&amp;gt;&amp;amp; preorder, int l1, int r1, vector&amp;lt;int&amp;gt;&amp;amp; inorder, int l2, int r2)&amp;#123;    if (l1&amp;gt;r1) return nul">
@@ -311,7 +311,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">29</span></a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">37</span></a>
 
   </li>
         
@@ -330,7 +330,7 @@
       
     
 
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">8</span></a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">11</span></a>
 
   </li>
         
@@ -349,7 +349,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">39</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">54</span></a>
 
   </li>
 
@@ -498,7 +498,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-18 11:43:20" itemprop="dateModified" datetime="2019-05-18T11:43:20+08:00">2019-05-18</time>
+                <time title="修改时间：2019-05-20 15:36:52" itemprop="dateModified" datetime="2019-05-20T15:36:52+08:00">2019-05-20</time>
               
             
           </span>
@@ -603,10 +603,54 @@
 
       
         <img src="/posts/8827/453425-20190502215802448-663626721.png">
-<p>前往 中序,后序遍历构造二叉树, 中序,前序遍历构造二叉树</p>
+<p>前往 <a href="https://brianyi.github.io/post/49088"><strong>中序,后序遍历构造二叉树</strong></a>, <a href="https://brianyi.github.io/posts/8827"><strong>中序,前序遍历构造二叉树</strong></a></p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">TreeNode* <span class="title">build</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; preorder, <span class="keyword">int</span> l1, <span class="keyword">int</span> r1, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; inorder, <span class="keyword">int</span> l2, <span class="keyword">int</span> r2)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (l1&gt;r1) <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">    <span class="keyword">int</span> x=preorder[l1], i=<span class="number">0</span>;    <span class="comment">// 确定当前根节点</span></span><br><span class="line">    <span class="keyword">for</span>(i=l2;inorder[i]!=x&amp;&amp;i&lt;r2;++i);  <span class="comment">// 在中序遍历序列中找到当前根节点位置(该位置可以划分出左右两个分支)</span></span><br><span class="line">    <span class="keyword">int</span> llen=i-l2;  <span class="comment">// 左子树结点数量</span></span><br><span class="line">    <span class="keyword">int</span> rlen=r2-i;  <span class="comment">// 右子树结点数量</span></span><br><span class="line">    TreeNode *p = <span class="keyword">new</span> TreeNode(x);  <span class="comment">// 建立根节点</span></span><br><span class="line">    p-&gt;left = build(preorder, l1+<span class="number">1</span>, l1+llen, inorder, l2, l2+llen<span class="number">-1</span>);   <span class="comment">// 递归建立左子树,+1,-1是把当前根节点位置去掉</span></span><br><span class="line">    p-&gt;right= build(preorder, r1-rlen+<span class="number">1</span>, r1, inorder, r2-rlen+<span class="number">1</span>, r2);   <span class="comment">// 递归建立右子树,+1,+1是把当前根节点位置去掉</span></span><br><span class="line">    <span class="keyword">return</span> p;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">TreeNode* <span class="title">buildTree</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; preorder, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; inorder)</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> build(preorder, <span class="number">0</span>, preorder.size()<span class="number">-1</span>, inorder, <span class="number">0</span>, inorder.size()<span class="number">-1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
+
+    
+      
+
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\11169\" rel="bookmark">[leetcode]144.二叉树的前序遍历</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\40851\" rel="bookmark">[leetcode]94.二叉树的中序遍历</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\34771\" rel="bookmark">[leetcode]145.二叉树的后序遍历</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\49088\" rel="bookmark">[leetcode]106.从中序与后序遍历序列构造二叉树</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\52504\" rel="bookmark">[leetcode]114.二叉树展开为链表</a></div>
+      
+    </li>
+  
+  </ul>
+
 
     
 
@@ -625,7 +669,7 @@
   <p><span>本文标题:</span><a href="/posts/8827/">[leetcode]105.从前序与中序遍历序列构造二叉树</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 Brian Yi 的个人博客">Brian Yi</a></p>
   <p><span>发布时间:</span>2019年05月06日 - 20:05</p>
-  <p><span>最后更新:</span>2019年05月18日 - 11:05</p>
+  <p><span>最后更新:</span>2019年05月20日 - 15:05</p>
   <p><span>原始链接:</span><a href="/posts/8827/" title="[leetcode]105.从前序与中序遍历序列构造二叉树">https://brianyi.github.io/posts/8827/</a>
     <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://brianyi.github.io/posts/8827/" aria-label="复制成功！"></i></span>
   </p>
@@ -661,6 +705,8 @@
         <div class="post-tags">
           
             <a href="/tags/leetcode/" class="fa fa-tag" style="font-size:16px;border-bottom:none;">leetcode</a>
+          
+            <a href="/tags/二叉树/" class="fa fa-tag" style="font-size:16px;border-bottom:none;">二叉树</a>
           
             <a href="/tags/树/" class="fa fa-tag" style="font-size:16px;border-bottom:none;">树</a>
           
@@ -767,7 +813,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">39</span>
+                    <span class="site-state-item-count">54</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -800,7 +846,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">8</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">11</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -875,7 +927,23 @@
                     
                       
                     
-                    <span class="site-state-item-count">29</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">37</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -965,7 +1033,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">137k</span>
+    <span title="站点总字数">356k</span>
   
 
   
@@ -974,7 +1042,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">2:04</span>
+    <span title="站点阅读时长">5:24</span>
   
 </div>
 
@@ -985,6 +1053,14 @@
 
 
 
+
+
+  <script src="https://unpkg.com/mermaid@/dist/mermaid.min.js"></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize("");
+    }
+  </script>
 
         
 
@@ -1534,6 +1610,26 @@
   
 
   
+<script>
+if ($('body').find('pre.mermaid').length) {
+  $.ajax({
+    type: 'GET',
+    url: '//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js',
+    dataType: 'script',
+    cache: true,
+    success: function() {
+      mermaid.initialize({
+        theme: 'forest',
+        logLevel: 3,
+        flowchart: { curve: 'linear' },
+        gantt: { axisFormat: '%m/%d/%Y' },
+        sequence: { actorMargin: 50 }
+      });
+    }
+  });
+}
+</script>
+
 
   
 

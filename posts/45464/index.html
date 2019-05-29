@@ -129,7 +129,7 @@
 
 
   <meta name="description" content="一.树与二叉树相关算法  1.二叉树按顺序结构存储,求编号为i和j的两个结点的最近公共祖先结点的值 123456789ElemType CommonAncestor( SeqTree T, int i, int j )&amp;#123;    while ( i != j )    &amp;#123;        if ( i &amp;gt; j ) i /= 2;        else j /= 2;">
-<meta name="keywords" content="树,二叉树">
+<meta name="keywords" content="二叉树,树">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[algorithm]树与二叉树">
 <meta property="og:url" content="https://brianyi.github.io/posts/45464/index.html">
@@ -309,7 +309,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">29</span></a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">37</span></a>
 
   </li>
         
@@ -328,7 +328,7 @@
       
     
 
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">8</span></a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">11</span></a>
 
   </li>
         
@@ -347,7 +347,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">39</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">54</span></a>
 
   </li>
 
@@ -703,6 +703,50 @@
     </div>
 
     
+      
+
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\11169\" rel="bookmark">[leetcode]144.二叉树的前序遍历</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\40851\" rel="bookmark">[leetcode]94.二叉树的中序遍历</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\34771\" rel="bookmark">[leetcode]145.二叉树的后序遍历</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\49088\" rel="bookmark">[leetcode]106.从中序与后序遍历序列构造二叉树</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\8827\" rel="bookmark">[leetcode]105.从前序与中序遍历序列构造二叉树</a></div>
+      
+    </li>
+  
+  </ul>
+
+
+    
 
     
     
@@ -754,9 +798,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/树/" class="fa fa-tag" style="font-size:16px;border-bottom:none;">树</a>
-          
             <a href="/tags/二叉树/" class="fa fa-tag" style="font-size:16px;border-bottom:none;">二叉树</a>
+          
+            <a href="/tags/树/" class="fa fa-tag" style="font-size:16px;border-bottom:none;">树</a>
           
         </div>
       
@@ -868,7 +912,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">39</span>
+                    <span class="site-state-item-count">54</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -901,7 +945,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">8</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">11</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -976,7 +1026,23 @@
                     
                       
                     
-                    <span class="site-state-item-count">29</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">37</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1083,7 +1149,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">137k</span>
+    <span title="站点总字数">356k</span>
   
 
   
@@ -1092,7 +1158,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">2:04</span>
+    <span title="站点阅读时长">5:24</span>
   
 </div>
 
@@ -1103,6 +1169,14 @@
 
 
 
+
+
+  <script src="https://unpkg.com/mermaid@/dist/mermaid.min.js"></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize("");
+    }
+  </script>
 
         
 
@@ -1652,6 +1726,26 @@
   
 
   
+<script>
+if ($('body').find('pre.mermaid').length) {
+  $.ajax({
+    type: 'GET',
+    url: '//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js',
+    dataType: 'script',
+    cache: true,
+    success: function() {
+      mermaid.initialize({
+        theme: 'forest',
+        logLevel: 3,
+        flowchart: { curve: 'linear' },
+        gantt: { axisFormat: '%m/%d/%Y' },
+        sequence: { actorMargin: 50 }
+      });
+    }
+  });
+}
+</script>
+
 
   
 

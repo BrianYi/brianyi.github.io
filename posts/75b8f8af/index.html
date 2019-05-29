@@ -136,7 +136,7 @@
 <meta property="og:site_name" content="Brian&#39;s Home">
 <meta property="og:description" content="k-近邻算法概述 k-近邻算法采用测量不同特征值之间距离进行分类  优点: 精度高,对异常值不敏感,无数据输入假定 缺点: 计算复杂度高,空间复杂度高 使用数据范围: 数值型和标称型   k-近邻算法的伪代码 对位未知类别属性的数据集中的每个点依次执行以下操作:  计算已知类别数据集中的点与当前点之间的距离 按照距离递增次序排序 选取与当前点距离最小的k个点 确定前k个点所在类别的出现频率 返回">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-05-18T11:31:16.163Z">
+<meta property="og:updated_time" content="2019-05-28T06:46:19.791Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[book]&lt;&lt;机器学习实战&gt;&gt;第2章 k-近邻算法">
 <meta name="twitter:description" content="k-近邻算法概述 k-近邻算法采用测量不同特征值之间距离进行分类  优点: 精度高,对异常值不敏感,无数据输入假定 缺点: 计算复杂度高,空间复杂度高 使用数据范围: 数值型和标称型   k-近邻算法的伪代码 对位未知类别属性的数据集中的每个点依次执行以下操作:  计算已知类别数据集中的点与当前点之间的距离 按照距离递增次序排序 选取与当前点距离最小的k个点 确定前k个点所在类别的出现频率 返回">
@@ -309,7 +309,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">29</span></a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">37</span></a>
 
   </li>
         
@@ -328,7 +328,7 @@
       
     
 
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">8</span></a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">11</span></a>
 
   </li>
         
@@ -347,7 +347,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">39</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">54</span></a>
 
   </li>
 
@@ -479,12 +479,24 @@
                 
               
 
-              <time title="创建时间：2019-05-18 16:11:03 / 修改时间：19:31:16" itemprop="dateCreated datePublished" datetime="2019-05-18T16:11:03+08:00">2019-05-18</time>
+              <time title="创建时间：2019-05-18 16:11:03" itemprop="dateCreated datePublished" datetime="2019-05-18T16:11:03+08:00">2019-05-18</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-05-28 14:46:19" itemprop="dateModified" datetime="2019-05-28T14:46:19+08:00">2019-05-28</time>
               
             
           </span>
@@ -554,7 +566,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">1.7k</span>
+                <span title="本文字数">1.6k</span>
               
 
               
@@ -568,7 +580,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">2 分钟</span>
+                <span title="阅读时长">1 分钟</span>
               
             </div>
           
@@ -606,15 +618,52 @@
 </ol>
 <h3 id="k-近邻算法核心代码"><a class="markdownIt-Anchor" href="#k-近邻算法核心代码"></a> k-近邻算法核心代码</h3>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">classify0</span><span class="params">(inX, dataSet, labels, k)</span>:</span></span><br><span class="line">  <span class="string">'''</span></span><br><span class="line"><span class="string">  :param inX: 预测数据</span></span><br><span class="line"><span class="string">  :param dataSet: 已知数据集</span></span><br><span class="line"><span class="string">  :param labels: 已知数据所属标签值</span></span><br><span class="line"><span class="string">  :param k: 取前k个点出现频率最高的类别作为当前点的预测分类</span></span><br><span class="line"><span class="string">  :return:  </span></span><br><span class="line"><span class="string">  '''</span></span><br><span class="line">  dataSetSize = dataSet.shape[<span class="number">0</span>]  <span class="comment"># 获取一维长度(即样本数量)</span></span><br><span class="line">  diffMat = tile(inX, (dataSetSize, <span class="number">1</span>)) - dataSet <span class="comment"># 获取差异矩阵</span></span><br><span class="line">  sqDiffMat = diffMat**<span class="number">2</span>  <span class="comment"># 取平方</span></span><br><span class="line">  sqDistances = sqDiffMat.sum(axis=<span class="number">1</span>) <span class="comment"># 二维数据累加,即计算每个点与预测点距离的平方和</span></span><br><span class="line">  distances = sqDistances**<span class="number">0.5</span>  <span class="comment"># 开根号</span></span><br><span class="line">  sortedDistIndicies = distances.argsort()  <span class="comment"># 返回排序后的索引值(数据顺序不变)</span></span><br><span class="line">  classCount = &#123;&#125;</span><br><span class="line">  <span class="keyword">for</span> i <span class="keyword">in</span> range(k):</span><br><span class="line">    voteILabel = labels[sortedDistIndicies[i]]</span><br><span class="line">    classCount[voteILabel] = classCount.get(voteILabel, <span class="number">0</span>) + <span class="number">1</span>  <span class="comment">#get(key, default): Return the value for key if key is in the dictionary, else default.</span></span><br><span class="line">  sortedClassCount = sorted(classCount.items(), key=operator.itemgetter(<span class="number">1</span>), reverse=<span class="literal">True</span>) <span class="comment"># 逆序后选择发生频率最高的标签</span></span><br><span class="line">  <span class="keyword">return</span> sortedClassCount[<span class="number">0</span>][<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
-<h3 id="特征值归一化"><a class="markdownIt-Anchor" href="#特征值归一化"></a> 特征值归一化</h3>
+<h3 id="span-idjump-autonorm特征值归一化特征缩放span"><a class="markdownIt-Anchor" href="#span-idjump-autonorm特征值归一化特征缩放span"></a> <span id="jump-autonorm">特征值归一化(特征缩放)</span></h3>
 <p>特征中,有些特征的数字差值对计算结果影响较大,而实际每个特征应当是同等重要的,因此需要进行归一化处理,将数值都转为比重(0.0~1.0)<br>
 公式: $$newValue = \frac{oldValue-minValue}{maxValue-minValue}$$</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">autoNorm</span><span class="params">(dataSet)</span>:</span></span><br><span class="line">  minVals = dataSet.min(<span class="number">0</span>)  <span class="comment"># 获取各column最小值</span></span><br><span class="line">  maxVals = dataSet.max(<span class="number">0</span>)  <span class="comment"># 获取各column最大值</span></span><br><span class="line">  ranges = maxVals - minVals  <span class="comment"># 得到一个范围差矩阵</span></span><br><span class="line">  normDataSet = zeros(shape(dataSet)) <span class="comment"># 得到一个全零矩阵</span></span><br><span class="line">  m = dataSet.shape[<span class="number">0</span>]  <span class="comment"># 获取样本数量</span></span><br><span class="line">  normDataSet = dataSet - tile(minVals, (m,<span class="number">1</span>)) <span class="comment"># 当前值减去最小值</span></span><br><span class="line">  normDataSet = normDataSet/tile(ranges, (m,<span class="number">1</span>)) <span class="comment"># 计算每个数据所在比重(0.0~1.0)</span></span><br><span class="line">  <span class="keyword">return</span> normDataSet, ranges, minVals</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">auto_norm</span><span class="params">(X)</span>:</span></span><br><span class="line">    <span class="string">"""特征归一化(或特征缩放)</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    Arguments:</span></span><br><span class="line"><span class="string">        X &#123;array&#125; -- 数据集</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    Returns:</span></span><br><span class="line"><span class="string">        array -- 返回归一化后的数据集</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    X=np.array(X)   </span><br><span class="line">    n=len(X[<span class="number">0</span>])</span><br><span class="line">    <span class="comment"># 获取各column最小值</span></span><br><span class="line">    minVals=X.min(<span class="number">0</span>)    </span><br><span class="line">    <span class="comment"># 获取各column最大值    </span></span><br><span class="line">    maxVals=X.max(<span class="number">0</span>)    </span><br><span class="line">    <span class="comment"># 计算每个数据所在比重(0.0~1.0)</span></span><br><span class="line">    newVals=(X-minVals)/(maxVals-minVals)</span><br><span class="line">    <span class="keyword">return</span> newVals</span><br></pre></td></tr></table></figure>
 <h3 id="小结"><a class="markdownIt-Anchor" href="#小结"></a> 小结</h3>
 <p>k-近邻算法对于数据量不是很大的情况还是比较适宜的,因为效率不高,不过可以采用建立k-tree的方法来提高搜索效率</p>
 
       
     </div>
+
+    
+      
+
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\f0799167\" rel="bookmark">[book]<<机器学习实战>>第5章 Logistic回归</机器学习实战></a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\28f8d320\" rel="bookmark">[book]<<机器学习实战>>第4章 基于概率论的分类方法:朴素贝叶斯</机器学习实战></a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\49e197e8\" rel="bookmark">[book]<<机器学习实战>>第3章 决策树</机器学习实战></a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\60021\" rel="bookmark">[book]<<机器学习实战>>第1章 机器学习基础</机器学习实战></a></div>
+      
+    </li>
+  
+  </ul>
+
 
     
 
@@ -633,7 +682,7 @@
   <p><span>本文标题:</span><a href="/posts/75b8f8af/">[book]<<机器学习实战>>第2章 k-近邻算法</机器学习实战></a></p>
   <p><span>文章作者:</span><a href="/" title="访问 Brian Yi 的个人博客">Brian Yi</a></p>
   <p><span>发布时间:</span>2019年05月18日 - 16:05</p>
-  <p><span>最后更新:</span>2019年05月18日 - 19:05</p>
+  <p><span>最后更新:</span>2019年05月28日 - 14:05</p>
   <p><span>原始链接:</span><a href="/posts/75b8f8af/" title="[book]<<机器学习实战>>第2章 k-近邻算法">https://brianyi.github.io/posts/75b8f8af/</a>
     <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://brianyi.github.io/posts/75b8f8af/" aria-label="复制成功！"></i></span>
   </p>
@@ -782,7 +831,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">39</span>
+                    <span class="site-state-item-count">54</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -815,7 +864,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">8</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">11</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -890,7 +945,23 @@
                     
                       
                     
-                    <span class="site-state-item-count">29</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">37</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -957,7 +1028,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#k-近邻算法概述"><span class="nav-number">1.</span> <span class="nav-text"> k-近邻算法概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#k-近邻算法的伪代码"><span class="nav-number">2.</span> <span class="nav-text"> k-近邻算法的伪代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#k-近邻算法核心代码"><span class="nav-number">3.</span> <span class="nav-text"> k-近邻算法核心代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特征值归一化"><span class="nav-number">4.</span> <span class="nav-text"> 特征值归一化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#小结"><span class="nav-number">5.</span> <span class="nav-text"> 小结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#k-近邻算法概述"><span class="nav-number">1.</span> <span class="nav-text"> k-近邻算法概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#k-近邻算法的伪代码"><span class="nav-number">2.</span> <span class="nav-text"> k-近邻算法的伪代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#k-近邻算法核心代码"><span class="nav-number">3.</span> <span class="nav-text"> k-近邻算法核心代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#span-idjump-autonorm特征值归一化特征缩放span"><span class="nav-number">4.</span> <span class="nav-text"> 特征值归一化(特征缩放)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#小结"><span class="nav-number">5.</span> <span class="nav-text"> 小结</span></a></li></ol></div>
             
 
           </div>
@@ -997,7 +1068,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">137k</span>
+    <span title="站点总字数">356k</span>
   
 
   
@@ -1006,7 +1077,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">2:04</span>
+    <span title="站点阅读时长">5:24</span>
   
 </div>
 
@@ -1017,6 +1088,14 @@
 
 
 
+
+
+  <script src="https://unpkg.com/mermaid@/dist/mermaid.min.js"></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize("");
+    }
+  </script>
 
         
 
@@ -1606,6 +1685,26 @@
   
 
   
+<script>
+if ($('body').find('pre.mermaid').length) {
+  $.ajax({
+    type: 'GET',
+    url: '//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js',
+    dataType: 'script',
+    cache: true,
+    success: function() {
+      mermaid.initialize({
+        theme: 'forest',
+        logLevel: 3,
+        flowchart: { curve: 'linear' },
+        gantt: { axisFormat: '%m/%d/%Y' },
+        sequence: { actorMargin: 50 }
+      });
+    }
+  });
+}
+</script>
+
 
   
 
