@@ -128,20 +128,20 @@
 
 
 
-  <meta name="description" content="思路:滑动窗口的思想,只要是求连续子序列或者子串问题,都可用滑动窗口的思想  方法一: 滑动窗口 123456789101112131415161718vector&amp;lt;int&amp;gt; maxSlidingWindow(vector&amp;lt;int&amp;gt;&amp;amp; nums, int k) &amp;#123;    vector&amp;lt;int&amp;gt; res;    if (nums.size()=">
-<meta name="keywords" content="leetcode,滑动窗口">
+  <meta name="description" content="解题思路 可以看到,只要不是单调非递增的序列,下一个排列的数一定是比当前数大的,但同时也应当是比当前数大的所有数当中最小的 因此,可分为两种情况:  不单调: 则找到下一个比它大的数,且这个数是所有排列中比当前数大的最小的一个 例如: 找1 5 8 4 7 6 5 3 1的下一个排列 方法是: 低位到高位找到第一个不是单调非递增的数,这里是4,4后面的数都满足单调非递增,则从后面单调非递增的数">
+<meta name="keywords" content="leetcode,排列">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[leetcode]239.滑动窗口最大值">
-<meta property="og:url" content="https://brianyi.github.io/posts/45513/index.html">
+<meta property="og:title" content="[leetcode]31.下一个排列">
+<meta property="og:url" content="https://brianyi.github.io/posts/428400a2/index.html">
 <meta property="og:site_name" content="Brian&#39;s Home">
-<meta property="og:description" content="思路:滑动窗口的思想,只要是求连续子序列或者子串问题,都可用滑动窗口的思想  方法一: 滑动窗口 123456789101112131415161718vector&amp;lt;int&amp;gt; maxSlidingWindow(vector&amp;lt;int&amp;gt;&amp;amp; nums, int k) &amp;#123;    vector&amp;lt;int&amp;gt; res;    if (nums.size()=">
+<meta property="og:description" content="解题思路 可以看到,只要不是单调非递增的序列,下一个排列的数一定是比当前数大的,但同时也应当是比当前数大的所有数当中最小的 因此,可分为两种情况:  不单调: 则找到下一个比它大的数,且这个数是所有排列中比当前数大的最小的一个 例如: 找1 5 8 4 7 6 5 3 1的下一个排列 方法是: 低位到高位找到第一个不是单调非递增的数,这里是4,4后面的数都满足单调非递增,则从后面单调非递增的数">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://brianyi.github.io/posts/45513/453425-20190503094513334-1691572073.png">
-<meta property="og:updated_time" content="2019-05-18T03:43:20.318Z">
+<meta property="og:image" content="https://brianyi.github.io/posts/428400a2/2019052912303931.png">
+<meta property="og:updated_time" content="2019-05-29T04:55:24.578Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="[leetcode]239.滑动窗口最大值">
-<meta name="twitter:description" content="思路:滑动窗口的思想,只要是求连续子序列或者子串问题,都可用滑动窗口的思想  方法一: 滑动窗口 123456789101112131415161718vector&amp;lt;int&amp;gt; maxSlidingWindow(vector&amp;lt;int&amp;gt;&amp;amp; nums, int k) &amp;#123;    vector&amp;lt;int&amp;gt; res;    if (nums.size()=">
-<meta name="twitter:image" content="https://brianyi.github.io/posts/45513/453425-20190503094513334-1691572073.png">
+<meta name="twitter:title" content="[leetcode]31.下一个排列">
+<meta name="twitter:description" content="解题思路 可以看到,只要不是单调非递增的序列,下一个排列的数一定是比当前数大的,但同时也应当是比当前数大的所有数当中最小的 因此,可分为两种情况:  不单调: 则找到下一个比它大的数,且这个数是所有排列中比当前数大的最小的一个 例如: 找1 5 8 4 7 6 5 3 1的下一个排列 方法是: 低位到高位找到第一个不是单调非递增的数,这里是4,4后面的数都满足单调非递增,则从后面单调非递增的数">
+<meta name="twitter:image" content="https://brianyi.github.io/posts/428400a2/2019052912303931.png">
 
 
 
@@ -151,7 +151,7 @@
 
   
   
-  <link rel="canonical" href="https://brianyi.github.io/posts/45513/">
+  <link rel="canonical" href="https://brianyi.github.io/posts/428400a2/">
 
 
 
@@ -161,7 +161,7 @@
   };
 </script>
 
-  <title>[leetcode]239.滑动窗口最大值 | Brian's Home</title>
+  <title>[leetcode]31.下一个排列 | Brian's Home</title>
   
 
 
@@ -437,7 +437,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://brianyi.github.io/posts/45513/">
+    <link itemprop="mainEntityOfPage" href="https://brianyi.github.io/posts/428400a2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Brian Yi">
@@ -454,7 +454,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">[leetcode]239.滑动窗口最大值
+          <h1 class="post-title" itemprop="name headline">[leetcode]31.下一个排列
 
               
             
@@ -481,24 +481,12 @@
                 
               
 
-              <time title="创建时间：2019-05-06 20:10:15" itemprop="dateCreated datePublished" datetime="2019-05-06T20:10:15+08:00">2019-05-06</time>
+              <time title="创建时间：2019-05-29 12:29:57 / 修改时间：12:55:24" itemprop="dateCreated datePublished" datetime="2019-05-29T12:29:57+08:00">2019-05-29</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-05-18 11:43:20" itemprop="dateModified" datetime="2019-05-18T11:43:20+08:00">2019-05-18</time>
               
             
           </span>
@@ -534,8 +522,8 @@
                 </span>
             
                 <span class="post-meta-item-text">评论数：</span>
-                <a href="/posts/45513/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/45513/" itemprop="commentCount"></span>
+                <a href="/posts/428400a2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/428400a2/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -543,7 +531,7 @@
 
           
           
-            <span id="/posts/45513/" class="leancloud_visitors" data-flag-title="[leetcode]239.滑动窗口最大值">
+            <span id="/posts/428400a2/" class="leancloud_visitors" data-flag-title="[leetcode]31.下一个排列">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -568,7 +556,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">588</span>
+                <span title="本文字数">935</span>
               
 
               
@@ -602,10 +590,22 @@
       
 
       
-        <img src="/posts/45513/453425-20190503094513334-1691572073.png">
-<p>思路:滑动窗口的思想,只要是求连续子序列或者子串问题,都可用滑动窗口的思想</p>
-<h3 id="方法一-滑动窗口"><a class="markdownIt-Anchor" href="#方法一-滑动窗口"></a> 方法一: 滑动窗口</h3>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; maxSlidingWindow(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> k) </span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res;</span><br><span class="line">    <span class="keyword">if</span> (nums.size()==<span class="number">0</span>) <span class="keyword">return</span> res;</span><br><span class="line">    <span class="keyword">int</span> i=<span class="number">0</span>;</span><br><span class="line">    <span class="built_in">deque</span>&lt;<span class="keyword">int</span>&gt; dq;　　</span><br><span class="line">    <span class="keyword">for</span> (i=<span class="number">0</span>;i&lt;nums.size();++i)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">while</span>(!dq.empty()&amp;&amp;nums[i]&gt;nums[dq.back()]) <span class="comment">//在尾部添加元素，并保证左边元素都比尾部大</span></span><br><span class="line">            dq.pop_back();</span><br><span class="line">        dq.push_back(i);</span><br><span class="line">        <span class="keyword">if</span> (i-k==dq.front())    <span class="comment">//在头部移除元素</span></span><br><span class="line">            dq.pop_front();</span><br><span class="line">        <span class="keyword">if</span> (i&gt;=k<span class="number">-1</span>)</span><br><span class="line">            res.push_back(nums[dq.front()]);    <span class="comment">// 存放每次窗口内的最大值</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <img src="/posts/428400a2/2019052912303931.png">
+<h3 id="解题思路"><a class="markdownIt-Anchor" href="#解题思路"></a> 解题思路</h3>
+<p>可以看到,<code>只要不是单调非递增的序列,下一个排列的数一定是比当前数大的</code>,但<code>同时也应当是比当前数大的所有数当中最小的</code><br>
+因此,可分为两种情况:</p>
+<ul>
+<li><strong>不单调</strong>: 则找到下一个比它大的数,且这个数是所有排列中比当前数大的最小的一个<br>
+例如: 找<code>1 5 8 4 7 6 5 3 1</code>的下一个排列<br>
+方法是: 低位到高位找到第一个不是单调非递增的数,这里是<code>4</code>,<code>4</code>后面的数都满足单调非递增,则从后面单调非递增的数中找到一个比4大的最小的数进行交换,然后把<code>4</code>后的数进行逆序即可<br>
+如果不理解,我们不妨这样看,单独看<code>4 7 6 5 3 1</code>,它后面一个排列应该是什么呢?由于<code>7 6 5 3 1</code>是单调非递增,已经达到了该排列的最大值,因此<code>4 7 6 5 3 1</code>中只能更换<code>4</code>的值,当然是比<code>4</code>大的数中尽可能的小的数,那么就是<code>5</code>,交换后是这样<code>5 7 6 4 3 1</code>(交换后必然还是后面的数单调非递增(即是以<code>5</code>开头的最大的排列)),这样就将后面的数逆序,即可保障是<code>5</code>开头的最小的一个排列<code>5 1 3 4 6 7</code></li>
+<li><strong>单调非递增</strong>: 即所有排列中最大的数,那么它的下一个排列必然是所有排列中最小的数,那么只需逆序即可<br>
+例如: <code>7 6 5 4 3 2 1</code>逆序为<code>1 2 3 4 5 6 7</code></li>
+</ul>
+<h3 id="代码实现"><a class="markdownIt-Anchor" href="#代码实现"></a> 代码实现</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">nextPermutation</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (nums.size()&lt;=<span class="number">1</span>) <span class="keyword">return</span> ;</span><br><span class="line">    <span class="keyword">int</span> i=nums.size()<span class="number">-2</span>,j=nums.size()<span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">for</span>(;i&gt;=<span class="number">0</span>&amp;&amp;nums[i]&gt;=nums[i+<span class="number">1</span>];--i);</span><br><span class="line">    <span class="keyword">if</span> (i&gt;=<span class="number">0</span>) <span class="comment">// i&lt;0,则说明为单调非递增,i&gt;=0则不单调</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span>(;j&gt;=<span class="number">0</span>&amp;&amp;nums[i]&gt;=nums[j];--j);</span><br><span class="line">        swap(nums[i],nums[j]);</span><br><span class="line">    &#125;</span><br><span class="line">    reverse(nums.begin()+i+<span class="number">1</span>,nums.end());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>算法时间复杂度<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span></p>
+
       
     </div>
 
@@ -618,21 +618,14 @@
     <li class="popular-posts-item">
       
       
-      <div class="popular-posts-title"><a href="\posts\39410\" rel="bookmark">[leetcode]76.最小覆盖子串</a></div>
+      <div class="popular-posts-title"><a href="\posts\6542\" rel="bookmark">[leetcode]TOC汇总</a></div>
       
     </li>
   
     <li class="popular-posts-item">
       
       
-      <div class="popular-posts-title"><a href="\posts\37922\" rel="bookmark">[leetcode]3.无重复字符的最长子串</a></div>
-      
-    </li>
-  
-    <li class="popular-posts-item">
-      
-      
-      <div class="popular-posts-title"><a href="\posts\44722\" rel="bookmark">[leetcode]214.最短回文串</a></div>
+      <div class="popular-posts-title"><a href="\posts\f8bebee9\" rel="bookmark">[leetcode]32.最长有效括号</a></div>
       
     </li>
   
@@ -647,6 +640,13 @@
       
       
       <div class="popular-posts-title"><a href="\posts\25b36638\" rel="bookmark">[leetcode]动态规划Top down & Bottom up</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\6e2a1502\" rel="bookmark">[leetcode]63.不同路径II</a></div>
       
     </li>
   
@@ -667,12 +667,12 @@
   <!-- JS库 sweetalert 可修改路径 -->
   <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <p><span>本文标题:</span><a href="/posts/45513/">[leetcode]239.滑动窗口最大值</a></p>
+  <p><span>本文标题:</span><a href="/posts/428400a2/">[leetcode]31.下一个排列</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 Brian Yi 的个人博客">Brian Yi</a></p>
-  <p><span>发布时间:</span>2019年05月06日 - 20:05</p>
-  <p><span>最后更新:</span>2019年05月18日 - 11:05</p>
-  <p><span>原始链接:</span><a href="/posts/45513/" title="[leetcode]239.滑动窗口最大值">https://brianyi.github.io/posts/45513/</a>
-    <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://brianyi.github.io/posts/45513/" aria-label="复制成功！"></i></span>
+  <p><span>发布时间:</span>2019年05月29日 - 12:05</p>
+  <p><span>最后更新:</span>2019年05月29日 - 12:05</p>
+  <p><span>原始链接:</span><a href="/posts/428400a2/" title="[leetcode]31.下一个排列">https://brianyi.github.io/posts/428400a2/</a>
+    <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://brianyi.github.io/posts/428400a2/" aria-label="复制成功！"></i></span>
   </p>
   <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
 </div>
@@ -707,7 +707,7 @@
           
             <a href="/tags/leetcode/" class="fa fa-tag" style="font-size:16px;border-bottom:none;">leetcode</a>
           
-            <a href="/tags/滑动窗口/" class="fa fa-tag" style="font-size:16px;border-bottom:none;">滑动窗口</a>
+            <a href="/tags/排列/" class="fa fa-tag" style="font-size:16px;border-bottom:none;">排列</a>
           
         </div>
       
@@ -732,8 +732,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/posts/39410/" rel="next" title="[leetcode]76.最小覆盖子串">
-                <i class="fa fa-chevron-left"></i> [leetcode]76.最小覆盖子串
+              <a href="/posts/fd60ea9c/" rel="next" title="[python]notes">
+                <i class="fa fa-chevron-left"></i> [python]notes
               </a>
             
           </div>
@@ -741,10 +741,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/posts/52504/" rel="prev" title="[leetcode]114.二叉树展开为链表">
-                [leetcode]114.二叉树展开为链表 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -1018,7 +1014,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#方法一-滑动窗口"><span class="nav-number">1.</span> <span class="nav-text"> 方法一: 滑动窗口</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#解题思路"><span class="nav-number">1.</span> <span class="nav-text"> 解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码实现"><span class="nav-number">2.</span> <span class="nav-text"> 代码实现</span></a></li></ol></div>
             
 
           </div>
@@ -1629,6 +1625,46 @@
   
   
 
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling }
+        if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next) }
+      }
+    });
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      document.getElementById(all[i].inputID + '-Frame').parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+    
   
 
 

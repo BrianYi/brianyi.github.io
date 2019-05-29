@@ -1,7 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.datasets import load_iris
-
+from sklearn.linear_model import LogisticRegression
+from sklearn.datasets import make_classification
 
 def loadDataSet_iris():
     """数据集生成
@@ -10,8 +11,9 @@ def loadDataSet_iris():
         array -- 数据集
         array -- 标签集
     """
-    dataMat, labelMat = load_iris(return_X_y=True)
-    dataMat, labelMat = dataMat[:100,:2], labelMat[:100]
+    dataMat, labelMat = load_iris(return_X_y=True)  # 多分类(3类)
+    #dataMat, labelMat = dataMat[:100],labelMat[:100] # 二分类
+    n = len(dataMat[0])
     return dataMat, labelMat
 
 
@@ -32,25 +34,6 @@ def hypo(x, theta):
     return sigmoid(np.dot(x, theta))
 
 
-def jcost(theta, X, y):
-    """J代价函数
-
-    Arguments:
-        theta {array} -- 参数值
-        X {array} -- 数据集
-        y {array} -- 标签集
-
-    Returns:
-        array -- 代价
-    """
-    hX = hypo(X, theta)
-    # 元素级乘法获取第一项的值(数组)
-    first = np.multiply(y, np.log(hX))
-    # 元素级乘法获取第二项的值(数组)
-    second = np.multiply(np.ones(len(y))-y, np.log(np.ones(len(hX))-hX))
-    return -(first+second)/len(X)
-
-
 def partial_jcost(theta, X, y, x):
     """J代价函数关于theta的偏导数
 
@@ -63,37 +46,49 @@ def partial_jcost(theta, X, y, x):
     Returns:
         array -- 偏导值
     """
-    return np.dot(hypo(X, theta)-y, x)
+    return np.dot((hypo(X, theta)-y), x)
 
 
-def decision_boundary(prob):
-    """决策边界:
-           概率>=0.5时,为1
-           概率<0.5时,为0
+def predict(X, hDict):
+    """预测结果
 
     Arguments:
-        prob {array} -- 一组概率值
+        X {array} -- 测试数据集
+        hDict {dict} -- 存储每个类别的参数值
 
     Returns:
-        array -- 一组类别值
+        array -- 返回预测类别结果
     """
-    return prob >= 0.5*np.ones(len(prob))
+    m = len(X)
+    y_predict = []
+    for i in range(m):
+        maxPro = -1.0
+        maxLabel = 0
+        for key in hDict.keys():
+            theta = hDict[key]
+            pro = hypo(X[i], theta)
+            if pro > maxPro:
+                maxPro = pro
+                maxLabel = key
+        y_predict.append(maxLabel)
+    return y_predict
 
 
-def accuracy_rate(X, y, theta):
+def accuracy_rate(X, y, hDict):
     """计算预测准确率
 
     Arguments:
-        X {array} -- 预测数据集
-        y {array} -- 已知观测值
-        theta {array} -- 参数值
+        X {array} -- 测试数据集
+        y {array} -- 已知测试结果
+        hDict {dict} -- 存储每个类别的参数值
 
     Returns:
-        float -- 返回预测准确率
+        float -- 准确率
     """
-    y_predict = classify(hypo(X, theta))
-    trueCount = np.sum(y_predict == y)
-    return float(trueCount)/len(y)
+    m, n = len(X), len(X[0])
+    y_predict = predict(X, hDict)
+    true_count = np.sum(y_predict == y)
+    return float(true_count)/m
 
 
 def batch_gradient_desc(X, y, alpha=0.01, numIterations=500):
@@ -139,20 +134,8 @@ def stochastic_gradient_desc(X, y, alpha=0.01, numIterations=100):
     # 随机梯度下降法
     for k in range(numIterations):
         for i in range(m):
-            theta=theta-alpha*np.multiply(hypo(X[i], theta)-y[i],X[i])
+            theta = theta-alpha*np.multiply(hypo(X[i], theta)-y[i], X[i])
     return theta
-
-
-def classify(prob):
-    """由概率返回分类类别
-
-    Arguments:
-        prob {array} -- 每个样本的概率
-
-    Returns:
-        array -- 返回分类类别
-    """
-    return decision_boundary(prob)
 
 
 def auto_norm(X):
@@ -172,7 +155,7 @@ def auto_norm(X):
     return newVals
 
 
-def plotBestFit(theta, dataMat, labelMat, title='Gradient Descent', subplt=111):
+def plotBestFit(dataMat, labelMat, title='Gradient Descent', subplt=111):
     """绘制图像
 
     Arguments:
@@ -184,31 +167,52 @@ def plotBestFit(theta, dataMat, labelMat, title='Gradient Descent', subplt=111):
         title {str} -- 图像标题 (default: {'Gradient Descent'})
         subplt {int} -- 子图 (default: {111})
     """
-    # 存储分类,所有标签值0的为一类,标签值1的为一类
-    xcord0 = []
-    ycord0 = []
-    xcord1 = []
-    ycord1 = []
-    # 分类
+    dataDict = {}
+    # 分类绘图
     for i in range(len(dataMat)):
-        if labelMat[i] == 1:
-            xcord1.append(dataMat[i][1])
-            ycord1.append(dataMat[i][2])
-        else:
-            xcord0.append(dataMat[i][1])
-            ycord0.append(dataMat[i][2])
+        if labelMat[i] not in dataDict:
+            dataDict[labelMat[i]]=[]
+        dataDict[labelMat[i]].append(dataMat[i])
     plt.subplot(subplt)
-    plt.scatter(xcord0, ycord0, s=30, c='red', marker='s', label='failed')
-    plt.scatter(xcord1, ycord1, s=30, c='green', label='success')
-    x0_min = dataMat[:, 1].min()
-    x0_max = dataMat[:, 1].max()
-    x = np.arange(x0_min, x0_max, 0.1)
-    y = (-theta[0]-theta[1]*x)/theta[2]
-    plt.plot(x, y)
+    for y in dataDict.keys():
+        X=np.array(dataDict[y])
+        plt.scatter(X[:,1], X[:,2], s=30, label=y)
     plt.xlabel('X1')
     plt.ylabel('X2')
     plt.title(title)
     plt.legend()
+
+
+def train(X, y):
+    """训练模型,获取每个类别的参数值
+    
+    Arguments:
+        X {array} -- 输入训练数据集
+        y {array} -- 输入训练标签集
+    
+    Returns:
+        dict -- 返回每个类别的参数值
+    """
+    dataDict = {}
+    m = len(y)
+    for i in range(m):
+        if y[i] not in dataDict.keys():
+            dataDict[y[i]] = []
+        dataDict[y[i]].append(X[i])
+    hDict = {}
+
+    for key in dataDict.keys():
+        dataX = []
+        dataY = []
+        for k, v in dataDict.items():
+            dataX.extend(v)
+            if k == key:
+                dataY.extend(np.ones(len(v)))
+            else:
+                dataY.extend(np.zeros(len(v)))
+        theta = batch_gradient_desc(dataX, dataY)
+        hDict[key] = theta
+    return hDict
 
 
 if __name__ == "__main__":
@@ -237,18 +241,24 @@ if __name__ == "__main__":
     Xtest, ytest = np.array(dataMat[-mTest:]), np.array(labelMat[-mTest:])
     # 画布大小
     plt.figure(figsize=(13, 6))
-    # 使用BGD批量梯度下降法
-    theta = batch_gradient_desc(Xtrain, ytrain)
-    # 拿测试数据放入模型,计算预测准确率
-    bgd_acc = accuracy_rate(Xtest, ytest, theta)
-    # 绘图
-    plotBestFit(theta, X, y, 'BGD(Batch Gradient Descent) accuracy %.2f' %
-                bgd_acc, 121)
-    # 使用SGD随机梯度下降法
-    theta = stochastic_gradient_desc(Xtrain, ytrain)
-    # 拿测试数据放入模型,计算预测准确率
-    sgd_acc = accuracy_rate(Xtest, ytest, theta)
-    # 绘图
-    plotBestFit(theta, X, y, 'SGD(Stochastic Gradient Descent) accuracy %.2f' %
-                sgd_acc, 122)
+
+    # 显示原始数据
+    plotBestFit(X, y, 'Original Data', 131)
+
+    # 自己实现的LogisticRegression预测
+    hDict = train(Xtrain, ytrain)
+    y_predict = predict(Xtest, hDict)
+    sgd_acc = accuracy_rate(Xtest, ytest, hDict)
+    plotBestFit(Xtest, y_predict, 'Prediction Data (accuracy %.2f)' %
+                sgd_acc, 132)
+
+    # sklearn LogisticRegression预测
+    clf = LogisticRegression(random_state=0, solver='lbfgs',
+                             multi_class='multinomial').fit(X, y)
+    clf.fit(Xtrain[:, 1:], ytrain)   # sklearn不需要前面的x0,直接放入特征即可
+    y_predict = clf.predict(Xtest[:, 1:])
+    sgd_acc = np.sum(y_predict == ytest)/len(ytest) # 直接用clf.score()也可以
+    plotBestFit(Xtest, y_predict,
+                'Sklearn Prediction Data (accuracy {0:.2f})'.format(sgd_acc), 133)
+
     plt.show()
