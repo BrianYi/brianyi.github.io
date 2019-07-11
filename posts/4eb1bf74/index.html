@@ -309,7 +309,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">49</span></a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">57</span></a>
 
   </li>
         
@@ -328,7 +328,7 @@
       
     
 
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">16</span></a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">18</span></a>
 
   </li>
         
@@ -347,7 +347,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">71</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">119</span></a>
 
   </li>
 
@@ -712,6 +712,13 @@ M1001 80H400000v40H1013z"/></svg></span></span></span><span class="vlist-s">​<
     <li class="popular-posts-item">
       
       
+      <div class="popular-posts-title"><a href="\posts\318ec0d4\" rel="bookmark">[概率与统计]第4章 随机变量的数字特征</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
       <div class="popular-posts-title"><a href="\posts\19f6d8b2\" rel="bookmark">[概率与统计]第5章 大数定律和中心极限定理</a></div>
       
     </li>
@@ -890,7 +897,7 @@ M1001 80H400000v40H1013z"/></svg></span></span></span><span class="vlist-s">​<
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">71</span>
+                    <span class="site-state-item-count">119</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -939,7 +946,11 @@ M1001 80H400000v40H1013z"/></svg></span></span></span><span class="vlist-s">​<
                     
                       
                     
-                    <span class="site-state-item-count">16</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">18</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -1054,7 +1065,23 @@ M1001 80H400000v40H1013z"/></svg></span></span></span><span class="vlist-s">​<
                     
                       
                     
-                    <span class="site-state-item-count">49</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">57</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1162,7 +1189,7 @@ M1001 80H400000v40H1013z"/></svg></span></span></span><span class="vlist-s">​<
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">433k</span>
+    <span title="站点总字数">629k</span>
   
 
   
@@ -1171,7 +1198,7 @@ M1001 80H400000v40H1013z"/></svg></span></span></span><span class="vlist-s">​<
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">6:33</span>
+    <span title="站点阅读时长">9:32</span>
   
 </div>
 
@@ -1183,13 +1210,6 @@ M1001 80H400000v40H1013z"/></svg></span></span></span><span class="vlist-s">​<
 
 
 
-
-  <script src="https://unpkg.com/mermaid@/dist/mermaid.min.js"></script>
-  <script>
-    if (window.mermaid) {
-      mermaid.initialize("");
-    }
-  </script>
 
         
 
@@ -1415,6 +1435,9 @@ M1001 80H400000v40H1013z"/></svg></span></span></span><span class="vlist-s">​<
                 var isMatch = false;
                 var hitCount = 0;
                 var searchTextCount = 0;
+                // fixed:local search has bug
+                if (data.title==undefined)
+                    return [];
                 var title = data.title.trim();
                 var titleInLowerCase = title.toLowerCase();
                 var content = data.content.trim().replace(/<[^>]+>/g,"");
@@ -1779,26 +1802,6 @@ M1001 80H400000v40H1013z"/></svg></span></span></span><span class="vlist-s">​<
   
 
   
-<script>
-if ($('body').find('pre.mermaid').length) {
-  $.ajax({
-    type: 'GET',
-    url: '//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js',
-    dataType: 'script',
-    cache: true,
-    success: function() {
-      mermaid.initialize({
-        theme: 'forest',
-        logLevel: 3,
-        flowchart: { curve: 'linear' },
-        gantt: { axisFormat: '%m/%d/%Y' },
-        sequence: { actorMargin: 50 }
-      });
-    }
-  });
-}
-</script>
-
 
   
 

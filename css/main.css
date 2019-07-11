@@ -1934,7 +1934,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #8c7354;
+  background: #2e3014;
 }
 .feed-link,
 .chat {
@@ -3180,7 +3180,9 @@ td {
   text-align: center !important;
 }
 code {
-  border: 1px solid #ccc !important;
+  font-style: italic;
+  background: none;
+  color: #069;
 }
 .post-block .mermaid {
   background: RGB(204, 232, 207);

@@ -321,7 +321,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">49</span></a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">57</span></a>
 
   </li>
         
@@ -340,7 +340,7 @@
       
     
 
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">16</span></a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">18</span></a>
 
   </li>
         
@@ -359,7 +359,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">71</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">119</span></a>
 
   </li>
 
@@ -873,35 +873,35 @@
     <li class="popular-posts-item">
       
       
-      <div class="popular-posts-title"><a href="\posts\80b6a5fe\" rel="bookmark">[机器学习实战]第6章 支持向量机(SVM)</a></div>
+      <div class="popular-posts-title"><a href="\posts\82acf56\" rel="bookmark">[机器学习实战]第7章 AdaBoost元算法</a></div>
       
     </li>
   
     <li class="popular-posts-item">
       
       
-      <div class="popular-posts-title"><a href="\posts\f0799167\" rel="bookmark">[机器学习实战] 第5章 Logistic回归</a></div>
+      <div class="popular-posts-title"><a href="\posts\587a303d\" rel="bookmark">[机器学习实战]第14章 利用SVD来简化数据</a></div>
       
     </li>
   
     <li class="popular-posts-item">
       
       
-      <div class="popular-posts-title"><a href="\posts\49e197e8\" rel="bookmark">[机器学习实战]第3章 决策树</a></div>
+      <div class="popular-posts-title"><a href="\posts\d64acfa9\" rel="bookmark">[机器学习实战]第10章 利用K-均值聚类算法对未标注数据分组</a></div>
       
     </li>
   
     <li class="popular-posts-item">
       
       
-      <div class="popular-posts-title"><a href="\posts\75b8f8af\" rel="bookmark">[机器学习实战]第2章 k-近邻算法</a></div>
+      <div class="popular-posts-title"><a href="\posts\24b6890f\" rel="bookmark">[机器学习实战]第9章 树回归</a></div>
       
     </li>
   
     <li class="popular-posts-item">
       
       
-      <div class="popular-posts-title"><a href="\posts\60021\" rel="bookmark">[机器学习实战]第1章 机器学习基础</a></div>
+      <div class="popular-posts-title"><a href="\posts\c8a272e3\" rel="bookmark">[机器学习实战]第8章 预测数值型数据:回归</a></div>
       
     </li>
   
@@ -1072,7 +1072,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">71</span>
+                    <span class="site-state-item-count">119</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1121,7 +1121,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">16</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">18</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -1236,7 +1240,23 @@
                     
                       
                     
-                    <span class="site-state-item-count">49</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">57</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1344,7 +1364,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">433k</span>
+    <span title="站点总字数">629k</span>
   
 
   
@@ -1353,7 +1373,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">6:33</span>
+    <span title="站点阅读时长">9:32</span>
   
 </div>
 
@@ -1365,13 +1385,6 @@
 
 
 
-
-  <script src="https://unpkg.com/mermaid@/dist/mermaid.min.js"></script>
-  <script>
-    if (window.mermaid) {
-      mermaid.initialize("");
-    }
-  </script>
 
         
 
@@ -1597,6 +1610,9 @@
                 var isMatch = false;
                 var hitCount = 0;
                 var searchTextCount = 0;
+                // fixed:local search has bug
+                if (data.title==undefined)
+                    return [];
                 var title = data.title.trim();
                 var titleInLowerCase = title.toLowerCase();
                 var content = data.content.trim().replace(/<[^>]+>/g,"");
@@ -1961,26 +1977,6 @@
   
 
   
-<script>
-if ($('body').find('pre.mermaid').length) {
-  $.ajax({
-    type: 'GET',
-    url: '//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js',
-    dataType: 'script',
-    cache: true,
-    success: function() {
-      mermaid.initialize({
-        theme: 'forest',
-        logLevel: 3,
-        flowchart: { curve: 'linear' },
-        gantt: { axisFormat: '%m/%d/%Y' },
-        sequence: { actorMargin: 50 }
-      });
-    }
-  });
-}
-</script>
-
 
   
 

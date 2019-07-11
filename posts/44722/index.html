@@ -311,7 +311,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">49</span></a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">57</span></a>
 
   </li>
         
@@ -330,7 +330,7 @@
       
     
 
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">16</span></a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">18</span></a>
 
   </li>
         
@@ -349,7 +349,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">71</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">119</span></a>
 
   </li>
 
@@ -627,13 +627,6 @@
     <li class="popular-posts-item">
       
       
-      <div class="popular-posts-title"><a href="\posts\136ccaf5\" rel="bookmark">[leetcode]686.重复叠加字符串匹配</a></div>
-      
-    </li>
-  
-    <li class="popular-posts-item">
-      
-      
       <div class="popular-posts-title"><a href="\posts\21336\" rel="bookmark">[leetcode]5.最长回文子串</a></div>
       
     </li>
@@ -641,21 +634,28 @@
     <li class="popular-posts-item">
       
       
-      <div class="popular-posts-title"><a href="\posts\31611\" rel="bookmark">[leetcode]312. Burst Balloons</a></div>
+      <div class="popular-posts-title"><a href="\posts\136ccaf5\" rel="bookmark">[leetcode]686.重复叠加字符串匹配</a></div>
       
     </li>
   
     <li class="popular-posts-item">
       
       
-      <div class="popular-posts-title"><a href="\posts\9eebc96a\" rel="bookmark">[leetcode]37.解数独</a></div>
+      <div class="popular-posts-title"><a href="\posts\12ddbcae\" rel="bookmark">[leetcode]443.压缩字符串</a></div>
       
     </li>
   
     <li class="popular-posts-item">
       
       
-      <div class="popular-posts-title"><a href="\posts\eefa3a9f\" rel="bookmark">[leetcode]221.最大正方形</a></div>
+      <div class="popular-posts-title"><a href="\posts\503713f7\" rel="bookmark">[leetcode]87.扰乱字符串</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\8d014619\" rel="bookmark">[leetcode]523.连续的子数组和</a></div>
       
     </li>
   
@@ -830,7 +830,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">71</span>
+                    <span class="site-state-item-count">119</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -879,7 +879,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">16</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">18</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -994,7 +998,23 @@
                     
                       
                     
-                    <span class="site-state-item-count">49</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">57</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1102,7 +1122,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">433k</span>
+    <span title="站点总字数">629k</span>
   
 
   
@@ -1111,7 +1131,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">6:33</span>
+    <span title="站点阅读时长">9:32</span>
   
 </div>
 
@@ -1123,13 +1143,6 @@
 
 
 
-
-  <script src="https://unpkg.com/mermaid@/dist/mermaid.min.js"></script>
-  <script>
-    if (window.mermaid) {
-      mermaid.initialize("");
-    }
-  </script>
 
         
 
@@ -1355,6 +1368,9 @@
                 var isMatch = false;
                 var hitCount = 0;
                 var searchTextCount = 0;
+                // fixed:local search has bug
+                if (data.title==undefined)
+                    return [];
                 var title = data.title.trim();
                 var titleInLowerCase = title.toLowerCase();
                 var content = data.content.trim().replace(/<[^>]+>/g,"");
@@ -1679,26 +1695,6 @@
   
 
   
-<script>
-if ($('body').find('pre.mermaid').length) {
-  $.ajax({
-    type: 'GET',
-    url: '//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js',
-    dataType: 'script',
-    cache: true,
-    success: function() {
-      mermaid.initialize({
-        theme: 'forest',
-        logLevel: 3,
-        flowchart: { curve: 'linear' },
-        gantt: { axisFormat: '%m/%d/%Y' },
-        sequence: { actorMargin: 50 }
-      });
-    }
-  });
-}
-</script>
-
 
   
 

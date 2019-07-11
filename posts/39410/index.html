@@ -128,19 +128,19 @@
 
 
 
-  <meta name="description" content="思路:滑动窗口思想  方法一:滑动窗口 1234567891011121314151617181920212223242526272829303132333435363738string minWindow(string s, string t) &amp;#123;    // 1.tdict记录T中每个字母与字母个数    // 2.维护一个滑动窗口字母的计数表sdict,计数当前窗口内T中字母出现">
+  <meta name="description" content="思路:滑动窗口思想  方法一:滑动窗口 12345678910111213141516171819202122232425262728293031323334string minWindow(string s, string t) &amp;#123;    // 1.tdict记录T中每个字母与字母个数    // 2.维护一个滑动窗口字母的计数表sdict,计数当前窗口内T中字母出现的次数    /">
 <meta name="keywords" content="leetcode,滑动窗口">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[leetcode]76.最小覆盖子串">
 <meta property="og:url" content="https://brianyi.github.io/posts/39410/index.html">
 <meta property="og:site_name" content="Brian&#39;s Home">
-<meta property="og:description" content="思路:滑动窗口思想  方法一:滑动窗口 1234567891011121314151617181920212223242526272829303132333435363738string minWindow(string s, string t) &amp;#123;    // 1.tdict记录T中每个字母与字母个数    // 2.维护一个滑动窗口字母的计数表sdict,计数当前窗口内T中字母出现">
+<meta property="og:description" content="思路:滑动窗口思想  方法一:滑动窗口 12345678910111213141516171819202122232425262728293031323334string minWindow(string s, string t) &amp;#123;    // 1.tdict记录T中每个字母与字母个数    // 2.维护一个滑动窗口字母的计数表sdict,计数当前窗口内T中字母出现的次数    /">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://brianyi.github.io/posts/39410/453425-20190503105807149-1455260747.png">
-<meta property="og:updated_time" content="2019-05-18T03:43:20.356Z">
+<meta property="og:updated_time" content="2019-06-20T03:20:13.426Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[leetcode]76.最小覆盖子串">
-<meta name="twitter:description" content="思路:滑动窗口思想  方法一:滑动窗口 1234567891011121314151617181920212223242526272829303132333435363738string minWindow(string s, string t) &amp;#123;    // 1.tdict记录T中每个字母与字母个数    // 2.维护一个滑动窗口字母的计数表sdict,计数当前窗口内T中字母出现">
+<meta name="twitter:description" content="思路:滑动窗口思想  方法一:滑动窗口 12345678910111213141516171819202122232425262728293031323334string minWindow(string s, string t) &amp;#123;    // 1.tdict记录T中每个字母与字母个数    // 2.维护一个滑动窗口字母的计数表sdict,计数当前窗口内T中字母出现的次数    /">
 <meta name="twitter:image" content="https://brianyi.github.io/posts/39410/453425-20190503105807149-1455260747.png">
 
 
@@ -311,7 +311,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">49</span></a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">57</span></a>
 
   </li>
         
@@ -330,7 +330,7 @@
       
     
 
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">16</span></a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">18</span></a>
 
   </li>
         
@@ -349,7 +349,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">71</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">119</span></a>
 
   </li>
 
@@ -498,7 +498,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-18 11:43:20" itemprop="dateModified" datetime="2019-05-18T11:43:20+08:00">2019-05-18</time>
+                <time title="修改时间：2019-06-20 11:20:13" itemprop="dateModified" datetime="2019-06-20T11:20:13+08:00">2019-06-20</time>
               
             
           </span>
@@ -605,7 +605,7 @@
         <img src="/posts/39410/453425-20190503105807149-1455260747.png">
 <p>思路:滑动窗口思想</p>
 <h3 id="方法一滑动窗口"><a class="markdownIt-Anchor" href="#方法一滑动窗口"></a> 方法一:滑动窗口</h3>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">minWindow</span><span class="params">(<span class="built_in">string</span> s, <span class="built_in">string</span> t)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 1.tdict记录T中每个字母与字母个数</span></span><br><span class="line">    <span class="comment">// 2.维护一个滑动窗口字母的计数表sdict,计数当前窗口内T中字母出现的次数</span></span><br><span class="line">    <span class="comment">// 3.当窗口内T中字母出现的次数大于等于T中每个字母出现的次数一样,这时第一个最短子串出现,再逐步从左边缩短窗口,直到不满足上述条件,然后再从右边扩大窗口,直到满足条件时,再进行最短子串长度对比,一直更新最短长度子串直到结束</span></span><br><span class="line">    <span class="keyword">if</span> (s.size()&lt;t.size()||s.size()==<span class="number">0</span>) <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">    <span class="built_in">unordered_map</span>&lt;<span class="keyword">char</span>,<span class="keyword">int</span>&gt; tdict,sdict;</span><br><span class="line">    <span class="keyword">int</span> l=<span class="number">0</span>,r=<span class="number">0</span>,k=t.size();</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> it:t)  <span class="comment">// 填充T的字母与字母计数表</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (!tdict.count(it)) tdict[it]=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span> tdict[it]++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">string</span> res=<span class="string">""</span>;</span><br><span class="line">    <span class="keyword">for</span>(r=<span class="number">0</span>;r&lt;s.size();++r)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (tdict.count(s[r])) <span class="comment">// 有字符,则进行记录</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (!sdict.count(s[r]))</span><br><span class="line">                sdict[s[r]]=<span class="number">0</span>;</span><br><span class="line">            sdict[s[r]]++;</span><br><span class="line">            <span class="keyword">if</span> (sdict[s[r]]&lt;=tdict[s[r]])</span><br><span class="line">                k--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span>(k==<span class="number">0</span>) <span class="comment">// 满足条件,滑动窗口从左边逐步缩短,直到剔除第一个属于T中的字符为止</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (res.empty()||r-l+<span class="number">1</span>&lt;res.size())  <span class="comment">// 最短子串更新</span></span><br><span class="line">                res=s.substr(l,r-l+<span class="number">1</span>);</span><br><span class="line">            <span class="keyword">if</span>(tdict.count(s[l]))</span><br><span class="line">            &#123;</span><br><span class="line">                sdict[s[l]]--;</span><br><span class="line">                <span class="keyword">if</span> (sdict[s[l]]&lt;tdict[s[l]])</span><br><span class="line">                    k++;</span><br><span class="line">            &#125;</span><br><span class="line">            l++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">minWindow</span><span class="params">(<span class="built_in">string</span> s, <span class="built_in">string</span> t)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 1.tdict记录T中每个字母与字母个数</span></span><br><span class="line">    <span class="comment">// 2.维护一个滑动窗口字母的计数表sdict,计数当前窗口内T中字母出现的次数</span></span><br><span class="line">    <span class="comment">// 3.当窗口内T中字母出现的次数大于等于T中每个字母出现的次数一样,这时第一个最短子串出现,再逐步从左边缩短窗口,</span></span><br><span class="line">    <span class="comment">// 直到不满足上述条件,然后再从右边扩大窗口,直到满足条件时,再进行最短子串长度对比,一直更新最短长度子串直到结束</span></span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">minWindow</span><span class="params">(<span class="built_in">string</span> s, <span class="built_in">string</span> t)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (s.size()&lt;t.size()||s.size()==<span class="number">0</span>) <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">        <span class="built_in">string</span> res=<span class="string">""</span>;</span><br><span class="line">        <span class="built_in">map</span>&lt;<span class="keyword">char</span>,<span class="keyword">int</span>&gt; dict_s,<span class="keyword">dict_t</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> item:t)    <span class="comment">// 填充T的字母与字母计数表</span></span><br><span class="line">            <span class="keyword">dict_t</span>[item]++;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> l=<span class="number">0</span>,r=<span class="number">0</span>,k=t.size();r&lt;s.size();++r)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">dict_t</span>[s[r]])   <span class="comment">// 有字符,则进行记录</span></span><br><span class="line">            &#123;</span><br><span class="line">                dict_s[s[r]]++;</span><br><span class="line">                <span class="keyword">if</span> (dict_s[s[r]]&lt;=<span class="keyword">dict_t</span>[s[r]])</span><br><span class="line">                    --k;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">while</span>(k==<span class="number">0</span>) <span class="comment">// 满足条件,滑动窗口从左边逐步缩短,直到剔除第一个属于T中的字符为止</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (res.empty()||res.size()&gt;r-l+<span class="number">1</span>) <span class="comment">// 最短子串更新</span></span><br><span class="line">                    res=s.substr(l,r-l+<span class="number">1</span>);</span><br><span class="line">                <span class="keyword">if</span> (<span class="keyword">dict_t</span>[s[l]])</span><br><span class="line">                &#123;   dict_s[s[l]]--;</span><br><span class="line">                    <span class="keyword">if</span> (dict_s[s[l]]&lt;<span class="keyword">dict_t</span>[s[l]])</span><br><span class="line">                        k++;</span><br><span class="line">                &#125;</span><br><span class="line">                l++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -614,6 +614,13 @@
 
   <div class="popular-posts-header">相关文章</div>
   <ul class="popular-posts">
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\28058be4\" rel="bookmark">[leetcode]992.K个不同整数的子数组</a></div>
+      
+    </li>
   
     <li class="popular-posts-item">
       
@@ -632,21 +639,14 @@
     <li class="popular-posts-item">
       
       
-      <div class="popular-posts-title"><a href="\posts\42608\" rel="bookmark">[leetcode]375. Guess Number Higher or Lower II</a></div>
+      <div class="popular-posts-title"><a href="\posts\f814d224\" rel="bookmark">[leetcode]84.柱状图中最大的矩形</a></div>
       
     </li>
   
     <li class="popular-posts-item">
       
       
-      <div class="popular-posts-title"><a href="\posts\6c5b9a98\" rel="bookmark">[leetcode]303.区域和检索-数组不可变</a></div>
-      
-    </li>
-  
-    <li class="popular-posts-item">
-      
-      
-      <div class="popular-posts-title"><a href="\posts\eefa3a9f\" rel="bookmark">[leetcode]221.最大正方形</a></div>
+      <div class="popular-posts-title"><a href="\posts\8d014619\" rel="bookmark">[leetcode]523.连续的子数组和</a></div>
       
     </li>
   
@@ -670,7 +670,7 @@
   <p><span>本文标题:</span><a href="/posts/39410/">[leetcode]76.最小覆盖子串</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 Brian Yi 的个人博客">Brian Yi</a></p>
   <p><span>发布时间:</span>2019年05月06日 - 20:05</p>
-  <p><span>最后更新:</span>2019年05月18日 - 11:05</p>
+  <p><span>最后更新:</span>2019年06月20日 - 11:06</p>
   <p><span>原始链接:</span><a href="/posts/39410/" title="[leetcode]76.最小覆盖子串">https://brianyi.github.io/posts/39410/</a>
     <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://brianyi.github.io/posts/39410/" aria-label="复制成功！"></i></span>
   </p>
@@ -819,7 +819,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">71</span>
+                    <span class="site-state-item-count">119</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -868,7 +868,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">16</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">18</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -983,7 +987,23 @@
                     
                       
                     
-                    <span class="site-state-item-count">49</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">57</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1091,7 +1111,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">433k</span>
+    <span title="站点总字数">629k</span>
   
 
   
@@ -1100,7 +1120,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">6:33</span>
+    <span title="站点阅读时长">9:32</span>
   
 </div>
 
@@ -1112,13 +1132,6 @@
 
 
 
-
-  <script src="https://unpkg.com/mermaid@/dist/mermaid.min.js"></script>
-  <script>
-    if (window.mermaid) {
-      mermaid.initialize("");
-    }
-  </script>
 
         
 
@@ -1344,6 +1357,9 @@
                 var isMatch = false;
                 var hitCount = 0;
                 var searchTextCount = 0;
+                // fixed:local search has bug
+                if (data.title==undefined)
+                    return [];
                 var title = data.title.trim();
                 var titleInLowerCase = title.toLowerCase();
                 var content = data.content.trim().replace(/<[^>]+>/g,"");
@@ -1668,26 +1684,6 @@
   
 
   
-<script>
-if ($('body').find('pre.mermaid').length) {
-  $.ajax({
-    type: 'GET',
-    url: '//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js',
-    dataType: 'script',
-    cache: true,
-    success: function() {
-      mermaid.initialize({
-        theme: 'forest',
-        logLevel: 3,
-        flowchart: { curve: 'linear' },
-        gantt: { axisFormat: '%m/%d/%Y' },
-        sequence: { actorMargin: 50 }
-      });
-    }
-  });
-}
-</script>
-
 
   
 

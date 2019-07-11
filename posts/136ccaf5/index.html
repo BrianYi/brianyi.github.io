@@ -311,7 +311,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">49</span></a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">57</span></a>
 
   </li>
         
@@ -330,7 +330,7 @@
       
     
 
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">16</span></a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">18</span></a>
 
   </li>
         
@@ -349,7 +349,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">71</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">119</span></a>
 
   </li>
 
@@ -622,28 +622,28 @@ KMP算法是固定格式,这里直接求出模式串B的nextval<br>
     <li class="popular-posts-item">
       
       
-      <div class="popular-posts-title"><a href="\posts\31611\" rel="bookmark">[leetcode]312. Burst Balloons</a></div>
+      <div class="popular-posts-title"><a href="\posts\428400a2\" rel="bookmark">[leetcode]31.下一个排列</a></div>
       
     </li>
   
     <li class="popular-posts-item">
       
       
-      <div class="popular-posts-title"><a href="\posts\6c5b9a98\" rel="bookmark">[leetcode]303.区域和检索-数组不可变</a></div>
+      <div class="popular-posts-title"><a href="\posts\12ddbcae\" rel="bookmark">[leetcode]443.压缩字符串</a></div>
       
     </li>
   
     <li class="popular-posts-item">
       
       
-      <div class="popular-posts-title"><a href="\posts\eefa3a9f\" rel="bookmark">[leetcode]221.最大正方形</a></div>
+      <div class="popular-posts-title"><a href="\posts\503713f7\" rel="bookmark">[leetcode]87.扰乱字符串</a></div>
       
     </li>
   
     <li class="popular-posts-item">
       
       
-      <div class="popular-posts-title"><a href="\posts\f814d224\" rel="bookmark">[leetcode]84.柱状图中最大的矩形</a></div>
+      <div class="popular-posts-title"><a href="\posts\8d014619\" rel="bookmark">[leetcode]523.连续的子数组和</a></div>
       
     </li>
   
@@ -739,6 +739,10 @@ KMP算法是固定格式,这里直接求出模式串B的nextval<br>
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/posts/c70895a1/" rel="prev" title="[leetcode]53.最大子序列和">
+                [leetcode]53.最大子序列和 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -812,7 +816,7 @@ KMP算法是固定格式,这里直接求出模式串B的nextval<br>
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">71</span>
+                    <span class="site-state-item-count">119</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -861,7 +865,11 @@ KMP算法是固定格式,这里直接求出模式串B的nextval<br>
                     
                       
                     
-                    <span class="site-state-item-count">16</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">18</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -976,7 +984,23 @@ KMP算法是固定格式,这里直接求出模式串B的nextval<br>
                     
                       
                     
-                    <span class="site-state-item-count">49</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">57</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1084,7 +1108,7 @@ KMP算法是固定格式,这里直接求出模式串B的nextval<br>
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">433k</span>
+    <span title="站点总字数">629k</span>
   
 
   
@@ -1093,7 +1117,7 @@ KMP算法是固定格式,这里直接求出模式串B的nextval<br>
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">6:33</span>
+    <span title="站点阅读时长">9:32</span>
   
 </div>
 
@@ -1105,13 +1129,6 @@ KMP算法是固定格式,这里直接求出模式串B的nextval<br>
 
 
 
-
-  <script src="https://unpkg.com/mermaid@/dist/mermaid.min.js"></script>
-  <script>
-    if (window.mermaid) {
-      mermaid.initialize("");
-    }
-  </script>
 
         
 
@@ -1337,6 +1354,9 @@ KMP算法是固定格式,这里直接求出模式串B的nextval<br>
                 var isMatch = false;
                 var hitCount = 0;
                 var searchTextCount = 0;
+                // fixed:local search has bug
+                if (data.title==undefined)
+                    return [];
                 var title = data.title.trim();
                 var titleInLowerCase = title.toLowerCase();
                 var content = data.content.trim().replace(/<[^>]+>/g,"");
@@ -1701,26 +1721,6 @@ KMP算法是固定格式,这里直接求出模式串B的nextval<br>
   
 
   
-<script>
-if ($('body').find('pre.mermaid').length) {
-  $.ajax({
-    type: 'GET',
-    url: '//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js',
-    dataType: 'script',
-    cache: true,
-    success: function() {
-      mermaid.initialize({
-        theme: 'forest',
-        logLevel: 3,
-        flowchart: { curve: 'linear' },
-        gantt: { axisFormat: '%m/%d/%Y' },
-        sequence: { actorMargin: 50 }
-      });
-    }
-  });
-}
-</script>
-
 
   
 

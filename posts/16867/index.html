@@ -128,18 +128,18 @@
 
 
 
-  <meta name="description" content="一.排序算法  1.插入排序  1) 直接插入排序:(插入类) 12345678910111213void InsertSort( ElemType R[], int n )&amp;#123;    for ( int i = 2; i &amp;lt;= n; i++ )    &amp;#123;        if ( R[i].key &amp;lt; R[i - 1].key )        &amp;#123;">
+  <meta name="description" content="一.排序算法  1.插入排序  1) 直接插入排序:(插入类),从0开始 12345678910111213void InsertSort( ElemType R[], int n )&amp;#123;    for ( int i = 1; i &amp;lt; n; i++ )    &amp;#123;        if ( R[i].key &amp;lt; R[i - 1].key )        &amp;#123;">
 <meta name="keywords" content="排序">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[algorithm]排序">
 <meta property="og:url" content="https://brianyi.github.io/posts/16867/index.html">
 <meta property="og:site_name" content="Brian&#39;s Home">
-<meta property="og:description" content="一.排序算法  1.插入排序  1) 直接插入排序:(插入类) 12345678910111213void InsertSort( ElemType R[], int n )&amp;#123;    for ( int i = 2; i &amp;lt;= n; i++ )    &amp;#123;        if ( R[i].key &amp;lt; R[i - 1].key )        &amp;#123;">
+<meta property="og:description" content="一.排序算法  1.插入排序  1) 直接插入排序:(插入类),从0开始 12345678910111213void InsertSort( ElemType R[], int n )&amp;#123;    for ( int i = 1; i &amp;lt; n; i++ )    &amp;#123;        if ( R[i].key &amp;lt; R[i - 1].key )        &amp;#123;">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-05-18T03:43:20.372Z">
+<meta property="og:updated_time" content="2019-06-13T05:24:17.060Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[algorithm]排序">
-<meta name="twitter:description" content="一.排序算法  1.插入排序  1) 直接插入排序:(插入类) 12345678910111213void InsertSort( ElemType R[], int n )&amp;#123;    for ( int i = 2; i &amp;lt;= n; i++ )    &amp;#123;        if ( R[i].key &amp;lt; R[i - 1].key )        &amp;#123;">
+<meta name="twitter:description" content="一.排序算法  1.插入排序  1) 直接插入排序:(插入类),从0开始 12345678910111213void InsertSort( ElemType R[], int n )&amp;#123;    for ( int i = 1; i &amp;lt; n; i++ )    &amp;#123;        if ( R[i].key &amp;lt; R[i - 1].key )        &amp;#123;">
 
 
 
@@ -309,7 +309,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">49</span></a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">57</span></a>
 
   </li>
         
@@ -328,7 +328,7 @@
       
     
 
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">16</span></a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">18</span></a>
 
   </li>
         
@@ -347,7 +347,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">71</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">119</span></a>
 
   </li>
 
@@ -496,7 +496,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-18 11:43:20" itemprop="dateModified" datetime="2019-05-18T11:43:20+08:00">2019-05-18</time>
+                <time title="修改时间：2019-06-13 13:24:17" itemprop="dateModified" datetime="2019-06-13T13:24:17+08:00">2019-06-13</time>
               
             
           </span>
@@ -602,8 +602,8 @@
       
         <h2 id="一排序算法"><a class="markdownIt-Anchor" href="#一排序算法"></a> 一.排序算法</h2>
 <h3 id="1插入排序"><a class="markdownIt-Anchor" href="#1插入排序"></a> 1.插入排序</h3>
-<h4 id="1-直接插入排序插入类"><a class="markdownIt-Anchor" href="#1-直接插入排序插入类"></a> 1) 直接插入排序:(插入类)</h4>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">InsertSort</span><span class="params">( ElemType R[], <span class="keyword">int</span> n )</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> ( <span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; i++ )</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> ( R[i].key &lt; R[i - <span class="number">1</span>].key )</span><br><span class="line">        &#123;</span><br><span class="line">            R[<span class="number">0</span>] = R[i];</span><br><span class="line">            <span class="keyword">for</span> ( <span class="keyword">int</span> j = i - <span class="number">1</span>; j &gt; <span class="number">0</span> &amp;&amp; ( R[<span class="number">0</span>].key &lt; R[j].key ); j-- )</span><br><span class="line">                R[j + <span class="number">1</span>] = R[j];</span><br><span class="line">            R[j + <span class="number">1</span>] = R[<span class="number">0</span>];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="1-直接插入排序插入类从0开始"><a class="markdownIt-Anchor" href="#1-直接插入排序插入类从0开始"></a> 1) 直接插入排序:(插入类),从0开始</h4>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">InsertSort</span><span class="params">( ElemType R[], <span class="keyword">int</span> n )</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> ( <span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; i++ )</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> ( R[i].key &lt; R[i - <span class="number">1</span>].key )</span><br><span class="line">        &#123;</span><br><span class="line">            R[<span class="number">0</span>] = R[i];</span><br><span class="line">            <span class="keyword">for</span> ( <span class="keyword">int</span> j = i - <span class="number">1</span>; j &gt;= <span class="number">0</span> &amp;&amp; ( R[<span class="number">0</span>].key &lt; R[j].key ); j-- )</span><br><span class="line">                R[j + <span class="number">1</span>] = R[j];</span><br><span class="line">            R[j + <span class="number">1</span>] = R[<span class="number">0</span>];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>最好情况(顺序有序):</p>
 <p>1)比较次数: <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msubsup><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>2</mn></mrow><mi>n</mi></msubsup><mn>1</mn><mo>=</mo><mi>n</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">\sum_{i=2}^{n} 1=n-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.104002em;vertical-align:-0.29971000000000003em;"></span><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.804292em;"><span style="top:-2.40029em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">2</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.29971000000000003em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span></p>
 <p>2)移动次数: 0</p>
@@ -666,7 +666,7 @@
   <p><span>本文标题:</span><a href="/posts/16867/">[algorithm]排序</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 Brian Yi 的个人博客">Brian Yi</a></p>
   <p><span>发布时间:</span>2019年05月06日 - 22:05</p>
-  <p><span>最后更新:</span>2019年05月18日 - 11:05</p>
+  <p><span>最后更新:</span>2019年06月13日 - 13:06</p>
   <p><span>原始链接:</span><a href="/posts/16867/" title="[algorithm]排序">https://brianyi.github.io/posts/16867/</a>
     <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://brianyi.github.io/posts/16867/" aria-label="复制成功！"></i></span>
   </p>
@@ -813,7 +813,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">71</span>
+                    <span class="site-state-item-count">119</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -862,7 +862,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">16</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">18</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -977,7 +981,23 @@
                     
                       
                     
-                    <span class="site-state-item-count">49</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">57</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1044,7 +1064,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一排序算法"><span class="nav-number">1.</span> <span class="nav-text"> 一.排序算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1插入排序"><span class="nav-number">1.1.</span> <span class="nav-text"> 1.插入排序</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-直接插入排序插入类"><span class="nav-number">1.1.1.</span> <span class="nav-text"> 1) 直接插入排序:(插入类)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2折半插入排序插入类"><span class="nav-number">1.1.2.</span> <span class="nav-text"> 2)折半插入排序:(插入类)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3希尔排序又称缩小增量排序插入类"><span class="nav-number">1.1.3.</span> <span class="nav-text"> 3)希尔排序(又称缩小增量排序)(插入类)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2交换排序"><span class="nav-number">1.2.</span> <span class="nav-text"> 2.交换排序</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1起泡排序冒泡排序交换类"><span class="nav-number">1.2.1.</span> <span class="nav-text"> 1)起泡排序(冒泡排序)(交换类)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2快速排序交换类"><span class="nav-number">1.2.2.</span> <span class="nav-text"> 2)快速排序:(交换类)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3选择排序"><span class="nav-number">1.3.</span> <span class="nav-text"> 3.选择排序</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1简单选择排序选择类"><span class="nav-number">1.3.1.</span> <span class="nav-text"> 1)简单选择排序(选择类)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2堆排序选择类"><span class="nav-number">1.3.2.</span> <span class="nav-text"> 2)堆排序(选择类)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4归并排序归并类"><span class="nav-number">1.4.</span> <span class="nav-text"> 4.归并排序(归并类)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二综合题算法"><span class="nav-number">2.</span> <span class="nav-text"> 二.综合题(算法)</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一排序算法"><span class="nav-number">1.</span> <span class="nav-text"> 一.排序算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1插入排序"><span class="nav-number">1.1.</span> <span class="nav-text"> 1.插入排序</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-直接插入排序插入类从0开始"><span class="nav-number">1.1.1.</span> <span class="nav-text"> 1) 直接插入排序:(插入类),从0开始</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2折半插入排序插入类"><span class="nav-number">1.1.2.</span> <span class="nav-text"> 2)折半插入排序:(插入类)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3希尔排序又称缩小增量排序插入类"><span class="nav-number">1.1.3.</span> <span class="nav-text"> 3)希尔排序(又称缩小增量排序)(插入类)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2交换排序"><span class="nav-number">1.2.</span> <span class="nav-text"> 2.交换排序</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1起泡排序冒泡排序交换类"><span class="nav-number">1.2.1.</span> <span class="nav-text"> 1)起泡排序(冒泡排序)(交换类)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2快速排序交换类"><span class="nav-number">1.2.2.</span> <span class="nav-text"> 2)快速排序:(交换类)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3选择排序"><span class="nav-number">1.3.</span> <span class="nav-text"> 3.选择排序</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1简单选择排序选择类"><span class="nav-number">1.3.1.</span> <span class="nav-text"> 1)简单选择排序(选择类)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2堆排序选择类"><span class="nav-number">1.3.2.</span> <span class="nav-text"> 2)堆排序(选择类)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4归并排序归并类"><span class="nav-number">1.4.</span> <span class="nav-text"> 4.归并排序(归并类)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二综合题算法"><span class="nav-number">2.</span> <span class="nav-text"> 二.综合题(算法)</span></a></li></ol></div>
             
             <span class="links-of-author-item ">
                 <a href="javascript:;" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索</a>
@@ -1085,7 +1105,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">433k</span>
+    <span title="站点总字数">629k</span>
   
 
   
@@ -1094,7 +1114,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">6:33</span>
+    <span title="站点阅读时长">9:32</span>
   
 </div>
 
@@ -1106,13 +1126,6 @@
 
 
 
-
-  <script src="https://unpkg.com/mermaid@/dist/mermaid.min.js"></script>
-  <script>
-    if (window.mermaid) {
-      mermaid.initialize("");
-    }
-  </script>
 
         
 
@@ -1338,6 +1351,9 @@
                 var isMatch = false;
                 var hitCount = 0;
                 var searchTextCount = 0;
+                // fixed:local search has bug
+                if (data.title==undefined)
+                    return [];
                 var title = data.title.trim();
                 var titleInLowerCase = title.toLowerCase();
                 var content = data.content.trim().replace(/<[^>]+>/g,"");
@@ -1702,26 +1718,6 @@
   
 
   
-<script>
-if ($('body').find('pre.mermaid').length) {
-  $.ajax({
-    type: 'GET',
-    url: '//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js',
-    dataType: 'script',
-    cache: true,
-    success: function() {
-      mermaid.initialize({
-        theme: 'forest',
-        logLevel: 3,
-        flowchart: { curve: 'linear' },
-        gantt: { axisFormat: '%m/%d/%Y' },
-        sequence: { actorMargin: 50 }
-      });
-    }
-  });
-}
-</script>
-
 
   
 
