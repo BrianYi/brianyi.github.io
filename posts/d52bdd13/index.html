@@ -138,7 +138,18 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://brianyi.github.io/posts/d52bdd13/2019071110321712.png">
 <meta property="og:image" content="https://brianyi.github.io/posts/d52bdd13/2019071110335813.png">
-<meta property="og:updated_time" content="2019-07-11T02:57:36.964Z">
+<meta property="og:image" content="https://brianyi.github.io/posts/d52bdd13/2019071111112514.png">
+<meta property="og:image" content="https://brianyi.github.io/posts/d52bdd13/2019071111142015.png">
+<meta property="og:image" content="https://brianyi.github.io/posts/d52bdd13/2019071111165316.png">
+<meta property="og:image" content="https://brianyi.github.io/posts/d52bdd13/2019071113452117.png">
+<meta property="og:image" content="https://brianyi.github.io/posts/d52bdd13/2019071113481218.png">
+<meta property="og:image" content="https://brianyi.github.io/posts/d52bdd13/2019071113532319.png">
+<meta property="og:image" content="https://brianyi.github.io/posts/d52bdd13/2019071113533920.png">
+<meta property="og:image" content="https://brianyi.github.io/posts/d52bdd13/2019071113552821.png">
+<meta property="og:image" content="https://brianyi.github.io/posts/d52bdd13/2019071113592622.png">
+<meta property="og:image" content="https://brianyi.github.io/posts/d52bdd13/2019071114032223.png">
+<meta property="og:image" content="https://brianyi.github.io/posts/d52bdd13/2019071114062324.png">
+<meta property="og:updated_time" content="2019-07-11T06:06:29.005Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[深度学习入门-基于Python的理论与实现]第7章 卷积神经网络">
 <meta name="twitter:description" content="介绍 卷积神经网络(Convolutional Neural Network,CNN),CNN被用于图像识别,语音识别等各种场合,在图像识别的比赛中,基于深度学习的方法几乎都以CNN为基础.  整体结构 CNN中新出现了卷积层(Convolution层)和池化层(Pooling层),之前介绍的神经网络中,相邻层的所有神经元之间都有连接,这称为全连接(fully-connected),我们用Aff">
@@ -482,7 +493,7 @@
                 
               
 
-              <time title="创建时间：2019-07-11 10:24:57 / 修改时间：10:57:36" itemprop="dateCreated datePublished" datetime="2019-07-11T10:24:57+08:00">2019-07-11</time>
+              <time title="创建时间：2019-07-11 10:24:57 / 修改时间：14:06:29" itemprop="dateCreated datePublished" datetime="2019-07-11T10:24:57+08:00">2019-07-11</time>
             
 
             
@@ -557,7 +568,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">768</span>
+                <span title="本文字数">1.7k</span>
               
 
               
@@ -571,7 +582,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">1 分钟</span>
+                <span title="阅读时长">2 分钟</span>
               
             </div>
           
@@ -606,6 +617,36 @@
 CNN中,有时将卷积层的输入输出数据称为<code>特征图(feature map)</code>.其中,卷积层的输入数据称为<code>输入特征图(input feature map)</code>,输出数据称为<code>输出特征图(output feature map)</code>.</p>
 <h4 id="卷积运算"><a class="markdownIt-Anchor" href="#卷积运算"></a> 卷积运算</h4>
 <p>卷积运算相当于图像处理中的&quot;滤波器运算&quot;.</p>
+<img src="/posts/d52bdd13/2019071111112514.png">
+<p>在本例中,输入大小是(4,4),滤波器大小是(3,3),输出大小是(2,2).另外,有的文献中也会用&quot;核&quot;这个词来表示这里所说的&quot;滤波器&quot;.<br>
+如图7-4所示,将各个位置上滤波器的元素和输入的对应元素相乘,然后再求和(有时将这个计算称为<code>乘积累加运算</code>).</p>
+<img src="/posts/d52bdd13/2019071111142015.png">
+<img src="/posts/d52bdd13/2019071111165316.png">
+<h4 id="填充"><a class="markdownIt-Anchor" href="#填充"></a> 填充</h4>
+<p>在进行卷积层的处理之前,有时要向输入数据的周围填入固定的数据(比如0等),这称为<code>填充(padding)</code>,是卷积运算中经常会用到的处理.使用填充主要是为了调整输出的大小.</p>
+<img src="/posts/d52bdd13/2019071113452117.png">
+<h4 id="步幅"><a class="markdownIt-Anchor" href="#步幅"></a> 步幅</h4>
+<p>应用滤波器的位置间隔称为<code>步幅(stride)</code>.</p>
+<img src="/posts/d52bdd13/2019071113481218.png">
+<p>增大步幅后,输出大小会变小.而增大填充后,输出大小会变大.<br>
+假设输入大小<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo stretchy="false">(</mo><mi>H</mi><mo separator="true">,</mo><mi>W</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(H,W)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.08125em;">H</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class="mclose">)</span></span></span></span>,滤波器大小为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo stretchy="false">(</mo><mi>F</mi><mi>H</mi><mo separator="true">,</mo><mi>F</mi><mi>W</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(FH,FW)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mord mathdefault" style="margin-right:0.08125em;">H</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class="mclose">)</span></span></span></span>,输出大小为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo stretchy="false">(</mo><mi>O</mi><mi>H</mi><mo separator="true">,</mo><mi>O</mi><mi>W</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(OH,OW)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mord mathdefault" style="margin-right:0.08125em;">H</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class="mclose">)</span></span></span></span>,填充为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>P</mi></mrow><annotation encoding="application/x-tex">P</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span></span></span></span>,步幅为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span></span></span></span>.</p>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mtable rowspacing="0.24999999999999992em" columnalign="right left" columnspacing="0em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mi>O</mi><mi>H</mi></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mfrac><mrow><mi>H</mi><mo>+</mo><mn>2</mn><mi>P</mi><mo>−</mo><mi>F</mi><mi>H</mi></mrow><mi>S</mi></mfrac><mo>+</mo><mn>1</mn></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mi>O</mi><mi>W</mi></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mfrac><mrow><mi>W</mi><mo>+</mo><mn>2</mn><mi>P</mi><mo>−</mo><mi>F</mi><mi>W</mi></mrow><mi>S</mi></mfrac><mo>+</mo><mn>1</mn></mrow></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{aligned}
+    OH&amp;=\frac{H+2P-FH}{S}+1\\
+    OW&amp;=\frac{W+2P-FW}{S}+1
+\end{aligned}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:4.69266em;vertical-align:-2.09633em;"></span><span class="mord"><span class="mtable"><span class="col-align-r"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.59633em;"><span style="top:-4.59633em;"><span class="pstrut" style="height:3.3603300000000003em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mord mathdefault" style="margin-right:0.08125em;">H</span></span></span><span style="top:-2.2500000000000004em;"><span class="pstrut" style="height:3.3603300000000003em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mord mathdefault" style="margin-right:0.13889em;">W</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:2.09633em;"><span></span></span></span></span></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.59633em;"><span style="top:-4.59633em;"><span class="pstrut" style="height:3.3603300000000003em;"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.36033em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05764em;">S</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.08125em;">H</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">2</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mord mathdefault" style="margin-right:0.08125em;">H</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">1</span></span></span><span style="top:-2.2500000000000004em;"><span class="pstrut" style="height:3.3603300000000003em;"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.36033em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05764em;">S</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">2</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mord mathdefault" style="margin-right:0.13889em;">W</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:2.09633em;"><span></span></span></span></span></span></span></span></span></span></span></span></p>
+<h4 id="3维数据的卷积运算"><a class="markdownIt-Anchor" href="#3维数据的卷积运算"></a> 3维数据的卷积运算</h4>
+<p>之前的卷积运算的例子都是以有高,长方向的2维形状为对象的.但是图像是3维数据,除了高,长方向之外,还需要处理通道方向.</p>
+<img src="/posts/d52bdd13/2019071113532319.png">
+<img src="/posts/d52bdd13/2019071113533920.png">
+<p>需要注意的是,在3维数据的卷积运算中,输入数据和滤波器的通道数要设为相同的值.</p>
+<h4 id="结合方块思考"><a class="markdownIt-Anchor" href="#结合方块思考"></a> 结合方块思考</h4>
+<img src="/posts/d52bdd13/2019071113552821.png">
+<img src="/posts/d52bdd13/2019071113592622.png">
+<p>图7-11中,通过应用<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>F</mi><mi>N</mi></mrow><annotation encoding="application/x-tex">FN</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span></span></span></span>个滤波器,输出特征图也生成了<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>F</mi><mi>N</mi></mrow><annotation encoding="application/x-tex">FN</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span></span></span></span>个.如果将这<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>F</mi><mi>N</mi></mrow><annotation encoding="application/x-tex">FN</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span></span></span></span>个特征图汇集在一起,就得到了形状为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo stretchy="false">(</mo><mi>F</mi><mi>N</mi><mo separator="true">,</mo><mi>O</mi><mi>H</mi><mo separator="true">,</mo><mi>O</mi><mi>W</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(FN,OH,OW)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mord mathdefault" style="margin-right:0.08125em;">H</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class="mclose">)</span></span></span></span>的方块.将这个方块传给下一层,就是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>C</mi><mi>N</mi><mi>N</mi></mrow><annotation encoding="application/x-tex">CNN</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span></span></span></span>的处理流.</p>
+<img src="/posts/d52bdd13/2019071114032223.png">
+<h4 id="批处理"><a class="markdownIt-Anchor" href="#批处理"></a> 批处理</h4>
+<p>具体地讲,就是按<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo stretchy="false">(</mo><mi>N</mi><mo separator="true">,</mo><mi>C</mi><mo separator="true">,</mo><mi>H</mi><mo separator="true">,</mo><mi>W</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(N,C,H,W)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.08125em;">H</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class="mclose">)</span></span></span></span>的顺序保存数据.比如,将图7-12中的处理改成对<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span></span></span></span>个数据进行批处理时,数据的形状如图7-13所示.</p>
+<img src="/posts/d52bdd13/2019071114062324.png">
 <h3 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h3>
 <ol>
 <li><a href="https://book.douban.com/subject/30270959/">深度学习入门-基于Python的理论与实现</a></li>
@@ -675,7 +716,7 @@ CNN中,有时将卷积层的输入输出数据称为<code>特征图(feature map)
   <p><span>本文标题:</span><a href="/posts/d52bdd13/">[深度学习入门-基于Python的理论与实现]第7章 卷积神经网络</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 Brian Yi 的个人博客">Brian Yi</a></p>
   <p><span>发布时间:</span>2019年07月11日 - 10:07</p>
-  <p><span>最后更新:</span>2019年07月11日 - 10:07</p>
+  <p><span>最后更新:</span>2019年07月11日 - 14:07</p>
   <p><span>原始链接:</span><a href="/posts/d52bdd13/" title="[深度学习入门-基于Python的理论与实现]第7章 卷积神经网络">https://brianyi.github.io/posts/d52bdd13/</a>
     <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://brianyi.github.io/posts/d52bdd13/" aria-label="复制成功！"></i></span>
   </p>
@@ -1069,7 +1110,7 @@ CNN中,有时将卷积层的输入输出数据称为<code>特征图(feature map)
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#介绍"><span class="nav-number">1.</span> <span class="nav-text"> 介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#整体结构"><span class="nav-number">1.1.</span> <span class="nav-text"> 整体结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#全连接层存在的问题"><span class="nav-number">1.2.</span> <span class="nav-text"> 全连接层存在的问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#卷积运算"><span class="nav-number">1.3.</span> <span class="nav-text"> 卷积运算</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考"><span class="nav-number">2.</span> <span class="nav-text"> 参考</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#介绍"><span class="nav-number">1.</span> <span class="nav-text"> 介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#整体结构"><span class="nav-number">1.1.</span> <span class="nav-text"> 整体结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#全连接层存在的问题"><span class="nav-number">1.2.</span> <span class="nav-text"> 全连接层存在的问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#卷积运算"><span class="nav-number">1.3.</span> <span class="nav-text"> 卷积运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#填充"><span class="nav-number">1.4.</span> <span class="nav-text"> 填充</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#步幅"><span class="nav-number">1.5.</span> <span class="nav-text"> 步幅</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3维数据的卷积运算"><span class="nav-number">1.6.</span> <span class="nav-text"> 3维数据的卷积运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#结合方块思考"><span class="nav-number">1.7.</span> <span class="nav-text"> 结合方块思考</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#批处理"><span class="nav-number">1.8.</span> <span class="nav-text"> 批处理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考"><span class="nav-number">2.</span> <span class="nav-text"> 参考</span></a></li></ol></div>
             
             <span class="links-of-author-item ">
                 <a href="javascript:;" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索</a>
@@ -1110,7 +1151,7 @@ CNN中,有时将卷积层的输入输出数据称为<code>特征图(feature map)
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">629k</span>
+    <span title="站点总字数">630k</span>
   
 
   
@@ -1119,7 +1160,7 @@ CNN中,有时将卷积层的输入输出数据称为<code>特征图(feature map)
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">9:32</span>
+    <span title="站点阅读时长">9:33</span>
   
 </div>
 
