@@ -1,0 +1,2092 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Consolas:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext">
+  
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: true,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="CS229 课程讲义中文翻译    原作者 翻译 校对     Andrew Ng  吴恩达 CycleUser XiaoDong_Wang       相关链接     github 地址   知乎专栏   斯坦福大学 CS229 课程网站   网易公开课中文字幕视频     第三章  第五部分 支持向量机(Support Vector Machines) 本章的讲义主要讲述的是 支持向量机（">
+<meta name="keywords" content="CS229">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[机器学习-CS229]支持向量机">
+<meta property="og:url" content="https://brianyi.github.io/posts/7e4d61c4/index.html">
+<meta property="og:site_name" content="Brian&#39;s Home">
+<meta property="og:description" content="CS229 课程讲义中文翻译    原作者 翻译 校对     Andrew Ng  吴恩达 CycleUser XiaoDong_Wang       相关链接     github 地址   知乎专栏   斯坦福大学 CS229 课程网站   网易公开课中文字幕视频     第三章  第五部分 支持向量机(Support Vector Machines) 本章的讲义主要讲述的是 支持向量机（">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/Kivy-CN/Stanford-CS-229-CN/master/img/cs229note3f1.png">
+<meta property="og:updated_time" content="2019-07-22T11:28:58.228Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[机器学习-CS229]支持向量机">
+<meta name="twitter:description" content="CS229 课程讲义中文翻译    原作者 翻译 校对     Andrew Ng  吴恩达 CycleUser XiaoDong_Wang       相关链接     github 地址   知乎专栏   斯坦福大学 CS229 课程网站   网易公开课中文字幕视频     第三章  第五部分 支持向量机(Support Vector Machines) 本章的讲义主要讲述的是 支持向量机（">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Kivy-CN/Stanford-CS-229-CN/master/img/cs229note3f1.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Brian's Home" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="https://brianyi.github.io/posts/7e4d61c4/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>[机器学习-CS229]支持向量机 | Brian's Home</title>
+  
+
+
+
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?7e38366710cb7c973c4f1db486286308";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Brian's Home</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Stay Hungry, Stay Foolish</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">66</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">20</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">172</span></a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+
+  
+
+  <a href="https://github.com/brianyi" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://brianyi.github.io/posts/7e4d61c4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Brian Yi">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brian's Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">[机器学习-CS229]支持向量机
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-07-22 16:55:19 / 修改时间：19:28:58" itemprop="dateCreated datePublished" datetime="2019-07-22T16:55:19+08:00">2019-07-22</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/CS229/" itemprop="url" rel="index"><span itemprop="name">CS229</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/posts/7e4d61c4/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/7e4d61c4/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/posts/7e4d61c4/" class="leancloud_visitors" data-flag-title="[机器学习-CS229]支持向量机">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">17k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">16 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="cs229-课程讲义中文翻译"><a class="markdownIt-Anchor" href="#cs229-课程讲义中文翻译"></a> CS229 课程讲义中文翻译</h1>
+<table>
+<thead>
+<tr>
+<th>原作者</th>
+<th>翻译</th>
+<th>校对</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="http://www.andrewng.org/">Andrew Ng  吴恩达</a></td>
+<td><a href="https://www.zhihu.com/people/cycleuser/columns">CycleUser</a></td>
+<td><a href="https://github.com/Dongzhixiao">XiaoDong_Wang</a></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>相关链接</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/Kivy-CN/Stanford-CS-229-CN">github 地址</a></td>
+</tr>
+<tr>
+<td><a href="https://zhuanlan.zhihu.com/MachineLearn">知乎专栏</a></td>
+</tr>
+<tr>
+<td><a href="http://cs229.stanford.edu/">斯坦福大学 CS229 课程网站</a></td>
+</tr>
+<tr>
+<td><a href="http://open.163.com/movie/2008/1/M/C/M6SGF6VB4_M6SGHFBMC.html">网易公开课中文字幕视频</a></td>
+</tr>
+</tbody>
+</table>
+<h1 id="第三章"><a class="markdownIt-Anchor" href="#第三章"></a> 第三章</h1>
+<h3 id="第五部分-支持向量机support-vector-machines"><a class="markdownIt-Anchor" href="#第五部分-支持向量机support-vector-machines"></a> 第五部分 支持向量机(Support Vector Machines)</h3>
+<p>本章的讲义主要讲述的是 支持向量机（Support Vector Machine ，缩写为 SVM） 学习算法。SVM 算得上是现有的最好的现成的(“off-the-shelf”)监督学习算法之一，很多人实际上认为这里没有“之一”这两个字的必要，认为 SVM 就是最好的现成的监督学习算法。讲这个 SVM 的来龙去脉之前，我们需要先讲一些关于边界的内容，以及对数据进行分割成大的区块（gap）的思路。接下来，我们要讲一下最优边界分类器(optimal margin classifier,)，其中还会引入一些关于拉格朗日对偶(Lagrange duality)的内容。然后我们还会接触到核(Kernels)，这提供了一种在非常高的维度(例如无穷维度)中进行 SVM 学习的高效率方法，最终本章结尾部分会讲 SMO 算法，也就是 SVM 算法的一个有效实现方法。</p>
+<h4 id="1-边界margins直觉intuition"><a class="markdownIt-Anchor" href="#1-边界margins直觉intuition"></a> 1 边界(Margins)：直觉(Intuition)</h4>
+<p>咱们这回讲 SVM 学习算法，从边界(margins)开始说起。这一节我们会给出关于边界的一些直观展示(intuitions)，以及对于我们做出的预测的信心(confidence)；在本章的第三节中，会对这些概念进行更正式化的表述。</p>
+<p>考虑逻辑回归，其中的概率分布<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>p</mi><mo stretchy="false">(</mo><mi>y</mi><mo>=</mo><mn>1</mn><mi mathvariant="normal">∣</mi><mi>x</mi><mo separator="true">;</mo><mi>θ</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">p(y = 1|x;\theta)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">p</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mord">∣</span><span class="mord mathdefault">x</span><span class="mpunct">;</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span><span class="mclose">)</span></span></span></span> 是基于 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>h</mi><mi>θ</mi></msub><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>g</mi><mo stretchy="false">(</mo><msup><mi>θ</mi><mi>T</mi></msup><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">h_\theta(x) = g(\theta^Tx)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.02778em;">θ</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.0913309999999998em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413309999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.13889em;">T</span></span></span></span></span></span></span></span><span class="mord mathdefault">x</span><span class="mclose">)</span></span></span></span> 而建立的模型。当且仅当 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>h</mi><mi>θ</mi></msub><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>≥</mo><mn>0.5</mn></mrow><annotation encoding="application/x-tex">h_\theta(x) \geq 0.5</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.02778em;">θ</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">5</span></span></span></span> ，也就是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>θ</mi><mi>T</mi></msup><mi>x</mi><mo>≥</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\theta^Tx \geq 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.977301em;vertical-align:-0.13597em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413309999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.13889em;">T</span></span></span></span></span></span></span></span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> 的时候，我们才会预测出“<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>”。假如有一个正向(Positive)的训练样本(positive tra_ining example)(<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>y</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">y = 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>)。那么<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>θ</mi><mi>T</mi></msup><mi>x</mi></mrow><annotation encoding="application/x-tex">\theta^Tx</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8413309999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413309999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.13889em;">T</span></span></span></span></span></span></span></span><span class="mord mathdefault">x</span></span></span></span> 越大，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>h</mi><mi>θ</mi></msub><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>p</mi><mo stretchy="false">(</mo><mi>y</mi><mo>=</mo><mn>1</mn><mi mathvariant="normal">∣</mi><mi>x</mi><mo separator="true">;</mo><mi>w</mi><mo separator="true">,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">h_\theta (x) = p(y = 1|x; w, b)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.02778em;">θ</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">p</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mord">∣</span><span class="mord mathdefault">x</span><span class="mpunct">;</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">b</span><span class="mclose">)</span></span></span></span> 也就越大，我们对预测 Label 为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 的“信心(confidence)”也就越强。所以如果 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>y</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">y = 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 且 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>θ</mi><mi>T</mi></msup><mi>x</mi><mo>≫</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\theta^T x \gg 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.880431em;vertical-align:-0.0391em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413309999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.13889em;">T</span></span></span></span></span></span></span></span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≫</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>（远大于 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>），那么我们就对这时候进行的预测非常有信心，当然这只是一种很不正式的粗略认识。与之类似，在逻辑回归中，如果有 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>y</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">y = 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> 且 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>θ</mi><mi>T</mi></msup><mi>x</mi><mo>≪</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\theta^T x \ll 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.880431em;vertical-align:-0.0391em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413309999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.13889em;">T</span></span></span></span></span></span></span></span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≪</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>(远小于 0)，我们也对这时候给出的预测很有信心。所以还是以一种非常不正式的方式来说，对于一个给定的训练集，如果我们能找到一个 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>θ</mi></mrow><annotation encoding="application/x-tex">\theta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span></span></span></span>，满足当 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>y</mi><mrow><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo></mrow></msup><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">y^{(i)} = 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0824399999999998em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8879999999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mathdefault mtight">i</span><span class="mclose mtight">)</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 的时候总有 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>θ</mi><mi>T</mi></msup><msup><mi>x</mi><mrow><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo></mrow></msup><mo>≫</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\theta^T x^{(i)} \gg 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9270999999999999em;vertical-align:-0.0391em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413309999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.13889em;">T</span></span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8879999999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mathdefault mtight">i</span><span class="mclose mtight">)</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≫</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>，而 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>y</mi><mrow><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo></mrow></msup><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">y^{(i)} = 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0824399999999998em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8879999999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mathdefault mtight">i</span><span class="mclose mtight">)</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> 的时候则 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>θ</mi><mi>T</mi></msup><msup><mi>x</mi><mrow><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo></mrow></msup><mo>≪</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\theta^T x^{(i)} \ll 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9270999999999999em;vertical-align:-0.0391em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413309999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.13889em;">T</span></span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8879999999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mathdefault mtight">i</span><span class="mclose mtight">)</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≪</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>，我们就说这个对训练数据的拟合很好，因为这就能对所有训练样本给出可靠（甚至正确）的分类。似乎这样就是咱们要实现的目标了，稍后我们就要使用<strong>函数边界记号(notion of functional margins)</strong> 来用正规的语言来表达该思路。</p>
+<p>还有另外一种的直观表示，例如下面这个图当中，画叉的点表示的是正向训练样本，而小圆圈的点表示的是负向训练样本，图中还画出了<strong>分类边界(decision boundary)，</strong> 这条线也就是通过等式 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>θ</mi><mi>T</mi></msup><mi>x</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\theta^T x = 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8413309999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413309999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.13889em;">T</span></span></span></span></span></span></span></span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> 来确定的，也叫做<strong>分类超平面(separating hyperplane)。</strong> 图中还标出了三个点 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi><mi mathvariant="normal">，</mi><mi>B</mi><mi mathvariant="normal">和</mi><mi>C</mi></mrow><annotation encoding="application/x-tex">A，B 和 C</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span><span class="mord cjk_fallback">，</span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mord cjk_fallback">和</span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span></span></span></span>。</p>
+<p><img src="https://raw.githubusercontent.com/Kivy-CN/Stanford-CS-229-CN/master/img/cs229note3f1.png" alt></p>
+<p>可以发现 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span></span></span></span> 点距离分界线很远。如果我们对 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span></span></span></span> 点的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>y</mi></mrow><annotation encoding="application/x-tex">y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span></span></span></span> 值进行预测，估计我们会很有信心地认为在那个位置的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>y</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">y = 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>。与之相反的是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span></span></span></span>，这个点距离边界线很近，而且虽然这个 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span></span></span></span> 点也在预测值 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>y</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">y = 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 的一侧，但看上去距离边界线的距离实在是很近的，所以也很可能会让我们对这个点的预测为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>y</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">y = 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>。因此，我们对 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span></span></span></span> 点的预测要比对 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span></span></span></span> 点的预测更有把握得多。<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span></span></span></span> 点正好在上面两种极端情况之间，更广泛地说，如果一个点距离<strong>分类超平面(separating hyperplane)</strong> 比较远，我们就可以对给出的预测很有信心。那么给定一个训练集，如果我们能够找到一个分类边界，利用这个边界我们可以对所有的训练样本给出正确并且有信心（也就是数据点距离分类边界要都很远）的预测，那这就是我们想要达到的状态了。当然上面这种说法还是很不正规，后面我们会使用<strong>几何边界记号(notion of geometric margins)</strong> 来更正规地来表达。</p>
+<h4 id="2-记号notation"><a class="markdownIt-Anchor" href="#2-记号notation"></a> 2 记号(Notation)</h4>
+<p>在讨论 SVMs 的时候，出于简化的目的，我们先要引入一个新的记号，用来表示分类。假设我们要针对一个二值化分类的问题建立一个线性分类器，其中用来分类的标签(label)为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>y</mi></mrow><annotation encoding="application/x-tex">y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span></span></span></span>，分类特征(feature)为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span>。从此以后我们就用 $y \in &lt;!–￼0–&gt;{2}\tag{11}\<br>
+\end{aligned}</p>
+<p class="katex-block katex-error" title="ParseError: KaTeX parse error: Can&#039;t use function &#039;$&#039; in math mode at position 33: …续之前，咱们再回头看一看等式 $̲(9)$，其中以 $\alph…">
+（自己证明一下这个过程吧。）在继续之前，咱们再回头看一看等式 $(9)$，其中以 $\alpha$ （最优值的）形式来表达了 $w$ 的最优值。加入咱们已经使用一个训练集对模型的参数进行了拟合，然后接下来要对一个新输入的 $x$ 的目标值进行预测。就要对 $w^T x + b$ 进行计算，如果得到的值大于 $0$，就预测 $y = 1$。通过利用等式 $(9)$，这个性质也可以写成：
+
+</p>
+<p>\begin{aligned}<br>
+w^Tx+b&amp;= (\sum^m_{i=1}\alpha_i y<sup>{(i)}x</sup>{(i)})^Tx+b &amp; \text{(12)}\<br>
+&amp;= \sum^m_{i=1}\alpha_i y^{(i)}\langle x^{(i)},x \rangle+b &amp; \text{(13)}\<br>
+\end{aligned}</p>
+<p class="katex-block katex-error" title="ParseError: KaTeX parse error: Can&#039;t use function &#039;$&#039; in math mode at position 23: …进行一个预测，如果已经找到了 $̲\alpha_i$，那就必须要…">
+这样的话，要进行一个预测，如果已经找到了 $\alpha_i$，那就必须要计算一个值，该值只依赖新的输入特征 $x$ 与训练集中各个 点 的内积。另外，之前我们就已经发现除了支持向量(support vectors) $\alpha_i$ 的值都是 $0$。这样上面的求和项目中的很多项就都是 $0$ 了，接下来咱们就只需要找到 $x$ 与支持向量(support vectors)的内积（这样实际用于计算的只有一小部分，而不是整个的训练集），然后就可以计算等式 $(13)$，得到结果，就可以用于预测了。
+
+通过检验优化问题的对偶形式，我们对要解决的问题的结构有了深入的了解，并且还根据输入特征向量之间的内积来编写整个算法。 在下一节中，我们将充分利用这些内容，然后对我们的分类问题使用核(kernels)方法。 最终得到的算法，就是支持向量机(support vector machines)算法，将能够在非常高的维度空间中有效地学习。
+
+#### 7 核(Kernels )
+
+咱们之前讲线性回归的时候，遇到过这样一个问题，其中输入的特征 $x$ 是一个房屋的居住面积，然后我们考虑使用特征 $x$，$x^2$ 以及 $x^3$ 来进行拟合得到一个立方函数(cubic function)。要区分出两组数据集，我们把“原始”的输入值称为一个问题的输入属性(input attributes)，例如住房面积 $x$。当这些值映射到另外的一些数据集来传递给学习算法的时候，这些新的数据值就称为输入特征(input features)。(很无奈，不同的作者经常用不同的名词来描述这两者，不过在咱们这个讲义里面，我们会争取保持所用术语的一致性。)然后我们还要用 $\phi$ 来表示**特征映射(feature mapping)，** 这种特征映射也就是从输入的属性(input attributes)到传递给学习算法的输入特征(input features)之间的映射关系。例如，还说刚刚这个居住面积 $x$ 的例子，这里面的特征映射就可以表述为：
+
+</p>
+<p>\phi(x)=\left[ \begin{aligned}&amp; x\ &amp; x^2\ &amp; x^3 \end{aligned}\right]</p>
+<p class="katex-block katex-error" title="ParseError: KaTeX parse error: Can&#039;t use function &#039;$&#039; in math mode at position 40: …机算法)来处理原始的输入属性 $̲x$ 了，而是可以尝试着利用映…">
+现在我们就不再简单直接地利用 SVM(支持向量机算法)来处理原始的输入属性 $x$ 了，而是可以尝试着利用映射产生的新的特征 $\phi(x)$。那么，我们只需要简单回顾一下之前的算法，然后把所有的 $x$ 替换成 $\phi(x)$。
+
+由于上面的算法可以整个用 $\langle x,z\rangle$ 的内积形式写出，这就意味着我们只需要把上面的所有内积都替换成 $\langle\phi(x),\phi(z)\rangle$ 的内积。更简洁地说，给定一个特征映射 $\phi$，那么就可以定义一个对应的**核(Kernel)，** 如下所示：
+
+</p>
+<p>K(x,z)=\phi(x)^T\phi(z)</p>
+<p class="katex-block katex-error" title="ParseError: KaTeX parse error: Can&#039;t use function &#039;$&#039; in math mode at position 19: …，只需要把上面的算法里用到的 $̲\langle x, z\ra…">
+然后，只需要把上面的算法里用到的 $\langle x, z\rangle$ 全部替换成 $K(x, z)$，这样就可以了，我们的算法就开始使用特征映射 $\phi$ 来进行机器学习了。
+
+现在，给定一个特征映射 $\phi$，很容易就可以找出 $\phi(x)$ 和 $\phi(z)$，然后取一下内积，就能计算 $K (x, z)$了。不过还不仅如此，更有意思的是，通常情况下对这个$K (x,z)$ 的计算往往都会非常容易(very inexpensive)，甚至即便 $\phi(x)$ 本身很不好算的时候(可能是由于向量维度极高)也如此。在这样的背景下，给定一个特征映射 $\phi$，我们就可以使用 SVM(支持向量机算法)来对高纬度特征空间进行机器学习，而可能根本不用麻烦地区解出来对应的向量 $\phi(x)$。
+
+接下来就看一个例子吧。假设有 $x, z \in R^n$，设有：
+
+</p>
+<p>K(x,z)= (x<sup>Tz)</sup>2</p>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">这</mi><mi mathvariant="normal">个</mi><mi mathvariant="normal">也</mi><mi mathvariant="normal">可</mi><mi mathvariant="normal">以</mi><mi mathvariant="normal">写</mi><mi mathvariant="normal">成</mi><mi mathvariant="normal">下</mi><mi mathvariant="normal">面</mi><mi mathvariant="normal">的</mi><mi mathvariant="normal">形</mi><mi mathvariant="normal">式</mi><mi mathvariant="normal">：</mi></mrow><annotation encoding="application/x-tex">
+这个也可以写成下面的形式：
+
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0em;vertical-align:0em;"></span><span class="mord cjk_fallback">这</span><span class="mord cjk_fallback">个</span><span class="mord cjk_fallback">也</span><span class="mord cjk_fallback">可</span><span class="mord cjk_fallback">以</span><span class="mord cjk_fallback">写</span><span class="mord cjk_fallback">成</span><span class="mord cjk_fallback">下</span><span class="mord cjk_fallback">面</span><span class="mord cjk_fallback">的</span><span class="mord cjk_fallback">形</span><span class="mord cjk_fallback">式</span><span class="mord cjk_fallback">：</span></span></span></span></span></p>
+<p>\begin{aligned}<br>
+K(x,z)&amp;=(\sum<sup>n_{i=1}x_iz_i)(\sum</sup>n_{j=1}x_jz_j)\<br>
+&amp;=\sum<sup>n_{i=1}\sum</sup>n_{j=1}x_ix_jz_iz_j\<br>
+&amp;=\sum^n_{i,j=1}(x_ix_j)(z_iz_j)\<br>
+\end{aligned}</p>
+<p class="katex-block katex-error" title="ParseError: KaTeX parse error: Can&#039;t use function &#039;$&#039; in math mode at position 8: 
+因此，可见 $̲K (x, z) = \phi…">
+因此，可见 $K (x, z) = \phi(x)^T \phi(z)$，其中特征映射 $\phi$ 给出如下所示(这个例子中的 $n = 3$) ：
+
+</p>
+<p>\phi(x)= \left[ \begin{aligned} &amp;x_1x_1\&amp;x_1x_2\&amp;x_1x_3\&amp;x_2x_1\&amp;x_2x_2\&amp;x_2x_3\ &amp;x_3x_1\&amp;x_3x_2\&amp;x_3x_3 \end{aligned}   \right]</p>
+<p class="katex-block katex-error" title="ParseError: KaTeX parse error: Can&#039;t use function &#039;$&#039; in math mode at position 17: …到这里就会发现，计算高维度的 $̲\phi(x)$ 需要的计算量…">
+到这里就会发现，计算高维度的 $\phi(x)$ 需要的计算量是 $O(n^2)$ 级别的，而计算 $K (x, z)$ 则只需要 $O(n)$ 级的时间，也就是与输入属性的维度呈线性相关关系。
+
+与之相关的核(Kernel)可以设为：
+
+</p>
+<p>\begin{aligned}<br>
+K(x,z)&amp;= (x<sup>Tz+c)</sup>2 \<br>
+&amp;= \sum<sup>n_{i,j=1}(x_ix_j)(z_iz_j)+\sum</sup>n_{i=1}(\sqrt{2c}x_i)(\sqrt{2c}z_i)+c^2\<br>
+\end{aligned}</p>
+<p class="katex-block katex-error" title="ParseError: KaTeX parse error: Can&#039;t use function &#039;$&#039; in math mode at position 24: …对应的特征映射为（此处依然以 $̲n = 3$ 为例）：
+
+">
+（自己检验。）对应的特征映射为（此处依然以 $n = 3$ 为例）：
+
+</p>
+<p>\phi(x)= \left[ \begin{aligned} &amp;x_1x_1\&amp;x_1x_2\&amp;x_1x_3\&amp;x_2x_1\&amp;x_2x_2\&amp;x_2x_3\ &amp;x_3x_1\&amp;x_3x_2\&amp;x_3x_3\&amp; \sqrt{2c}x_1\&amp; \sqrt{2c}x_2\&amp; \sqrt{2c}x_3\&amp;c\end{aligned}   \right]</p>
+<p class="katex-block katex-error" title="ParseError: KaTeX parse error: Can&#039;t use function &#039;$&#039; in math mode at position 8: 
+其中 参数 $̲c$ 控制了第一组 $x_i$…">
+其中 参数 $c$ 控制了第一组 $x_i$ 和第二组 $x_ix_j$ 的相对权重(relative weighting)。
+
+在此基础上进一步扩展，核(Kernel)$K (x, z) = (x^T z + c)^d$，就对应了一个$\left(\begin{aligned} n&amp;+d \\ &amp;d  \end{aligned}\right)$维度的特征空间的特征映射，对应所有从 $x_{i1},x_{i2}, ...,x_{ik}$ 一直到 $d$ 这种形式的所有多项式(monomials)。然而，即便是针对这种 $O(n^d)$ 维度的高维度空间，计算 $K (x, z)$ 让然只需要 $O(n)$ 级的时间。所以我们就不需要在这个非常高的维度特征空间中对特征向量进行具体的表示。
+
+现在，咱们来从另外一个角度来看一下核(Kernel)。凭直觉来看(这种直觉可能还有些错误，不过不要紧，先不用管)，如果 $\phi(x)$ 和 $\phi(z)$ 非常接近(close together)，那么就可能会认为 $K (x, z) = \phi(x)^T\phi(z)$ 就可能会很大。与之相反，如果 $\phi(x)$ 和 $\phi(z)$ 距离很远，比如近似正交(nearly orthogonal)，那么$K (x, z) = \phi(x)^T\phi(z)$ 就可能会很小。这样，我们就可以把核 $K (x, z)$ 理解成对$\phi(x)$ 和 $\phi(z)$ 的近似程度的一种度量手段，或者也可以说是对 $x$ 和 $z$ 的近似程度的一种度量手段。
+
+有了这种直观认识之后，假如你正在尝试某些学习算法，并且已经建立了某个函数 $K (x, z)$，然后你想着也许可以用这个函数来对 $x$ 和 $z$ 的近似程度进行衡量。例如，假如你就选择了下面这个函数：
+
+</p>
+<p>K(x,z)=\exp (- \frac{\parallel x-z\parallel <sup>2}{2\sigma</sup>2 })</p>
+<p class="katex-block katex-error" title="ParseError: KaTeX parse error: Can&#039;t use function &#039;$&#039; in math mode at position 9: 
+这个函数是对 $̲x$ 和 $z$ 的近似程度的…">
+这个函数是对 $x$ 和 $z$ 的近似程度的一个很好的衡量，二者相近的时候函数值接近 $1$，而二者远离的时候函数值接近 $0$。那咱们能不能用这样定义的一个函数 $K$ 来作为一个 SVM(支持向量计算法)里面的核(Kernel)呢？在这个特定的样例里面，答案是可以的。(这个核(Kernel)也叫做 高斯核，对应的是一个无穷维度的特征映射 $\phi$。)那么接下来进一步推广一下，给定某个函数 $K$，我们该怎样能够确定这个函数是不是一个有效的核(valid kernel)呢？例如，我们能否说如果存在着某一个特征映射 $\phi$，则对于所有的 $x$ 和 $z$ 都有 $K (x, z) = \phi(x)^T \phi(z)$？
+
+现在暂时假设 $K$ 就是一个有效的核，对应着某种特征映射 $\phi$。然后，考虑某个有 $m$ 个点的有限集合 $\{x^{(1)},...,x^{(m)}\}$(这个集合并不一定就必须是训练集)，然后设一个方形的 $m\times m$ 矩阵 $K$，定义方式为矩阵的第 $(i, j)$ 个值 $K_{ij} = K (x^{(i)} , x^{(j)})$。这个矩阵就叫做核矩阵(Kernel matrix)。注意到没有，这里对符号 $K$ 进行了重复使用，既指代了$K(x,z)$ 这个核函数(kernel function)，也指代了核矩阵 $K$，这是由于这两者有非常明显的密切关系。
+
+如果 $K$ 是一个有效的核(Kernel)，那么就有$K_{ij} = K (x^{(i)}, x^{(j)}) = \phi(x^{(i)})^T \phi(x^{(j)}) = \phi(x^{(j)})^T \phi(x^{(i)}) = K(x^{(j)}, x^{(i)}) = K_{ji}$，这就说明 $K$ 是一个对称矩阵。此外，设 $\phi_k(x)$ 表示向量 $\phi(x)$ 的第 $k$ 个坐标值(k-th coordinate)，挥发性对于任意的向量 $z$，都有：
+
+</p>
+<p>\begin{aligned}<br>
+z^TKz&amp;=   \sum_i\sum_j z_iK_{ij}z_j \<br>
+&amp;=   \sum_i\sum_j z_i\phi(x<sup>{(i)})\phi(x</sup>{(j)})z_j\<br>
+&amp;=   \sum_i\sum_jz_i\sum_k \phi_k(x<sup>{(i)})\phi_k(x</sup>{(j)})z_j\<br>
+&amp;=   \sum_k\sum_i\sum_j z_i\phi_k(x<sup>{(i)})\phi_k(x</sup>{(j)})z_j\<br>
+&amp;= \sum_k(\sum_i z_i\phi_k(x<sup>{(i)}))</sup>2\<br>
+&amp;\geq 0 \<br>
+\end{aligned}</p>
+<p class="katex-block katex-error" title="ParseError: KaTeX parse error: Can&#039;t use function &#039;$&#039; in math mode at position 24: …第二步到最后一步都用到了习题集$̲1$第一题(Problem s…">
+上面的推到中从第二步到最后一步都用到了习题集$1$第一题(Problem set 1 Q1)中的同样技巧。由于 $z$ 是任意的，这就表明了矩阵 $K$ 是正半定(positive semi-definite)的矩阵($K \geq 0$)。
+
+这样，我们就证明了，如果 $K$ 是一个有效核函数(例如，假设该函数对应某种特征映射 $\phi$ )，那么对应的核矩阵(Kernel Matrix)$K \in R^{m\times m}$ 就是一个对称正半定矩阵(symmetric positive semidefinite)。进一步扩展，这就不仅仅是一个 $K$ 是一个有效核函数的必要条件(necessary)，还成了充分条件(sufficient)，这个核函数也叫做默瑟核(Mercer kernel)。下面要展示的结果都是源自于 Mercer(due to Mercer)。$^5$
+
+&gt;5 很多教材对默瑟定理(Mercer’s theorem)的描述都要更加复杂一些，里面牵涉到了 $L2$ 函数，但如果输入属性(input attributes)只在实数域 Rn 中取值，那么这里给出的这种表述也是等价的(equivalent.)。
+
+**默瑟定理(Mercer’s theorem)：** 设给定的 $K: R^n \times  R^n \rightarrow   R$。然后要使 $K$ 为一个有效的默瑟核(valid Mercer kernel)，其充分必要条件为：对任意的 $\{x^{(1)},...,x^{(m)}\, (m \lt \infty)$，都有对应的核矩阵(kernel matrix)为对称半正定矩阵(symmetric positive semi-definite)。
+
+对于一个给定的函数 $K$，除了之前的找出对应的特征映射 $\phi$ 之外，上面的定理还给出了另外一种方法来验证这个函数是否为有效核函数(valid kernel)。在习题集2(problem set 2) 里面有很多联系，大家可以尝试一下。
+
+在课程中，我们也简要讲了核(Kernel)的若干样例。例如，手写数字识别问题当中，给定了一个手写数字$(0-9)$的图像（$16\times 16$ 像素），目的是要认出写的是哪个数字。选用的要么是简单的多项式核(polynomial kernel) $K (x, z) = (x^T z)^d$ 或者 高斯核(Gaussian kernel)，SVM(支持向量机算法)在这个样例中表现出了非常出色的性能。这个结果挺让人吃惊的，因为输入属性 $x$ 是一个 $256$ 维的向量，也就是待识别图像的像素密度值向量，而系统之前并没有对于视觉判断的预备知识，甚至对像素彼此间是否相邻都不了解。课堂上的另一个案例中，用于分类的目标 $x$ 是字符串，例如$x$ 可以使一系列的氨基酸(amino acids)，然后连接在一起形成了蛋白质(protein)；要构建一个适用于大多数机器学习算法的合理又足够“小规模”的特征集，是很困难的，而字符串的长度还各自不同，这就更增加了难度。然而也有解决方案，设 $\phi(x)$ 为一个特征向量，计算了 $x$ 当中每一个 $k$ 长度的字符串的出现次数(number of occurrences of each length-k substring in x)。如果考虑英语字母组成给的字符串，那么这样就存在 $26^k$ 个这样的字符。这样的话，$\phi(x)$ 就是一个 $26^k$ 维的向量；这时候，即便 $k$ 的值并不算太大，这个值也会变得特别大，难以有效计算。(例如 $26^4 \approx 460000$。)不过，如果使用(动态编程风格，dynamic programming-ish)的字符串匹配算法，就可以有效率地计算 $K(x,z ) = \phi(x)^T\phi(z)$，也就是说，我们就能够对 $26^k$ 维的特征空间进行隐式处理，而根本不用去特地计算这个空间中的特征向量。
+
+关于在支持向量机算法(support vector machines)中核(kernels)的使用，我们讲得已经够清楚了，所以就不在这里多做赘述了。不过有一个思路还是值得记住的，就是核(Kernel)的用法远远不仅限于 SVM 算法当中。具体来说，只要你的学习算法，能够写成仅用输入属性向量的内积来表达的形式，那么就可以通过引入 核K(Kernel)，替换成 $K(x,z)$，来对你的算法“强力”加速，使之能够在与 $K$ 对应的高维度特征空间中有效率地运行。核(Kernel)与感知器(Perceptron)相结合，还可以产生内核感知器算法(kernel perceptron algorithm)。后文我们要学到的很多算法，也都可以适用于这样的处理，这个方法也就成为“核技巧(kernel trick)”
+
+#### 8 正则化和不可区分的情况(Regularization and the non-separable case)
+
+到目前为止，咱们对 SVM(支持向量机算法)进行的推导，都是基于一个假设，也就是所有的数据都是线性可分的。在通过特征映射 $\phi$ 来将数据映射到高维度特征空间的过程，通常会增加数据可分割的概率，但我们还是不能保证数据一直可以区分。而且，在某些案例中，查找一个分类超平面还不一定是我们的目的所在，因为也可能很容易就出现异常值。例如，如下图所示的是一个最优边界分类器(optimal margin classifier)，如果有一个单独的异常值投到了右上方的区域（如右图所示），这就会导致分界线出现显著的偏移，还会导致分类器的边界缩小了很多。
+
+![](https://raw.githubusercontent.com/Kivy-CN/Stanford-CS-229-CN/master/img/cs229note3f4.png)
+
+![](https://raw.githubusercontent.com/Kivy-CN/Stanford-CS-229-CN/master/img/cs229note3f5.png)
+
+要想让算法能够适用于非线性可分的数据集，并且使其对待异常值的敏感度降低一些，那就要把咱们的优化方法进行重构(reformulate)（使用 $l1$ **正则化** ），如下所示：
+
+</p>
+<p>\begin{aligned}<br>
+min_{\gamma,w,b}&amp; \frac 12 \parallel w\parallel <sup>2+C\sum</sup>m_{}\xi_i \<br>
+s.t.&amp; y<sup>{(i)}(w</sup>Tx^{(i)}+b) \geq1-\xi_i,i=1,…,m\<br>
+&amp; \xi_i \geq 0 ,i=1,…,m<br>
+\end{aligned}</p>
+<p class="katex-block katex-error" title="ParseError: KaTeX parse error: Can&#039;t use function &#039;$&#039; in math mode at position 21: …许数据集里面有（函数）边界小于$̲1$ 的情况了，然后如果一个样…">
+这样就允许数据集里面有（函数）边界小于$1$ 的情况了，然后如果一个样本的函数边界为 $1 - \xi_i$ （其中 $\xi \geq  0$），这就需要我们给出 $C\xi_i$ 作为**目标函数成本函数的降低值**(cost of the objective function being increased)。$C$ 是一个参数，用于控制相对权重，具体的控制需要在一对目标之间进行考量，一个是使得 $\parallel w\parallel ^2$ 取最小值（前面章节中的案例可以看到这样能够让边界最大化），另一个是确保绝大部分的样本都有至少为 $1$ 的函数边界。
+
+然后按照惯例，给出拉格朗日函数(Lagrangian)：
+
+</p>
+<p>L(w,b,\xi,\alpha,r)=\frac12w<sup>Tw+C\sum</sup>m_{i=1}\xi_i-\sum<sup>m_{i=1}\alpha_i[y</sup>{(i)}(x<sup>Tw+b)-1+\xi_i]-\sum</sup>m_{i=1}r_i\xi_i</p>
+<p class="katex-block katex-error" title="ParseError: KaTeX parse error: Can&#039;t use function &#039;$&#039; in math mode at position 10: 
+上面的式子中的 $̲\alpha_i$ 和 $r_…">
+上面的式子中的 $\alpha_i$ 和 $r_i$ 都是拉格朗日乘数（Lagrange multipliers 被限制为非负数，$\geq 0$）。这次我们就不再对对偶形式进行详细推导了，不过如往常一样设 关于 $w$ 和 $b$ 的导数为零，然后再代回去进行简化，这样就能够得到下面的该问题的对偶形式：
+
+</p>
+<p>\begin{aligned}<br>
+\max_\alpha \quad &amp; W(\alpha) =\sum<sup>m_{i=1}\alpha_i-\frac12\sum</sup>m_{i,j=1}y<sup>{(i)}y</sup>{(j)}\alpha_i\alpha_j \langle  x<sup>{(i)},x</sup>{(j)} \rangle \<br>
+s.t. \quad &amp; 0\leq \alpha_i \leq C,i=1,…,m\<br>
+&amp; \sum<sup>m_{i=1}\alpha_iy</sup>{(i)}=0  \<br>
+\end{aligned}</p>
+<p class="katex-block katex-error" title="ParseError: KaTeX parse error: Can&#039;t use function &#039;$&#039; in math mode at position 16: 
+跟以前一样，我们还是可以把 $̲w$ 用 $\alpha_i$…">
+跟以前一样，我们还是可以把 $w$ 用 $\alpha_i$ 来进行表述，如同等式 $(9)$ 所示，所以解完了对偶问题之后，我们就可以接下来使用等式 $(13)$ 来给出我们的预测。这里要注意，有一点很神奇，就是在加入了 $l1$ 正则化之后，对对偶问题的唯一改变只是约束从原来的 $0 \leq \alpha_i$ 现在变成了 $0 \leq \alpha_i \leq C$。这里对 $b^\ast$ 的计算也受到了影响而有所变动（等式 11 不再成立了(no longer valid)）；具体内容参考下一节，或者阅读 Platt 的论文。
+
+另外，KKT 对偶互补条件（dual complementarity condition，这个在下一节要用来测试 SMO 算法的收敛性）为：
+
+</p>
+<p>\begin{aligned}<br>
+\alpha_i&amp;= 0 &amp;\implies y<sup>{(i)}(w</sup>Tx^{(i)}+b)\ge 1 \qquad &amp;\text{(14)}\<br>
+\alpha_i&amp;= C &amp;\implies y<sup>{(i)}(w</sup>Tx^{(i)}+b)\le 1 \qquad &amp;\text{(15)}\<br>
+0\leq \alpha_i&amp; \leq C &amp;\implies y<sup>{(i)}(w</sup>Tx^{(i)}+b) = 1 \qquad &amp;\text{(16)}\<br>
+\end{aligned}</p>
+<p class="katex-block katex-error" title="ParseError: KaTeX parse error: Expected &#039;EOF&#039;, got &#039;#&#039; at position 47: …我们下一节就来讲这个问题。
+
+#̲### 9 SMO 优化算法 …">
+现在，剩下的问题就只是给出一个算法来具体地解这个对偶问题了，我们下一节就来讲这个问题。
+
+#### 9 SMO 优化算法 
+
+SMO 优化算法是对 sequential minimal optimization（意为序列最小化优化）的缩写，此算法于 1998 年由 John Platt 在微软研究院提出，对于从 SVM（支持向量机算法）推导出的对偶问题，这一算法提供了一种有效的解法。然后我们要先讲一下坐标上升算法(coordinate ascent algorithm)，这个算法很有趣，而且也是用来推导出 SMO 优化算法的一步。
+
+##### 9.1 坐标上升算法(Coordinate ascent )
+
+假如要解决下面这样的无约束优化问题：
+
+</p>
+<p>\max_\alpha W(\alpha_1,\alpha_2,…,\alpha_m)</p>
+<p class="katex-block katex-error" title="ParseError: KaTeX parse error: Can&#039;t use function &#039;$&#039; in math mode at position 6: 
+这里的 $̲W$ 就是关于参数 $\alp…">
+这里的 $W$ 就是关于参数 $\alpha_i$ 的某种函数，此处暂时忽略掉这个问题和支持向量机算法(SVM)的任何关系。更早之前咱们就已经学过了两种优化算法了，梯度下降法和牛顿法。下面这个新的优化算法，就叫做坐标上升算法(coordinate ascent)：
+
+</p>
+<p>\begin{aligned}<br>
+&amp;\text{loop until converge}：{  \<br>
+&amp;\qquad For\quad i=1,…,m, { \<br>
+&amp;\qquad\qquad\alpha_i:= \arg \max_{\hat \alpha_i}W(\alpha_1,…,\alpha_{i-1},\hat\alpha_i,\alpha_{i+1},…,\alpha_m) \<br>
+&amp;\qquad} \<br>
+&amp;}<br>
+\end{aligned}</p>
+<p class="katex-block katex-error" title="ParseError: KaTeX parse error: Can&#039;t use function &#039;$&#039; in math mode at position 47: …op)中，会对除了某些特定的 $̲\alpha_i$ 之外的所有…">
+所以如上式中所示，算法最内层的循环(innermost loop)中，会对除了某些特定的 $\alpha_i$ 之外的所有变量进行保存，然后重新优化 $W$ 来调整参数 $\alpha_i$。这里给出的这个版本的算法那，最内层循环对变量重新优化的顺序是按照变量排列次序 $\alpha_1, \alpha_2, . . ., \alpha_m, \alpha_1, \alpha_2, . . ..$ 进行的， 更复杂的版本可能还会选择其他的排列熟悉怒；例如，我们可以根据预测哪个变量可以使 $W(\alpha)$ 增加最多，来选择下一个更新的变量(we may choose the next variable to update according to wh_ich one we expect to allow us to make the largest increase in $W(\alpha)$)。
+
+如果在函数 $W$ 中，最内层循环中的 “$\arg \max$” 可以很有效地运行，那么坐标上升算法(coordinate ascent)就成了一个相当有效率的算法了。下面是一个坐标上升算法的示意图：
+
+![](https://raw.githubusercontent.com/Kivy-CN/Stanford-CS-229-CN/master/img/cs229note3f6.png)
+
+上图中的椭圆形就是我们要优化的二次函数的轮廓线。坐标上升算法的初始值设置为 $(2, -2)$，此外图中还标示了到全局最大值的路径。要注意，坐标上升法的每一步中，移动的方向都是平行于某个坐标轴的(parallel to one of the axes)，因为每次都只对一个变量进行了优化。
+
+##### 9.2 SMO 优化算法
+
+接下来，我们来简单推导一下 SMO 算法，作为 SVM（支持向量机算法）相关讨论的收尾。一些具体的细节就省略掉了，放到作业里面了，其他的一些内容可以参考课堂上发的纸质材料。
+
+下面就是一个（对偶）优化问题：
+
+</p>
+<p>\begin{aligned}<br>
+\max_\alpha \quad &amp; W(\alpha)= \sum^m_{i=1}\alpha_i-\frac12 \sum<sup>m_{i,j=1}y</sup>{(i)}y^{(j)}\alpha_i\alpha_j\langle x<sup>{(i)},x</sup>{(j)}\rangle &amp; \text{(17)}\<br>
+s.t.\quad &amp; 0\leq \alpha_i \leq C,i=1,…,m&amp; \text{(18)}\<br>
+&amp; \sum<sup>m_{i=1}\alpha_iy</sup>{(i)}=0&amp; \text{(19)}\<br>
+\end{aligned}</p>
+<p class="katex-block katex-error" title="ParseError: KaTeX parse error: Can&#039;t use function &#039;$&#039; in math mode at position 17: …我们假设有一系列满足约束条件 $̲(18-19)$ 的 $\al…">
+我们假设有一系列满足约束条件 $(18-19)$ 的 $\alpha_i$ 构成的集合。接下来，假设我们要保存固定的 $\alpha_2, ..., \alpha_m$ 的值，然后进行一步坐标上升，重新优化对应 $\alpha_1$的目标值(re-optimize the objective with respect to $\alpha_1$)。这样能解出来么？很不幸，不能，因为约束条件 $(19)$ 就意味着：
+
+</p>
+<p>\alpha_1y<sup>{(1)}=-\sum</sup>m_{i=2}\alpha_iy^{(i)}</p>
+<p class="katex-block katex-error" title="ParseError: KaTeX parse error: Can&#039;t use function &#039;$&#039; in math mode at position 18: …者，也可以对等号两侧同时乘以 $̲y^{(1)}$ ，然后会得到…">
+或者，也可以对等号两侧同时乘以 $y^{(1)}$ ，然后会得到下面的等式，与上面的等式是等价的：
+
+</p>
+<p>\alpha_1=-y<sup>{(1)}\sum</sup>m_{i=2}\alpha_iy^{(i)}</p>
+<p class="katex-block katex-error" title="ParseError: KaTeX parse error: Can&#039;t use function &#039;$&#039; in math mode at position 16: 
+（这一步用到了一个定理，即 $̲y^{(1)} \in {-1…">
+（这一步用到了一个定理，即 $y^{(1)} \in {-1, 1}$，所以$(y^{(1)})^2 = 1$）可见 $\alpha_1$ 是由其他的 $\alpha_i$ 决定的，这样如果我们保存固定的 $\alpha_2, ..., \alpha_m$ 的值，那就根本没办法对 $\alpha_1$ 的值进行任何修改了，否则不能满足优化问题中的约束条件 $(19)$ 了。
+
+所以，如果我们要对 $\alpha_i$ 当中的一些值进行更新的话，就必须至少同时更新两个，这样才能保证满足约束条件。基于这个情况就衍生出了 SMO 算法，简单来说内容如下所示：
+
+重复直到收敛 {
+
+1.  选择某一对的 $\alpha_i$ 和 $\alpha_j$ 以在下次迭代中进行更新 (这里需要选择那种能朝全局最大值方向最大程度靠近的一对值，using a heuristic that tries to pick the two that will allow us to make the b_iggest progress towards the global maximum)。 
+
+2.  使用对应的 $\alpha_i$ 和 $\alpha_j$ 来重新优化(Re-optimize) $W(\alpha)$ ，而保持其他的 $\alpha_k$ 值固定($k\neq i,j$)。
+
+}
+
+我们可以检查在某些收敛公差参数 *tol* 范围内，KKT 对偶互补条件能否被满足，以此来检验这个算法的收敛性。这里的 *tol* 是收敛公差参数(convergence tolerance parameter)，通常都是设定到大概 $0.01$ 到 $0.001$。（更多细节内容参考文献以及伪代码。）
+
+SMO 算法有效的一个关键原因是对 $\alpha_i, \alpha_j$ 的更新计算起来很有效率。接下来咱们简要介绍一下推导高效率更新的大概思路。
+
+假设我们现在有某些 $\alpha_i$ 满足约束条件 $(18-19)$，如果我们决定要保存固定的 $\alpha_3, ..., \alpha_m$ 值，然后要使用这组 $\alpha_1$ 和 $\alpha_2$ 来重新优化 $W (\alpha_1, \alpha_2, ..., \alpha_m)$ ，这样成对更新也是为了满足约束条件。根据约束条件 $(19)$，可以得到：
+
+</p>
+<p>\alpha_1y^{(1)} + \alpha_2y^{(2)} = -\sum<sup>m_{i=3}\alpha_iy</sup>{(i)}</p>
+<p class="katex-block katex-error" title="ParseError: KaTeX parse error: Can&#039;t use function &#039;$&#039; in math mode at position 22: …值是固定的，因为我们已经固定了$̲\alpha_3, ..., …">
+等号右边的值是固定的，因为我们已经固定了$\alpha_3, ..., \alpha_m$ 的值，所以就可以把等号右边的项目简写成一个常数 $\zeta$:
+
+</p>
+<p>\alpha_1y^{(1)} + \alpha_2y^{(2)} = \zeta \qquad \text{(20)}</p>
+<p class="katex-block katex-error" title="ParseError: KaTeX parse error: Can&#039;t use function &#039;$&#039; in math mode at position 19: …我们就可以用下面的图来表述对 $̲\alpha_1$ 和 $\a…">
+然后我们就可以用下面的图来表述对 $\alpha_1$ 和 $\alpha_2$ 的约束条件：
+
+![](https://raw.githubusercontent.com/Kivy-CN/Stanford-CS-229-CN/master/img/cs229note3f7.png)
+
+根据约束条件$(18)$，可知 必须在图中 $\alpha_1$和 $\alpha_2$ 必须在 $[0, C] \times  [0, C]$ 所构成的方框中。另外图中还有一条线 $\alpha_1y^{(1)} +\alpha_2y^{(2)}  = \zeta$，而我们知道$\alpha_1$和 $\alpha_2$ 必须在这条线上。还需要注意的是，通过上面的约束条件，还能知道 $L \leq \alpha_2 \leq H$；否则 ($\alpha_1,\alpha_2$) 就不能同时满足在方框内并位于直线上这两个约束条件。在上面这个例子中，$L = 0$。但考虑到直线 $\alpha_1y^{(1)} + \alpha_2y^{(2)}  = \zeta$ 的形状方向，这个 $L = 0$ 还未必就是最佳的；不过通常来讲，保证$\alpha_1, \alpha_2$ 位于 $[0, C] \times  [0, C]$ 方框内的 $\alpha_2$ 可能的值，都会有一个下界 $L$ 和一个上界 $H$。
+
+利用等式$(20)$，我们还可以把 $\alpha_1$ 写成 $\alpha_2$ 的函数的形式：
+
+</p>
+<p>\alpha_1=(\zeta-\alpha_2y<sup>{(2)})y</sup>{(1)}</p>
+<p class="katex-block katex-error" title="ParseError: KaTeX parse error: Can&#039;t use function &#039;$&#039; in math mode at position 27: …导过程吧；这里还是用到了定理：$̲y^{(1)} \in {-1…">
+（自己检查一下这个推导过程吧；这里还是用到了定理：$y^{(1)} \in {-1, 1}$，所以 $(y^{(1)})^2 = 1$。）所以目标函数 $W(\alpha)$ 就可以写成：
+
+</p>
+<p>W(\alpha_1,\alpha_2,…,\alpha_m)=W((\zeta-\alpha_2y<sup>{(2)})y</sup>{(1),\alpha_2,…,\alpha_m})</p>
+<p class="katex-block katex-error" title="ParseError: KaTeX parse error: Can&#039;t use function &#039;$&#039; in math mode at position 4: 
+把 $̲\alpha_3, ..., …">
+把 $\alpha_3, ..., \alpha_m$ 当做常量，你就能证明上面这个函数其实只是一个关于 $\alpha_2$ 的二次函数。也就是说，其实也可以写成 $a\alpha_2^2 + b\alpha_2 + c$ 的形式，其中的 $a, b, c$ 参数。如果我们暂时忽略掉方框约束条件(18)(也就是说 $L \leq \alpha_2 \leq H)$，那就很容易通过使导数为零来找出此二次函数的最大值，继而进行求解。我们设 $\alpha_2^{new, unclipped}$ 表示为 $\alpha$ 的结果值。你需要自己证明，如果我们要使关于 $\alpha_2$ 的函数 $W$取最大值，而又受到方框约束条件的限制，那么就可以把 $\alpha_2^{new, unclipped}$的值“粘贴”到$[L, H]$ 这个间隔内(taking $\alpha_2^{new, unclipped}$ and “clipping” it to lie in the [L, H] interval)，这样来找到最优值结果，就得到了：
+
+</p>
+<p>\alpha_2^{new}= \begin{cases}  H &amp; if \quad\alpha_2^{new, unclipped}&gt; H\ \alpha_2^{new, unclipped} &amp; if \quad L\leq \alpha_2^{new, unclipped}\leq H\  L &amp; if \quad \alpha_2^{new, unclipped} &lt;L\ \end{cases}</p>
+<p class="katex-block katex-error" title="ParseError: KaTeX parse error: Can&#039;t use function &#039;$&#039; in math mode at position 9: 
+最终，找到了 $̲\alpha_2^{new}$…">
+最终，找到了 $\alpha_2^{new}$ 之后，就可以利用等式$(20)$来代回这个结果，就能得到 $\alpha_1^{new}$ 的最优值。
+
+此外还有一些其他的细节，也都挺简单，不过这里就不讲了，你自己去读一下 Platt 的论文吧：一个是用于对后续用于更新的 $\alpha_i, \alpha_j$ 启发式选择; 另一个是如何在 SMO算法 运行的同时来对 $b$ 进行更新。
+
+
+### 参考</p>
+
+      
+    </div>
+
+    
+      
+
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\fc734306\" rel="bookmark">[机器学习-CS229]深度学习</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\771d2e61\" rel="bookmark">[机器学习-CS229-homework]ps1_solution</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\44688108\" rel="bookmark">[机器学习-CS229]表示函数</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\a3c2b0dc\" rel="bookmark">[机器学习-CS229]提升</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\8701aa3b\" rel="bookmark">[机器学习-CS229]损失函数</a></div>
+      
+    </li>
+  
+  </ul>
+
+
+    
+
+    
+    
+    
+    <div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/posts/7e4d61c4/">[机器学习-CS229]支持向量机</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 Brian Yi 的个人博客">Brian Yi</a></p>
+  <p><span>发布时间:</span>2019年07月22日 - 16:07</p>
+  <p><span>最后更新:</span>2019年07月22日 - 19:07</p>
+  <p><span>原始链接:</span><a href="/posts/7e4d61c4/" title="[机器学习-CS229]支持向量机">https://brianyi.github.io/posts/7e4d61c4/</a>
+    <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://brianyi.github.io/posts/7e4d61c4/" aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+    });
+    });  
+</script>
+
+      
+    </div>
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/CS229/" class="fa fa-tag" style="font-size:16px;border-bottom:none;">CS229</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+          <div class="wp_rating">
+            <div id="wpac-rating"></div>
+          </div>
+        
+
+        
+
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/e2308a48/" rel="next" title="[机器学习-CS229]生成学习算法">
+                <i class="fa fa-chevron-left"></i> [机器学习-CS229]生成学习算法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/posts/bd524738/" rel="prev" title="[机器学习-CS229]学习理论">
+                [机器学习-CS229]学习理论 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Brian Yi">
+            
+              <p class="site-author-name" itemprop="name">Brian Yi</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">172</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">20</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">66</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/BrianYi" title="GitHub &rarr; https://github.com/BrianYi" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="mailto:yijiazhen123@gmail.com" title="E-Mail &rarr; mailto:yijiazhen123@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#cs229-课程讲义中文翻译"><span class="nav-number">1.</span> <span class="nav-text"> CS229 课程讲义中文翻译</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第三章"><span class="nav-number">2.</span> <span class="nav-text"> 第三章</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第五部分-支持向量机support-vector-machines"><span class="nav-number">2.0.1.</span> <span class="nav-text"> 第五部分 支持向量机(Support Vector Machines)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-边界margins直觉intuition"><span class="nav-number">2.0.1.1.</span> <span class="nav-text"> 1 边界(Margins)：直觉(Intuition)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-记号notation"><span class="nav-number">2.0.1.2.</span> <span class="nav-text"> 2 记号(Notation)</span></a></li></ol></li></ol></li></ol></div>
+            
+            <span class="links-of-author-item ">
+                <a href="javascript:;" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索</a>
+            </span>
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Brian Yi</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="站点总字数">1.2m</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+    <span title="站点阅读时长">18:04</span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.1"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.1"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
+
+  
+  <script src="/js/js.cookie.js?v=7.1.1"></script>
+  <script src="/js/scroll-cookie.js?v=7.1.1"></script>
+
+
+  
+
+  
+
+  
+  
+
+<script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+
+
+
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'w63e2LQ8OdmB34En763YIlqy-gzGzoHsz',
+    appKey: 'tS6NvoSvx3zOIyodVKLiJJaS',
+    placeholder: '请在这里留下你的评论...',
+    avatar: '',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn'
+  });
+</script>
+
+
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.json";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                // fixed:local search has bug
+                if (data.title==undefined)
+                    return [];
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+  
+  <script>
+    
+    function addCount(Counter) {
+      var $visitors = $('.leancloud_visitors');
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            
+            Counter('put', '/classes/Counter/' + counter.objectId, JSON.stringify({ time: { '__op': 'Increment', 'amount': 1 } }))
+            
+              .done(function() {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.time + 1);
+              })
+            
+              .fail(function ({ responseJSON }) {
+                console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
+              })
+          } else {
+            
+              Counter('post', '/classes/Counter', JSON.stringify({ title: title, url: url, time: 1 }))
+                .done(function() {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(1);
+                })
+                .fail(function() {
+                  console.log('Failed to create');
+                });
+            
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log('LeanCloud Counter Error: ' + responseJSON.code + ' ' + responseJSON.error);
+        });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + 'w63e2LQ8OdmB34En763YIlqy-gzGzoHsz')
+        .done(function({ api_server }) {
+          var Counter = function(method, url, data) {
+            return $.ajax({
+              method: method,
+              url: 'https://' + api_server + '/1.1' + url,
+              headers: {
+                'X-LC-Id': 'w63e2LQ8OdmB34En763YIlqy-gzGzoHsz',
+                'X-LC-Key': 'tS6NvoSvx3zOIyodVKLiJJaS',
+                'Content-Type': 'application/json',
+              },
+              data: data
+            });
+          };
+          
+            addCount(Counter);
+          
+        });
+    });
+  </script>
+
+
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling }
+        if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next) }
+      }
+    });
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      document.getElementById(all[i].inputID + '-Frame').parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML"></script>
+
+    
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <script>
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id: 18388,
+      el: 'wpac-rating',
+      color: 'fc6423'
+    });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

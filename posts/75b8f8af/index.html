@@ -136,7 +136,7 @@
 <meta property="og:site_name" content="Brian&#39;s Home">
 <meta property="og:description" content="k-近邻算法概述 k-近邻算法采用测量不同特征值之间距离进行分类  优点: 精度高,对异常值不敏感,无数据输入假定 缺点: 计算复杂度高,空间复杂度高 使用数据范围: 数值型和标称型   k-近邻算法的伪代码 对位未知类别属性的数据集中的每个点依次执行以下操作:  计算已知类别数据集中的点与当前点之间的距离 按照距离递增次序排序 选取与当前点距离最小的k个点 确定前k个点所在类别的出现频率 返回">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-06-26T14:20:31.060Z">
+<meta property="og:updated_time" content="2019-07-25T12:38:40.398Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[机器学习实战]第2章 k-近邻算法">
 <meta name="twitter:description" content="k-近邻算法概述 k-近邻算法采用测量不同特征值之间距离进行分类  优点: 精度高,对异常值不敏感,无数据输入假定 缺点: 计算复杂度高,空间复杂度高 使用数据范围: 数值型和标称型   k-近邻算法的伪代码 对位未知类别属性的数据集中的每个点依次执行以下操作:  计算已知类别数据集中的点与当前点之间的距离 按照距离递增次序排序 选取与当前点距离最小的k个点 确定前k个点所在类别的出现频率 返回">
@@ -309,7 +309,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">57</span></a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">66</span></a>
 
   </li>
         
@@ -328,7 +328,7 @@
       
     
 
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">18</span></a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">20</span></a>
 
   </li>
         
@@ -347,7 +347,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">119</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">172</span></a>
 
   </li>
 
@@ -496,7 +496,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-06-26 22:20:31" itemprop="dateModified" datetime="2019-06-26T22:20:31+08:00">2019-06-26</time>
+                <time title="修改时间：2019-07-25 20:38:40" itemprop="dateModified" datetime="2019-07-25T20:38:40+08:00">2019-07-25</time>
               
             
           </span>
@@ -566,7 +566,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">1.6k</span>
+                <span title="本文字数">4k</span>
               
 
               
@@ -580,7 +580,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">1 分钟</span>
+                <span title="阅读时长">4 分钟</span>
               
             </div>
           
@@ -617,11 +617,16 @@
 <li>返回前k个点出现频率最高的类别作为当前点的预测分类</li>
 </ol>
 <h3 id="k-近邻算法核心代码"><a class="markdownIt-Anchor" href="#k-近邻算法核心代码"></a> k-近邻算法核心代码</h3>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">classify0</span><span class="params">(inX, dataSet, labels, k)</span>:</span></span><br><span class="line">  <span class="string">'''</span></span><br><span class="line"><span class="string">  :param inX: 预测数据</span></span><br><span class="line"><span class="string">  :param dataSet: 已知数据集</span></span><br><span class="line"><span class="string">  :param labels: 已知数据所属标签值</span></span><br><span class="line"><span class="string">  :param k: 取前k个点出现频率最高的类别作为当前点的预测分类</span></span><br><span class="line"><span class="string">  :return:  </span></span><br><span class="line"><span class="string">  '''</span></span><br><span class="line">  dataSetSize = dataSet.shape[<span class="number">0</span>]  <span class="comment"># 获取一维长度(即样本数量)</span></span><br><span class="line">  diffMat = tile(inX, (dataSetSize, <span class="number">1</span>)) - dataSet <span class="comment"># 获取差异矩阵</span></span><br><span class="line">  sqDiffMat = diffMat**<span class="number">2</span>  <span class="comment"># 取平方</span></span><br><span class="line">  sqDistances = sqDiffMat.sum(axis=<span class="number">1</span>) <span class="comment"># 二维数据累加,即计算每个点与预测点距离的平方和</span></span><br><span class="line">  distances = sqDistances**<span class="number">0.5</span>  <span class="comment"># 开根号</span></span><br><span class="line">  sortedDistIndicies = distances.argsort()  <span class="comment"># 返回排序后的索引值(数据顺序不变)</span></span><br><span class="line">  classCount = &#123;&#125;</span><br><span class="line">  <span class="keyword">for</span> i <span class="keyword">in</span> range(k):</span><br><span class="line">    voteILabel = labels[sortedDistIndicies[i]]</span><br><span class="line">    classCount[voteILabel] = classCount.get(voteILabel, <span class="number">0</span>) + <span class="number">1</span>  <span class="comment">#get(key, default): Return the value for key if key is in the dictionary, else default.</span></span><br><span class="line">  sortedClassCount = sorted(classCount.items(), key=operator.itemgetter(<span class="number">1</span>), reverse=<span class="literal">True</span>) <span class="comment"># 逆序后选择发生频率最高的标签</span></span><br><span class="line">  <span class="keyword">return</span> sortedClassCount[<span class="number">0</span>][<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">classify0</span><span class="params">(inX, dataSet, labels, k)</span>:</span></span><br><span class="line">  <span class="string">'''</span></span><br><span class="line"><span class="string">  :param inX: 预测数据</span></span><br><span class="line"><span class="string">  :param dataSet: 已知数据集</span></span><br><span class="line"><span class="string">  :param labels: 已知数据所属标签值</span></span><br><span class="line"><span class="string">  :param k: 取前k个点出现频率最高的类别作为当前点的预测分类</span></span><br><span class="line"><span class="string">  :return:  </span></span><br><span class="line"><span class="string">  '''</span></span><br><span class="line">  dataSetSize = dataSet.shape[<span class="number">0</span>]  <span class="comment"># 获取一维长度(即样本数量)</span></span><br><span class="line">  diffMat = inX - dataSet <span class="comment"># 获取差异矩阵</span></span><br><span class="line">  sqDiffMat = diffMat**<span class="number">2</span>  <span class="comment"># 取平方</span></span><br><span class="line">  sqDistances = sqDiffMat.sum(axis=<span class="number">1</span>) <span class="comment"># 二维数据累加,即计算每个点与预测点距离的平方和</span></span><br><span class="line">  distances = sqDistances**<span class="number">0.5</span>  <span class="comment"># 开根号</span></span><br><span class="line">  sortedDistIndicies = distances.argsort()  <span class="comment"># 返回排序后的索引值(数据顺序不变)</span></span><br><span class="line">  classCount = &#123;&#125;</span><br><span class="line">  <span class="keyword">for</span> i <span class="keyword">in</span> range(k):</span><br><span class="line">    voteILabel = labels[sortedDistIndicies[i]]</span><br><span class="line">    classCount[voteILabel] = classCount.get(voteILabel, <span class="number">0</span>) + <span class="number">1</span>  <span class="comment">#get(key, default): Return the value for key if key is in the dictionary, else default.</span></span><br><span class="line">  sortedClassCount = sorted(classCount.items(), key=operator.itemgetter(<span class="number">1</span>), reverse=<span class="literal">True</span>) <span class="comment"># 逆序后选择发生频率最高的标签</span></span><br><span class="line">  <span class="keyword">return</span> sortedClassCount[<span class="number">0</span>][<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
 <h3 id="span-idjump-autonorm特征值归一化特征缩放span"><a class="markdownIt-Anchor" href="#span-idjump-autonorm特征值归一化特征缩放span"></a> <span id="jump-autonorm">特征值归一化(特征缩放)</span></h3>
 <p>特征中,有些特征的数字差值对计算结果影响较大,而实际每个特征应当是同等重要的,因此需要进行归一化处理,将数值都转为比重(0.0~1.0)<br>
 公式: $$newValue = \frac{oldValue-minValue}{maxValue-minValue}$$</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">auto_norm</span><span class="params">(X)</span>:</span></span><br><span class="line">    <span class="string">"""特征归一化(或特征缩放)</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    Arguments:</span></span><br><span class="line"><span class="string">        X &#123;array&#125; -- 数据集</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    Returns:</span></span><br><span class="line"><span class="string">        array -- 返回归一化后的数据集</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    X=np.array(X)   </span><br><span class="line">    n=len(X[<span class="number">0</span>])</span><br><span class="line">    <span class="comment"># 获取各column最小值</span></span><br><span class="line">    minVals=X.min(<span class="number">0</span>)    </span><br><span class="line">    <span class="comment"># 获取各column最大值    </span></span><br><span class="line">    maxVals=X.max(<span class="number">0</span>)    </span><br><span class="line">    <span class="comment"># 计算每个数据所在比重(0.0~1.0)</span></span><br><span class="line">    newVals=(X-minVals)/(maxVals-minVals)</span><br><span class="line">    <span class="keyword">return</span> newVals</span><br></pre></td></tr></table></figure>
+<h3 id="完整实现代码"><a class="markdownIt-Anchor" href="#完整实现代码"></a> 完整实现代码</h3>
+<p>数据集下载: <a href="digits.zip">digits.zip</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> os <span class="keyword">import</span> listdir</span><br><span class="line"></span><br><span class="line"><span class="comment"># K近邻类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NearestNeighbor</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 训练</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">train</span><span class="params">(self, X, y)</span>:</span></span><br><span class="line">        X = np.array(X)</span><br><span class="line">        y = np.array(y)</span><br><span class="line">        self.Xtr = X</span><br><span class="line">        self.ytr = y</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 预测</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">predict</span><span class="params">(self, X)</span>:</span></span><br><span class="line">        X = np.array(X)</span><br><span class="line">        num_test = X.shape[<span class="number">0</span>]</span><br><span class="line">        Ypred = np.zeros(num_test, dtype = self.ytr.dtype)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(num_test):</span><br><span class="line">            <span class="comment"># 当前点的各个维度值与所有点的各个维度值进行相减取绝对值,找出最小值(即距离最近)</span></span><br><span class="line">            distances = np.sum(np.abs(self.Xtr - X[i,:]), axis=<span class="number">1</span>)</span><br><span class="line">            min_index = np.argmin(distances)</span><br><span class="line">            Ypred[i] = self.ytr[min_index]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> Ypred</span><br><span class="line"></span><br><span class="line"><span class="comment"># 文件内容转矩阵</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">file2matrix</span><span class="params">(filename)</span>:</span></span><br><span class="line">    fr = open(filename)</span><br><span class="line">    arrayOfLines = fr.readlines()</span><br><span class="line">    numberOfLines = len(arrayOfLines)</span><br><span class="line">    returnMat = np.zeros((numberOfLines, <span class="number">3</span>))</span><br><span class="line">    classLabelVector = []</span><br><span class="line">    index = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> arrayOfLines:</span><br><span class="line">        line = line.strip()</span><br><span class="line">        listFromLine = line.split(<span class="string">'\t'</span>)</span><br><span class="line">        returnMat[index, :] = listFromLine[<span class="number">0</span>:<span class="number">3</span>]</span><br><span class="line">        classLabelVector.append(int(listFromLine[<span class="number">-1</span>]))</span><br><span class="line">        index += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> returnMat, classLabelVector</span><br><span class="line"></span><br><span class="line"><span class="comment"># 图片转vector</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">img2vector</span><span class="params">(filename)</span>:</span></span><br><span class="line">    returnVect = np.zeros((<span class="number">1</span>, <span class="number">1024</span>))</span><br><span class="line">    fr = open(filename)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">32</span>):</span><br><span class="line">        lineStr = fr.readline()</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">32</span>):</span><br><span class="line">            returnVect[<span class="number">0</span>, i * <span class="number">32</span> + j] = int(lineStr[j])</span><br><span class="line">    <span class="keyword">return</span> returnVect</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取训练数据集</span></span><br><span class="line">trainFiles = listdir(<span class="string">'trainingDigits'</span>)</span><br><span class="line">lenTrainFiles = len(trainFiles)</span><br><span class="line">trainDataSet = np.zeros((lenTrainFiles, <span class="number">1024</span>))</span><br><span class="line">trainLabels = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(lenTrainFiles):</span><br><span class="line">    fileFullNameStr = trainFiles[i]</span><br><span class="line">    fileNameStr = fileFullNameStr.split(<span class="string">'.'</span>)[<span class="number">0</span>]</span><br><span class="line">    classNumber = int(fileNameStr.split(<span class="string">'_'</span>)[<span class="number">0</span>])</span><br><span class="line">    trainLabels.append(classNumber)</span><br><span class="line">    trainDataSet[i,:] = img2vector(<span class="string">'trainingDigits/&#123;&#125;'</span>.format(trainFiles[i]))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取测试数据集</span></span><br><span class="line">testFiles = listdir(<span class="string">'testDigits'</span>)</span><br><span class="line">lenTestFiles = len(testFiles)</span><br><span class="line">testDataSet = np.zeros((lenTestFiles, <span class="number">1024</span>))</span><br><span class="line">testLabels = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(lenTestFiles):</span><br><span class="line">    fileFullNameStr = testFiles[i]</span><br><span class="line">    fileNameStr = fileFullNameStr.split(<span class="string">'.'</span>)[<span class="number">0</span>]</span><br><span class="line">    classNumber = int(fileNameStr.split(<span class="string">'_'</span>)[<span class="number">0</span>])</span><br><span class="line">    testLabels.append(classNumber)</span><br><span class="line">    testDataSet[i, :] = img2vector(<span class="string">'testDigits/&#123;&#125;'</span>.format(fileFullNameStr))</span><br><span class="line"></span><br><span class="line"><span class="comment"># k近邻预测</span></span><br><span class="line">near = NearestNeighbor()</span><br><span class="line">near.train(trainDataSet, trainLabels)</span><br><span class="line">y = near.predict(testDataSet)</span><br><span class="line">errorCount = np.sum(y != testLabels)</span><br><span class="line">print(<span class="string">"error rate:&#123;0:f&#125;"</span>.format(errorCount*<span class="number">1.0</span>/lenTestFiles))</span><br></pre></td></tr></table></figure>
+<p>结果如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">error rate:0.013742</span><br></pre></td></tr></table></figure>
 <h3 id="小结"><a class="markdownIt-Anchor" href="#小结"></a> 小结</h3>
 <p>k-近邻算法对于数据量不是很大的情况还是比较适宜的,因为效率不高,不过可以采用建立k-tree的方法来提高搜索效率</p>
 
@@ -689,7 +694,7 @@
   <p><span>本文标题:</span><a href="/posts/75b8f8af/">[机器学习实战]第2章 k-近邻算法</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 Brian Yi 的个人博客">Brian Yi</a></p>
   <p><span>发布时间:</span>2019年05月18日 - 16:05</p>
-  <p><span>最后更新:</span>2019年06月26日 - 22:06</p>
+  <p><span>最后更新:</span>2019年07月25日 - 20:07</p>
   <p><span>原始链接:</span><a href="/posts/75b8f8af/" title="[机器学习实战]第2章 k-近邻算法">https://brianyi.github.io/posts/75b8f8af/</a>
     <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://brianyi.github.io/posts/75b8f8af/" aria-label="复制成功！"></i></span>
   </p>
@@ -836,7 +841,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">119</span>
+                    <span class="site-state-item-count">172</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -889,7 +894,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">18</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">20</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -1020,7 +1029,25 @@
                     
                       
                     
-                    <span class="site-state-item-count">57</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">66</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1087,7 +1114,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#k-近邻算法概述"><span class="nav-number">1.</span> <span class="nav-text"> k-近邻算法概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#k-近邻算法的伪代码"><span class="nav-number">2.</span> <span class="nav-text"> k-近邻算法的伪代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#k-近邻算法核心代码"><span class="nav-number">3.</span> <span class="nav-text"> k-近邻算法核心代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#span-idjump-autonorm特征值归一化特征缩放span"><span class="nav-number">4.</span> <span class="nav-text"> 特征值归一化(特征缩放)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#小结"><span class="nav-number">5.</span> <span class="nav-text"> 小结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#k-近邻算法概述"><span class="nav-number">1.</span> <span class="nav-text"> k-近邻算法概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#k-近邻算法的伪代码"><span class="nav-number">2.</span> <span class="nav-text"> k-近邻算法的伪代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#k-近邻算法核心代码"><span class="nav-number">3.</span> <span class="nav-text"> k-近邻算法核心代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#span-idjump-autonorm特征值归一化特征缩放span"><span class="nav-number">4.</span> <span class="nav-text"> 特征值归一化(特征缩放)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#完整实现代码"><span class="nav-number">5.</span> <span class="nav-text"> 完整实现代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#小结"><span class="nav-number">6.</span> <span class="nav-text"> 小结</span></a></li></ol></div>
             
             <span class="links-of-author-item ">
                 <a href="javascript:;" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索</a>
@@ -1128,7 +1155,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">630k</span>
+    <span title="站点总字数">1.2m</span>
   
 
   
@@ -1137,7 +1164,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">9:33</span>
+    <span title="站点阅读时长">18:04</span>
   
 </div>
 
@@ -1732,7 +1759,7 @@
     }
   });
 </script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML"></script>
 
     
   

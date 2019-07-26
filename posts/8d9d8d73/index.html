@@ -139,7 +139,7 @@
 <meta property="og:image" content="https://brianyi.github.io/posts/8d9d8d73/20190705164752123.png">
 <meta property="og:image" content="https://brianyi.github.io/posts/8d9d8d73/20190705164602122.png">
 <meta property="og:image" content="https://brianyi.github.io/posts/8d9d8d73/20190705184648124.png">
-<meta property="og:updated_time" content="2019-07-09T12:12:30.877Z">
+<meta property="og:updated_time" content="2019-07-13T03:03:52.577Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[深度学习入门-基于Python的理论与实现]第4章 神经网络的学习">
 <meta name="twitter:description" content="损失函数 神经网络的学习中所用的指标称为损失函数(loss function).  均方误差 均方误差如下式所示(单个数据的损失函数) E=12∑k(yk−tk)2\begin{aligned}     E=\frac{1}{2}\sum_k(y_k-t_k)^2 \end{aligned}E=21​k∑​(yk​−tk​)2​ 这里,yky_kyk​是表示神经网络的输出,tkt_ktk​表示监">
@@ -313,7 +313,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">57</span></a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">66</span></a>
 
   </li>
         
@@ -332,7 +332,7 @@
       
     
 
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">18</span></a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">20</span></a>
 
   </li>
         
@@ -351,7 +351,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">119</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">172</span></a>
 
   </li>
 
@@ -500,7 +500,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-07-09 20:12:30" itemprop="dateModified" datetime="2019-07-09T20:12:30+08:00">2019-07-09</time>
+                <time title="修改时间：2019-07-13 11:03:52" itemprop="dateModified" datetime="2019-07-13T11:03:52+08:00">2019-07-13</time>
               
             
           </span>
@@ -618,7 +618,7 @@
 <img src="/posts/8d9d8d73/20190705164752123.png">
 <h4 id="交叉熵误差"><a class="markdownIt-Anchor" href="#交叉熵误差"></a> 交叉熵误差</h4>
 <p>首先给出通用交叉熵误差代码(适用于单个数据的交叉熵误差计算和mini-batch版交叉熵误差计算)</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">cross_entropy_error</span><span class="params">(y, t)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> y.ndim == <span class="number">1</span>:</span><br><span class="line">        t = t.reshape(<span class="number">1</span>, t.size)</span><br><span class="line">        y = y.reshape(<span class="number">1</span>, y.size)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 监督数据是one-hot-vector的情况下，转换为正确解标签的索引</span></span><br><span class="line">    <span class="keyword">if</span> t.size == y.size:</span><br><span class="line">        t = t.argmax(axis=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    batch_size = y.shape[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">return</span> -np.sum(np.log(y[np.arange(batch_size), t] + <span class="number">1e-7</span>)) / batch_size</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">cross_entropy_error</span><span class="params">(y, t)</span>:</span></span><br><span class="line">    <span class="comment"># 若y只有1个样本(one-hot-vector)</span></span><br><span class="line">    <span class="keyword">if</span> y.ndim == <span class="number">1</span>:</span><br><span class="line">        t = t.reshape(<span class="number">1</span>, t.size)</span><br><span class="line">        y = y.reshape(<span class="number">1</span>, y.size)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 数据t是one-hot-vector的情况下，转换为正确解标签的索引</span></span><br><span class="line">    <span class="keyword">if</span> t.size == y.size:</span><br><span class="line">        t = t.argmax(axis=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    batch_size = y.shape[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">return</span> -np.sum(np.log(y[np.arange(batch_size), t] + <span class="number">1e-7</span>)) / batch_size</span><br></pre></td></tr></table></figure>
 <p>交叉熵误差如下式所示(单个数据的损失函数)</p>
 <p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mtable rowspacing="0.24999999999999992em" columnalign="right" columnspacing><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mi>E</mi><mo>=</mo><mo>−</mo><munder><mo>∑</mo><mi>k</mi></munder><mrow><msub><mi>t</mi><mi>k</mi></msub><mi>log</mi><mo>⁡</mo><msub><mi>y</mi><mi>k</mi></msub></mrow></mrow></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{aligned}
     E=-\sum_k{t_k\log{y_k}}
@@ -696,6 +696,13 @@
     <li class="popular-posts-item">
       
       
+      <div class="popular-posts-title"><a href="\posts\43d40337\" rel="bookmark">[深度学习入门-基于Python的理论与实现]第8章 深度学习</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
       <div class="popular-posts-title"><a href="\posts\d52bdd13\" rel="bookmark">[深度学习入门-基于Python的理论与实现]第7章 卷积神经网络</a></div>
       
     </li>
@@ -721,13 +728,6 @@
       
     </li>
   
-    <li class="popular-posts-item">
-      
-      
-      <div class="popular-posts-title"><a href="\posts\5b01321f\" rel="bookmark">[深度学习入门-基于Python的理论与实现]第2章 感知机</a></div>
-      
-    </li>
-  
   </ul>
 
 
@@ -748,7 +748,7 @@
   <p><span>本文标题:</span><a href="/posts/8d9d8d73/">[深度学习入门-基于Python的理论与实现]第4章 神经网络的学习</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 Brian Yi 的个人博客">Brian Yi</a></p>
   <p><span>发布时间:</span>2019年07月05日 - 16:07</p>
-  <p><span>最后更新:</span>2019年07月09日 - 20:07</p>
+  <p><span>最后更新:</span>2019年07月13日 - 11:07</p>
   <p><span>原始链接:</span><a href="/posts/8d9d8d73/" title="[深度学习入门-基于Python的理论与实现]第4章 神经网络的学习">https://brianyi.github.io/posts/8d9d8d73/</a>
     <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://brianyi.github.io/posts/8d9d8d73/" aria-label="复制成功！"></i></span>
   </p>
@@ -895,7 +895,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">119</span>
+                    <span class="site-state-item-count">172</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -948,7 +948,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">18</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">20</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -1079,7 +1083,25 @@
                     
                       
                     
-                    <span class="site-state-item-count">57</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">66</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1187,7 +1209,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">630k</span>
+    <span title="站点总字数">1.2m</span>
   
 
   
@@ -1196,7 +1218,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">9:33</span>
+    <span title="站点阅读时长">18:04</span>
   
 </div>
 
@@ -1791,7 +1813,7 @@
     }
   });
 </script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML"></script>
 
     
   

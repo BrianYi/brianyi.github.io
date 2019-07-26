@@ -305,7 +305,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">57</span></a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">66</span></a>
 
   </li>
         
@@ -324,7 +324,7 @@
       
     
 
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">18</span></a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">20</span></a>
 
   </li>
         
@@ -343,7 +343,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">119</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">172</span></a>
 
   </li>
 
@@ -431,7 +431,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://brianyi.github.io/posts/f4fb85e5/">
+    <link itemprop="mainEntityOfPage" href="https://brianyi.github.io/posts/cb089cf5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Brian Yi">
@@ -451,7 +451,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/posts/f4fb85e5/" class="post-title-link" itemprop="url">[leetcode]718.最长重复子数组</a>
+                <a href="/posts/cb089cf5/" class="post-title-link" itemprop="url">[leetcode]5132.颜色交替的最短路径</a>
               
             
           </h1>
@@ -477,7 +477,7 @@
                 
               
 
-              <time title="创建时间：2019-06-17 09:22:19 / 修改时间：09:27:22" itemprop="dateCreated datePublished" datetime="2019-06-17T09:22:19+08:00">2019-06-17</time>
+              <time title="创建时间：2019-07-22 08:43:06 / 修改时间：09:00:16" itemprop="dateCreated datePublished" datetime="2019-07-22T08:43:06+08:00">2019-07-22</time>
             
 
             
@@ -518,8 +518,8 @@
                 </span>
             
                 <span class="post-meta-item-text">评论数：</span>
-                <a href="/posts/f4fb85e5/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/f4fb85e5/" itemprop="commentCount"></span>
+                <a href="/posts/cb089cf5/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/cb089cf5/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -527,7 +527,7 @@
 
           
           
-            <span id="/posts/f4fb85e5/" class="leancloud_visitors" data-flag-title="[leetcode]718.最长重复子数组">
+            <span id="/posts/cb089cf5/" class="leancloud_visitors" data-flag-title="[leetcode]5132.颜色交替的最短路径">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -552,7 +552,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">704</span>
+                <span title="本文字数">1.2k</span>
               
 
               
@@ -591,17 +591,16 @@
             <p>
               
  解题思路
-dp思想,dp[i][j]表示A以下标i作为匹配的最后一个数字,B以下标j作为匹配的最后一个数字的匹配长度
-最后一个字符不匹配,那么直接dp[i][j]=0
-核心公式如下
-dp[i][j]=1+max⁡(dp[i][j],dp[i−1][j−1])\begin{aligned}
-   
+v[x][k]: 表示与x关联,出边色为k的边
+d[x][k]: 表示以x为终点,出边色为k的最短距离
+图的bfs遍历算法
+const int INF = 1000000000;using pii = pair&lt;int, int&gt;;vector&lt;int&gt; sho
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/posts/f4fb85e5/#more" rel="contents">
+              <a class="btn" href="/posts/cb089cf5/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -663,7 +662,7 @@ dp[i][j]=1+max⁡(dp[i][j],dp[i−1][j−1])\begin{aligned}
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://brianyi.github.io/posts/33b9c83/">
+    <link itemprop="mainEntityOfPage" href="https://brianyi.github.io/posts/54dc590d/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Brian Yi">
@@ -683,7 +682,7 @@ dp[i][j]=1+max⁡(dp[i][j],dp[i−1][j−1])\begin{aligned}
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/posts/33b9c83/" class="post-title-link" itemprop="url">[leetcode]1091.二进制矩阵中的最短路径</a>
+                <a href="/posts/54dc590d/" class="post-title-link" itemprop="url">[leetcode]1033.移动石子直到连续</a>
               
             
           </h1>
@@ -709,7 +708,7 @@ dp[i][j]=1+max⁡(dp[i][j],dp[i−1][j−1])\begin{aligned}
                 
               
 
-              <time title="创建时间：2019-06-16 14:01:15 / 修改时间：14:58:09" itemprop="dateCreated datePublished" datetime="2019-06-16T14:01:15+08:00">2019-06-16</time>
+              <time title="创建时间：2019-07-21 10:15:50 / 修改时间：10:28:57" itemprop="dateCreated datePublished" datetime="2019-07-21T10:15:50+08:00">2019-07-21</time>
             
 
             
@@ -750,8 +749,8 @@ dp[i][j]=1+max⁡(dp[i][j],dp[i−1][j−1])\begin{aligned}
                 </span>
             
                 <span class="post-meta-item-text">评论数：</span>
-                <a href="/posts/33b9c83/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/33b9c83/" itemprop="commentCount"></span>
+                <a href="/posts/54dc590d/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/54dc590d/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -759,7 +758,7 @@ dp[i][j]=1+max⁡(dp[i][j],dp[i−1][j−1])\begin{aligned}
 
           
           
-            <span id="/posts/33b9c83/" class="leancloud_visitors" data-flag-title="[leetcode]1091.二进制矩阵中的最短路径">
+            <span id="/posts/54dc590d/" class="leancloud_visitors" data-flag-title="[leetcode]1033.移动石子直到连续">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -784,7 +783,7 @@ dp[i][j]=1+max⁡(dp[i][j],dp[i−1][j−1])\begin{aligned}
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">970</span>
+                <span title="本文字数">553</span>
               
 
               
@@ -823,14 +822,13 @@ dp[i][j]=1+max⁡(dp[i][j],dp[i−1][j−1])\begin{aligned}
             <p>
               
  解题思路
-常规的迷宫题,全部距离默认为无穷INF,当起点与终点有一个不可达时,都返回-1
-using pii=pair&lt;int,int&gt;;const int INF=100000000;int shortestPathBinaryMatrix(vector&lt;vector&lt;
+vector&lt;int&gt; numMovesStones(int a, int b, int c) &#123;    if(a&gt;b) swap(a,b);    if(b&gt;c) swap(b,c);    if(a&gt;b) swap(a,b);    vect
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/posts/33b9c83/#more" rel="contents">
+              <a class="btn" href="/posts/54dc590d/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -892,7 +890,7 @@ using pii=pair&lt;int,int&gt;;const int INF=100000000;int shortestPathBinaryMatr
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://brianyi.github.io/posts/78499bb0/">
+    <link itemprop="mainEntityOfPage" href="https://brianyi.github.io/posts/7f69dba8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Brian Yi">
@@ -912,7 +910,7 @@ using pii=pair&lt;int,int&gt;;const int INF=100000000;int shortestPathBinaryMatr
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/posts/78499bb0/" class="post-title-link" itemprop="url">[c++11]notes</a>
+                <a href="/posts/7f69dba8/" class="post-title-link" itemprop="url">[leetcode]100.相同的树</a>
               
             
           </h1>
@@ -938,7 +936,7 @@ using pii=pair&lt;int,int&gt;;const int INF=100000000;int shortestPathBinaryMatr
                 
               
 
-              <time title="创建时间：2019-06-15 16:44:59 / 修改时间：19:50:15" itemprop="dateCreated datePublished" datetime="2019-06-15T16:44:59+08:00">2019-06-15</time>
+              <time title="创建时间：2019-07-21 08:44:49 / 修改时间：08:50:41" itemprop="dateCreated datePublished" datetime="2019-07-21T08:44:49+08:00">2019-07-21</time>
             
 
             
@@ -979,8 +977,8 @@ using pii=pair&lt;int,int&gt;;const int INF=100000000;int shortestPathBinaryMatr
                 </span>
             
                 <span class="post-meta-item-text">评论数：</span>
-                <a href="/posts/78499bb0/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/78499bb0/" itemprop="commentCount"></span>
+                <a href="/posts/7f69dba8/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/7f69dba8/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -988,7 +986,7 @@ using pii=pair&lt;int,int&gt;;const int INF=100000000;int shortestPathBinaryMatr
 
           
           
-            <span id="/posts/78499bb0/" class="leancloud_visitors" data-flag-title="[c++11]notes">
+            <span id="/posts/7f69dba8/" class="leancloud_visitors" data-flag-title="[leetcode]100.相同的树">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -1013,465 +1011,7 @@ using pii=pair&lt;int,int&gt;;const int INF=100000000;int shortestPathBinaryMatr
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">436</span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">1 分钟</span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>
-               Function Object
- Binder
-由于预定义的函数对象(function object)有一个参数的,也有两个参数的,有时需要使用两个参数的函数对象,并给定一个参数,这时就可以使用特殊的函数适配器(function adapter)即binder,将预定义的函数对象和其他数值结合为一
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/posts/78499bb0/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-    <div>
-      
-    </div>
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://brianyi.github.io/posts/aa3ef5c2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Brian Yi">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Brian's Home">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/posts/aa3ef5c2/" class="post-title-link" itemprop="url">[leetcode]378.有序矩阵中第K小的元素</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-06-15 15:14:23 / 修改时间：20:06:29" itemprop="dateCreated datePublished" datetime="2019-06-15T15:14:23+08:00">2019-06-15</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">评论数：</span>
-                <a href="/posts/aa3ef5c2/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/aa3ef5c2/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-            <span id="/posts/aa3ef5c2/" class="leancloud_visitors" data-flag-title="[leetcode]378.有序矩阵中第K小的元素">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读次数：</span>
-              
-                <span class="leancloud-visitors-count"></span>
-            </span>
-          
-
-          
-
-          
-            <div class="post-symbolscount">
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">本文字数：</span>
-                
-                <span title="本文字数">1.9k</span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">2 分钟</span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>
-              
- 解题思路
-求解第K小元素有三种方法,快排的每一轮都可以确定一个元素的位置,堆排序也只要前面几轮就可以把元素确定下来,二分法(范围),那么可以使用划分的方式求第K小元素,堆的方式求第K小元素和基于范围的二分法求第K小元素这三种方法.
-划分的方式求第K小元素
-#define tr(u) u/n][u
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/posts/aa3ef5c2/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-    <div>
-      
-    </div>
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://brianyi.github.io/posts/38e00663/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Brian Yi">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Brian's Home">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/posts/38e00663/" class="post-title-link" itemprop="url">[leetcode]72.编辑距离</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-06-14 12:51:32 / 修改时间：13:07:34" itemprop="dateCreated datePublished" datetime="2019-06-14T12:51:32+08:00">2019-06-14</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">评论数：</span>
-                <a href="/posts/38e00663/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/38e00663/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-            <span id="/posts/38e00663/" class="leancloud_visitors" data-flag-title="[leetcode]72.编辑距离">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读次数：</span>
-              
-                <span class="leancloud-visitors-count"></span>
-            </span>
-          
-
-          
-
-          
-            <div class="post-symbolscount">
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">本文字数：</span>
-                
-                <span title="本文字数">1.1k</span>
+                <span title="本文字数">340</span>
               
 
               
@@ -1510,17 +1050,14 @@ using pii=pair&lt;int,int&gt;;const int INF=100000000;int shortestPathBinaryMatr
             <p>
               
  解题思路
-dp[i][j]表示word1到i位置转换成word2到j的位置需要最少步数
-当word1[i]==word2[j]时,则dp[i][j]=dp[i-1][j-1]
-当word1[i]!=word2[j]时,则可以有3种方式进行转换
-
-替换: 即替换word1[i]为word2[j],
+值相等的条件下结构也相同则返回true.
+bool isSameTree(TreeNode* p, TreeNode* q) &#123;    if (!p&amp;&amp;!q) return true;    else if (!p||!q) return false;    
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/posts/38e00663/#more" rel="contents">
+              <a class="btn" href="/posts/7f69dba8/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1582,7 +1119,7 @@ dp[i][j]表示word1到i位置转换成word2到j的位置需要最少步数
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://brianyi.github.io/posts/bad1b215/">
+    <link itemprop="mainEntityOfPage" href="https://brianyi.github.io/posts/0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Brian Yi">
@@ -1602,7 +1139,7 @@ dp[i][j]表示word1到i位置转换成word2到j的位置需要最少步数
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/posts/bad1b215/" class="post-title-link" itemprop="url">[leetcode]152.乘积最大子序列</a>
+                <a href="/posts/0/" class="post-title-link" itemprop="url">未命名</a>
               
             
           </h1>
@@ -1628,459 +1165,7 @@ dp[i][j]表示word1到i位置转换成word2到j的位置需要最少步数
                 
               
 
-              <time title="创建时间：2019-06-14 09:34:46 / 修改时间：09:54:49" itemprop="dateCreated datePublished" datetime="2019-06-14T09:34:46+08:00">2019-06-14</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">评论数：</span>
-                <a href="/posts/bad1b215/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/bad1b215/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-            <span id="/posts/bad1b215/" class="leancloud_visitors" data-flag-title="[leetcode]152.乘积最大子序列">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读次数：</span>
-              
-                <span class="leancloud-visitors-count"></span>
-            </span>
-          
-
-          
-
-          
-            <div class="post-symbolscount">
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">本文字数：</span>
-                
-                <span title="本文字数">461</span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">1 分钟</span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>
-              
- 解题思路
-连续乘积,那么到某个数iii为止时,前面的数连续乘积必然有一个最大乘积imax和最小乘积imin,且有一个关系:
-负数*最大乘积=最小乘积,负数*最小乘积=最大乘积,因此如果当前为负数,那么需要交换最大乘积与最小乘积
-int maxProduct(vector&lt;int&gt;&a
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/posts/bad1b215/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-    <div>
-      
-    </div>
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://brianyi.github.io/posts/e52ddf3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Brian Yi">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Brian's Home">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/posts/e52ddf3/" class="post-title-link" itemprop="url">[leetcode]总结</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-06-14 08:59:06 / 修改时间：09:07:00" itemprop="dateCreated datePublished" datetime="2019-06-14T08:59:06+08:00">2019-06-14</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">评论数：</span>
-                <a href="/posts/e52ddf3/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/e52ddf3/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-            <span id="/posts/e52ddf3/" class="leancloud_visitors" data-flag-title="[leetcode]总结">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读次数：</span>
-              
-                <span class="leancloud-visitors-count"></span>
-            </span>
-          
-
-          
-
-          
-            <div class="post-symbolscount">
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">本文字数：</span>
-                
-                <span title="本文字数">19k</span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">17 分钟</span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          文章内容已被加密.<br>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/posts/e52ddf3/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-    <div>
-      
-    </div>
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://brianyi.github.io/posts/c70895a1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Brian Yi">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Brian's Home">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/posts/c70895a1/" class="post-title-link" itemprop="url">[leetcode]53.最大子序列和</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-06-13 10:34:41" itemprop="dateCreated datePublished" datetime="2019-06-13T10:34:41+08:00">2019-06-13</time>
+              <time title="创建时间：2019-07-21 08:39:01" itemprop="dateCreated datePublished" datetime="2019-07-21T08:39:01+08:00">2019-07-21</time>
             
 
             
@@ -2097,29 +1182,11 @@ int maxProduct(vector&lt;int&gt;&a
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-06-14 08:56:54" itemprop="dateModified" datetime="2019-06-14T08:56:54+08:00">2019-06-14</time>
+                <time title="修改时间：2019-07-22 17:16:37" itemprop="dateModified" datetime="2019-07-22T17:16:37+08:00">2019-07-22</time>
               
             
           </span>
 
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a></span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -2133,8 +1200,8 @@ int maxProduct(vector&lt;int&gt;&a
                 </span>
             
                 <span class="post-meta-item-text">评论数：</span>
-                <a href="/posts/c70895a1/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/c70895a1/" itemprop="commentCount"></span>
+                <a href="/posts/0/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/0/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -2142,7 +1209,7 @@ int maxProduct(vector&lt;int&gt;&a
 
           
           
-            <span id="/posts/c70895a1/" class="leancloud_visitors" data-flag-title="[leetcode]53.最大子序列和">
+            <span id="/posts/0/" class="leancloud_visitors" data-flag-title>
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -2167,7 +1234,7 @@ int maxProduct(vector&lt;int&gt;&a
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">1.3k</span>
+                <span title="本文字数">0</span>
               
 
               
@@ -2205,15 +1272,12 @@ int maxProduct(vector&lt;int&gt;&a
           
             <p>
               
-思路一: 暴力破解O(n2)O(n^2)O(n2)
-两层for循环,第一层for循环作为序列起点i,第二层for循环作为序列终点j,即记录i ji~ji j的序列和sum,每次记录都更新最大值maxSum
-int maxSubArray(vector&lt;int&gt;&amp; nums) &
-              ...
+              
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/posts/c70895a1/#more" rel="contents">
+              <a class="btn" href="/posts/0/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -2275,7 +1339,7 @@ int maxSubArray(vector&lt;int&gt;&amp; nums) &
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://brianyi.github.io/posts/136ccaf5/">
+    <link itemprop="mainEntityOfPage" href="https://brianyi.github.io/posts/15c0ccde/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Brian Yi">
@@ -2295,7 +1359,7 @@ int maxSubArray(vector&lt;int&gt;&amp; nums) &
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/posts/136ccaf5/" class="post-title-link" itemprop="url">[leetcode]686.重复叠加字符串匹配</a>
+                <a href="/posts/15c0ccde/" class="post-title-link" itemprop="url">[leetcode]67.二进制求和</a>
               
             
           </h1>
@@ -2321,7 +1385,7 @@ int maxSubArray(vector&lt;int&gt;&amp; nums) &
                 
               
 
-              <time title="创建时间：2019-06-04 14:35:16 / 修改时间：14:47:05" itemprop="dateCreated datePublished" datetime="2019-06-04T14:35:16+08:00">2019-06-04</time>
+              <time title="创建时间：2019-07-21 08:29:13 / 修改时间：08:45:27" itemprop="dateCreated datePublished" datetime="2019-07-21T08:29:13+08:00">2019-07-21</time>
             
 
             
@@ -2362,8 +1426,8 @@ int maxSubArray(vector&lt;int&gt;&amp; nums) &
                 </span>
             
                 <span class="post-meta-item-text">评论数：</span>
-                <a href="/posts/136ccaf5/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/136ccaf5/" itemprop="commentCount"></span>
+                <a href="/posts/15c0ccde/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/15c0ccde/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -2371,7 +1435,7 @@ int maxSubArray(vector&lt;int&gt;&amp; nums) &
 
           
           
-            <span id="/posts/136ccaf5/" class="leancloud_visitors" data-flag-title="[leetcode]686.重复叠加字符串匹配">
+            <span id="/posts/15c0ccde/" class="leancloud_visitors" data-flag-title="[leetcode]67.二进制求和">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -2396,7 +1460,7 @@ int maxSubArray(vector&lt;int&gt;&amp; nums) &
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">1.6k</span>
+                <span title="本文字数">536</span>
               
 
               
@@ -2435,17 +1499,14 @@ int maxSubArray(vector&lt;int&gt;&amp; nums) &
             <p>
               
  解题思路
-这道题关键在于明白最后求出的A重复叠加后的长度&lt;len(B)+2*len(A),然后便是常规KMP算法了,为啥这道题要记录,等会会说明原因
-KMP算法是固定格式,这里直接求出模式串B的nextval
-然后就是模式串匹配了,即主串A不断倍增,直到模式串匹配为止
-代码1:
-for(i
+与[leetcode]43.字符串相乘相似
+string addBinary(string a, string b) &#123;    reverse(a.begin(),a.end());    reverse(b.begin(),b.end());    string res(a
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/posts/136ccaf5/#more" rel="contents">
+              <a class="btn" href="/posts/15c0ccde/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -2507,7 +1568,7 @@ for(i
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://brianyi.github.io/posts/6d263cd4/">
+    <link itemprop="mainEntityOfPage" href="https://brianyi.github.io/posts/86f13c57/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Brian Yi">
@@ -2527,7 +1588,7 @@ for(i
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/posts/6d263cd4/" class="post-title-link" itemprop="url">[leetcode]459.重复的子字符串</a>
+                <a href="/posts/86f13c57/" class="post-title-link" itemprop="url">[leetcode]43.字符串相乘</a>
               
             
           </h1>
@@ -2553,7 +1614,7 @@ for(i
                 
               
 
-              <time title="创建时间：2019-06-04 13:54:53 / 修改时间：14:07:54" itemprop="dateCreated datePublished" datetime="2019-06-04T13:54:53+08:00">2019-06-04</time>
+              <time title="创建时间：2019-07-21 07:56:14 / 修改时间：08:45:36" itemprop="dateCreated datePublished" datetime="2019-07-21T07:56:14+08:00">2019-07-21</time>
             
 
             
@@ -2594,8 +1655,8 @@ for(i
                 </span>
             
                 <span class="post-meta-item-text">评论数：</span>
-                <a href="/posts/6d263cd4/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/6d263cd4/" itemprop="commentCount"></span>
+                <a href="/posts/86f13c57/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/86f13c57/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -2603,7 +1664,7 @@ for(i
 
           
           
-            <span id="/posts/6d263cd4/" class="leancloud_visitors" data-flag-title="[leetcode]459.重复的子字符串">
+            <span id="/posts/86f13c57/" class="leancloud_visitors" data-flag-title="[leetcode]43.字符串相乘">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -2628,7 +1689,7 @@ for(i
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">489</span>
+                <span title="本文字数">861</span>
               
 
               
@@ -2667,16 +1728,969 @@ for(i
             <p>
               
  解题思路
-周期串为s,那么设定t表示周期,值在[1,len(s)-1]的范围,那么剩下的就是依次对每个t值进行遍历看是否真的满足周期为t,数学中周期的表达式是
-f(x+t)=f(x)\begin{aligned}
-    f(x+t)=f(x)
-\end{aligned}f(x+t)=f(x)​
+大整数相乘:列出来一步一步模拟竖式乘法.先将字符串逆置.
+对于num2的每个数乘一遍,得出结果放t,进位c1,每次算的结果与上次res[i+j]累加放入t中.
+关键记住:
+
+数乘进位c1
+累加进位c2
+数乘或累加结果保留t
+
+string multiply(string num1, s
               ...
             </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/posts/6d263cd4/#more" rel="contents">
+              <a class="btn" href="/posts/86f13c57/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+    <div>
+      
+    </div>
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://brianyi.github.io/posts/1c04fb93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Brian Yi">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brian's Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/posts/1c04fb93/" class="post-title-link" itemprop="url">[机器学习-CS229(notes)]第1部分 线性回归</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-07-20 21:14:49" itemprop="dateCreated datePublished" datetime="2019-07-20T21:14:49+08:00">2019-07-20</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-07-22 21:23:20" itemprop="dateModified" datetime="2019-07-22T21:23:20+08:00">2019-07-22</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/CS229/" itemprop="url" rel="index"><span itemprop="name">CS229</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/posts/1c04fb93/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/1c04fb93/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/posts/1c04fb93/" class="leancloud_visitors" data-flag-title="[机器学习-CS229(notes)]第1部分 线性回归">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">7.9k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">7 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>
+               标记
+mmm: 表示训练样本数目
+nnn: 表示特征数目
+x\mathbf{x}x: 表示输入变量/特征
+y\mathbf{y}y: 表示输出变量/目标变量
+(x,y)\mathbf{(x,y)}(x,y): 表示训练样本
+(x(i),y(i))(\mathbf{x}^{(i)},\mathbf{
+              ...
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/posts/1c04fb93/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+    <div>
+      
+    </div>
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://brianyi.github.io/posts/468281cb/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Brian Yi">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brian's Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/posts/468281cb/" class="post-title-link" itemprop="url">[矩阵食谱]notes</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-07-20 13:36:19" itemprop="dateCreated datePublished" datetime="2019-07-20T13:36:19+08:00">2019-07-20</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-07-24 22:22:30" itemprop="dateModified" datetime="2019-07-24T22:22:30+08:00">2019-07-24</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/矩阵食谱/" itemprop="url" rel="index"><span itemprop="name">矩阵食谱</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/posts/468281cb/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/468281cb/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/posts/468281cb/" class="leancloud_visitors" data-flag-title="[矩阵食谱]notes">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">6.4k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">6 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>
+              书籍下载:The Matrix Cookbook
+ 向量,矩阵,和标量求导
+∂AX∂X=∂XA∂X=AT,∂AXT∂X=XTA∂X=A∂AXB∂X=ATBT∂AXTB∂X=(ATBT)T=BA∂AXXTB∂X=AT(XTB)T+((AX)TBT)T=ATBTX+BAX∂(AX+B)∂X=∂AX∂X=
+              ...
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/posts/468281cb/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+    <div>
+      
+    </div>
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://brianyi.github.io/posts/9bc934eb/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Brian Yi">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brian's Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/posts/9bc934eb/" class="post-title-link" itemprop="url">[pytorch]notes</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-07-19 21:07:07" itemprop="dateCreated datePublished" datetime="2019-07-19T21:07:07+08:00">2019-07-19</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/posts/9bc934eb/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/9bc934eb/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/posts/9bc934eb/" class="leancloud_visitors" data-flag-title="[pytorch]notes">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">11</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">1 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>
+              
+ 解题思路
+ 参考
+
+              
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/posts/9bc934eb/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+    <div>
+      
+    </div>
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://brianyi.github.io/posts/18787dff/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Brian Yi">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brian's Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/posts/18787dff/" class="post-title-link" itemprop="url">[paper]Domain Adaptation via Transfer Component Analysis</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-07-16 08:38:49" itemprop="dateCreated datePublished" datetime="2019-07-16T08:38:49+08:00">2019-07-16</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-07-22 17:22:12" itemprop="dateModified" datetime="2019-07-22T17:22:12+08:00">2019-07-22</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/paper/" itemprop="url" rel="index"><span itemprop="name">paper</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/posts/18787dff/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/18787dff/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/posts/18787dff/" class="leancloud_visitors" data-flag-title="[paper]Domain Adaptation via Transfer Component Analysis">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">10k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">9 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>
+               Abstract
+域自适应允许知识从一个域迁移到一个不同但相关的域.直观上,发现一个好的跨域的特征表示是关键的.在本文中，我们首先提出通过一种新的学习方法-迁移成分分析(TCA)来寻找这种表示。TCA试图在再生核Hilbert空间中使用maximum mean miscrepancy学习一些跨域的
+              ...
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/posts/18787dff/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -2727,7 +2741,7 @@ f(x+t)=f(x)\begin{aligned}
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -2771,7 +2785,7 @@ f(x+t)=f(x)\begin{aligned}
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">119</span>
+                    <span class="site-state-item-count">172</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2824,7 +2838,11 @@ f(x+t)=f(x)\begin{aligned}
                     
                       
                     
-                    <span class="site-state-item-count">18</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">20</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -2955,7 +2973,25 @@ f(x+t)=f(x)\begin{aligned}
                     
                       
                     
-                    <span class="site-state-item-count">57</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">66</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -3044,7 +3080,7 @@ f(x+t)=f(x)\begin{aligned}
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">630k</span>
+    <span title="站点总字数">1.2m</span>
   
 
   
@@ -3053,7 +3089,7 @@ f(x+t)=f(x)\begin{aligned}
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">9:33</span>
+    <span title="站点阅读时长">18:04</span>
   
 </div>
 
@@ -3669,7 +3705,7 @@ f(x+t)=f(x)\begin{aligned}
     }
   });
 </script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML"></script>
 
     
   
