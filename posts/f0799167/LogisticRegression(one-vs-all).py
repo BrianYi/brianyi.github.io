@@ -151,7 +151,6 @@ def auto_norm(X):
         array -- 返回归一化后的数据集
     """
     X = np.array(X)
-    n = len(X[0])
     minVals = X.min(0)
     maxVals = X.max(0)
     newVals = (X-minVals)/(maxVals-minVals)
