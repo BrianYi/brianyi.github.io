@@ -1,0 +1,1874 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Consolas:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext">
+  
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: true,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="内容源自: Vay-keen’s GitHub  上篇主要介绍了半监督学习，首先从如何利用未标记样本所蕴含的分布信息出发，引入了半监督学习的基本概念，即训练数据同时包含有标记样本和未标记样本的学习方法；接着分别介绍了几种常见的半监督学习方法：生成式方法基于对数据分布的假设，利用未标记样本隐含的分布信息，使得对模型参数的估计更加准确；TSVM给未标记样本赋予伪标记，并通过不断调整易出错样本的标记得">
+<meta name="keywords" content="西瓜书">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[西瓜书]周志华《Machine Learning》学习笔记(16)--概率图模型">
+<meta property="og:url" content="https://brianyi.github.io/posts/715cdc65/index.html">
+<meta property="og:site_name" content="Brian&#39;s Home">
+<meta property="og:description" content="内容源自: Vay-keen’s GitHub  上篇主要介绍了半监督学习，首先从如何利用未标记样本所蕴含的分布信息出发，引入了半监督学习的基本概念，即训练数据同时包含有标记样本和未标记样本的学习方法；接着分别介绍了几种常见的半监督学习方法：生成式方法基于对数据分布的假设，利用未标记样本隐含的分布信息，使得对模型参数的估计更加准确；TSVM给未标记样本赋予伪标记，并通过不断调整易出错样本的标记得">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/18/iwYPmR.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/18/iwY9X9.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/18/iwYi01.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/18/iwYFTx.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/18/iwYEtK.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/18/iwYVfO.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/18/iwYAk6.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/18/iwYepD.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/18/iwYm1e.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/18/iwYn6H.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/18/iwYdns.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/18/iwYY9S.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/18/iwYGh8.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/18/iwY07q.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/18/iwY8tf.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/18/iwYt1g.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/18/iwYNcQ.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/18/iwYUXj.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/18/iwYwBn.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/18/iwYDA0.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/18/iwYgc4.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/18/iwY2jJ.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/18/iwYc3F.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/10/18/iwYWu9.png">
+<meta property="og:updated_time" content="2019-08-05T07:22:32.351Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[西瓜书]周志华《Machine Learning》学习笔记(16)--概率图模型">
+<meta name="twitter:description" content="内容源自: Vay-keen’s GitHub  上篇主要介绍了半监督学习，首先从如何利用未标记样本所蕴含的分布信息出发，引入了半监督学习的基本概念，即训练数据同时包含有标记样本和未标记样本的学习方法；接着分别介绍了几种常见的半监督学习方法：生成式方法基于对数据分布的假设，利用未标记样本隐含的分布信息，使得对模型参数的估计更加准确；TSVM给未标记样本赋予伪标记，并通过不断调整易出错样本的标记得">
+<meta name="twitter:image" content="https://s1.ax1x.com/2018/10/18/iwYPmR.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Brian's Home" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="https://brianyi.github.io/posts/715cdc65/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>[西瓜书]周志华《Machine Learning》学习笔记(16)--概率图模型 | Brian's Home</title>
+  
+
+
+
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?7e38366710cb7c973c4f1db486286308";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Brian's Home</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Stay Hungry, Stay Foolish</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">68</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">22</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">194</span></a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+
+  
+
+  <a href="https://github.com/brianyi" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://brianyi.github.io/posts/715cdc65/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Brian Yi">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brian's Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">[西瓜书]周志华《Machine Learning》学习笔记(16)--概率图模型
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-05 15:17:00 / 修改时间：15:22:32" itemprop="dateCreated datePublished" datetime="2019-08-05T15:17:00+08:00">2019-08-05</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/西瓜书/" itemprop="url" rel="index"><span itemprop="name">西瓜书</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/posts/715cdc65/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/715cdc65/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/posts/715cdc65/" class="leancloud_visitors" data-flag-title="[西瓜书]周志华《Machine Learning》学习笔记(16)--概率图模型">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">5k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">5 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>内容源自: <a href="https://github.com/Vay-keen">Vay-keen’s GitHub</a></p>
+</blockquote>
+<p>上篇主要介绍了半监督学习，首先从如何利用未标记样本所蕴含的分布信息出发，引入了半监督学习的基本概念，即训练数据同时包含有标记样本和未标记样本的学习方法；接着分别介绍了几种常见的半监督学习方法：生成式方法基于对数据分布的假设，利用未标记样本隐含的分布信息，使得对模型参数的估计更加准确；TSVM给未标记样本赋予伪标记，并通过不断调整易出错样本的标记得到最终输出；基于分歧的方法结合了集成学习的思想，通过多个学习器在不同视图上的协作，有效利用了未标记样本数据 ；最后半监督聚类则是借助已有的监督信息来辅助聚类的过程，带约束k-均值算法需检测当前样本划分是否满足约束关系，带标记k-均值算法则利用有标记样本指定初始类中心。本篇将讨论一种基于图的学习算法–概率图模型。</p>
+<p>#<strong>15、概率图模型</strong></p>
+<p>现在再来谈谈机器学习的核心价值观，可以更通俗地理解为：<strong>根据一些已观察到的证据来推断未知</strong>，更具哲学性地可以阐述为：未来的发展总是遵循着历史的规律。其中<strong>基于概率的模型将学习任务归结为计算变量的概率分布</strong>，正如之前已经提到的：生成式模型先对联合分布进行建模，从而再来求解后验概率，例如：贝叶斯分类器先对联合分布进行最大似然估计，从而便可以计算类条件概率；判别式模型则是直接对条件分布进行建模。</p>
+<p><strong>概率图模型</strong>（probabilistic graphical model）是一类用<strong>图结构</strong>来表达各属性之间相关关系的概率模型，一般而言：<strong>图中的一个结点表示一个或一组随机变量，结点之间的边则表示变量间的相关关系</strong>，从而形成了一张“<strong>变量关系图</strong>”。若使用有向的边来表达变量之间的依赖关系，这样的有向关系图称为<strong>贝叶斯网</strong>（Bayesian nerwork）或有向图模型；若使用无向边，则称为<strong>马尔可夫网</strong>（Markov network）或无向图模型。</p>
+<p>##<strong>15.1 隐马尔可夫模型(HMM)</strong></p>
+<p>隐马尔可夫模型（Hidden Markov Model，简称HMM）是结构最简单的一种贝叶斯网，在语音识别与自然语言处理领域上有着广泛的应用。HMM中的变量分为两组：<strong>状态变量</strong>与<strong>观测变量</strong>，其中状态变量一般是未知的，因此又称为“<strong>隐变量</strong>”，观测变量则是已知的输出值。在隐马尔可夫模型中，变量之间的依赖关系遵循如下两个规则：</p>
+<blockquote>
+<p><strong>1. 观测变量的取值仅依赖于状态变量</strong>；<br>
+<strong>2. 下一个状态的取值仅依赖于当前状态</strong>，通俗来讲：<strong>现在决定未来，未来与过去无关</strong>，这就是著名的<strong>马尔可夫性</strong>。</p>
+</blockquote>
+<p><img src="https://s1.ax1x.com/2018/10/18/iwYPmR.png" alt="iwYPmR.png"></p>
+<p>基于上述变量之间的依赖关系，我们很容易写出隐马尔可夫模型中所有变量的联合概率分布：</p>
+<p><img src="https://s1.ax1x.com/2018/10/18/iwY9X9.png" alt="iwY9X9.png"></p>
+<p>易知：<strong>欲确定一个HMM模型需要以下三组参数</strong>：</p>
+<p><img src="https://s1.ax1x.com/2018/10/18/iwYi01.png" alt="iwYi01.png"></p>
+<p>当确定了一个HMM模型的三个参数后，便按照下面的规则来生成观测值序列：</p>
+<p><img src="https://s1.ax1x.com/2018/10/18/iwYFTx.png" alt="iwYFTx.png"></p>
+<p>在实际应用中，HMM模型的发力点主要体现在下述三个问题上：</p>
+<p><img src="https://s1.ax1x.com/2018/10/18/iwYEtK.png" alt="iwYEtK.png"></p>
+<p>###<strong>15.1.1 HMM评估问题</strong></p>
+<p>HMM评估问题指的是：<strong>给定了模型的三个参数与观测值序列，求该观测值序列出现的概率</strong>。例如：对于赌场问题，便可以依据骰子掷出的结果序列来计算该结果序列出现的可能性，若小概率的事件发生了则可认为赌场的骰子有作弊的可能。解决该问题使用的是<strong>前向算法</strong>，即步步为营，自底向上的方式逐步增加序列的长度，直到获得目标概率值。在前向算法中，定义了一个<strong>前向变量</strong>，即给定观察值序列且t时刻的状态为Si的概率：</p>
+<p><img src="https://s1.ax1x.com/2018/10/18/iwYVfO.png" alt="iwYVfO.png"></p>
+<p>基于前向变量，很容易得到该问题的递推关系及终止条件：</p>
+<p><img src="https://s1.ax1x.com/2018/10/18/iwYAk6.png" alt="iwYAk6.png"></p>
+<p>因此可使用动态规划法，从最小的子问题开始，通过填表格的形式一步一步计算出目标结果。</p>
+<p>###<strong>15.1.2 HMM解码问题</strong></p>
+<p>HMM解码问题指的是：<strong>给定了模型的三个参数与观测值序列，求可能性最大的状态序列</strong>。例如：在语音识别问题中，人说话形成的数字信号对应着观测值序列，对应的具体文字则是状态序列，从数字信号转化为文字正是对应着根据观测值序列推断最有可能的状态值序列。解决该问题使用的是<strong>Viterbi算法</strong>，与前向算法十分类似地，Viterbi算法定义了一个<strong>Viterbi变量</strong>，也是采用动态规划的方法，自底向上逐步求解。</p>
+<p><img src="https://s1.ax1x.com/2018/10/18/iwYepD.png" alt="iwYepD.png"></p>
+<p>###<strong>15.1.3 HMM学习问题</strong></p>
+<p>HMM学习问题指的是：<strong>给定观测值序列，如何调整模型的参数使得该序列出现的概率最大</strong>。这便转化成了机器学习问题，即从给定的观测值序列中学习出一个HMM模型，<strong>该问题正是EM算法的经典案例之一</strong>。其思想也十分简单：对于给定的观测值序列，如果我们能够按照该序列潜在的规律来调整模型的三个参数，则可以使得该序列出现的可能性最大。假设状态值序列也已知，则很容易计算出与该序列最契合的模型参数：</p>
+<p><img src="https://s1.ax1x.com/2018/10/18/iwYm1e.png" alt="iwYm1e.png"></p>
+<p>但一般状态值序列都是不可观测的，且<strong>即使给定观测值序列与模型参数，状态序列仍然遭遇组合爆炸</strong>。因此上面这种简单的统计方法就行不通了，若将状态值序列看作为隐变量，这时便可以考虑使用EM算法来对该问题进行求解：</p>
+<p>【1】首先对HMM模型的三个参数进行随机初始化；<br>
+【2】根据模型的参数与观测值序列，计算t时刻状态为i且t+1时刻状态为j的概率以及t时刻状态为i的概率。</p>
+<p><img src="https://s1.ax1x.com/2018/10/18/iwYn6H.png" alt="iwYn6H.png"><br>
+<img src="https://s1.ax1x.com/2018/10/18/iwYdns.png" alt="iwYdns.png"></p>
+<p>【3】接着便可以对模型的三个参数进行重新估计：</p>
+<p><img src="https://s1.ax1x.com/2018/10/18/iwYY9S.png" alt="iwYY9S.png"></p>
+<p>【4】重复步骤2-3，直至三个参数值收敛，便得到了最终的HMM模型。</p>
+<p>##<strong>15.2 马尔可夫随机场（MRF）</strong></p>
+<p>马尔可夫随机场（Markov Random Field）是一种典型的马尔可夫网，即使用无向边来表达变量间的依赖关系。在马尔可夫随机场中，对于关系图中的一个子集，<strong>若任意两结点间都有边连接，则称该子集为一个团；若再加一个结点便不能形成团，则称该子集为极大团</strong>。MRF使用<strong>势函数</strong>来定义多个变量的概率分布函数，其中<strong>每个（极大）团对应一个势函数</strong>，一般团中的变量关系也体现在它所对应的极大团中，因此常常基于极大团来定义变量的联合概率分布函数。具体而言，若所有变量构成的极大团的集合为C，则MRF的联合概率函数可以定义为：</p>
+<p><img src="https://s1.ax1x.com/2018/10/18/iwYGh8.png" alt="iwYGh8.png"></p>
+<p>对于条件独立性，<strong>马尔可夫随机场通过分离集来实现条件独立</strong>，若A结点集必须经过C结点集才能到达B结点集，则称C为分离集。书上给出了一个简单情形下的条件独立证明过程，十分贴切易懂，此处不再展开。基于分离集的概念，得到了MRF的三个性质：</p>
+<blockquote>
+<p><strong>全局马尔可夫性</strong>：给定两个变量子集的分离集，则这两个变量子集条件独立。<br>
+<strong>局部马尔可夫性</strong>：给定某变量的邻接变量，则该变量与其它变量条件独立。<br>
+<strong>成对马尔可夫性</strong>：给定所有其他变量，两个非邻接变量条件独立。</p>
+</blockquote>
+<p><img src="https://s1.ax1x.com/2018/10/18/iwY07q.png" alt="iwY07q.png"></p>
+<p>对于MRF中的势函数，势函数主要用于描述团中变量之间的相关关系，且要求为非负函数，直观来看：势函数需要在偏好的变量取值上函数值较大，例如：若x1与x2成正相关，则需要将这种关系反映在势函数的函数值中。一般我们常使用指数函数来定义势函数：</p>
+<p><img src="https://s1.ax1x.com/2018/10/18/iwY8tf.png" alt="iwY8tf.png"></p>
+<p>##<strong>15.3 条件随机场（CRF）</strong></p>
+<p>前面所讲到的<strong>隐马尔可夫模型和马尔可夫随机场都属于生成式模型，即对联合概率进行建模，条件随机场则是对条件分布进行建模</strong>。CRF试图在给定观测值序列后，对状态序列的概率分布进行建模，即P(y | x)。直观上看：CRF与HMM的解码问题十分类似，都是在给定观测值序列后，研究状态序列可能的取值。CRF可以有多种结构，只需保证状态序列满足马尔可夫性即可，一般我们常使用的是<strong>链式条件随机场</strong>：</p>
+<p><img src="https://s1.ax1x.com/2018/10/18/iwYt1g.png" alt="iwYt1g.png"></p>
+<p>与马尔可夫随机场定义联合概率类似地，CRF也通过团以及势函数的概念来定义条件概率P(y | x)。在给定观测值序列的条件下，链式条件随机场主要包含两种团结构：单个状态团及相邻状态团，通过引入两类特征函数便可以定义出目标条件概率：</p>
+<p><img src="https://s1.ax1x.com/2018/10/18/iwYNcQ.png" alt="iwYNcQ.png"></p>
+<p>以词性标注为例，如何判断给出的一个标注序列靠谱不靠谱呢？<strong>转移特征函数主要判定两个相邻的标注是否合理</strong>，例如：动词+动词显然语法不通；<strong>状态特征函数则判定观测值与对应的标注是否合理</strong>，例如： ly结尾的词–&gt;副词较合理。因此我们可以定义一个特征函数集合，用这个特征函数集合来为一个标注序列打分，并据此选出最靠谱的标注序列。也就是说，每一个特征函数（对应一种规则）都可以用来为一个标注序列评分，把集合中所有特征函数对同一个标注序列的评分综合起来，就是这个标注序列最终的评分值。可以看出：<strong>特征函数是一些经验的特性</strong>。</p>
+<p>##<strong>15.4 学习与推断</strong></p>
+<p>对于生成式模型，通常我们都是先对变量的联合概率分布进行建模，接着再求出目标变量的<strong>边际分布</strong>（marginal distribution），那如何从联合概率得到边际分布呢？这便是学习与推断。下面主要介绍两种精确推断的方法：<strong>变量消去</strong>与<strong>信念传播</strong>。</p>
+<p>###<strong>15.4.1 变量消去</strong></p>
+<p>变量消去利用条件独立性来消减计算目标概率值所需的计算量，它通过运用<strong>乘法与加法的分配率</strong>，将对变量的积的求和问题转化为对部分变量交替进行求积与求和的问题，从而将每次的<strong>运算控制在局部</strong>，达到简化运算的目的。</p>
+<p><img src="https://s1.ax1x.com/2018/10/18/iwYUXj.png" alt="iwYUXj.png"><br>
+<img src="https://s1.ax1x.com/2018/10/18/iwYwBn.png" alt="iwYwBn.png"></p>
+<p>###<strong>15.4.2 信念传播</strong></p>
+<p>若将变量求和操作看作是一种消息的传递过程，信念传播可以理解成：<strong>一个节点在接收到所有其它节点的消息后才向另一个节点发送消息</strong>，同时当前节点的边际概率正比于他所接收的消息的乘积：</p>
+<p><img src="https://s1.ax1x.com/2018/10/18/iwYDA0.png" alt="iwYDA0.png"></p>
+<p>因此只需要经过下面两个步骤，便可以完成所有的消息传递过程。利用动态规划法的思想记录传递过程中的所有消息，当计算某个结点的边际概率分布时，只需直接取出传到该结点的消息即可，从而避免了计算多个边际分布时的冗余计算问题。</p>
+<blockquote>
+<p>1.指定一个根节点，从所有的叶节点开始向根节点传递消息，直到根节点收到所有邻接结点的消息**（从叶到根）<strong>；<br>
+2.从根节点开始向叶节点传递消息，直到所有叶节点均收到消息</strong>（从根到叶）**。</p>
+</blockquote>
+<p><img src="https://s1.ax1x.com/2018/10/18/iwYgc4.png" alt="iwYgc4.png"></p>
+<p>##<strong>15.5 LDA话题模型</strong></p>
+<p>话题模型主要用于处理文本类数据，其中<strong>隐狄利克雷分配模型</strong>（Latent Dirichlet Allocation，简称LDA）是话题模型的杰出代表。在话题模型中，有以下几个基本概念：词（word）、文档（document）、话题（topic）。</p>
+<blockquote>
+<p><strong>词</strong>：最基本的离散单元；<br>
+<strong>文档</strong>：由一组词组成，词在文档中不计顺序；<br>
+<strong>话题</strong>：由一组特定的词组成，这组词具有较强的相关关系。</p>
+</blockquote>
+<p>在现实任务中，一般我们可以得出一个文档的词频分布，但不知道该文档对应着哪些话题，LDA话题模型正是为了解决这个问题。具体来说：<strong>LDA认为每篇文档包含多个话题，且其中每一个词都对应着一个话题</strong>。因此可以假设文档是通过如下方式生成：</p>
+<p><img src="https://s1.ax1x.com/2018/10/18/iwY2jJ.png" alt="iwY2jJ.png"></p>
+<p>这样一个文档中的所有词都可以认为是通过话题模型来生成的，当已知一个文档的词频分布后（即一个N维向量，N为词库大小），则可以认为：<strong>每一个词频元素都对应着一个话题，而话题对应的词频分布则影响着该词频元素的大小</strong>。因此很容易写出LDA模型对应的联合概率函数：</p>
+<p><img src="https://s1.ax1x.com/2018/10/18/iwYc3F.png" alt="iwYc3F.png"><br>
+<img src="https://s1.ax1x.com/2018/10/18/iwYWu9.png" alt="iwYWu9.png"></p>
+<p>从上图可以看出，LDA的三个表示层被三种颜色表示出来：</p>
+<blockquote>
+<p><strong>corpus-level（红色）：</strong> α和β表示语料级别的参数，也就是每个文档都一样，因此生成过程只采样一次。<br>
+<strong>document-level（橙色）：</strong> θ是文档级别的变量，每个文档对应一个θ。<br>
+<strong>word-level（绿色）：</strong> z和w都是单词级别变量，z由θ生成，w由z和β共同生成，一个单词w对应一个主题z。</p>
+</blockquote>
+<p>通过上面对LDA生成模型的讨论，可以知道<strong>LDA模型主要是想从给定的输入语料中学习训练出两个控制参数α和β</strong>，当学习出了这两个控制参数就确定了模型，便可以用来生成文档。其中α和β分别对应以下各个信息：</p>
+<blockquote>
+<p><strong>α</strong>：分布p(θ)需要一个向量参数，即Dirichlet分布的参数，用于生成一个主题θ向量；<br>
+<strong>β</strong>：各个主题对应的单词概率分布矩阵p(w|z)。</p>
+</blockquote>
+<p>把w当做观察变量，θ和z当做隐藏变量，就可以通过EM算法学习出α和β，求解过程中遇到后验概率p(θ,z|w)无法直接求解，需要找一个似然函数下界来近似求解，原作者使用基于分解（factorization）假设的变分法（varialtional inference）进行计算，用到了EM算法。每次E-step输入α和β，计算似然函数，M-step最大化这个似然函数，算出α和β，不断迭代直到收敛。</p>
+<p>在此，概率图模型就介绍完毕。上周受到协同训练的启发，让实验的小伙伴做了一个HMM的slides，结果扩充了好多知识，所以完成这篇笔记还是花费了不少功夫，还刚好赶上实验室没空调回到解放前的日子，可谓汗流之作…</p>
+
+      
+    </div>
+
+    
+      
+
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\69067cb6\" rel="bookmark">[西瓜书]周志华《Machine Learning》学习笔记(8)--贝叶斯分类器</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\e2c18f0d\" rel="bookmark">[西瓜书]周志华《Machine Learning》学习笔记(17)--强化学习</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\18911de0\" rel="bookmark">[西瓜书]周志华《Machine Learning》学习笔记(14)--计算学习理论</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\3c938c46\" rel="bookmark">[西瓜书]周志华《Machine Learning》学习笔记(13)--特征选择与稀疏学习</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\e0dc0a8b\" rel="bookmark">[西瓜书]周志华《Machine Learning》学习笔记(12)--降维与度量学习</a></div>
+      
+    </li>
+  
+  </ul>
+
+
+    
+
+    
+    
+    
+    <div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/posts/715cdc65/">[西瓜书]周志华《Machine Learning》学习笔记(16)--概率图模型</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 Brian Yi 的个人博客">Brian Yi</a></p>
+  <p><span>发布时间:</span>2019年08月05日 - 15:08</p>
+  <p><span>最后更新:</span>2019年08月05日 - 15:08</p>
+  <p><span>原始链接:</span><a href="/posts/715cdc65/" title="[西瓜书]周志华《Machine Learning》学习笔记(16)--概率图模型">https://brianyi.github.io/posts/715cdc65/</a>
+    <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://brianyi.github.io/posts/715cdc65/" aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+    });
+    });  
+</script>
+
+      
+    </div>
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/西瓜书/" class="fa fa-tag" style="font-size:16px;border-bottom:none;">西瓜书</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+          <div class="wp_rating">
+            <div id="wpac-rating"></div>
+          </div>
+        
+
+        
+
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/a4b101b1/" rel="next" title="[西瓜书]周志华《Machine Learning》学习笔记(15)--半监督学习">
+                <i class="fa fa-chevron-left"></i> [西瓜书]周志华《Machine Learning》学习笔记(15)--半监督学习
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/posts/e2c18f0d/" rel="prev" title="[西瓜书]周志华《Machine Learning》学习笔记(17)--强化学习">
+                [西瓜书]周志华《Machine Learning》学习笔记(17)--强化学习 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Brian Yi">
+            
+              <p class="site-author-name" itemprop="name">Brian Yi</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">194</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">68</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/BrianYi" title="GitHub &rarr; https://github.com/BrianYi" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="mailto:yijiazhen123@gmail.com" title="E-Mail &rarr; mailto:yijiazhen123@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Brian Yi</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="站点总字数">1.3m</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+    <span title="站点阅读时长">20:03</span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.1"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.1"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
+
+  
+  <script src="/js/js.cookie.js?v=7.1.1"></script>
+  <script src="/js/scroll-cookie.js?v=7.1.1"></script>
+
+
+  
+
+  
+
+  
+  
+
+<script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+
+
+
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'w63e2LQ8OdmB34En763YIlqy-gzGzoHsz',
+    appKey: 'tS6NvoSvx3zOIyodVKLiJJaS',
+    placeholder: '请在这里留下你的评论...',
+    avatar: '',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn'
+  });
+</script>
+
+
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.json";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                // fixed:local search has bug
+                if (data.title==undefined)
+                    return [];
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+  
+  <script>
+    
+    function addCount(Counter) {
+      var $visitors = $('.leancloud_visitors');
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            
+            Counter('put', '/classes/Counter/' + counter.objectId, JSON.stringify({ time: { '__op': 'Increment', 'amount': 1 } }))
+            
+              .done(function() {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.time + 1);
+              })
+            
+              .fail(function ({ responseJSON }) {
+                console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
+              })
+          } else {
+            
+              Counter('post', '/classes/Counter', JSON.stringify({ title: title, url: url, time: 1 }))
+                .done(function() {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(1);
+                })
+                .fail(function() {
+                  console.log('Failed to create');
+                });
+            
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log('LeanCloud Counter Error: ' + responseJSON.code + ' ' + responseJSON.error);
+        });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + 'w63e2LQ8OdmB34En763YIlqy-gzGzoHsz')
+        .done(function({ api_server }) {
+          var Counter = function(method, url, data) {
+            return $.ajax({
+              method: method,
+              url: 'https://' + api_server + '/1.1' + url,
+              headers: {
+                'X-LC-Id': 'w63e2LQ8OdmB34En763YIlqy-gzGzoHsz',
+                'X-LC-Key': 'tS6NvoSvx3zOIyodVKLiJJaS',
+                'Content-Type': 'application/json',
+              },
+              data: data
+            });
+          };
+          
+            addCount(Counter);
+          
+        });
+    });
+  </script>
+
+
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling }
+        if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next) }
+      }
+    });
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      document.getElementById(all[i].inputID + '-Frame').parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML"></script>
+
+    
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <script>
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id: 18388,
+      el: 'wpac-rating',
+      color: 'fc6423'
+    });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
