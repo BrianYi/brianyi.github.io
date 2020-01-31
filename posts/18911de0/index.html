@@ -129,9 +129,9 @@
 
 
   <meta name="description" content="内容源自: Vay-keen’s GitHub  上篇主要介绍了常用的特征选择方法及稀疏学习。首先从相关/无关特征出发引出了特征选择的基本概念，接着分别介绍了子集搜索与评价、过滤式、包裹式以及嵌入式四种类型的特征选择方法。子集搜索与评价使用的是一种优中生优的贪婪算法，即每次从候选特征子集中选出最优子集；过滤式方法计算一个相关统计量来评判特征的重要程度；包裹式方法将学习器作为特征选择的评价准则；嵌">
-<meta name="keywords" content="西瓜书">
+<meta name="keywords" content="转载,西瓜书">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[西瓜书]周志华《Machine Learning》学习笔记(14)--计算学习理论">
+<meta property="og:title" content="[转载][西瓜书]周志华《Machine Learning》学习笔记(14)--计算学习理论">
 <meta property="og:url" content="https://brianyi.github.io/posts/18911de0/index.html">
 <meta property="og:site_name" content="Brian&#39;s Home">
 <meta property="og:description" content="内容源自: Vay-keen’s GitHub  上篇主要介绍了常用的特征选择方法及稀疏学习。首先从相关/无关特征出发引出了特征选择的基本概念，接着分别介绍了子集搜索与评价、过滤式、包裹式以及嵌入式四种类型的特征选择方法。子集搜索与评价使用的是一种优中生优的贪婪算法，即每次从候选特征子集中选出最优子集；过滤式方法计算一个相关统计量来评判特征的重要程度；包裹式方法将学习器作为特征选择的评价准则；嵌">
@@ -154,9 +154,9 @@
 <meta property="og:image" content="https://i.loli.net/2018/10/18/5bc855badc5a8.png">
 <meta property="og:image" content="https://i.loli.net/2018/10/18/5bc855ba59b06.png">
 <meta property="og:image" content="https://i.loli.net/2018/10/18/5bc855babe7c3.png">
-<meta property="og:updated_time" content="2019-08-05T07:22:32.351Z">
+<meta property="og:updated_time" content="2020-01-28T15:10:33.960Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="[西瓜书]周志华《Machine Learning》学习笔记(14)--计算学习理论">
+<meta name="twitter:title" content="[转载][西瓜书]周志华《Machine Learning》学习笔记(14)--计算学习理论">
 <meta name="twitter:description" content="内容源自: Vay-keen’s GitHub  上篇主要介绍了常用的特征选择方法及稀疏学习。首先从相关/无关特征出发引出了特征选择的基本概念，接着分别介绍了子集搜索与评价、过滤式、包裹式以及嵌入式四种类型的特征选择方法。子集搜索与评价使用的是一种优中生优的贪婪算法，即每次从候选特征子集中选出最优子集；过滤式方法计算一个相关统计量来评判特征的重要程度；包裹式方法将学习器作为特征选择的评价准则；嵌">
 <meta name="twitter:image" content="https://i.loli.net/2018/10/18/5bc854f38d4fe.png">
 
@@ -178,7 +178,7 @@
   };
 </script>
 
-  <title>[西瓜书]周志华《Machine Learning》学习笔记(14)--计算学习理论 | Brian's Home</title>
+  <title>[转载][西瓜书]周志华《Machine Learning》学习笔记(14)--计算学习理论 | Brian's Home</title>
   
 
 
@@ -328,7 +328,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">85</span></a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">90</span></a>
 
   </li>
         
@@ -347,7 +347,7 @@
       
     
 
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">26</span></a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">29</span></a>
 
   </li>
         
@@ -366,7 +366,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">218</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">227</span></a>
 
   </li>
 
@@ -471,7 +471,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">[西瓜书]周志华《Machine Learning》学习笔记(14)--计算学习理论
+          <h1 class="post-title" itemprop="name headline">[转载][西瓜书]周志华《Machine Learning》学习笔记(14)--计算学习理论
 
               
             
@@ -498,12 +498,24 @@
                 
               
 
-              <time title="创建时间：2019-08-05 15:16:15 / 修改时间：15:22:32" itemprop="dateCreated datePublished" datetime="2019-08-05T15:16:15+08:00">2019-08-05</time>
+              <time title="创建时间：2019-08-05 15:16:15" itemprop="dateCreated datePublished" datetime="2019-08-05T15:16:15+08:00">2019-08-05</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-01-28 23:10:33" itemprop="dateModified" datetime="2020-01-28T23:10:33+08:00">2020-01-28</time>
               
             
           </span>
@@ -548,7 +560,7 @@
 
           
           
-            <span id="/posts/18911de0/" class="leancloud_visitors" data-flag-title="[西瓜书]周志华《Machine Learning》学习笔记(14)--计算学习理论">
+            <span id="/posts/18911de0/" class="leancloud_visitors" data-flag-title="[转载][西瓜书]周志华《Machine Learning》学习笔记(14)--计算学习理论">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -685,35 +697,35 @@
     <li class="popular-posts-item">
       
       
-      <div class="popular-posts-title"><a href="\posts\69067cb6\" rel="bookmark">[西瓜书]周志华《Machine Learning》学习笔记(8)--贝叶斯分类器</a></div>
+      <div class="popular-posts-title"><a href="\posts\a6cf207d\" rel="bookmark">[转载][西瓜书]周志华《Machine Learning》学习笔记(7)--支持向量机</a></div>
       
     </li>
   
     <li class="popular-posts-item">
       
       
-      <div class="popular-posts-title"><a href="\posts\e2c18f0d\" rel="bookmark">[西瓜书]周志华《Machine Learning》学习笔记(17)--强化学习</a></div>
+      <div class="popular-posts-title"><a href="\posts\e2c18f0d\" rel="bookmark">[转载][西瓜书]周志华《Machine Learning》学习笔记(17)--强化学习</a></div>
       
     </li>
   
     <li class="popular-posts-item">
       
       
-      <div class="popular-posts-title"><a href="\posts\a4b101b1\" rel="bookmark">[西瓜书]周志华《Machine Learning》学习笔记(15)--半监督学习</a></div>
+      <div class="popular-posts-title"><a href="\posts\3c938c46\" rel="bookmark">[转载][西瓜书]周志华《Machine Learning》学习笔记(13)--特征选择与稀疏学习</a></div>
       
     </li>
   
     <li class="popular-posts-item">
       
       
-      <div class="popular-posts-title"><a href="\posts\3c938c46\" rel="bookmark">[西瓜书]周志华《Machine Learning》学习笔记(13)--特征选择与稀疏学习</a></div>
+      <div class="popular-posts-title"><a href="\posts\e0dc0a8b\" rel="bookmark">[转载][西瓜书]周志华《Machine Learning》学习笔记(12)--降维与度量学习</a></div>
       
     </li>
   
     <li class="popular-posts-item">
       
       
-      <div class="popular-posts-title"><a href="\posts\e0dc0a8b\" rel="bookmark">[西瓜书]周志华《Machine Learning》学习笔记(12)--降维与度量学习</a></div>
+      <div class="popular-posts-title"><a href="\posts\8154184d\" rel="bookmark">[转载][西瓜书]周志华《Machine Learning》学习笔记(11)--聚类</a></div>
       
     </li>
   
@@ -734,11 +746,11 @@
   <!-- JS库 sweetalert 可修改路径 -->
   <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <p><span>本文标题:</span><a href="/posts/18911de0/">[西瓜书]周志华《Machine Learning》学习笔记(14)--计算学习理论</a></p>
+  <p><span>本文标题:</span><a href="/posts/18911de0/">[转载][西瓜书]周志华《Machine Learning》学习笔记(14)--计算学习理论</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 Brian Yi 的个人博客">Brian Yi</a></p>
   <p><span>发布时间:</span>2019年08月05日 - 15:08</p>
-  <p><span>最后更新:</span>2019年08月05日 - 15:08</p>
-  <p><span>原始链接:</span><a href="/posts/18911de0/" title="[西瓜书]周志华《Machine Learning》学习笔记(14)--计算学习理论">https://brianyi.github.io/posts/18911de0/</a>
+  <p><span>最后更新:</span>2020年01月28日 - 23:01</p>
+  <p><span>原始链接:</span><a href="/posts/18911de0/" title="[转载][西瓜书]周志华《Machine Learning》学习笔记(14)--计算学习理论">https://brianyi.github.io/posts/18911de0/</a>
     <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://brianyi.github.io/posts/18911de0/" aria-label="复制成功！"></i></span>
   </p>
   <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
@@ -772,6 +784,8 @@
       
         <div class="post-tags">
           
+            <a href="/tags/转载/" class="fa fa-tag" style="font-size:16px;border-bottom:none;">转载</a>
+          
             <a href="/tags/西瓜书/" class="fa fa-tag" style="font-size:16px;border-bottom:none;">西瓜书</a>
           
         </div>
@@ -797,8 +811,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/posts/3c938c46/" rel="next" title="[西瓜书]周志华《Machine Learning》学习笔记(13)--特征选择与稀疏学习">
-                <i class="fa fa-chevron-left"></i> [西瓜书]周志华《Machine Learning》学习笔记(13)--特征选择与稀疏学习
+              <a href="/posts/3c938c46/" rel="next" title="[转载][西瓜书]周志华《Machine Learning》学习笔记(13)--特征选择与稀疏学习">
+                <i class="fa fa-chevron-left"></i> [转载][西瓜书]周志华《Machine Learning》学习笔记(13)--特征选择与稀疏学习
               </a>
             
           </div>
@@ -807,8 +821,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/posts/a4b101b1/" rel="prev" title="[西瓜书]周志华《Machine Learning》学习笔记(15)--半监督学习">
-                [西瓜书]周志华《Machine Learning》学习笔记(15)--半监督学习 <i class="fa fa-chevron-right"></i>
+              <a href="/posts/a4b101b1/" rel="prev" title="[转载][西瓜书]周志华《Machine Learning》学习笔记(15)--半监督学习">
+                [转载][西瓜书]周志华《Machine Learning》学习笔记(15)--半监督学习 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -875,7 +889,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">218</span>
+                    <span class="site-state-item-count">227</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -944,7 +958,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">26</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">29</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -1131,7 +1151,17 @@
                     
                       
                     
-                    <span class="site-state-item-count">85</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">90</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1208,7 +1238,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; 2019 – <span itemprop="copyrightYear">2020</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
@@ -1229,7 +1259,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">23:33</span>
+    <span title="站点阅读时长">24:43</span>
   
 </div>
 

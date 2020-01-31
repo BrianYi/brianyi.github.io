@@ -1,0 +1,2030 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Consolas:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext">
+  
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: true,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="VVC/VTM7.0安装  运行环境、软件版本等说明： VTM：7.1版本 操作系统：Win10 64位操作系统 IDE：Visual Studio 2017  下载VTM: https://vcgit.hhi.fraunhofer.de/jvet/VVCSoftware_VTM 根据README.md内容,创建build文件夹,以下是提取出的关于windows平台下的编译。 Note: A w">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[视频编解码 VTM7.1]H.266&#x2F;VVC参考软件VTM配置运行">
+<meta property="og:url" content="https://brianyi.github.io/posts/92e79038/index.html">
+<meta property="og:site_name" content="Brian&#39;s Home">
+<meta property="og:description" content="VVC/VTM7.0安装  运行环境、软件版本等说明： VTM：7.1版本 操作系统：Win10 64位操作系统 IDE：Visual Studio 2017  下载VTM: https://vcgit.hhi.fraunhofer.de/jvet/VVCSoftware_VTM 根据README.md内容,创建build文件夹,以下是提取出的关于windows平台下的编译。 Note: A w">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://brianyi.github.io/posts/92e79038/20191024140911763.png">
+<meta property="og:image" content="https://brianyi.github.io/posts/92e79038/201912281819578.png">
+<meta property="og:image" content="https://brianyi.github.io/posts/92e79038/20191024140911764.png">
+<meta property="og:image" content="https://brianyi.github.io/posts/92e79038/20191024140911766.png">
+<meta property="og:image" content="https://brianyi.github.io/posts/92e79038/20191024140911767.png">
+<meta property="og:image" content="https://brianyi.github.io/posts/92e79038/2020010912480413.png">
+<meta property="og:image" content="https://brianyi.github.io/posts/92e79038/2020010912513314.png">
+<meta property="og:image" content="https://brianyi.github.io/posts/92e79038/2020010912522115.png">
+<meta property="og:image" content="https://brianyi.github.io/posts/92e79038/2020010913230316.png">
+<meta property="og:image" content="https://brianyi.github.io/posts/92e79038/2020010913320617.png">
+<meta property="og:image" content="https://brianyi.github.io/posts/92e79038/2020010913332018.png">
+<meta property="og:image" content="https://brianyi.github.io/posts/92e79038/2020010913554919.png">
+<meta property="og:image" content="https://brianyi.github.io/posts/92e79038/2020010916263520.png">
+<meta property="og:image" content="https://brianyi.github.io/posts/92e79038/2020011008514822.png">
+<meta property="og:image" content="https://brianyi.github.io/posts/92e79038/2020010918232121.png">
+<meta property="og:updated_time" content="2020-01-29T02:52:20.569Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[视频编解码 VTM7.1]H.266&#x2F;VVC参考软件VTM配置运行">
+<meta name="twitter:description" content="VVC/VTM7.0安装  运行环境、软件版本等说明： VTM：7.1版本 操作系统：Win10 64位操作系统 IDE：Visual Studio 2017  下载VTM: https://vcgit.hhi.fraunhofer.de/jvet/VVCSoftware_VTM 根据README.md内容,创建build文件夹,以下是提取出的关于windows平台下的编译。 Note: A w">
+<meta name="twitter:image" content="https://brianyi.github.io/posts/92e79038/20191024140911763.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Brian's Home" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="https://brianyi.github.io/posts/92e79038/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>[视频编解码 VTM7.1]H.266/VVC参考软件VTM配置运行 | Brian's Home</title>
+  
+
+
+
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?7e38366710cb7c973c4f1db486286308";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Brian's Home</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Stay Hungry, Stay Foolish</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">90</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">29</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">227</span></a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+
+  
+
+  <a href="https://github.com/brianyi" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://brianyi.github.io/posts/92e79038/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Brian Yi">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brian's Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">[视频编解码 VTM7.1]H.266/VVC参考软件VTM配置运行
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-12-28 18:14:12" itemprop="dateCreated datePublished" datetime="2019-12-28T18:14:12+08:00">2019-12-28</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-01-29 10:52:20" itemprop="dateModified" datetime="2020-01-29T10:52:20+08:00">2020-01-29</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/posts/92e79038/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/92e79038/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/posts/92e79038/" class="leancloud_visitors" data-flag-title="[视频编解码 VTM7.1]H.266/VVC参考软件VTM配置运行">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">8.1k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">7 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="vvcvtm70安装"><a class="markdownIt-Anchor" href="#vvcvtm70安装"></a> VVC/VTM7.0安装</h2>
+<blockquote>
+<p>运行环境、软件版本等说明：<br>
+VTM：7.1版本<br>
+操作系统：Win10 64位操作系统<br>
+IDE：Visual Studio 2017</p>
+</blockquote>
+<p>下载VTM: <a href="https://vcgit.hhi.fraunhofer.de/jvet/VVCSoftware_VTM">https://vcgit.hhi.fraunhofer.de/jvet/VVCSoftware_VTM</a></p>
+<p>根据README.md内容,创建build文件夹,以下是提取出的关于windows平台下的编译。<br>
+<strong>Note:</strong> A working CMake installation is required for building the software.</p>
+<p>CMake generates configuration files for the compiler environment/development environment on each platform.<br>
+The following is a list of examples for Windows (MS Visual Studio), macOS (Xcode) and Linux (make).</p>
+<p>Open a command prompt on your system and change into the root directory of this project.</p>
+<p>Create a build directory in the root directory:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir build</span><br></pre></td></tr></table></figure>
+<p>Use one of the following CMake commands, based on your platform. Feel free to change the commands to satisfy<br>
+your needs.</p>
+<p><strong>Windows Visual Studio 2015/17/19 64 Bit:</strong></p>
+<p>Use the proper generator string for generating Visual Studio files, e.g. for VS 2015:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> build</span><br><span class="line">cmake .. -G <span class="string">"Visual Studio 14 2015 Win64"</span></span><br></pre></td></tr></table></figure>
+<p>Then open the generated solution file in MS Visual Studio.</p>
+<p>For VS 2017 use “Visual Studio 15 2017 Win64”, for VS 2019 use “Visual Studio 16 2019”.</p>
+<p>Visual Studio 2019 also allows you to open the CMake directory directly. Choose “File-&gt;Open-&gt;CMake” for this option.</p>
+<img src="/posts/92e79038/20191024140911763.png">
+<img src="/posts/92e79038/201912281819578.png">
+<p>H.266/VVC<br>
+H.265/HEVC<br>
+H.264/AVC</p>
+<h2 id="31-vvc编码结构"><a class="markdownIt-Anchor" href="#31-vvc编码结构"></a> 3.1 VVC编码结构</h2>
+<p>与之前的大多数标准一样，VVC采用了一种基于块的混合编码结构，将图像间和图像内的预测和转换编码与熵编码相结合。图1显示了VTM7编码器的一般框图。</p>
+<img src="/posts/92e79038/20191024140911764.png">
+<p>图像分割结构(<strong>详见3.2节</strong>)将输入视频分割为称为编码树单元(CTUs)的块。CTU使用一个嵌套的多类型树结构的四叉树来分割成编码单元(CUs)，用一个叶编码单元(CU)来定义一个共享相同预测模式的区域(例如内部或之间)。在本文件中，“unit”一词定义了图像中覆盖所有颜色成分的区域;“block”一词用于定义一个覆盖特定颜色成分的区域(如luma)，在考虑色彩采样格式(如4:2:0)时，空间位置可能有所不同。<br>
+VTM7的其他特性，包括帧内预测过程、帧间图像预测过程、转换和量化过程、熵编码过程和环路内滤波过程，将在3.3至3.7节中介绍。根据第11次JVET会议的约定，在块状树结构上的VVC测试模型3中包含了以下特性。</p>
+<ul>
+<li>帧内预测
+<ul>
+<li>67种广角模式扩展的内模式</li>
+<li>块大小和模式相关4 tap插值滤波器</li>
+<li>位置相关的内部预测组合(PDPC)</li>
+<li>交叉分量线性模型内部预测</li>
+<li>多参考线内预测</li>
+<li>内部子分区</li>
+<li>加权矩阵乘法的内部预测</li>
+</ul>
+</li>
+<li>图片间预测</li>
+</ul>
+<h2 id="32-划分"><a class="markdownIt-Anchor" href="#32-划分"></a> 3.2 划分</h2>
+<h3 id="321-图片划分成ctus"><a class="markdownIt-Anchor" href="#321-图片划分成ctus"></a> 3.2.1 图片划分成CTUs</h3>
+<p>图像被分成一系列的编码树单元(CTUs)。CTU的概念和HEVC[6][7]是一样的。对于一个有三个样本阵列的图片，CTU由一个N×N块的luma样本和两个相应的色度样本块组成。图2显示了划分为CTUs的图片示例。<br>
+在CTU中，luma块的最大允许大小被指定为128×128(尽管luma变换块的最大大小是64×64)。下图是一张图片划分为CTUs的例子。<br>
+(<code>实际中,CTU一般默认大小为128x128</code>)</p>
+<img src="/posts/92e79038/20191024140911766.png">
+<h3 id="322-将图片分成子图片-片-块"><a class="markdownIt-Anchor" href="#322-将图片分成子图片-片-块"></a> 3.2.2 将图片分成子图片、片、块</h3>
+<p>图片被分成一个或多个tile rows和一个或多个tile columns。一个tile是一组CTUs的序列，它覆盖了图像的一个矩形区域。<br>
+一个slice由整数个完整的tiles组成或由一幅图片的一个tile中的整数个连续完整的CTU组成。<br>
+支持两种slice模式，即raster-scan slice模式和矩形slice模式。在栅格扫描slice模式中，一个slice包含一个图像的栅格扫描中的完整tiles序列。在矩形slice模式下，一个slice包含若干个完整的块，它们共同构成图片的一个矩形区域，或者包含若干个连续的完整CTU行，它们共同构成图片的一个矩形区域。矩形slice内的tile按照与该slice对应的矩形区域内的tile raster-scan顺序进行扫描。<br>
+子图片包含一个或多个slice，这些slices共同覆盖了图片的矩形区域。<br>
+下图显示一个图片的raster-scan slice划分示例，其中图片被划分为12 tiles和3个raster-scan slices(光栅扫描slice)。</p>
+<img src="/posts/92e79038/20191024140911767.png">
+<p>下图显示了图片的矩形slice划分示例，其中图片被划分为24 tiles(6 tile columns和4 tile rows)和9个矩形slices。</p>
+<img src="/posts/92e79038/2020010912480413.png">
+<p>下图显示一个将图片划分为块和矩形slice的示例，其中图片被划分为4块(2个tile colums和2个tile rows)和4个矩形slice。</p>
+<img src="/posts/92e79038/2020010912513314.png">
+<p>下图显示一个图片的子图片分割的例子，其中一个图片被分割成28个不同尺寸的子图片。</p>
+<img src="/posts/92e79038/2020010912522115.png">
+<blockquote>
+<p>我的理解: slice<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>≥</mo></mrow><annotation encoding="application/x-tex">\ge</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719400000000001em;vertical-align:-0.13597em;"></span><span class="mrel">≥</span></span></span></span>tile<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>≥</mo></mrow><annotation encoding="application/x-tex">\ge</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719400000000001em;vertical-align:-0.13597em;"></span><span class="mrel">≥</span></span></span></span>CTU<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>≥</mo></mrow><annotation encoding="application/x-tex">\ge</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719400000000001em;vertical-align:-0.13597em;"></span><span class="mrel">≥</span></span></span></span>CU, 而block是单独出来的,将整个图片进行划分</p>
+</blockquote>
+<h3 id="323-使用一个树结构来划分ctus"><a class="markdownIt-Anchor" href="#323-使用一个树结构来划分ctus"></a> 3.2.3 使用一个树结构来划分CTUs</h3>
+<p>在HEVC中，为了适应不同的局部特征，采用四叉数树结构表示编码树，将CTU分解为Cus(Coding units)。决定是使用图像间(时间上)还是使用图像内(空间上)预测来编码一个图像区域是在leaf CU(叶子节点CU)水平上进行的。每个leaf CU根据PU分裂类型可进一步分裂成一个，两个或四个Pus。在一个PU内部，应用相同的预测过程，并在PU的基础上将相关信息传输到解码器。利用基于PU分裂类型的预测过程得到剩余块后，根据另一种类似于CU编码树的四叉数树结构，将叶子CU划分成变换单元(Tus:transform units)。HEVC结构的一个重要特点是它具有包括CU、PU、TU在内的多分区概念。<br>
+(<code>HEVC(h265)中的CTU中包含CU(Coding Unit),PU(Prediction Unit),TU(Transform Unit)</code>)<br>
+在VVC中，一个嵌套多类型树的四叉树使用二叉和三叉分段结构代替了多分区单元类型的概念。也就是说，它消除了CU、PU和TU概念的分离，除非CU的尺寸对于最大变换长度来说太大，并且支持更灵活的CU分区形状。在编码树结构中，CU可以是正方形，也可以是矩形。<code>一个编码树单元(CTU)首先被一个四叉树(QT:QuadTree)结构分割。然后利用多类型树(MTT:Multi-Type Tree)结构进一步划分四叉树叶节点</code>。如图7所示，在<strong>多类型树结构</strong>中有<strong>四种分裂类型</strong>，<strong>垂直二分裂(SPLIT_BT_VER)、水平二分裂(SPLIT_BT_HOR)、垂直三分裂(SPLIT_TT_VER)和水平三分裂(SPLIT_TT_HOR)</strong>。<strong>多类型的树叶子节点被称为编码单元(Cus)</strong>，除非CU对于最大的转换长度来说太大，否则这种分割被用于预测和转换处理，而不需要进一步的划分。这意味着，在大多数情况下，CU、PU、TU在四叉树中具有相同的块大小，嵌套多类型树编码块结构。当支持的最大转换长度小于CU的颜色component(<code>我的理解是每个CU都有三个channal, 即Y(luma component),U(Cb:blue-difference chroma component),V(Cr:red-difference chroma component),按YUV420格式来说,4个y(luma)对应1个Cb和1个Cr</code>)的宽度或高度时，会发生异常。</p>
+<img src="/posts/92e79038/2020010913230316.png">
+<p>图8展示了嵌套多类型树编码树结构的四叉树中分区分割信息的信号机制。将编码树单元(CTU)作为四叉树的根，首先用四叉树结构进行分区。每个四叉树的叶节点(当足够大时)被一个多类型树结构进一步划分。在多类型树结构中，第一个标志(mtt_split_cu_flag)表示节点是否进一步分区;当一个节点被进一步分区时，第二个标志(mtt_split_cu_vertical_flag)被用来指示分裂方向，然后第三个标志(mtt_split_cu_binary_flag)被用来指示分裂是二进制分裂还是三元分裂。根据mtt_split_cu_vertical_flag和mtt_split_cu_binary_flag的值，可以得到CU的多类型树分割模式(MttSplitMode)，如表3-1所示。</p>
+<blockquote>
+<p>MTT:Multi-TypeTree, QT:QuadTree, TT:TernaryTree, BT:BinaryTree</p>
+</blockquote>
+<img src="/posts/92e79038/2020010913320617.png">
+<img src="/posts/92e79038/2020010913332018.png">
+<p>图9显示一个用四叉树和嵌套的多类型树编码块结构划分成多个单元的CTU，其中粗体块边表示四叉树分区，其余边表示多类型树分区。嵌套多类型树划分的四叉树提供了一种由Cus组成的内容自适应编码树结构。CU的大小可以和CTU一样大，也可以小到4×4个单位的luma样本。在4:2:0色度格式下，最大色度CB为64×64，最小色度**CB(Coding Block)**为2×2。<br>
+在VVC中，最大支持的luma变换尺寸为64×64，最大支持的chroma变换尺寸为32×32。<strong>当CB的宽度或高度大于变换的最大宽度或高度时，CB将自动在水平和/或垂直方向进行分割，以满足该方向的变换大小限制。</strong></p>
+<img src="/posts/92e79038/2020010913554919.png">
+<p>以下参数由嵌套多类型树编码树scheme的四叉树的<strong>SPS语法元素</strong>定义和指定。(<code>即信息都包含在SPS中</code>)</p>
+<ul>
+<li>CTU size: 四叉树的根节点大小</li>
+<li>MinQTSize: 允许的最小四叉树叶节点大小</li>
+<li>MaxBtSize: 允许的最大二叉树根节点大小</li>
+<li>MaxTtSize: 允许的最大三叉树根节点大小</li>
+<li>MaxMttDepth: 从四叉树叶子中分离出的多类型树的最大允许层次深度</li>
+<li>MinBtSize: 允许的最小二叉树叶节点大小</li>
+<li>MinTtSize: 允许的最小三叉树叶节点大小</li>
+</ul>
+<p>在一个嵌套多类型树编码树结构的四叉树(QT:QuadTree)示例中，将:</p>
+<ul>
+<li>CTU的大小设置为128×128个luma样本，对应两个64×64块的4:2:0色度样本(<code>3个channal,Y(luma)有128x128个pixel,Cb&amp;Cr分别有64x64个pixel,如果bit depth为8(值在0~255),那么Y(luma)的2x2个pixel(即4字节)对应Cb&amp;Cr的1x1+1x1=2个pixel(即2字节),那么Y(luma)的128x128=16384pixel对应Cb&amp;Cr的64x64+64x64=8192pixel,那么这样一个CTU需要占用128x128+2x64x64=24576Bytes</code>)</li>
+<li>MinQTSize设置为16×16</li>
+<li>MaxBtSize设置为128×128</li>
+<li>MaxTtSize设置为64×64</li>
+<li>MinBtSize和MinTtSize(宽度和高度)设置为4×4</li>
+<li>MaxMttDepth设置为4</li>
+</ul>
+<p>首先将四叉树划分应用于CTU，生成四叉树叶子节点。四叉树的叶节点大小为16×16(比如，MinQTSize)到128×128(比如，CTU的大小)。如果叶子QT节点为128×128，则不会被二叉树进一步分割，因为其大小超过了MaxBtSize和MaxTtSize(即,64×64)。否则，叶子qdtree节点将被多类型树进一步分割。因此，四叉树的叶节点也是多类型树的根节点，其多类型树深度(mttDepth)为0。当多类型树深度达到MaxMttDepth(即4)，不考虑进一步拆分。当多类型树节点的宽度等于MinBtSize且小于或等于2 * MinTtSize时，不考虑进一步的水平分割。类似地，当多类型树节点的高度等于MinBtSize且小于或等于2 * MinTtSize时，不考虑进一步的垂直分割。<br>
+为了在VVC硬件解码器中允许64×64的Luma块和32×32的色度流水线设计，当一个luma编码块的宽度或高度大于64时，禁止TT分割，如图10所示。当色度编码块的宽度或高度大于32时，也禁止TT分割。</p>
+<img src="/posts/92e79038/2020010916263520.png">
+<p>在VTM7中，编码树方案支持luma和chroma具有单独的块树结构。目前，对于P slice和B slice，一个CTU中的luma和chroma CTBs必须共享相同的编码树结构。然而，对于I slice，luma和chroma可以有单独的块树结构。当采用单独的块树模式时，luma CTB被一个编码树结构分割成Cus，而chroma CTBs被另一个编码树结构分割成chroma Cus。<strong>这意味着I slice中的CU可能由一个luma分量的编码块或两个chroma分量的编码块组成,而P或B片中的CU总是由所有三种颜色的编码块组成，除非视频是单色的。</strong></p>
+<h3 id="324-图像边界分割成cu"><a class="markdownIt-Anchor" href="#324-图像边界分割成cu"></a> 3.2.4 图像边界分割成CU</h3>
+<p>正如在HEVC中所做的，当树节点块的一部分超过底部或右侧图片边界时，树节点块被强制分割，直到每个编码CU的所有样本都位于图片边界内。VTM7中应用了以下分割规则:</p>
+<ul>
+<li>如果树节点块的一部分超出底部和右侧图像边界，
+<ul>
+<li>如果块是QT节点，且块的大小大于最小QT大小，则将使用QT拆分模式强制拆分块。</li>
+<li>否则，将强制使用SPLIT_BT_HOR模式分割块</li>
+</ul>
+</li>
+</ul>
+<h3 id="335-intra-sub-partitionsisp"><a class="markdownIt-Anchor" href="#335-intra-sub-partitionsisp"></a> 3.3.5 Intra Sub-Partitions(ISP)</h3>
+<p>Intra子分区(ISP)工具根据块大小将luma内预测块垂直或水平地划分为2个或4个子分区。例如，ISP的最小块大小是4x8(或8x4)。如果块大小大于4x8(或8x4)，那么相应的块被4个子分区分割。已经注意到,𝑀×128(𝑀≤64)和128×𝑁(𝑁≤64)ISP块对于64×64的VDPU可能产生一个潜在的问题。例如,一个𝑀×128大小的CU在单树有一个𝑀×128 luma TB 和两个相应的<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mfrac><mi>𝑀</mi><mn>2</mn></mfrac><mo>×</mo><mn>64</mn></mrow><annotation encoding="application/x-tex">\frac{𝑀}{2}×64</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.217331em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.872331em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.10903em;">M</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">6</span><span class="mord">4</span></span></span></span>色度TBs。如果CU使用ISP,luma TB将分为四个𝑀×32 TBs(只有水平分裂是可能的),每个都小于64×64 block。然而，目前ISP的设计中并没有对chroma blocks进行划分。因此，两个chroma components的尺寸都大于32×32 block。类似地,一个类似的情况可以使用ISP创建128×𝑁大小的CU。因此，这两种情况是64×64解码器管道的一个问题。<strong>因此，可以使用ISP的CU尺寸被限制在最大64×64。</strong> <strong>图19</strong>展示了这两种可能性的例子。所有子分区都满足至少有16个样本的条件。</p>
+<h1 id="其他"><a class="markdownIt-Anchor" href="#其他"></a> 其他</h1>
+<p><strong>Abbr</strong>:<br>
+CU: Coding Unit<br>
+PU: Prediction Unit<br>
+TU: Transform Unit<br>
+SPS: Sequence Parameter Set<br>
+<strong>GOP</strong>: Group of picture（图像组）, GOP说白了就是两个I帧之间的间隔.通过提高GOP值来提高图像质量是有限度的，在遇到场景切换的情况时，H.264编码器会自动强制插入一个I帧，此时实际的GOP值被缩短了。另一方面，在一个GOP中，P、B帧是由I帧预测得到的，当I帧的图像质量比较差时，会影响到一个GOP中后续P、B帧的图像质量，直到下一个GOP开始才有可能得以恢复，所以GOP值也不宜设置过大。<a href="https://blog.csdn.net/xiaoyida11/article/details/52852398">【出自】：H264编码之GOP含义</a><br>
+<strong>YUV</strong>: 人的视觉系统对亮度感知更敏感，所以将色彩空间分解为亮度Y和色度U（Cb）、V（Cr）<br>
+Y代表的是亮度，UV代表的是彩度（因此黑白电影可省略UV，相近于RGB），分别用Cr和Cb来表示，因此YUV的记录通常以Y:UV的格式呈现。</p>
+<ul>
+<li>
+<p>Y：亮度（luma / luminance）基本同灰度值，灰度值是形容黑白图像的，亮度值是形容彩色图像的，如果把彩色图像转换成黑白图像，亮度值就会作为转换后的黑白图像的灰度值。如下图所示，没有U、V颜色分量的图像Y image就是一副黑白图片。</p>
+</li>
+<li>
+<p>U（Cb）、V（Cr）：色度（chroma / chromimance）表示图像的颜色信息，定义影像的色彩和饱和度，用于指定像素的颜色。</p>
+</li>
+<li>
+<p>YUV存储格式</p>
+<ul>
+<li>Planar: 在YUV的Planar存储格式的图像存储矩阵中，先连续存储所有像素点的Y值，再存储所有像素点的U值，最后存储剩下像素点的V值{y0y1y2y3…}，{u0u1u2u3…}，{v0v1v2v3…}，相当于分别存储data[0]、data[1]、data[2]中。</li>
+<li>Packed: 在YUV的Packed存储格式的图像存储矩阵中，每个像素点的YUV是连续交替存储的 {y0u0v0}{y1u1v1}{y2u2v2}{y3u3v3}…，相当于都存储在data[0]中。</li>
+<li>YUV存储大小<br>
+YUV444    3 bytes per pixel     (12 bytes per 4   pixels)<br>
+YUV422    4 bytes per 2 pixels   (8 bytes per 4 pixels)<br>
+YUV411    6 bytes per 4 pixels<br>
+YUV420p   6 bytes per 4 pixels, reordered<img src="/posts/92e79038/2020011008514822.png">
+</li>
+</ul>
+</li>
+<li>
+<p>YUV采样格式<br>
+YUV基本有以下如图这几种采样方式:</p>
+<img src="/posts/92e79038/2020010918232121.png">
+<p>其中</p>
+<ul>
+<li>YUV 4:4:4采样，即每一个Y值对应一组UV分量。
+<ul>
+<li>图像前四个像素的数据: Y0U0V0 Y1U1V1 Y2U2V2 Y3U3V3</li>
+<li>采样的码流: Y0 U0 V0 Y1 U1 V1 Y2 U2 V2 Y3 U3 V3</li>
+<li>Y分量的大小： w*h</li>
+<li>U分量的大小： w*h</li>
+<li>V分量的大小： w*h</li>
+</ul>
+</li>
+<li>YUV 4:2:2采样，即每两个Y值共用一组UV分量（两个像素一个采U一个采V）。
+<ul>
+<li>图像前四个像素的数据: Y0U0V0 Y1U1V1 Y2U2V2 Y3U3V3</li>
+<li>采样的码流举例（不唯一，原则是两个相邻的Y共用一对UV，UV可以是他们两个各一个，也可以各取一个）:Y0 U0 Y1 V1 Y2 U2 Y3 V3</li>
+<li>Y分量的大小： w*h</li>
+<li>U分量的大小： w*h/2</li>
+<li>V分量的大小： w*h/2</li>
+</ul>
+</li>
+<li>YUV 4:2:0采样，即每四个Y值共用一组UV分量。（2：0不是不采集V）</li>
+<li>Y分量的大小： w*h</li>
+<li>U分量的大小： w/2*h/2=w*h/4</li>
+<li>V分量的大小： w/2*h/2=w*h/4</li>
+</ul>
+</li>
+</ul>
+<h1 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h1>
+
+      
+    </div>
+
+    
+      
+
+
+    
+
+    
+    
+    
+    <div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/posts/92e79038/">[视频编解码 VTM7.1]H.266/VVC参考软件VTM配置运行</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 Brian Yi 的个人博客">Brian Yi</a></p>
+  <p><span>发布时间:</span>2019年12月28日 - 18:12</p>
+  <p><span>最后更新:</span>2020年01月29日 - 10:01</p>
+  <p><span>原始链接:</span><a href="/posts/92e79038/" title="[视频编解码 VTM7.1]H.266/VVC参考软件VTM配置运行">https://brianyi.github.io/posts/92e79038/</a>
+    <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://brianyi.github.io/posts/92e79038/" aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+    });
+    });  
+</script>
+
+      
+    </div>
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+        <div class="post-widgets">
+        
+          <div class="wp_rating">
+            <div id="wpac-rating"></div>
+          </div>
+        
+
+        
+
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/2634e3ca/" rel="next" title="[leetcode]140.单词拆分II">
+                <i class="fa fa-chevron-left"></i> [leetcode]140.单词拆分II
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/posts/19c28d6f/" rel="prev" title="[博客]书写格式">
+                [博客]书写格式 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Brian Yi">
+            
+              <p class="site-author-name" itemprop="name">Brian Yi</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">227</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">29</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">90</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/BrianYi" title="GitHub &rarr; https://github.com/BrianYi" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="mailto:yijiazhen123@gmail.com" title="E-Mail &rarr; mailto:yijiazhen123@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#vvcvtm70安装"><span class="nav-number">1.</span> <span class="nav-text"> VVC/VTM7.0安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#31-vvc编码结构"><span class="nav-number">2.</span> <span class="nav-text"> 3.1 VVC编码结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#32-划分"><span class="nav-number">3.</span> <span class="nav-text"> 3.2 划分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#321-图片划分成ctus"><span class="nav-number">3.1.</span> <span class="nav-text"> 3.2.1 图片划分成CTUs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#322-将图片分成子图片-片-块"><span class="nav-number">3.2.</span> <span class="nav-text"> 3.2.2 将图片分成子图片、片、块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#323-使用一个树结构来划分ctus"><span class="nav-number">3.3.</span> <span class="nav-text"> 3.2.3 使用一个树结构来划分CTUs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#324-图像边界分割成cu"><span class="nav-number">3.4.</span> <span class="nav-text"> 3.2.4 图像边界分割成CU</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#335-intra-sub-partitionsisp"><span class="nav-number">3.5.</span> <span class="nav-text"> 3.3.5 Intra Sub-Partitions(ISP)</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#其他"><span class="nav-number"></span> <span class="nav-text"> 其他</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number"></span> <span class="nav-text"> 参考</span></a></li></div>
+            
+            <span class="links-of-author-item ">
+                <a href="javascript:;" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索</a>
+            </span>
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Brian Yi</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="站点总字数">1.6m</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+    <span title="站点阅读时长">24:43</span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.1"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.1"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
+
+  
+  <script src="/js/js.cookie.js?v=7.1.1"></script>
+  <script src="/js/scroll-cookie.js?v=7.1.1"></script>
+
+
+  
+
+  
+
+  
+  
+
+<script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+
+
+
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'w63e2LQ8OdmB34En763YIlqy-gzGzoHsz',
+    appKey: 'tS6NvoSvx3zOIyodVKLiJJaS',
+    placeholder: '请在这里留下你的评论...',
+    avatar: '',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn'
+  });
+</script>
+
+
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.json";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                // fixed:local search has bug
+                if (data.title==undefined)
+                    return [];
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+  
+  <script>
+    
+    function addCount(Counter) {
+      var $visitors = $('.leancloud_visitors');
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            
+            Counter('put', '/classes/Counter/' + counter.objectId, JSON.stringify({ time: { '__op': 'Increment', 'amount': 1 } }))
+            
+              .done(function() {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.time + 1);
+              })
+            
+              .fail(function ({ responseJSON }) {
+                console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
+              })
+          } else {
+            
+              Counter('post', '/classes/Counter', JSON.stringify({ title: title, url: url, time: 1 }))
+                .done(function() {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(1);
+                })
+                .fail(function() {
+                  console.log('Failed to create');
+                });
+            
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log('LeanCloud Counter Error: ' + responseJSON.code + ' ' + responseJSON.error);
+        });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + 'w63e2LQ8OdmB34En763YIlqy-gzGzoHsz')
+        .done(function({ api_server }) {
+          var Counter = function(method, url, data) {
+            return $.ajax({
+              method: method,
+              url: 'https://' + api_server + '/1.1' + url,
+              headers: {
+                'X-LC-Id': 'w63e2LQ8OdmB34En763YIlqy-gzGzoHsz',
+                'X-LC-Key': 'tS6NvoSvx3zOIyodVKLiJJaS',
+                'Content-Type': 'application/json',
+              },
+              data: data
+            });
+          };
+          
+            addCount(Counter);
+          
+        });
+    });
+  </script>
+
+
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling }
+        if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next) }
+      }
+    });
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      document.getElementById(all[i].inputID + '-Frame').parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML"></script>
+
+    
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <script>
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id: 18388,
+      el: 'wpac-rating',
+      color: 'fc6423'
+    });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  </script>
+
+
+  
+
+  
+
+  
+<script>
+  $('.highlight').not('.gist .highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+        if (result) $(this).text('复制成功');
+        else $(this).text('复制失败');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('复制');
+      }, 300);
+    }).append(e);
+  })
+</script>
+
+
+  
+
+  
+
+</body>
+</html>
