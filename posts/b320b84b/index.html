@@ -113,9 +113,9 @@
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
+      applicationID: 'BV9JEDY4W4',
+      apiKey: 'd619a118f344f8f1631c2cae6cea9406',
+      indexName: 'blog',
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
@@ -309,7 +309,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">90</span></a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">92</span></a>
 
   </li>
         
@@ -328,7 +328,7 @@
       
     
 
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">29</span></a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">31</span></a>
 
   </li>
         
@@ -347,7 +347,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">227</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">233</span></a>
 
   </li>
 
@@ -369,20 +369,26 @@
   
     <div class="site-search">
       
-  <div class="popup search-popup local-search-popup">
-  <div class="local-search-header clearfix">
-    <span class="search-icon">
-      <i class="fa fa-search"></i>
-    </span>
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
     <span class="popup-btn-close">
       <i class="fa fa-times-circle"></i>
     </span>
-    <div class="local-search-input-wrapper">
-      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
-    </div>
   </div>
-  <div id="local-search-result"></div>
-</div>
+
 
 
 
@@ -611,7 +617,7 @@
 <div id="decryptionError" style="display: none;">Incorrect Password!</div>
 <div id="noContentError" style="display: none;">No content to display!</div>
 <div id="encrypt-blog" style="display:none">
-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
+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
 </div>
 <script src="/lib/crypto-js.js"></script><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">
       
@@ -776,7 +782,7 @@ U2FsdGVkX18x0aKxt+PLqqr9KwQszEnvuEO7Bv4JVl8+09R7ri6I30kJ37MGyGClRnJHM7Ilo/ltirxN
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">227</span>
+                    <span class="site-state-item-count">233</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -851,7 +857,11 @@ U2FsdGVkX18x0aKxt+PLqqr9KwQszEnvuEO7Bv4JVl8+09R7ri6I30kJ37MGyGClRnJHM7Ilo/ltirxN
                     
                       
                     
-                    <span class="site-state-item-count">29</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">31</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -1048,7 +1058,11 @@ U2FsdGVkX18x0aKxt+PLqqr9KwQszEnvuEO7Bv4JVl8+09R7ri6I30kJ37MGyGClRnJHM7Ilo/ltirxN
                     
                       
                     
-                    <span class="site-state-item-count">90</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">92</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1137,7 +1151,7 @@ U2FsdGVkX18x0aKxt+PLqqr9KwQszEnvuEO7Bv4JVl8+09R7ri6I30kJ37MGyGClRnJHM7Ilo/ltirxN
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">1.6m</span>
+    <span title="站点总字数">1.7m</span>
   
 
   
@@ -1146,7 +1160,7 @@ U2FsdGVkX18x0aKxt+PLqqr9KwQszEnvuEO7Bv4JVl8+09R7ri6I30kJ37MGyGClRnJHM7Ilo/ltirxN
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">24:43</span>
+    <span title="站点阅读时长">25:47</span>
   
 </div>
 
@@ -1302,330 +1316,20 @@ U2FsdGVkX18x0aKxt+PLqqr9KwQszEnvuEO7Bv4JVl8+09R7ri6I30kJ37MGyGClRnJHM7Ilo/ltirxN
 
 
   
-  <script>
-    // Popup Window;
-    var isfetched = false;
-    var isXml = true;
-    // Search DB path;
-    var search_path = "search.json";
-    if (search_path.length === 0) {
-      search_path = "search.xml";
-    } else if (/json$/i.test(search_path)) {
-      isXml = false;
-    }
-    var path = "/" + search_path;
-    // monitor main search box;
-
-    var onPopupClose = function (e) {
-      $('.popup').hide();
-      $('#local-search-input').val('');
-      $('.search-result-list').remove();
-      $('#no-result').remove();
-      $(".local-search-pop-overlay").remove();
-      $('body').css('overflow', '');
-    }
-
-    function proceedsearch() {
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
-        .css('overflow', 'hidden');
-      $('.search-popup-overlay').click(onPopupClose);
-      $('.popup').toggle();
-      var $localSearchInput = $('#local-search-input');
-      $localSearchInput.attr("autocapitalize", "none");
-      $localSearchInput.attr("autocorrect", "off");
-      $localSearchInput.focus();
-    }
-
-    // search function;
-    var searchFunc = function(path, search_id, content_id) {
-      'use strict';
-
-      // start loading animation
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
-          '<div id="search-loading-icon">' +
-          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
-          '</div>' +
-          '</div>')
-        .css('overflow', 'hidden');
-      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
-
-      
-
-      $.ajax({
-        url: path,
-        dataType: isXml ? "xml" : "json",
-        async: true,
-        success: function(res) {
-          // get the contents from search data
-          isfetched = true;
-          $('.popup').detach().appendTo('.header-inner');
-          var datas = isXml ? $("entry", res).map(function() {
-            return {
-              title: $("title", this).text(),
-              content: $("content",this).text(),
-              url: $("url" , this).text()
-            };
-          }).get() : res;
-          var input = document.getElementById(search_id);
-          var resultContent = document.getElementById(content_id);
-          var inputEventFunction = function() {
-            var searchText = input.value.trim().toLowerCase();
-            var keywords = searchText.split(/[\s\-]+/);
-            if (keywords.length > 1) {
-              keywords.push(searchText);
-            }
-            var resultItems = [];
-            if (searchText.length > 0) {
-              // perform local searching
-              datas.forEach(function(data) {
-                var isMatch = false;
-                var hitCount = 0;
-                var searchTextCount = 0;
-                // fixed:local search has bug
-                if (data.title==undefined)
-                    return [];
-                var title = data.title.trim();
-                var titleInLowerCase = title.toLowerCase();
-                var content = data.content.trim().replace(/<[^>]+>/g,"");
-                
-                var contentInLowerCase = content.toLowerCase();
-                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
-                var indexOfTitle = [];
-                var indexOfContent = [];
-                // only match articles with not empty titles
-                if(title != '') {
-                  keywords.forEach(function(keyword) {
-                    function getIndexByWord(word, text, caseSensitive) {
-                      var wordLen = word.length;
-                      if (wordLen === 0) {
-                        return [];
-                      }
-                      var startPosition = 0, position = [], index = [];
-                      if (!caseSensitive) {
-                        text = text.toLowerCase();
-                        word = word.toLowerCase();
-                      }
-                      while ((position = text.indexOf(word, startPosition)) > -1) {
-                        index.push({position: position, word: word});
-                        startPosition = position + wordLen;
-                      }
-                      return index;
-                    }
-
-                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
-                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
-                  });
-                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
-                    isMatch = true;
-                    hitCount = indexOfTitle.length + indexOfContent.length;
-                  }
-                }
-
-                // show search results
-
-                if (isMatch) {
-                  // sort index by position of keyword
-
-                  [indexOfTitle, indexOfContent].forEach(function (index) {
-                    index.sort(function (itemLeft, itemRight) {
-                      if (itemRight.position !== itemLeft.position) {
-                        return itemRight.position - itemLeft.position;
-                      } else {
-                        return itemLeft.word.length - itemRight.word.length;
-                      }
-                    });
-                  });
-
-                  // merge hits into slices
-
-                  function mergeIntoSlice(text, start, end, index) {
-                    var item = index[index.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    var hits = [];
-                    var searchTextCountInSlice = 0;
-                    while (position + word.length <= end && index.length != 0) {
-                      if (word === searchText) {
-                        searchTextCountInSlice++;
-                      }
-                      hits.push({position: position, length: word.length});
-                      var wordEnd = position + word.length;
-
-                      // move to next position of hit
-
-                      index.pop();
-                      while (index.length != 0) {
-                        item = index[index.length - 1];
-                        position = item.position;
-                        word = item.word;
-                        if (wordEnd > position) {
-                          index.pop();
-                        } else {
-                          break;
-                        }
-                      }
-                    }
-                    searchTextCount += searchTextCountInSlice;
-                    return {
-                      hits: hits,
-                      start: start,
-                      end: end,
-                      searchTextCount: searchTextCountInSlice
-                    };
-                  }
-
-                  var slicesOfTitle = [];
-                  if (indexOfTitle.length != 0) {
-                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
-                  }
-
-                  var slicesOfContent = [];
-                  while (indexOfContent.length != 0) {
-                    var item = indexOfContent[indexOfContent.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    // cut out 100 characters
-                    var start = position - 20;
-                    var end = position + 80;
-                    if(start < 0){
-                      start = 0;
-                    }
-                    if (end < position + word.length) {
-                      end = position + word.length;
-                    }
-                    if(end > content.length){
-                      end = content.length;
-                    }
-                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
-                  }
-
-                  // sort slices in content by search text's count and hits' count
-
-                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
-                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
-                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
-                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
-                      return sliceRight.hits.length - sliceLeft.hits.length;
-                    } else {
-                      return sliceLeft.start - sliceRight.start;
-                    }
-                  });
-
-                  // select top N slices in content
-
-                  var upperBound = parseInt('1');
-                  if (upperBound >= 0) {
-                    slicesOfContent = slicesOfContent.slice(0, upperBound);
-                  }
-
-                  // highlight title and content
-
-                  function highlightKeyword(text, slice) {
-                    var result = '';
-                    var prevEnd = slice.start;
-                    slice.hits.forEach(function (hit) {
-                      result += text.substring(prevEnd, hit.position);
-                      var end = hit.position + hit.length;
-                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
-                      prevEnd = end;
-                    });
-                    result += text.substring(prevEnd, slice.end);
-                    return result;
-                  }
-
-                  var resultItem = '';
-
-                  if (slicesOfTitle.length != 0) {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
-                  } else {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
-                  }
-
-                  slicesOfContent.forEach(function (slice) {
-                    resultItem += "<a href='" + articleUrl + "'>" +
-                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
-                      "...</p>" + "</a>";
-                  });
-
-                  resultItem += "</li>";
-                  resultItems.push({
-                    item: resultItem,
-                    searchTextCount: searchTextCount,
-                    hitCount: hitCount,
-                    id: resultItems.length
-                  });
-                }
-              })
-            };
-            if (keywords.length === 1 && keywords[0] === "") {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
-            } else if (resultItems.length === 0) {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
-            } else {
-              resultItems.sort(function (resultLeft, resultRight) {
-                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
-                  return resultRight.searchTextCount - resultLeft.searchTextCount;
-                } else if (resultLeft.hitCount !== resultRight.hitCount) {
-                  return resultRight.hitCount - resultLeft.hitCount;
-                } else {
-                  return resultRight.id - resultLeft.id;
-                }
-              });
-              var searchResultList = '<ul class=\"search-result-list\">';
-              resultItems.forEach(function (result) {
-                searchResultList += result.item;
-              })
-              searchResultList += "</ul>";
-              resultContent.innerHTML = searchResultList;
-            }
-          }
-
-          if ('auto' === 'auto') {
-            input.addEventListener('input', inputEventFunction);
-          } else {
-            $('.search-icon').click(inputEventFunction);
-            input.addEventListener('keypress', function (event) {
-              if (event.keyCode === 13) {
-                inputEventFunction();
-              }
-            });
-          }
-
-          // remove loading animation
-          $(".local-search-pop-overlay").remove();
-          $('body').css('overflow', '');
-
-          proceedsearch();
-        }
-      });
-    }
-
-    // handle and trigger popup window;
-    $('.popup-trigger').click(function(e) {
-      e.stopPropagation();
-      if (isfetched === false) {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-      } else {
-        proceedsearch();
-      };
-    });
-
-    $('.popup-btn-close').click(onPopupClose);
-    $('.popup').click(function(e){
-      e.stopPropagation();
-    });
-    $(document).on('keyup', function (event) {
-      var shouldDismissSearchPopup = event.which === 27 &&
-        $('.search-popup').is(':visible');
-      if (shouldDismissSearchPopup) {
-        onPopupClose();
-      }
-    });
-  </script>
 
 
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/algolia-search.js?v=7.1.1"></script>
 
 
 

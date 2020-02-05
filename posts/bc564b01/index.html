@@ -113,9 +113,9 @@
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
+      applicationID: 'BV9JEDY4W4',
+      apiKey: 'd619a118f344f8f1631c2cae6cea9406',
+      indexName: 'blog',
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
@@ -137,7 +137,7 @@
 <meta property="og:description" content="2.2.2 更宽的字符 C语言中的宽字符是基于wchar_t数据类型的,被定义在多个头文件中,包括WCHAR.H 1typedef unsigned short wchar_t; wchar_t是16位宽 大写字母L紧接着左引号向编译器表明这个字符将用宽字符存储 1static wchar_t a[] = L&quot;Hello!&quot;; 这个L非常重要,编译器才知道你想要字符串用每个字符两个字节的方式存储">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://brianyi.github.io/posts/bc564b01/2020012110050511.png">
-<meta property="og:updated_time" content="2020-01-28T02:15:08.062Z">
+<meta property="og:updated_time" content="2020-02-05T02:44:40.774Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[Windows编程]第2章 Unicode简介">
 <meta name="twitter:description" content="2.2.2 更宽的字符 C语言中的宽字符是基于wchar_t数据类型的,被定义在多个头文件中,包括WCHAR.H 1typedef unsigned short wchar_t; wchar_t是16位宽 大写字母L紧接着左引号向编译器表明这个字符将用宽字符存储 1static wchar_t a[] = L&quot;Hello!&quot;; 这个L非常重要,编译器才知道你想要字符串用每个字符两个字节的方式存储">
@@ -311,7 +311,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">90</span></a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">92</span></a>
 
   </li>
         
@@ -330,7 +330,7 @@
       
     
 
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">29</span></a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">31</span></a>
 
   </li>
         
@@ -349,7 +349,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">227</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">233</span></a>
 
   </li>
 
@@ -371,20 +371,26 @@
   
     <div class="site-search">
       
-  <div class="popup search-popup local-search-popup">
-  <div class="local-search-header clearfix">
-    <span class="search-icon">
-      <i class="fa fa-search"></i>
-    </span>
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
     <span class="popup-btn-close">
       <i class="fa fa-times-circle"></i>
     </span>
-    <div class="local-search-input-wrapper">
-      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
-    </div>
   </div>
-  <div id="local-search-result"></div>
-</div>
+
 
 
 
@@ -498,7 +504,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-01-28 10:15:08" itemprop="dateModified" datetime="2020-01-28T10:15:08+08:00">2020-01-28</time>
+                <time title="修改时间：2020-02-05 10:44:40" itemprop="dateModified" datetime="2020-02-05T10:44:40+08:00">2020-02-05</time>
               
             
           </span>
@@ -568,7 +574,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">2.4k</span>
+                <span title="本文字数">3.1k</span>
               
 
               
@@ -582,7 +588,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">2 分钟</span>
+                <span title="阅读时长">3 分钟</span>
               
             </div>
           
@@ -611,15 +617,17 @@
 <p>这个L非常重要,编译器才知道你想要字符串用每个字符两个字节的方式存储,否则就会编译出错.<br>
 但单个宽字符可以不用使用L前缀,C编译器总会在字符后面加0的.</p>
 <h3 id="224-维护一个源代码文件"><a class="markdownIt-Anchor" href="#224-维护一个源代码文件"></a> 2.2.4 维护一个源代码文件</h3>
-<p>TCHAR.H为那些需要字符串参数的普通运行库函数(例如,_tprintf和_tcslen)提供了一系列的替代名词.这些函数有时被称为&quot;通用&quot;的函数名字,因为它们可以指Unicode或非Unicode版本的函数.<br>
-如果在工程配置中的<strong>C/C++ =&gt; 预处理器</strong>中添加了 <strong>_UNICODE</strong> 标识符,并且在程序中包含了<strong>TCHAR.H</strong> 头文件,那么所有&quot;通用&quot;函数都被解释为宽字符函数.<br>
+<p><strong>TCHAR.H为那些需要字符串参数的普通运行库函数(例如,_tprintf和_tcslen)提供了一系列的替代名词.这些函数有时被称为&quot;通用&quot;的函数名字,因为它们可以指Unicode或非Unicode版本的函数.</strong><br>
+<strong><code>所有通用字符处理函数都被放在了TCHAR.H文件中</code></strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _tcscat         wcscat</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _tcscat_s       wcscat_s</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _tcschr         wcschr</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _tcscpy         wcscpy</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _tcscpy_s       wcscpy_s</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _tcscspn        wcscspn</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _tcslen         wcslen</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _tcsnlen        wcsnlen</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _tcsncat        wcsncat</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _tcsncat_s      wcsncat_s</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _tcsncat_l      _wcsncat_l</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _tcsncat_s_l    _wcsncat_s_l</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _tcsncpy        wcsncpy</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _tcsncpy_s      wcsncpy_s</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _tcsncpy_l      _wcsncpy_l</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _tcsncpy_s_l    _wcsncpy_s_l</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _tcspbrk        wcspbrk</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _tcsrchr        wcsrchr</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _tcsspn         wcsspn</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _tcsstr         wcsstr</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _tcstok         _wcstok</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>如果在工程配置中的<strong>C/C++ =&gt; 预处理器</strong>中添加了 <strong>_UNICODE</strong> 标识符,并且在程序中包含了<strong>TCHAR.H</strong> 头文件,那么所有&quot;通用&quot;函数都被解释为宽字符函数.<br>
 对于现在的编译器(我用的VS2017),直接在下图设置也可</p>
 <img src="/posts/bc564b01/2020012110050511.png">
 <p>设置完成后,下面的字符串就被解释为是由宽字符组成的.</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> TCHAR a[] = _T(<span class="string">"Hello!"</span>);</span><br></pre></td></tr></table></figure>
 <h3 id="235-格式化的消息框"><a class="markdownIt-Anchor" href="#235-格式化的消息框"></a> 2.3.5 格式化的消息框</h3>
 <p>下面实现的MessageBoxPrintf函数可以接收格式化信息并显示在窗口上</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;Windows.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;tchar.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> CDECL <span class="title">MessageBoxPrintf</span><span class="params">(TCHAR *szCaption, TCHAR *szFormat, ...)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    TCHAR szBuffer[<span class="number">1024</span>];</span><br><span class="line">    va_list pArgList;</span><br><span class="line"></span><br><span class="line">    va_start(pArgList, szFormat);</span><br><span class="line"></span><br><span class="line">    _vsntprintf(szBuffer, <span class="keyword">sizeof</span>(szBuffer) / <span class="keyword">sizeof</span>(TCHAR),</span><br><span class="line">        szFormat, pArgList);</span><br><span class="line"></span><br><span class="line">    va_end(pArgList);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> MessageBox(<span class="number">0</span>, szBuffer, szCaption, <span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> WINAPI <span class="title">WinMain</span><span class="params">( __in HINSTANCE hInstance, __in_opt HINSTANCE hPrevInstance, __in LPSTR lpCmdLine, __in <span class="keyword">int</span> nShowCmd )</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> cxScreen, cyScreen;</span><br><span class="line">    cxScreen = GetSystemMetrics(SM_CXSCREEN);	<span class="comment">// 获取屏幕width</span></span><br><span class="line">    cyScreen = GetSystemMetrics(SM_CYSCREEN);	<span class="comment">// 获取屏幕height</span></span><br><span class="line">    MessageBoxPrintf(TEXT(<span class="string">"ScrnSize"</span>),</span><br><span class="line">        TEXT(<span class="string">"The screen is %i pixels wide by %i pixels high."</span>),</span><br><span class="line">        cxScreen, cyScreen);</span><br><span class="line"></span><br><span class="line">    BOOL fResult;</span><br><span class="line">    <span class="keyword">int</span> aMouseInfo[<span class="number">3</span>];</span><br><span class="line">    TCHAR szText[<span class="number">1024</span>];</span><br><span class="line">    fResult = GetSystemMetrics(SM_MOUSEPRESENT);	<span class="comment">// 返回值非0则表示安装了鼠标,否则0</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (fResult == <span class="number">0</span>) &#123;</span><br><span class="line">        _tcscpy(szText, TEXT(<span class="string">"No mouse installed.\n"</span>));</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        _tcscpy(szText, TEXT(<span class="string">"Mouse installed.\n"</span>));</span><br><span class="line"></span><br><span class="line">        fResult = GetSystemMetrics(SM_SWAPBUTTON);	<span class="comment">// 返回值非0则表示鼠标左右键交换了,否则0</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (fResult == <span class="number">0</span>) &#123;</span><br><span class="line">            _tcscat(szText, TEXT(<span class="string">"Buttons not swapped.\n"</span>));</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            _tcscat(szText, TEXT(<span class="string">"Buttons swapped.\n"</span>));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        fResult = SystemParametersInfo(	<span class="comment">// 获取鼠标参数信息</span></span><br><span class="line">            SPI_GETMOUSE,</span><br><span class="line">            <span class="number">0</span>,</span><br><span class="line">            &amp;aMouseInfo,</span><br><span class="line">            <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (fResult) &#123;</span><br><span class="line">            TCHAR szBuf[<span class="number">512</span>];</span><br><span class="line">            _stprintf(szBuf, TEXT(<span class="string">"Speed: %d\nThreshold (x,y): %d, %d\n"</span>), </span><br><span class="line">                aMouseInfo[<span class="number">2</span>], aMouseInfo[<span class="number">0</span>], aMouseInfo[<span class="number">1</span>]);</span><br><span class="line">            _tcscat(szText, szBuf);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    MessageBoxPrintf(TEXT(<span class="string">"GetSystemMetrics Usage Example"</span>), szText);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;Windows.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;tchar.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> CDECL <span class="title">MessageBoxPrintf</span><span class="params">(TCHAR *szCaption, TCHAR *szFormat, ...)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    TCHAR szBuffer[<span class="number">1024</span>];</span><br><span class="line">    va_list pArgList;</span><br><span class="line"></span><br><span class="line">    va_start(pArgList, szFormat);</span><br><span class="line"></span><br><span class="line">    _vsntprintf(szBuffer, <span class="keyword">sizeof</span>(szBuffer) / <span class="keyword">sizeof</span>(TCHAR),</span><br><span class="line">        szFormat, pArgList);</span><br><span class="line"></span><br><span class="line">    va_end(pArgList);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> MessageBox(<span class="number">0</span>, szBuffer, szCaption, <span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> WINAPI <span class="title">WinMain</span><span class="params">( __in HINSTANCE hInstance, __in_opt HINSTANCE hPrevInstance, __in LPSTR lpCmdLine, __in <span class="keyword">int</span> nShowCmd )</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> cxScreen, cyScreen;</span><br><span class="line">    cxScreen = GetSystemMetrics(SM_CXSCREEN);	<span class="comment">// 获取屏幕width</span></span><br><span class="line">    cyScreen = GetSystemMetrics(SM_CYSCREEN);	<span class="comment">// 获取屏幕height</span></span><br><span class="line">    MessageBoxPrintf(TEXT(<span class="string">"ScrnSize"</span>),</span><br><span class="line">        TEXT(<span class="string">"The screen is %i pixels wide by %i pixels high."</span>),</span><br><span class="line">        cxScreen, cyScreen);</span><br><span class="line"></span><br><span class="line">    BOOL fResult;</span><br><span class="line">    <span class="keyword">int</span> aMouseInfo[<span class="number">3</span>];</span><br><span class="line">    TCHAR szText[<span class="number">1024</span>];</span><br><span class="line">    fResult = GetSystemMetrics(SM_MOUSEPRESENT);	<span class="comment">// 返回值非0则表示安装了鼠标,否则0</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (fResult == <span class="number">0</span>) &#123;</span><br><span class="line">        _tcscpy(szText, TEXT(<span class="string">"No mouse installed.\n"</span>));</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        _tcscpy(szText, TEXT(<span class="string">"Mouse installed.\n"</span>));</span><br><span class="line"></span><br><span class="line">        fResult = GetSystemMetrics(SM_SWAPBUTTON);	<span class="comment">// 返回值非0则表示鼠标左右键交换了,否则0</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (fResult == <span class="number">0</span>) &#123;</span><br><span class="line">            _tcscat(szText, TEXT(<span class="string">"Buttons not swapped.\n"</span>));</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            _tcscat(szText, TEXT(<span class="string">"Buttons swapped.\n"</span>));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        fResult = SystemParametersInfo(	<span class="comment">// 获取鼠标参数信息</span></span><br><span class="line">            SPI_GETMOUSE,</span><br><span class="line">            <span class="number">0</span>,</span><br><span class="line">            &amp;aMouseInfo,</span><br><span class="line">            <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (fResult) &#123;</span><br><span class="line">            TCHAR szBuf[<span class="number">512</span>];</span><br><span class="line">            swprintf(szBuf, TEXT(<span class="string">"Speed: %d\nThreshold (x,y): %d, %d\n"</span>), </span><br><span class="line">                aMouseInfo[<span class="number">2</span>], aMouseInfo[<span class="number">0</span>], aMouseInfo[<span class="number">1</span>]);</span><br><span class="line">            _tcscat(szText, szBuf);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    MessageBoxPrintf(TEXT(<span class="string">"GetSystemMetrics Usage Example"</span>), szText);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="解题思路"><a class="markdownIt-Anchor" href="#解题思路"></a> 解题思路</h1>
 <h1 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h1>
 
@@ -635,28 +643,35 @@
     <li class="popular-posts-item">
       
       
+      <div class="popular-posts-title"><a href="\posts\17ae1cbc\" rel="bookmark">[Windows编程]第9章 子窗口控件</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\aef11d37\" rel="bookmark">[Windows编程]第8章 计时器</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\288466a6\" rel="bookmark">[Windows编程]第7章 鼠标</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\481c226a\" rel="bookmark">[Windows编程]第6章 键盘</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
       <div class="popular-posts-title"><a href="\posts\1e4abcd3\" rel="bookmark">[Windows编程]第5章 绘图基础</a></div>
-      
-    </li>
-  
-    <li class="popular-posts-item">
-      
-      
-      <div class="popular-posts-title"><a href="\posts\c1bee057\" rel="bookmark">[Windows编程]第4章 文本输出</a></div>
-      
-    </li>
-  
-    <li class="popular-posts-item">
-      
-      
-      <div class="popular-posts-title"><a href="\posts\9734c640\" rel="bookmark">[Windows编程]第3章 窗口与消息</a></div>
-      
-    </li>
-  
-    <li class="popular-posts-item">
-      
-      
-      <div class="popular-posts-title"><a href="\posts\c1877712\" rel="bookmark">[Windows编程]第1章 起步</a></div>
       
     </li>
   
@@ -680,7 +695,7 @@
   <p><span>本文标题:</span><a href="/posts/bc564b01/">[Windows编程]第2章 Unicode简介</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 Brian Yi 的个人博客">Brian Yi</a></p>
   <p><span>发布时间:</span>2020年01月21日 - 09:01</p>
-  <p><span>最后更新:</span>2020年01月28日 - 10:01</p>
+  <p><span>最后更新:</span>2020年02月05日 - 10:02</p>
   <p><span>原始链接:</span><a href="/posts/bc564b01/" title="[Windows编程]第2章 Unicode简介">https://brianyi.github.io/posts/bc564b01/</a>
     <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://brianyi.github.io/posts/bc564b01/" aria-label="复制成功！"></i></span>
   </p>
@@ -827,7 +842,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">227</span>
+                    <span class="site-state-item-count">233</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -902,7 +917,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">29</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">31</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -1099,7 +1118,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">90</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">92</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1207,7 +1230,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">1.6m</span>
+    <span title="站点总字数">1.7m</span>
   
 
   
@@ -1216,7 +1239,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">24:43</span>
+    <span title="站点阅读时长">25:47</span>
   
 </div>
 
@@ -1372,330 +1395,20 @@
 
 
   
-  <script>
-    // Popup Window;
-    var isfetched = false;
-    var isXml = true;
-    // Search DB path;
-    var search_path = "search.json";
-    if (search_path.length === 0) {
-      search_path = "search.xml";
-    } else if (/json$/i.test(search_path)) {
-      isXml = false;
-    }
-    var path = "/" + search_path;
-    // monitor main search box;
-
-    var onPopupClose = function (e) {
-      $('.popup').hide();
-      $('#local-search-input').val('');
-      $('.search-result-list').remove();
-      $('#no-result').remove();
-      $(".local-search-pop-overlay").remove();
-      $('body').css('overflow', '');
-    }
-
-    function proceedsearch() {
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
-        .css('overflow', 'hidden');
-      $('.search-popup-overlay').click(onPopupClose);
-      $('.popup').toggle();
-      var $localSearchInput = $('#local-search-input');
-      $localSearchInput.attr("autocapitalize", "none");
-      $localSearchInput.attr("autocorrect", "off");
-      $localSearchInput.focus();
-    }
-
-    // search function;
-    var searchFunc = function(path, search_id, content_id) {
-      'use strict';
-
-      // start loading animation
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
-          '<div id="search-loading-icon">' +
-          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
-          '</div>' +
-          '</div>')
-        .css('overflow', 'hidden');
-      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
-
-      
-
-      $.ajax({
-        url: path,
-        dataType: isXml ? "xml" : "json",
-        async: true,
-        success: function(res) {
-          // get the contents from search data
-          isfetched = true;
-          $('.popup').detach().appendTo('.header-inner');
-          var datas = isXml ? $("entry", res).map(function() {
-            return {
-              title: $("title", this).text(),
-              content: $("content",this).text(),
-              url: $("url" , this).text()
-            };
-          }).get() : res;
-          var input = document.getElementById(search_id);
-          var resultContent = document.getElementById(content_id);
-          var inputEventFunction = function() {
-            var searchText = input.value.trim().toLowerCase();
-            var keywords = searchText.split(/[\s\-]+/);
-            if (keywords.length > 1) {
-              keywords.push(searchText);
-            }
-            var resultItems = [];
-            if (searchText.length > 0) {
-              // perform local searching
-              datas.forEach(function(data) {
-                var isMatch = false;
-                var hitCount = 0;
-                var searchTextCount = 0;
-                // fixed:local search has bug
-                if (data.title==undefined)
-                    return [];
-                var title = data.title.trim();
-                var titleInLowerCase = title.toLowerCase();
-                var content = data.content.trim().replace(/<[^>]+>/g,"");
-                
-                var contentInLowerCase = content.toLowerCase();
-                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
-                var indexOfTitle = [];
-                var indexOfContent = [];
-                // only match articles with not empty titles
-                if(title != '') {
-                  keywords.forEach(function(keyword) {
-                    function getIndexByWord(word, text, caseSensitive) {
-                      var wordLen = word.length;
-                      if (wordLen === 0) {
-                        return [];
-                      }
-                      var startPosition = 0, position = [], index = [];
-                      if (!caseSensitive) {
-                        text = text.toLowerCase();
-                        word = word.toLowerCase();
-                      }
-                      while ((position = text.indexOf(word, startPosition)) > -1) {
-                        index.push({position: position, word: word});
-                        startPosition = position + wordLen;
-                      }
-                      return index;
-                    }
-
-                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
-                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
-                  });
-                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
-                    isMatch = true;
-                    hitCount = indexOfTitle.length + indexOfContent.length;
-                  }
-                }
-
-                // show search results
-
-                if (isMatch) {
-                  // sort index by position of keyword
-
-                  [indexOfTitle, indexOfContent].forEach(function (index) {
-                    index.sort(function (itemLeft, itemRight) {
-                      if (itemRight.position !== itemLeft.position) {
-                        return itemRight.position - itemLeft.position;
-                      } else {
-                        return itemLeft.word.length - itemRight.word.length;
-                      }
-                    });
-                  });
-
-                  // merge hits into slices
-
-                  function mergeIntoSlice(text, start, end, index) {
-                    var item = index[index.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    var hits = [];
-                    var searchTextCountInSlice = 0;
-                    while (position + word.length <= end && index.length != 0) {
-                      if (word === searchText) {
-                        searchTextCountInSlice++;
-                      }
-                      hits.push({position: position, length: word.length});
-                      var wordEnd = position + word.length;
-
-                      // move to next position of hit
-
-                      index.pop();
-                      while (index.length != 0) {
-                        item = index[index.length - 1];
-                        position = item.position;
-                        word = item.word;
-                        if (wordEnd > position) {
-                          index.pop();
-                        } else {
-                          break;
-                        }
-                      }
-                    }
-                    searchTextCount += searchTextCountInSlice;
-                    return {
-                      hits: hits,
-                      start: start,
-                      end: end,
-                      searchTextCount: searchTextCountInSlice
-                    };
-                  }
-
-                  var slicesOfTitle = [];
-                  if (indexOfTitle.length != 0) {
-                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
-                  }
-
-                  var slicesOfContent = [];
-                  while (indexOfContent.length != 0) {
-                    var item = indexOfContent[indexOfContent.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    // cut out 100 characters
-                    var start = position - 20;
-                    var end = position + 80;
-                    if(start < 0){
-                      start = 0;
-                    }
-                    if (end < position + word.length) {
-                      end = position + word.length;
-                    }
-                    if(end > content.length){
-                      end = content.length;
-                    }
-                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
-                  }
-
-                  // sort slices in content by search text's count and hits' count
-
-                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
-                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
-                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
-                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
-                      return sliceRight.hits.length - sliceLeft.hits.length;
-                    } else {
-                      return sliceLeft.start - sliceRight.start;
-                    }
-                  });
-
-                  // select top N slices in content
-
-                  var upperBound = parseInt('1');
-                  if (upperBound >= 0) {
-                    slicesOfContent = slicesOfContent.slice(0, upperBound);
-                  }
-
-                  // highlight title and content
-
-                  function highlightKeyword(text, slice) {
-                    var result = '';
-                    var prevEnd = slice.start;
-                    slice.hits.forEach(function (hit) {
-                      result += text.substring(prevEnd, hit.position);
-                      var end = hit.position + hit.length;
-                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
-                      prevEnd = end;
-                    });
-                    result += text.substring(prevEnd, slice.end);
-                    return result;
-                  }
-
-                  var resultItem = '';
-
-                  if (slicesOfTitle.length != 0) {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
-                  } else {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
-                  }
-
-                  slicesOfContent.forEach(function (slice) {
-                    resultItem += "<a href='" + articleUrl + "'>" +
-                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
-                      "...</p>" + "</a>";
-                  });
-
-                  resultItem += "</li>";
-                  resultItems.push({
-                    item: resultItem,
-                    searchTextCount: searchTextCount,
-                    hitCount: hitCount,
-                    id: resultItems.length
-                  });
-                }
-              })
-            };
-            if (keywords.length === 1 && keywords[0] === "") {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
-            } else if (resultItems.length === 0) {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
-            } else {
-              resultItems.sort(function (resultLeft, resultRight) {
-                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
-                  return resultRight.searchTextCount - resultLeft.searchTextCount;
-                } else if (resultLeft.hitCount !== resultRight.hitCount) {
-                  return resultRight.hitCount - resultLeft.hitCount;
-                } else {
-                  return resultRight.id - resultLeft.id;
-                }
-              });
-              var searchResultList = '<ul class=\"search-result-list\">';
-              resultItems.forEach(function (result) {
-                searchResultList += result.item;
-              })
-              searchResultList += "</ul>";
-              resultContent.innerHTML = searchResultList;
-            }
-          }
-
-          if ('auto' === 'auto') {
-            input.addEventListener('input', inputEventFunction);
-          } else {
-            $('.search-icon').click(inputEventFunction);
-            input.addEventListener('keypress', function (event) {
-              if (event.keyCode === 13) {
-                inputEventFunction();
-              }
-            });
-          }
-
-          // remove loading animation
-          $(".local-search-pop-overlay").remove();
-          $('body').css('overflow', '');
-
-          proceedsearch();
-        }
-      });
-    }
-
-    // handle and trigger popup window;
-    $('.popup-trigger').click(function(e) {
-      e.stopPropagation();
-      if (isfetched === false) {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-      } else {
-        proceedsearch();
-      };
-    });
-
-    $('.popup-btn-close').click(onPopupClose);
-    $('.popup').click(function(e){
-      e.stopPropagation();
-    });
-    $(document).on('keyup', function (event) {
-      var shouldDismissSearchPopup = event.which === 27 &&
-        $('.search-popup').is(':visible');
-      if (shouldDismissSearchPopup) {
-        onPopupClose();
-      }
-    });
-  </script>
 
 
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/algolia-search.js?v=7.1.1"></script>
 
 
 

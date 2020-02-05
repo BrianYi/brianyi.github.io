@@ -1,0 +1,1658 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Consolas:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext">
+  
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: true,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'BV9JEDY4W4',
+      apiKey: 'd619a118f344f8f1631c2cae6cea9406',
+      indexName: 'blog',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="7.1 鼠标的基础知识 12fMouse = GetSystemMetrics(SM_MOUSEPRESENT);     // 是否连接了鼠标cButtons = GetSystemMetrics(SM_CMOUSEBUTTONS);  // 获取鼠标按键数 通过调用SystemParametersInfo可以获取或设定鼠标的参数  7.1.1 一些基本术语 鼠标具有一个单像素精度的&amp;quo">
+<meta name="keywords" content="Windows编程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Windows编程]第7章 鼠标">
+<meta property="og:url" content="https://brianyi.github.io/posts/288466a6/index.html">
+<meta property="og:site_name" content="Brian&#39;s Home">
+<meta property="og:description" content="7.1 鼠标的基础知识 12fMouse = GetSystemMetrics(SM_MOUSEPRESENT);     // 是否连接了鼠标cButtons = GetSystemMetrics(SM_CMOUSEBUTTONS);  // 获取鼠标按键数 通过调用SystemParametersInfo可以获取或设定鼠标的参数  7.1.1 一些基本术语 鼠标具有一个单像素精度的&amp;quo">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://brianyi.github.io/posts/288466a6/2020020217045234.png">
+<meta property="og:image" content="https://brianyi.github.io/posts/288466a6/2020020218150835.png">
+<meta property="og:image" content="https://brianyi.github.io/posts/288466a6/2020013114584428.gif">
+<meta property="og:image" content="https://brianyi.github.io/posts/288466a6/2020013114584430.gif">
+<meta property="og:updated_time" content="2020-02-05T04:35:42.939Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[Windows编程]第7章 鼠标">
+<meta name="twitter:description" content="7.1 鼠标的基础知识 12fMouse = GetSystemMetrics(SM_MOUSEPRESENT);     // 是否连接了鼠标cButtons = GetSystemMetrics(SM_CMOUSEBUTTONS);  // 获取鼠标按键数 通过调用SystemParametersInfo可以获取或设定鼠标的参数  7.1.1 一些基本术语 鼠标具有一个单像素精度的&amp;quo">
+<meta name="twitter:image" content="https://brianyi.github.io/posts/288466a6/2020020217045234.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Brian's Home" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="https://brianyi.github.io/posts/288466a6/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>[Windows编程]第7章 鼠标 | Brian's Home</title>
+  
+
+
+
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?7e38366710cb7c973c4f1db486286308";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Brian's Home</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Stay Hungry, Stay Foolish</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">92</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">31</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">233</span></a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+
+  
+
+  <a href="https://github.com/brianyi" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://brianyi.github.io/posts/288466a6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Brian Yi">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brian's Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">[Windows编程]第7章 鼠标
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-02-02 16:42:49" itemprop="dateCreated datePublished" datetime="2020-02-02T16:42:49+08:00">2020-02-02</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-02-05 12:35:42" itemprop="dateModified" datetime="2020-02-05T12:35:42+08:00">2020-02-05</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Windows编程/" itemprop="url" rel="index"><span itemprop="name">Windows编程</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/posts/288466a6/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/288466a6/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/posts/288466a6/" class="leancloud_visitors" data-flag-title="[Windows编程]第7章 鼠标">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">14k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">13 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+<h2 id="71-鼠标的基础知识"><a class="markdownIt-Anchor" href="#71-鼠标的基础知识"></a> 7.1 鼠标的基础知识</h2>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fMouse = GetSystemMetrics(SM_MOUSEPRESENT);     <span class="comment">// 是否连接了鼠标</span></span><br><span class="line">cButtons = GetSystemMetrics(SM_CMOUSEBUTTONS);  <span class="comment">// 获取鼠标按键数</span></span><br></pre></td></tr></table></figure>
+<p>通过调用SystemParametersInfo可以获取或设定鼠标的参数</p>
+<h3 id="711-一些基本术语"><a class="markdownIt-Anchor" href="#711-一些基本术语"></a> 7.1.1 一些基本术语</h3>
+<p>鼠标具有一个单像素精度的&quot;热点&quot;(hot spot),热点在显示设备上指示了一个精确的位置(<strong>箭头的顶点即为热点</strong>).当我提到屏幕上鼠标指针的位置时,实际上是指热点的位置.</p>
+<h2 id="72-客户区鼠标消息"><a class="markdownIt-Anchor" href="#72-客户区鼠标消息"></a> 7.2 客户区鼠标消息</h2>
+<img src="/posts/288466a6/2020020217045234.png">
+<p>所以上所有消息,参数wParam表示鼠标按钮,lParam包含了鼠标的位置信息,x=LOWORD(lParam),y=HIWORD(lParam)<br>
+WM_MOUSEMOVE消息会在鼠标进入客户区时不断触发,wParam包含一些了虚拟键</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">case</span> WM_MOUSEMOVE:</span><br><span class="line">    <span class="keyword">if</span> (wParam &amp; MK_LBUTTON)        <span class="comment">// 表示鼠标在客户区内按下了左键</span></span><br><span class="line">        [<span class="keyword">do</span> other things]</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (wParam &amp; MK_SHIFT)     <span class="comment">// 表示鼠标在客户区内时,按下了Shift键</span></span><br><span class="line">        [<span class="keyword">do</span> other things]</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (wParam &amp; MK_CONTROL)   <span class="comment">// 表示鼠标在客户区内时,按下了Ctrl键</span></span><br><span class="line">        [<span class="keyword">do</span> other things]</span><br><span class="line"><span class="keyword">case</span> WM_LBUTTONDOWN:</span><br><span class="line">    <span class="keyword">if</span> (wParam &amp; MK_SHIFT)  <span class="comment">// 表示按下鼠标左键的同时按下了Shift键</span></span><br><span class="line">        [<span class="keyword">do</span> other things]</span><br></pre></td></tr></table></figure>
+<p>可以使用GetKeyState后来返回当前鼠标或键盘的状态.</p>
+<h3 id="723-鼠标双击"><a class="markdownIt-Anchor" href="#723-鼠标双击"></a> 7.2.3 鼠标双击</h3>
+<p>如果想让窗口过程接收鼠标双击消息WM_LBUTTONDBLCLK,WM_RBUTTONDBLCLK,那么需要如下设置</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wndclass.style = CS_HREDRAW | CS_VREDRAW | CS_DBLCLKS;</span><br></pre></td></tr></table></figure>
+<p>那么双击会收到如下消息<br>
+WM_LBUTTONDOWN<br>
+WM_LBUTTONUP<br>
+WM_LBUTTONDBLCLK<br>
+WM_LBUTTONUP</p>
+<h2 id="73-非客户区鼠标消息"><a class="markdownIt-Anchor" href="#73-非客户区鼠标消息"></a> 7.3 非客户区鼠标消息</h2>
+<p>窗口的非客户区包括<strong>标题栏、菜单和窗口滚动条</strong></p>
+<img src="/posts/288466a6/2020020218150835.png">
+<p>非客户区鼠标消息的参数wParam和lParam与客户区鼠标消息的参数有些不同.<br>
+x=LOWORD(lParam),y=HIWORD(lParam),表示<strong>屏幕坐标</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ScreenToClient(hwnd, &amp;pt);  <span class="comment">// 屏幕坐标转为客户区坐标</span></span><br><span class="line">ClientToScreen(hwnd, &amp;pt);  <span class="comment">// 客户区坐标转为屏幕坐标</span></span><br></pre></td></tr></table></figure>
+<h3 id="731-击中测试消息"><a class="markdownIt-Anchor" href="#731-击中测试消息"></a> 7.3.1 击中测试消息</h3>
+<p><code>没有完全明白~_~</code><br>
+WM_NCHITTEST表示&quot;非客户区集中测试&quot;(nonclient hit test)<br>
+这个消息优先级高于其他所有的客户区和非客户区鼠标消息.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">case</span> WM_NCHITTEST:  <span class="comment">// 使所有系统键盘函数失效</span></span><br><span class="line">    <span class="keyword">return</span> (LRESULT)HTNOWHERE;</span><br></pre></td></tr></table></figure>
+<h3 id="743-使用键盘模仿鼠标操作"><a class="markdownIt-Anchor" href="#743-使用键盘模仿鼠标操作"></a> 7.4.3 使用键盘模仿鼠标操作</h3>
+<p>Windows为鼠标指针保留了一个&quot;显示计数&quot;(display count).<br>
+若安装了鼠标,则显示计数初始值为0,否则为-1.只有当显示计数<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>≥</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\ge 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719400000000001em;vertical-align:-0.13597em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>时,系统才显示鼠标指针.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ShowCursor(TRUE);   <span class="comment">// 增加显示计数</span></span><br><span class="line">ShowCursor(False);  <span class="comment">// 减少显示计数</span></span><br><span class="line">GetCursorPos(&amp;pt);  <span class="comment">// 获取鼠标位置(屏幕坐标,因为没有hwnd参数,ScreenToClient可以转化为客户区坐标)</span></span><br><span class="line">SetCursorPost(x,y); <span class="comment">// 设定鼠标位置(屏幕坐标,因为没有hwnd参数,ClientToScreen可以转化为屏幕坐标)</span></span><br></pre></td></tr></table></figure>
+<h3 id="747-子窗口和键盘"><a class="markdownIt-Anchor" href="#747-子窗口和键盘"></a> 7.4.7 子窗口和键盘</h3>
+<p>下面代码是一个普遍的包含子窗口的代码的流程</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">LRESULT CALLBACK <span class="title">WndProc</span><span class="params">(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)</span></span></span><br><span class="line"><span class="function">LRESULT CALLBACK <span class="title">ChildWndProc</span><span class="params">(HWND, UINT, WPARAM, LPARAM)</span></span>;</span><br><span class="line">TCHAR szAppName[] = TEXT(<span class="string">"Main Window"</span>);</span><br><span class="line">TCHAR szChildClass[] = TEXT(<span class="string">"Child Window"</span>);</span><br><span class="line">...</span><br><span class="line"><span class="comment">// 主窗口类注册</span></span><br><span class="line">wndclass.style = CS_HREDRAW | CS_VREDRAW;</span><br><span class="line">wndclass.lpfnWndProc = WndProc;</span><br><span class="line">wndclass.cbClsExtra = wndclass.cbWndExtra = <span class="number">0</span>;</span><br><span class="line">wndclass.hInstance = hInstance;</span><br><span class="line">wndclass.hIcon = LoadIcon(<span class="literal">NULL</span>, IDI_APPLICATION);</span><br><span class="line">wndclass.hCursor = LoadCursor(<span class="literal">NULL</span>, IDC_ARROW);</span><br><span class="line">wndclass.hbrBackground = (HBRUSH)GetStockObject(WHITE_BRUSH);</span><br><span class="line">wndclass.lpszMenuName = <span class="literal">NULL</span>;</span><br><span class="line">wndclass.lpszClassName = szAppName;</span><br><span class="line"><span class="keyword">if</span> (!RegisterClass(&amp;wndclass))</span><br><span class="line">&#123;</span><br><span class="line">    MessageBox(<span class="literal">NULL</span>, TEXT(<span class="string">"This program requires Windows NT!"</span>), szAppName, MB_ICONERROR);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">....</span><br><span class="line"><span class="comment">// 子窗口类注册(这里简单重用了主窗口类的数据,只是做了简单修改)</span></span><br><span class="line">wndclass.lpfnWndProc = ChildWndProc;</span><br><span class="line">wndclass.cbWndExtra = <span class="keyword">sizeof</span>(LONG); <span class="comment">// 每个子窗口多分配sizeof(LONG)字节的空间,作为保留空间</span></span><br><span class="line">wndclass.lpszClassName = szChildClass;</span><br><span class="line"><span class="keyword">if</span> (!RegisterClass(&amp;wndclass))</span><br><span class="line">&#123;</span><br><span class="line">    MessageBox(<span class="literal">NULL</span>, TEXT(<span class="string">"This program requires Windows NT!"</span>), szAppName, MB_ICONERROR);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="comment">// 主窗口类的窗口过程</span></span><br><span class="line"><span class="function">LRESULT CALLBACK <span class="title">WndProc</span><span class="params">(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// GetWindowLongPtr(hwnd, GWL_HINSTANCE)将会获取WinMain中的hInstance</span></span><br><span class="line">    <span class="comment">// 或者 ((LPCREATESTRUCT)lParam)-&gt;hInstance</span></span><br><span class="line">    <span class="keyword">switch</span>(message)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">case</span> WM_CREATE:</span><br><span class="line">            hChildWnd = CreateWindow(szChildClass, <span class="literal">NULL</span>, WS_CHILDWINDOW | WS_VISIBLE,</span><br><span class="line">					<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, </span><br><span class="line">					hwnd, WindowID,</span><br><span class="line">					(HINSTANCE)GetWindowLongPtr(hwnd, GWL_HINSTANCE), <span class="literal">NULL</span>);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        ....</span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">return</span> DefWindowProc(hwnd, message, wParam, lParam);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 子窗口类的窗口过程</span></span><br><span class="line"><span class="function">LRESULT CALLBACK <span class="title">ChildWndProc</span><span class="params">(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ...</span><br><span class="line">    LONG value;</span><br><span class="line">    <span class="keyword">switch</span>(message)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">case</span> WM_CREATE:</span><br><span class="line">            SetWindowLongPtr(hwnd, <span class="number">0</span>, <span class="number">1024</span>);    <span class="comment">// 前面创建窗口的保留空间,每个窗口创建时都在保留空间存放数值1024</span></span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> WM_PAINT:</span><br><span class="line">            ...</span><br><span class="line">            value = (LONG)GetWindowLongPtr(hwnd, <span class="number">0</span>);    <span class="comment">// 获取保留空间的值1024</span></span><br><span class="line">            ...</span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">return</span> DefWindowProc(hwnd, message, wParam, lParam);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面代码中每个窗口的保留空间可以存放不同的数据,而这些数据可以通过GetWindowLongPtr来获取,通过SetWindowLongPtr来设置.<br>
+每个窗口的窗口句柄hwnd唯一,Windows通过hwnd来唯一识别每个窗口.</p>
+<h2 id="综合运用"><a class="markdownIt-Anchor" href="#综合运用"></a> 综合运用</h2>
+<p>下面代码将展示一个包含<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>5</mn><mo>×</mo><mn>5</mn></mrow><annotation encoding="application/x-tex">5\times 5</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">5</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">5</span></span></span></span>个子窗口的程序,获得焦点的窗口将会有虚线框,当鼠标点击窗口或者键盘按下空格(VK_SPACE)、回车(VK_RETURN)都会让窗口画叉标记,再次按键则会取消标记.<br>
+主要理解窗口焦点的处理,子窗口如何向父窗口传递消息的</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;Windows.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;tchar.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DIVISIONS 5</span></span><br><span class="line"></span><br><span class="line"><span class="function">LRESULT CALLBACK <span class="title">WndProc</span><span class="params">(HWND, UINT, WPARAM, LPARAM)</span></span>;</span><br><span class="line"><span class="function">LRESULT CALLBACK <span class="title">ChildWndProc</span><span class="params">(HWND, UINT, WPARAM, LPARAM)</span></span>;</span><br><span class="line"></span><br><span class="line">HWND hChild[DIVISIONS][DIVISIONS];</span><br><span class="line">TCHAR szAppName[] = TEXT(<span class="string">"Main Window"</span>), szChildName[] = TEXT(<span class="string">"Child Window"</span>);</span><br><span class="line">LONG idFocus;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> WINAPI <span class="title">WinMain</span><span class="params">(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR lpCmdLine, _In_ <span class="keyword">int</span> nShowCmd)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	HWND hwnd;</span><br><span class="line">	MSG msg;</span><br><span class="line">	WNDCLASS wndclass;</span><br><span class="line"></span><br><span class="line">	wndclass.style = CS_HREDRAW | CS_VREDRAW;</span><br><span class="line">	wndclass.lpfnWndProc = WndProc;</span><br><span class="line">	wndclass.cbClsExtra = wndclass.cbWndExtra = <span class="number">0</span>;</span><br><span class="line">	wndclass.hInstance = hInstance;</span><br><span class="line">	wndclass.hIcon = LoadIcon(<span class="literal">NULL</span>, IDI_APPLICATION);</span><br><span class="line">	wndclass.hCursor = LoadCursor(<span class="literal">NULL</span>, IDC_ARROW);</span><br><span class="line">	wndclass.hbrBackground = (HBRUSH)GetStockObject(WHITE_BRUSH);</span><br><span class="line">	wndclass.lpszMenuName = <span class="literal">NULL</span>;</span><br><span class="line">	wndclass.lpszClassName = szAppName;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (!RegisterClass(&amp;wndclass))</span><br><span class="line">	&#123;</span><br><span class="line">		MessageBox(<span class="literal">NULL</span>, TEXT(<span class="string">"This program requires Windows NT!"</span>), szAppName, MB_ICONERROR);</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	wndclass.lpfnWndProc = ChildWndProc;</span><br><span class="line">	wndclass.cbWndExtra = <span class="keyword">sizeof</span>(LONG);</span><br><span class="line">	wndclass.hIcon = <span class="literal">NULL</span>;</span><br><span class="line">	wndclass.lpszClassName = szChildName;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (!RegisterClass(&amp;wndclass))</span><br><span class="line">	&#123;</span><br><span class="line">		MessageBox(<span class="literal">NULL</span>, TEXT(<span class="string">"This program requires Windows NT!"</span>), szAppName, MB_ICONERROR);</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 整个窗口的客户区都是无效的</span></span><br><span class="line">	hwnd = CreateWindow(szAppName, TEXT(<span class="string">"Main Window"</span>),</span><br><span class="line">		WS_OVERLAPPEDWINDOW,</span><br><span class="line">		CW_USEDEFAULT, CW_USEDEFAULT,</span><br><span class="line">		CW_USEDEFAULT, CW_USEDEFAULT,</span><br><span class="line">		<span class="literal">NULL</span>, <span class="literal">NULL</span>, hInstance, <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line">	ShowWindow(hwnd, nShowCmd);</span><br><span class="line">	<span class="comment">// 越过消息队列,直接由Windows调用窗口过程处理WM_PAINT消息</span></span><br><span class="line">	UpdateWindow(hwnd);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span> (GetMessage(&amp;msg, <span class="literal">NULL</span>, <span class="number">0</span>, <span class="number">0</span>))</span><br><span class="line">	&#123;</span><br><span class="line">		TranslateMessage(&amp;msg);</span><br><span class="line">		DispatchMessage(&amp;msg);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> msg.wParam;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function">LRESULT CALLBACK <span class="title">WndProc</span><span class="params">(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> x,y;</span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">int</span> cxBlock, cyBlock;</span><br><span class="line">	TCHAR szBuffer[<span class="number">128</span>];</span><br><span class="line">	<span class="keyword">switch</span> (message)</span><br><span class="line">	&#123;</span><br><span class="line">	<span class="keyword">case</span> WM_CREATE:</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span> (y = <span class="number">0</span>; y &lt; DIVISIONS; ++y)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">for</span> (x = <span class="number">0</span>; x &lt; DIVISIONS; ++x)</span><br><span class="line">			&#123;</span><br><span class="line">				wsprintf(szBuffer, TEXT(<span class="string">"Child Window(id %d: (%d,%d))"</span>), (y &lt;&lt; <span class="number">8</span> | x), y, x);</span><br><span class="line">				hChild[y][x] = CreateWindow(</span><br><span class="line">					szChildName, szBuffer, WS_CHILDWINDOW | WS_CAPTION | WS_VISIBLE, <span class="comment">// 把WS_CAPTION去掉就不会显示标题栏了</span></span><br><span class="line">					<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>,</span><br><span class="line">					hwnd, (HMENU)(y &lt;&lt; <span class="number">8</span> | x),</span><br><span class="line">					(HINSTANCE)GetWindowLongPtr(hwnd, GWL_HINSTANCE), <span class="literal">NULL</span>);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">case</span> WM_SIZE:</span><br><span class="line">	&#123;</span><br><span class="line">		cxBlock = LOWORD(lParam) / DIVISIONS;</span><br><span class="line">		cyBlock = HIWORD(lParam) / DIVISIONS;</span><br><span class="line">		<span class="keyword">for</span> (y = <span class="number">0</span>; y &lt; DIVISIONS; ++y)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">for</span> (x = <span class="number">0</span>; x&lt; DIVISIONS; ++x)</span><br><span class="line">			&#123;</span><br><span class="line">				MoveWindow(hChild[y][x], x * cxBlock, y * cyBlock, cxBlock, cyBlock, TRUE);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">case</span> WM_SETFOCUS:</span><br><span class="line">		SetFocus(GetDlgItem(hwnd, idFocus));	<span class="comment">// 让子窗口获得焦点</span></span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">case</span> WM_KEYDOWN:</span><br><span class="line">	&#123;</span><br><span class="line">		x = idFocus &amp; <span class="number">0xFF</span>;	<span class="comment">// 获取当前焦点位置的x坐标</span></span><br><span class="line">		y = idFocus &gt;&gt; <span class="number">8</span>;	<span class="comment">// 获取当前焦点位置的y坐标</span></span><br><span class="line">		<span class="keyword">switch</span> (wParam)</span><br><span class="line">		&#123;</span><br><span class="line">		<span class="keyword">case</span> VK_UP:</span><br><span class="line">			y = max(<span class="number">0</span>, y - <span class="number">1</span>);</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> VK_DOWN:</span><br><span class="line">			y = min(DIVISIONS - <span class="number">1</span>, y + <span class="number">1</span>);</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> VK_LEFT:</span><br><span class="line">			x = max(<span class="number">0</span>, x - <span class="number">1</span>);</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> VK_RIGHT:</span><br><span class="line">			x = min(DIVISIONS - <span class="number">1</span>, x + <span class="number">1</span>);</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> VK_HOME:</span><br><span class="line">			x = y = <span class="number">0</span>;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> VK_END:</span><br><span class="line">			x = y = DIVISIONS - <span class="number">1</span>;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">default</span>:</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		idFocus = (y &lt;&lt; <span class="number">8</span>) | (x &amp; <span class="number">0xFF</span>);		<span class="comment">// 更新当前焦点的子窗口id(id由x,y坐标构成)</span></span><br><span class="line">		SetFocus(GetDlgItem(hwnd, idFocus));	<span class="comment">// 让子窗口idFocus获得焦点</span></span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">case</span> WM_DESTROY:</span><br><span class="line">	&#123;</span><br><span class="line">		PostQuitMessage(<span class="number">0</span>);</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">default</span>:</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> DefWindowProc(hwnd, message, wParam, lParam);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">LRESULT CALLBACK <span class="title">ChildWndProc</span><span class="params">(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	HDC hdc;</span><br><span class="line">	PAINTSTRUCT ps;</span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">int</span> cxClient, cyClient;</span><br><span class="line">	<span class="keyword">switch</span> (message)</span><br><span class="line">	&#123;</span><br><span class="line">	<span class="keyword">case</span> WM_CREATE:</span><br><span class="line">	&#123;</span><br><span class="line">		SetWindowLongPtr(hwnd, <span class="number">0</span>, <span class="number">0</span>);	<span class="comment">// 子窗口保留空间初始化为0</span></span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">case</span> WM_KEYDOWN:</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (wParam != VK_SPACE &amp;&amp; wParam != VK_RETURN)	<span class="comment">// 如果在子窗口内没有按空格或回车键,则将这条消息发送给父窗口</span></span><br><span class="line">		&#123;</span><br><span class="line">			SendMessage(GetParent(hwnd), message, wParam, lParam);	<span class="comment">// 因为可能按下的是方向键</span></span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">// 如果是空格或者回车键,则同WM_LBUTTONDOWN一样的效果</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">case</span> WM_LBUTTONDOWN:</span><br><span class="line">	&#123;</span><br><span class="line">		SetWindowLongPtr(hwnd, <span class="number">0</span>, <span class="number">1</span> ^ GetWindowLongPtr(hwnd, <span class="number">0</span>));	<span class="comment">// 标记取异或(0变1,1变0)</span></span><br><span class="line">		SetFocus(hwnd);	<span class="comment">// 设置该子窗口获得焦点</span></span><br><span class="line">		InvalidateRect(hwnd, <span class="literal">NULL</span>, FALSE);	<span class="comment">// post一条WM_PAINT消息,不进行背景擦除</span></span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">case</span> WM_SETFOCUS:</span><br><span class="line">		idFocus = GetWindowLongPtr(hwnd, GWLP_ID);	<span class="comment">// 当子窗口获得焦点,立即将子窗口id保存到全局变量idFocus</span></span><br><span class="line">	<span class="keyword">case</span> WM_KILLFOCUS:</span><br><span class="line">		InvalidateRect(hwnd, <span class="literal">NULL</span>, TRUE);	<span class="comment">// post一条WM_PAINT消息,进行背景擦除</span></span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">case</span> WM_SIZE:</span><br><span class="line">	&#123;</span><br><span class="line">		cxClient = LOWORD(lParam);</span><br><span class="line">		cyClient = HIWORD(lParam);</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">case</span> WM_PAINT:</span><br><span class="line">	&#123;</span><br><span class="line">		hdc = BeginPaint(hwnd, &amp;ps);</span><br><span class="line">		Rectangle(hdc, <span class="number">0</span>, <span class="number">0</span>, cxClient, cyClient);	<span class="comment">// 绘制每个子窗口的边框</span></span><br><span class="line">		<span class="keyword">if</span> (idFocus == GetWindowLongPtr(hwnd, GWLP_ID)) <span class="comment">// 等同于hwnd == GetFocus(),判断子窗口是否获得焦点</span></span><br><span class="line">		&#123;</span><br><span class="line">			<span class="comment">// 绘制虚线框</span></span><br><span class="line">			SelectObject(hdc, GetStockObject(NULL_BRUSH));</span><br><span class="line">			SelectObject(hdc, CreatePen(PS_DASH, <span class="number">0</span>, <span class="number">0</span>));</span><br><span class="line">			Rectangle(hdc, cxClient / <span class="number">10</span>, cyClient / <span class="number">10</span>, cxClient * <span class="number">9.0</span> / <span class="number">10</span>, cyClient * <span class="number">9.0</span> / <span class="number">10</span>);</span><br><span class="line">			DeleteObject(SelectObject(hdc, GetStockObject(BLACK_PEN)));</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (GetWindowLongPtr(hwnd, <span class="number">0</span>))	<span class="comment">// 判断标记,0:不绘制叉,1:绘制叉</span></span><br><span class="line">		&#123;</span><br><span class="line">			<span class="comment">// 绘制叉</span></span><br><span class="line">			MoveToEx(hdc, <span class="number">0</span>, <span class="number">0</span>, <span class="literal">NULL</span>);</span><br><span class="line">			LineTo(hdc, cxClient, cyClient);</span><br><span class="line">			MoveToEx(hdc, <span class="number">0</span>, cyClient, <span class="literal">NULL</span>);</span><br><span class="line">			LineTo(hdc, cxClient, <span class="number">0</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		EndPaint(hwnd, &amp;ps);</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">default</span>:</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> DefWindowProc(hwnd, message, wParam, lParam);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行效果如下</p>
+<img src="/posts/288466a6/2020013114584428.gif">
+<p>需要注意的是,这里用到了几个新函数</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SetFocus(GetDlgItem(hwnd, idFocus));	<span class="comment">// 让子窗口idFocus获得焦点</span></span><br><span class="line">SendMessage(GetParent(hwnd), message, wParam, lParam);	<span class="comment">// 因为可能按下的是方向键</span></span><br><span class="line">idChild = GetWindowLongPtr(hwnd, GWLP_ID);  <span class="comment">// 获取窗口ID(下同)</span></span><br><span class="line">idChild = GetDlgCtrlID(hwnd);</span><br><span class="line">hwndChild = GetDlgItem(hwndParent, idChild);    <span class="comment">// 获得子窗口的句柄</span></span><br></pre></td></tr></table></figure>
+<p>GetDlgItem根据父窗口句柄和子窗口id来获得子窗口句柄<br>
+GetParent根据子窗口句柄来获得父窗口句柄<br>
+在子窗口单击鼠标时,子窗口不能自动获得输入焦点,因此需要父窗口处理WM_SETFOCUS消息时通过SetFocus(GetDlgItem(hwnd, idFocus))让子窗口获得焦点</p>
+<h2 id="75-捕获鼠标"><a class="markdownIt-Anchor" href="#75-捕获鼠标"></a> 7.5 捕获鼠标</h2>
+<p>通常,只有当鼠标指针位于窗口的客户区或非客户区时,窗口过程才接收鼠标消息.而当鼠标处于窗口范围之外时,一个程序也可能需要接收鼠标消息.如果是这种情况,那么就需要 <strong>&quot;捕获&quot;鼠标</strong>,主要用到的函数时SetCapture.</p>
+<h2 id="综合运用-2"><a class="markdownIt-Anchor" href="#综合运用-2"></a> 综合运用</h2>
+<p>下面的绘制方框程序的例子将演示捕获鼠标的具体用途,当鼠标移到窗口外,程序仍可以获得鼠标的位置.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">VOID <span class="title">DrawBoxOutline</span><span class="params">(HWND hwnd, POINT ptBeg, POINT ptEnd)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	TCHAR szBuffer[<span class="number">128</span>];</span><br><span class="line">	HDC hdc = GetDC(hwnd);</span><br><span class="line">	SetROP2(hdc, R2_NOT);	<span class="comment">// 画笔与背景色取反</span></span><br><span class="line">	SelectObject(hdc, GetStockObject(NULL_BRUSH));</span><br><span class="line">	Rectangle(hdc, ptBeg.x, ptBeg.y, ptEnd.x, ptEnd.y);</span><br><span class="line">	TextOut(hdc, <span class="number">10</span>, <span class="number">10</span>, szBuffer, wsprintf(szBuffer, TEXT(<span class="string">"(%-3d,%-3d),(%-3d,%-3d)"</span>), ptBeg.x, ptBeg.y, ptEnd.x, ptEnd.y));</span><br><span class="line">	ReleaseDC(hwnd, hdc);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">LRESULT CALLBACK <span class="title">WndProc</span><span class="params">(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	HDC hdc;</span><br><span class="line">	PAINTSTRUCT ps;</span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">int</span> fBlocking, fValidBox;</span><br><span class="line">	<span class="keyword">static</span> POINT ptBoxBeg, ptBoxEnd;</span><br><span class="line">	<span class="keyword">switch</span> (message)</span><br><span class="line">	&#123;</span><br><span class="line">	<span class="keyword">case</span> WM_LBUTTONDOWN:</span><br><span class="line">	&#123;</span><br><span class="line">		ptBoxBeg.x = ptBoxEnd.x = LOWORD(lParam);</span><br><span class="line">		ptBoxBeg.y = ptBoxEnd.y = HIWORD(lParam);</span><br><span class="line">		SetCapture(hwnd);	<span class="comment">// 捕获鼠标,这样鼠标即使到了窗口外(非客户区)也可以捕获</span></span><br><span class="line">		SetCursor(LoadCursor(<span class="literal">NULL</span>, IDC_CROSS));</span><br><span class="line">		DrawBoxOutline(hwnd, ptBoxBeg, ptBoxEnd);	<span class="comment">// 绘制方框(点)</span></span><br><span class="line">		fBlocking = TRUE;</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">case</span>  WM_LBUTTONUP:</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (fBlocking)</span><br><span class="line">		&#123;</span><br><span class="line">			SetCursor(LoadCursor(<span class="literal">NULL</span>, IDC_ARROW));</span><br><span class="line">			ReleaseCapture();</span><br><span class="line">			DrawBoxOutline(hwnd, ptBoxBeg, ptBoxEnd); <span class="comment">// 擦除原来痕迹</span></span><br><span class="line"></span><br><span class="line">			ptBoxEnd.x = LOWORD(lParam);</span><br><span class="line">			ptBoxEnd.y = HIWORD(lParam);</span><br><span class="line"></span><br><span class="line">			fBlocking = FALSE;</span><br><span class="line">			fValidBox = TRUE;</span><br><span class="line"></span><br><span class="line">			InvalidateRect(hwnd, <span class="literal">NULL</span>, TRUE);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">case</span> WM_MOUSEMOVE:</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (fBlocking)</span><br><span class="line">		&#123;</span><br><span class="line">			DrawBoxOutline(hwnd, ptBoxBeg, ptBoxEnd);	<span class="comment">// 擦除原来痕迹</span></span><br><span class="line">			ptBoxEnd.x = LOWORD(lParam);</span><br><span class="line">			ptBoxEnd.y = HIWORD(lParam);</span><br><span class="line">			DrawBoxOutline(hwnd, ptBoxBeg, ptBoxEnd);	<span class="comment">// 绘制新方框</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">case</span> WM_CHAR:</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (fBlocking &amp;&amp; (wParam == <span class="number">0x1B</span>))	<span class="comment">// 当绘制途中按了ESC则取消刚刚的操作</span></span><br><span class="line">		&#123;</span><br><span class="line">			DrawBoxOutline(hwnd, ptBoxBeg, ptBoxEnd);	<span class="comment">// 擦除原来痕迹</span></span><br><span class="line">			ReleaseCapture();</span><br><span class="line">			SetCursor(LoadCursor(<span class="literal">NULL</span>, IDC_ARROW));</span><br><span class="line">			fBlocking = FALSE;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">case</span> WM_PAINT:</span><br><span class="line">	&#123;</span><br><span class="line">		hdc = BeginPaint(hwnd, &amp;ps);</span><br><span class="line">		<span class="keyword">if</span> (fValidBox)	<span class="comment">// 已经绘制结束了</span></span><br><span class="line">		&#123;</span><br><span class="line">			SelectObject(hdc, GetStockObject(BLACK_BRUSH));	<span class="comment">// 选用黑色画刷来填充方框内部</span></span><br><span class="line">			Rectangle(hdc, ptBoxBeg.x, ptBoxBeg.y, ptBoxEnd.x, ptBoxEnd.y);	<span class="comment">// 绘制方框并填充</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (fBlocking)	<span class="comment">// 是否仍在绘制途中</span></span><br><span class="line">		&#123;</span><br><span class="line">			SetROP2(hdc, R2_NOT);</span><br><span class="line">			SelectObject(hdc, GetStockObject(NULL_PEN));</span><br><span class="line">			Rectangle(hdc, ptBoxBeg.x, ptBoxBeg.y, ptBoxEnd.x, ptBoxEnd.y);	<span class="comment">// 绘制方框</span></span><br><span class="line">		&#125;</span><br><span class="line">		EndPaint(hwnd, &amp;ps);</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">case</span> WM_DESTROY:</span><br><span class="line">		PostQuitMessage(<span class="number">0</span>);</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">default</span>:</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> DefWindowProc(hwnd, message, wParam, lParam);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行效果如下</p>
+<img src="/posts/288466a6/2020013114584430.gif">
+<p>在调用了SetCapture(hwnd)之后,Windows会将所有鼠标消息发送给句柄为hwnd的窗口的窗口过程,鼠标消息总是以客户区消息的形式出现,即使鼠标位于窗口的非客户区.参数lParam仍然表示鼠标在客户区的位置,但这时x,y有可能为负值.<br>
+具体来说,当鼠标被捕获,且当前没有按下鼠标按钮时,若鼠标指针经过另一个窗口,则将由指针下面的窗口接收鼠标消息,而不是捕获鼠标的窗口.<strong>为防止这种混乱情况出现,一般来说,只有当鼠标在客户区内被按下时,程序才应该捕获鼠标,当释放按钮时,应该同时停止捕获,如下</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">case</span> WM_LBUTTONDOWN:</span><br><span class="line">    SetCapture(hwnd);                           <span class="comment">// 捕获鼠标</span></span><br><span class="line">    SetCursor(LoadCursor(<span class="literal">NULL</span>, IDC_CROSS));     <span class="comment">// 变为叉形鼠标</span></span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line"><span class="keyword">case</span> WM_LBUTTONUP:</span><br><span class="line">    ReleaseCapture();                           <span class="comment">// 释放鼠标</span></span><br><span class="line">    SetCursor(LoadCursor(<span class="literal">NULL</span>, IDC_ARROW));     <span class="comment">// 还原箭头鼠标</span></span><br><span class="line">    <span class="keyword">break</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="76-鼠标的滚轮"><a class="markdownIt-Anchor" href="#76-鼠标的滚轮"></a> 7.6 鼠标的滚轮</h2>
+<p>鼠标滚轮有一个数值来计算一次滚轮的长度,这个增量数值WHEEL_DELTA为120(不表示像素,就是一个数值)定义在WINUSER.H头文件中.<br>
+这个120表示一次滚轮的增量数值(不表示像素),通过SystemParametersInfo(SPI_GETWHEELSCROLLLINES, 0, &amp;ulScrollLines, 0)可以获取一次滚轮能够滚动的行数(默认为3行),那么滚动每行的增量数值为WHEEL_DELTA/ulScrollLines,当滚轮滚动时触发WM_CREATE消息,LOWORD(wParam)表示按下的控制键,HIWORD(wParam)表示这次滚轮滚动的增量数值(向上滚动则为正,向下则为负),再结合每行滚动的增量数值,就可以计算出向上或向下滚动了多少行,再通过SendMessage就可以实现鼠标滚动了.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">int</span> iAccumDelta, iDeltaPerLine;</span><br><span class="line">...</span><br><span class="line"><span class="keyword">case</span> WM_CREATE:</span><br><span class="line">    ...</span><br><span class="line">    SystemParametersInfo(SPI_GETWHEELSCROLLLINES, <span class="number">0</span>, &amp;ulScrollLines, <span class="number">0</span>) <span class="comment">// 获取一次滚轮能够滚动的行数</span></span><br><span class="line">    iDeltaPerLine = ulScrollLines ? WHEEL_DELTA / ulScrollLines : <span class="number">0</span>;    <span class="comment">// 计算滚动每行的增量数值</span></span><br><span class="line">    ...</span><br><span class="line">...</span><br><span class="line"><span class="keyword">case</span> WM_MOUSEWHEEL: <span class="comment">// 当滚动滚轮时触发,wParam的高字表示滚轮滚动的距离,用多倍的WHEEL_DELTA表示</span></span><br><span class="line">    <span class="keyword">if</span> (iDeltaPerLine == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    iAccumDelta += (<span class="keyword">short</span>)HIWORD(wParam);	<span class="comment">// 向下滚动则wParam为负,向上则为正(即滚轮向鼠标线方向滚动为正)</span></span><br><span class="line">    <span class="keyword">while</span> (iAccumDelta &gt;= iDeltaPerLine)</span><br><span class="line">    &#123;</span><br><span class="line">        SendMessage(hwnd, WM_VSCROLL, SB_LINEUP, <span class="number">0</span>);</span><br><span class="line">        iAccumDelta -= iDeltaPerLine;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (iAccumDelta &lt;= -iDeltaPerLine)</span><br><span class="line">    &#123;</span><br><span class="line">        SendMessage(hwnd, WM_VSCROLL, SB_LINEDOWN, <span class="number">0</span>);</span><br><span class="line">        iAccumDelta += iDeltaPerLine;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">break</span>;</span><br></pre></td></tr></table></figure>
+<h1 id="解题思路"><a class="markdownIt-Anchor" href="#解题思路"></a> 解题思路</h1>
+<h1 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h1>
+
+      
+    </div>
+
+    
+      
+
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\17ae1cbc\" rel="bookmark">[Windows编程]第9章 子窗口控件</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\aef11d37\" rel="bookmark">[Windows编程]第8章 计时器</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\481c226a\" rel="bookmark">[Windows编程]第6章 键盘</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\1e4abcd3\" rel="bookmark">[Windows编程]第5章 绘图基础</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\c1bee057\" rel="bookmark">[Windows编程]第4章 文本输出</a></div>
+      
+    </li>
+  
+  </ul>
+
+
+    
+
+    
+    
+    
+    <div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/posts/288466a6/">[Windows编程]第7章 鼠标</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 Brian Yi 的个人博客">Brian Yi</a></p>
+  <p><span>发布时间:</span>2020年02月02日 - 16:02</p>
+  <p><span>最后更新:</span>2020年02月05日 - 12:02</p>
+  <p><span>原始链接:</span><a href="/posts/288466a6/" title="[Windows编程]第7章 鼠标">https://brianyi.github.io/posts/288466a6/</a>
+    <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://brianyi.github.io/posts/288466a6/" aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+    });
+    });  
+</script>
+
+      
+    </div>
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Windows编程/" class="fa fa-tag" style="font-size:16px;border-bottom:none;">Windows编程</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+          <div class="wp_rating">
+            <div id="wpac-rating"></div>
+          </div>
+        
+
+        
+
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/481c226a/" rel="next" title="[Windows编程]第6章 键盘">
+                <i class="fa fa-chevron-left"></i> [Windows编程]第6章 键盘
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/posts/aef11d37/" rel="prev" title="[Windows编程]第8章 计时器">
+                [Windows编程]第8章 计时器 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Brian Yi">
+            
+              <p class="site-author-name" itemprop="name">Brian Yi</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">233</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">31</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">92</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/BrianYi" title="GitHub &rarr; https://github.com/BrianYi" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="mailto:yijiazhen123@gmail.com" title="E-Mail &rarr; mailto:yijiazhen123@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#71-鼠标的基础知识"><span class="nav-number">1.</span> <span class="nav-text"> 7.1 鼠标的基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#711-一些基本术语"><span class="nav-number">1.1.</span> <span class="nav-text"> 7.1.1 一些基本术语</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#72-客户区鼠标消息"><span class="nav-number">2.</span> <span class="nav-text"> 7.2 客户区鼠标消息</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#723-鼠标双击"><span class="nav-number">2.1.</span> <span class="nav-text"> 7.2.3 鼠标双击</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#73-非客户区鼠标消息"><span class="nav-number">3.</span> <span class="nav-text"> 7.3 非客户区鼠标消息</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#731-击中测试消息"><span class="nav-number">3.1.</span> <span class="nav-text"> 7.3.1 击中测试消息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#743-使用键盘模仿鼠标操作"><span class="nav-number">3.2.</span> <span class="nav-text"> 7.4.3 使用键盘模仿鼠标操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#747-子窗口和键盘"><span class="nav-number">3.3.</span> <span class="nav-text"> 7.4.7 子窗口和键盘</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#综合运用"><span class="nav-number">4.</span> <span class="nav-text"> 综合运用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#75-捕获鼠标"><span class="nav-number">5.</span> <span class="nav-text"> 7.5 捕获鼠标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#综合运用-2"><span class="nav-number">6.</span> <span class="nav-text"> 综合运用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#76-鼠标的滚轮"><span class="nav-number">7.</span> <span class="nav-text"> 7.6 鼠标的滚轮</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#解题思路"><span class="nav-number"></span> <span class="nav-text"> 解题思路</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number"></span> <span class="nav-text"> 参考</span></a></li></div>
+            
+            <span class="links-of-author-item ">
+                <a href="javascript:;" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索</a>
+            </span>
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Brian Yi</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="站点总字数">1.7m</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+    <span title="站点阅读时长">25:47</span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.1"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.1"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
+
+  
+  <script src="/js/js.cookie.js?v=7.1.1"></script>
+  <script src="/js/scroll-cookie.js?v=7.1.1"></script>
+
+
+  
+
+  
+
+  
+  
+
+<script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+
+
+
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'w63e2LQ8OdmB34En763YIlqy-gzGzoHsz',
+    appKey: 'tS6NvoSvx3zOIyodVKLiJJaS',
+    placeholder: '请在这里留下你的评论...',
+    avatar: '',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn'
+  });
+</script>
+
+
+
+
+  
+
+
+  
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/algolia-search.js?v=7.1.1"></script>
+
+
+
+  
+  
+  <script>
+    
+    function addCount(Counter) {
+      var $visitors = $('.leancloud_visitors');
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            
+            Counter('put', '/classes/Counter/' + counter.objectId, JSON.stringify({ time: { '__op': 'Increment', 'amount': 1 } }))
+            
+              .done(function() {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.time + 1);
+              })
+            
+              .fail(function ({ responseJSON }) {
+                console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
+              })
+          } else {
+            
+              Counter('post', '/classes/Counter', JSON.stringify({ title: title, url: url, time: 1 }))
+                .done(function() {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(1);
+                })
+                .fail(function() {
+                  console.log('Failed to create');
+                });
+            
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log('LeanCloud Counter Error: ' + responseJSON.code + ' ' + responseJSON.error);
+        });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + 'w63e2LQ8OdmB34En763YIlqy-gzGzoHsz')
+        .done(function({ api_server }) {
+          var Counter = function(method, url, data) {
+            return $.ajax({
+              method: method,
+              url: 'https://' + api_server + '/1.1' + url,
+              headers: {
+                'X-LC-Id': 'w63e2LQ8OdmB34En763YIlqy-gzGzoHsz',
+                'X-LC-Key': 'tS6NvoSvx3zOIyodVKLiJJaS',
+                'Content-Type': 'application/json',
+              },
+              data: data
+            });
+          };
+          
+            addCount(Counter);
+          
+        });
+    });
+  </script>
+
+
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling }
+        if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next) }
+      }
+    });
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      document.getElementById(all[i].inputID + '-Frame').parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML"></script>
+
+    
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <script>
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id: 18388,
+      el: 'wpac-rating',
+      color: 'fc6423'
+    });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  </script>
+
+
+  
+
+  
+
+  
+<script>
+  $('.highlight').not('.gist .highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+        if (result) $(this).text('复制成功');
+        else $(this).text('复制失败');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('复制');
+      }, 300);
+    }).append(e);
+  })
+</script>
+
+
+  
+
+  
+
+</body>
+</html>

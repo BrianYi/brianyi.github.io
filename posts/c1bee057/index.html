@@ -113,9 +113,9 @@
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
+      applicationID: 'BV9JEDY4W4',
+      apiKey: 'd619a118f344f8f1631c2cae6cea9406',
+      indexName: 'blog',
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
@@ -139,7 +139,7 @@
 <meta property="og:image" content="https://brianyi.github.io/posts/c1bee057/2020012920144214.png">
 <meta property="og:image" content="https://brianyi.github.io/posts/c1bee057/2020013011344718.png">
 <meta property="og:image" content="https://brianyi.github.io/posts/c1bee057/2020013011242516.png">
-<meta property="og:updated_time" content="2020-01-30T03:43:53.288Z">
+<meta property="og:updated_time" content="2020-02-05T02:44:52.670Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[Windows编程]第4章 文本输出">
 <meta name="twitter:description" content="4.1 绘制和重绘  4.1.1 WM_PAINT消息 窗口过程会收到WM_PAINT:  被遮盖窗口的部分暴露出来 窗口大小改变(当设置了CS_HREDRAW|CS_VREDRAW) 调用ScrollWindow或ScrollDC函数滚动客户区 调用InvalidateRect或InvalidateRgn函数显式生成WM_PAINT 下拉菜单被拉下然后收回  Windows会保存被覆盖部分的">
@@ -313,7 +313,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">90</span></a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">92</span></a>
 
   </li>
         
@@ -332,7 +332,7 @@
       
     
 
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">29</span></a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">31</span></a>
 
   </li>
         
@@ -351,7 +351,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">227</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">233</span></a>
 
   </li>
 
@@ -373,20 +373,26 @@
   
     <div class="site-search">
       
-  <div class="popup search-popup local-search-popup">
-  <div class="local-search-header clearfix">
-    <span class="search-icon">
-      <i class="fa fa-search"></i>
-    </span>
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
     <span class="popup-btn-close">
       <i class="fa fa-times-circle"></i>
     </span>
-    <div class="local-search-input-wrapper">
-      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
-    </div>
   </div>
-  <div id="local-search-result"></div>
-</div>
+
 
 
 
@@ -500,7 +506,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-01-30 11:43:53" itemprop="dateModified" datetime="2020-01-30T11:43:53+08:00">2020-01-30</time>
+                <time title="修改时间：2020-02-05 10:44:52" itemprop="dateModified" datetime="2020-02-05T10:44:52+08:00">2020-02-05</time>
               
             
           </span>
@@ -570,7 +576,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">8.3k</span>
+                <span title="本文字数">9.6k</span>
               
 
               
@@ -584,7 +590,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">8 分钟</span>
+                <span title="阅读时长">9 分钟</span>
               
             </div>
           
@@ -659,6 +665,14 @@ PAINTSTRUCT结构的rcPaint定义了无效区域的矩形边界(以像素为单�
 <p>设备环境同时还定义了调用TextOut时Windows使用的字体. 默认的字体称为&quot;系统字体&quot;(或SYSTEM_FONT).</p>
 <h3 id="427-字符大小"><a class="markdownIt-Anchor" href="#427-字符大小"></a> 4.2.7 字符大小</h3>
 <p>字体中字符的大小不但与映射模式有关,还与Windows运行时的显示分辨率有关,通过GetTextMetrics可以获取字体大小,映射模式默认为MM_TEXT,因此得到的值是以像素为单位.</p>
+<ul>
+<li>方法一</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">case</span> WM_CREATE:</span><br><span class="line">    hdc = GetDC(hwnd);</span><br><span class="line"></span><br><span class="line">	GetTextMetrics(hdc, &amp;tm);</span><br><span class="line">	cxChar = tm.tmAveCharWidth;</span><br><span class="line">	cxCaps = (tm.tmPitchAndFamily &amp; <span class="number">1</span> ? <span class="number">3</span> : <span class="number">2</span>) * cxChar / <span class="number">2</span>;</span><br><span class="line">	cyChar = tm.tmHeight + tm.tmExternalLeading;</span><br><span class="line"></span><br><span class="line">	ReleaseDC(hwnd, hdc);</span><br><span class="line">    <span class="keyword">break</span>;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>方法二</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">case</span> WM_CREATE:</span><br><span class="line">    hdc	= CreateIC(TEXT(<span class="string">"DISPLAY"</span>), <span class="literal">NULL</span>, <span class="literal">NULL</span>, <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line">	GetTextMetrics(hdc, &amp;tm);</span><br><span class="line">	cxChar = tm.tmAveCharWidth;</span><br><span class="line">	cxCaps = (tm.tmPitchAndFamily &amp; <span class="number">1</span> ? <span class="number">3</span> : <span class="number">2</span>) * cxChar / <span class="number">2</span>;</span><br><span class="line">	cyChar = tm.tmHeight + tm.tmExternalLeading;</span><br><span class="line"></span><br><span class="line">	DeleteDC(hdc);</span><br><span class="line">    <span class="keyword">break</span>;</span><br></pre></td></tr></table></figure>
 <h3 id="4213-客户区的尺寸"><a class="markdownIt-Anchor" href="#4213-客户区的尺寸"></a> 4.2.13 客户区的尺寸</h3>
 <p>GetClientRect可以获取客户区大小,更好的办法是在WM_SIZE消息时获取.</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">case</span> WM_SIZE:</span><br><span class="line">&#123;</span><br><span class="line">    cxClient = LOWORD(lParam);  <span class="comment">// 获取客户区width</span></span><br><span class="line">    cyClient = HIWORD(lParam);  <span class="comment">// 获取客户区height</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -674,10 +688,10 @@ PAINTSTRUCT结构的rcPaint定义了无效区域的矩形边界(以像素为单�
 <p>问: 为何最大值为si.nMax-si.nPage+1而不是si.nMax?<br>
 答: 滑块的位置即为当前页面顶端文字的位置,那么如果滑块位置为si.nMax,则意味着当前页面顶端显示的是最后一行文字,下面全为空白. 因此将其设置为si.nMax-si.nPage+1,则当前页面底端显示的是最后一行文字.</p>
 </blockquote>
-<h2 id="综合运用"><a class="markdownIt-Anchor" href="#综合运用"></a> 综合运用</h2>
+<h2 id="span-idjump-0综合运用span"><a class="markdownIt-Anchor" href="#span-idjump-0综合运用span"></a> <span id="jump-0">综合运用</span></h2>
 <p>资源文件: <a href="SysMets.h">SysMets.h</a><br>
 值得注意的是<code>tm.tmPitchAndFamily</code>的低位决定字体是否为等宽字体,0为等宽字体,1为变宽字体.</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;Windows.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;tchar.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"SysMets.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="function">LRESULT CALLBACK <span class="title">WndProc</span><span class="params">(HWND, UINT, WPARAM, LPARAM)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> WINAPI <span class="title">WinMain</span><span class="params">(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR lpCmdLine, _In_ <span class="keyword">int</span> nShowCmd)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">static</span> TCHAR szAppName[] = TEXT(<span class="string">"SysMets2"</span>);</span><br><span class="line">	HWND hwnd;</span><br><span class="line">	MSG msg;</span><br><span class="line">	WNDCLASS wndclass;</span><br><span class="line"></span><br><span class="line">	wndclass.style = CS_HREDRAW | CS_VREDRAW;</span><br><span class="line">	wndclass.lpfnWndProc = WndProc;</span><br><span class="line">	wndclass.cbClsExtra = wndclass.cbWndExtra = <span class="number">0</span>;</span><br><span class="line">	wndclass.hInstance = hInstance;</span><br><span class="line">	wndclass.hIcon = LoadIcon(<span class="literal">NULL</span>, IDI_APPLICATION);</span><br><span class="line">	wndclass.hCursor = LoadCursor(<span class="literal">NULL</span>, IDC_ARROW);</span><br><span class="line">	wndclass.hbrBackground = (HBRUSH)GetStockObject(WHITE_BRUSH);</span><br><span class="line">	wndclass.lpszMenuName = <span class="literal">NULL</span>;</span><br><span class="line">	wndclass.lpszClassName = szAppName;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (!RegisterClass(&amp;wndclass))</span><br><span class="line">	&#123;</span><br><span class="line">		MessageBox(<span class="literal">NULL</span>, TEXT(<span class="string">"This program requires Windows NT!"</span>), szAppName, MB_ICONERROR);</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 整个窗口的客户区都是无效的</span></span><br><span class="line">	hwnd = CreateWindow(szAppName, TEXT(<span class="string">"Get System Metrics No. 2"</span>),</span><br><span class="line">		WS_OVERLAPPEDWINDOW | WS_VSCROLL | WS_HSCROLL,</span><br><span class="line">		CW_USEDEFAULT, CW_USEDEFAULT,</span><br><span class="line">		CW_USEDEFAULT, CW_USEDEFAULT,</span><br><span class="line">		<span class="literal">NULL</span>, <span class="literal">NULL</span>, hInstance, <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line">	ShowWindow(hwnd, nShowCmd);</span><br><span class="line">	<span class="comment">// 越过消息队列,直接由Windows调用窗口过程处理WM_PAINT消息</span></span><br><span class="line">	UpdateWindow(hwnd);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span> (GetMessage(&amp;msg, <span class="literal">NULL</span>, <span class="number">0</span>, <span class="number">0</span>))</span><br><span class="line">	&#123;</span><br><span class="line">		TranslateMessage(&amp;msg);</span><br><span class="line">		DispatchMessage(&amp;msg);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> msg.wParam;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">LRESULT CALLBACK <span class="title">WndProc</span><span class="params">(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">// iVScrollPos表示滑块的位置</span></span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">int</span> cxChar, cyChar, cxCaps, cyClient, cxClient, iMaxWidth;</span><br><span class="line">	HDC hdc;</span><br><span class="line">	<span class="keyword">int</span> i, x, y, iVertPos, iHorzPos, iPaintBeg, iPaintEnd;</span><br><span class="line">	PAINTSTRUCT ps;</span><br><span class="line">	SCROLLINFO si;</span><br><span class="line">	TCHAR szBuffer[<span class="number">10</span>];</span><br><span class="line">	TEXTMETRIC tm;</span><br><span class="line">	<span class="keyword">switch</span> (message)</span><br><span class="line">	&#123;</span><br><span class="line">	<span class="keyword">case</span> WM_CREATE:</span><br><span class="line">	&#123;</span><br><span class="line">		hdc = GetDC(hwnd);</span><br><span class="line"></span><br><span class="line">		GetTextMetrics(hdc, &amp;tm);</span><br><span class="line">		cxChar = tm.tmAveCharWidth;</span><br><span class="line">		cxCaps = (tm.tmPitchAndFamily &amp; <span class="number">1</span> ? <span class="number">3</span> : <span class="number">2</span>) * cxChar / <span class="number">2</span>;</span><br><span class="line">		cyChar = tm.tmHeight + tm.tmExternalLeading;</span><br><span class="line"></span><br><span class="line">		ReleaseDC(hwnd, hdc);</span><br><span class="line">		iMaxWidth = <span class="number">40</span> * cxChar + <span class="number">22</span> * cxCaps;</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">case</span> WM_SIZE:</span><br><span class="line">	&#123;</span><br><span class="line">		cxClient = LOWORD(lParam);  <span class="comment">// 获取客户区width</span></span><br><span class="line">		cyClient = HIWORD(lParam);  <span class="comment">// 获取客户区height</span></span><br><span class="line"></span><br><span class="line">		si.cbSize = <span class="keyword">sizeof</span>(si);</span><br><span class="line">		si.fMask = SIF_RANGE | SIF_PAGE;</span><br><span class="line">		si.nMin = <span class="number">0</span>;</span><br><span class="line">		si.nMax = NUMLINES - <span class="number">1</span>;</span><br><span class="line">		si.nPage = cyClient / cyChar;</span><br><span class="line">		SetScrollInfo(hwnd, SB_VERT, &amp;si, TRUE);</span><br><span class="line"></span><br><span class="line">		si.cbSize = <span class="keyword">sizeof</span>(si);</span><br><span class="line">		si.fMask = SIF_RANGE | SIF_PAGE;</span><br><span class="line">		si.nMin = <span class="number">0</span>;</span><br><span class="line">		si.nMax = <span class="number">2</span> + iMaxWidth / cxChar;</span><br><span class="line">		si.nPage = cxClient / cxChar;</span><br><span class="line">		SetScrollInfo(hwnd, SB_HORZ, &amp;si, TRUE);</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">case</span> WM_VSCROLL:</span><br><span class="line">	&#123;</span><br><span class="line">		si.cbSize = <span class="keyword">sizeof</span>(si);</span><br><span class="line">		si.fMask = SIF_ALL;</span><br><span class="line">		GetScrollInfo(hwnd, SB_VERT, &amp;si);</span><br><span class="line">		iVertPos = si.nPos;</span><br><span class="line">		<span class="keyword">switch</span> (LOWORD(wParam))</span><br><span class="line">		&#123;</span><br><span class="line">		<span class="keyword">case</span> SB_TOP:		<span class="comment">// 滑块位置为第一行文字</span></span><br><span class="line">			si.nPos = si.nMin;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">case</span> SB_BOTTOM:		<span class="comment">// 滑块位置为最后一行文字</span></span><br><span class="line">			si.nPos = si.nMax;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">case</span> SB_LINEUP:		<span class="comment">// 滑块向上移动一行文字</span></span><br><span class="line">			si.nPos -= <span class="number">1</span>;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">case</span> SB_LINEDOWN:	<span class="comment">// 滑块向下移动一行文字</span></span><br><span class="line">			si.nPos += <span class="number">1</span>;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">case</span> SB_PAGEUP:	<span class="comment">// 滑块向上移动一屏文字</span></span><br><span class="line">			si.nPos -= si.nPage;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">case</span> SB_PAGEDOWN:	<span class="comment">// 滑块向下移动一屏文字</span></span><br><span class="line">			si.nPos += si.nPage;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">case</span> SB_THUMBPOSITION:	<span class="comment">// 拖动滚动条放下时触发</span></span><br><span class="line">			si.nPos = HIWORD(wParam);</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">case</span> SB_THUMBTRACK:	<span class="comment">// 拖动滚动条时不断触发</span></span><br><span class="line">			si.nPos = si.nTrackPos;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">default</span>:</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		si.fMask = SIF_POS;</span><br><span class="line">		SetScrollInfo(hwnd, SB_VERT, &amp;si, TRUE);	<span class="comment">// 若位置超出,则自动调整为正确位置</span></span><br><span class="line">		GetScrollInfo(hwnd, SB_VERT, &amp;si);</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> (si.nPos != iVertPos)</span><br><span class="line">		&#123;</span><br><span class="line">			ScrollWindow(hwnd, <span class="number">0</span>, cyChar * (iVertPos - si.nPos), <span class="number">0</span>, <span class="number">0</span>); <span class="comment">// 向下滚动为负,向上滚动为正,无效化滚动区域,post一条WM_PAINT</span></span><br><span class="line">			UpdateWindow(hwnd);<span class="comment">// 立刻更新无效区域,越过消息队列,直接由Windows调用窗口过程处理WM_PAINT消息</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">case</span> WM_HSCROLL:</span><br><span class="line">	&#123;</span><br><span class="line">		si.cbSize = <span class="keyword">sizeof</span>(si);</span><br><span class="line">		si.fMask = SIF_ALL;</span><br><span class="line">		GetScrollInfo(hwnd, SB_HORZ, &amp;si);</span><br><span class="line"></span><br><span class="line">		iHorzPos = si.nPos;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">switch</span> (LOWORD(wParam))</span><br><span class="line">		&#123;</span><br><span class="line">		<span class="keyword">case</span> SB_LEFT:</span><br><span class="line">			si.nPos = si.nMin;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">			</span><br><span class="line">		<span class="keyword">case</span> SB_RIGHT:</span><br><span class="line">			si.nPos = si.nMax;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">case</span> SB_LINELEFT:</span><br><span class="line">			si.nPos -= <span class="number">1</span>;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">case</span> SB_LINERIGHT:</span><br><span class="line">			si.nPos += <span class="number">1</span>;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">case</span> SB_PAGELEFT:</span><br><span class="line">			si.nPos -= si.nPage;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">case</span> SB_PAGERIGHT:</span><br><span class="line">			si.nPos += si.nPage;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">case</span> SB_THUMBTRACK:</span><br><span class="line">			si.nPos = si.nTrackPos;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">default</span>:</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		si.fMask = SIF_POS;</span><br><span class="line">		SetScrollInfo(hwnd, SB_HORZ, &amp;si, TRUE);	<span class="comment">// 若位置超出,则自动调整为正确位置</span></span><br><span class="line">		GetScrollInfo(hwnd, SB_HORZ, &amp;si);</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> (si.nPos != iHorzPos)</span><br><span class="line">		&#123;</span><br><span class="line">			ScrollWindow(hwnd, cxChar * (iHorzPos - si.nPos), <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>); <span class="comment">// 向右滚动为负,向左滚动为正,无效化滚动区域,post一条WM_PAINT</span></span><br><span class="line">			UpdateWindow(hwnd);<span class="comment">// 立刻更新无效区域,越过消息队列,直接由Windows调用窗口过程处理WM_PAINT消息</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">case</span> WM_PAINT:</span><br><span class="line">	&#123;</span><br><span class="line">		hdc = BeginPaint(hwnd, &amp;ps);</span><br><span class="line"></span><br><span class="line">		si.cbSize = <span class="keyword">sizeof</span>(si);</span><br><span class="line">		si.fMask = SIF_POS;</span><br><span class="line"></span><br><span class="line">		GetScrollInfo(hwnd, SB_VERT, &amp;si);</span><br><span class="line">		iVertPos = si.nPos;</span><br><span class="line"></span><br><span class="line">		GetScrollInfo(hwnd, SB_HORZ, &amp;si);</span><br><span class="line">		iHorzPos = si.nPos;</span><br><span class="line"></span><br><span class="line">		iPaintBeg = max(<span class="number">0</span>, iVertPos + ps.rcPaint.top / cyChar);</span><br><span class="line">		iPaintEnd = min(NUMLINES - <span class="number">1</span>, iVertPos + ps.rcPaint.bottom / cyChar);</span><br><span class="line"></span><br><span class="line">		<span class="keyword">for</span> (i = iPaintBeg; i &lt;= iPaintEnd; ++i)</span><br><span class="line">		&#123;</span><br><span class="line">			x = cxChar * (<span class="number">1</span> - iHorzPos);</span><br><span class="line">			y = cyChar * (i - iVertPos);</span><br><span class="line"></span><br><span class="line">			TextOut(hdc, x, y, sysmetrics[i].szLabel, _tcslen(sysmetrics[i].szLabel));</span><br><span class="line">			TextOut(hdc, x + <span class="number">22</span> * cxCaps, y, sysmetrics[i].szDesc, _tcslen(sysmetrics[i].szDesc));</span><br><span class="line">			SetTextAlign(hdc, TA_RIGHT | TA_TOP);</span><br><span class="line">			<span class="keyword">int</span> iLen = _stprintf_s(szBuffer, TEXT(<span class="string">"%5d"</span>), GetSystemMetrics(sysmetrics[i].iIndex));</span><br><span class="line">			TextOut(hdc, x + <span class="number">22</span> * cxCaps + <span class="number">40</span> * cxChar, y, szBuffer, iLen);</span><br><span class="line">			SetTextAlign(hdc, TA_LEFT | TA_TOP);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		EndPaint(hwnd, &amp;ps);</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">case</span> WM_DESTROY:</span><br><span class="line">	&#123;</span><br><span class="line">		PostQuitMessage(<span class="number">0</span>);</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">default</span>:</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> DefWindowProc(hwnd, message, wParam, lParam);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;Windows.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;tchar.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"SysMets.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="function">LRESULT CALLBACK <span class="title">WndProc</span><span class="params">(HWND, UINT, WPARAM, LPARAM)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> WINAPI <span class="title">WinMain</span><span class="params">(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR lpCmdLine, _In_ <span class="keyword">int</span> nShowCmd)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">static</span> TCHAR szAppName[] = TEXT(<span class="string">"SysMets2"</span>);</span><br><span class="line">	HWND hwnd;</span><br><span class="line">	MSG msg;</span><br><span class="line">	WNDCLASS wndclass;</span><br><span class="line"></span><br><span class="line">	wndclass.style = CS_HREDRAW | CS_VREDRAW;</span><br><span class="line">	wndclass.lpfnWndProc = WndProc;</span><br><span class="line">	wndclass.cbClsExtra = wndclass.cbWndExtra = <span class="number">0</span>;</span><br><span class="line">	wndclass.hInstance = hInstance;</span><br><span class="line">	wndclass.hIcon = LoadIcon(<span class="literal">NULL</span>, IDI_APPLICATION);</span><br><span class="line">	wndclass.hCursor = LoadCursor(<span class="literal">NULL</span>, IDC_ARROW);</span><br><span class="line">	wndclass.hbrBackground = (HBRUSH)GetStockObject(WHITE_BRUSH);</span><br><span class="line">	wndclass.lpszMenuName = <span class="literal">NULL</span>;</span><br><span class="line">	wndclass.lpszClassName = szAppName;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (!RegisterClass(&amp;wndclass))</span><br><span class="line">	&#123;</span><br><span class="line">		MessageBox(<span class="literal">NULL</span>, TEXT(<span class="string">"This program requires Windows NT!"</span>), szAppName, MB_ICONERROR);</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 整个窗口的客户区都是无效的</span></span><br><span class="line">	hwnd = CreateWindow(szAppName, TEXT(<span class="string">"Get System Metrics No. 2"</span>),</span><br><span class="line">		WS_OVERLAPPEDWINDOW | WS_VSCROLL | WS_HSCROLL,</span><br><span class="line">		CW_USEDEFAULT, CW_USEDEFAULT,</span><br><span class="line">		CW_USEDEFAULT, CW_USEDEFAULT,</span><br><span class="line">		<span class="literal">NULL</span>, <span class="literal">NULL</span>, hInstance, <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line">	ShowWindow(hwnd, nShowCmd);</span><br><span class="line">	<span class="comment">// 越过消息队列,直接由Windows调用窗口过程处理WM_PAINT消息</span></span><br><span class="line">	UpdateWindow(hwnd);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span> (GetMessage(&amp;msg, <span class="literal">NULL</span>, <span class="number">0</span>, <span class="number">0</span>))</span><br><span class="line">	&#123;</span><br><span class="line">		TranslateMessage(&amp;msg);</span><br><span class="line">		DispatchMessage(&amp;msg);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> msg.wParam;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">LRESULT CALLBACK <span class="title">WndProc</span><span class="params">(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">// iVScrollPos表示滑块的位置</span></span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">int</span> cxChar, cyChar, cxCaps, cyClient, cxClient, iMaxWidth;</span><br><span class="line">	HDC hdc;</span><br><span class="line">	<span class="keyword">int</span> i, x, y, iVertPos, iHorzPos, iPaintBeg, iPaintEnd;</span><br><span class="line">	PAINTSTRUCT ps;</span><br><span class="line">	SCROLLINFO si;</span><br><span class="line">	TCHAR szBuffer[<span class="number">10</span>];</span><br><span class="line">	TEXTMETRIC tm;</span><br><span class="line">	<span class="keyword">switch</span> (message)</span><br><span class="line">	&#123;</span><br><span class="line">	<span class="keyword">case</span> WM_CREATE:</span><br><span class="line">	&#123;</span><br><span class="line">		hdc = GetDC(hwnd);</span><br><span class="line"></span><br><span class="line">		GetTextMetrics(hdc, &amp;tm);</span><br><span class="line">		cxChar = tm.tmAveCharWidth;</span><br><span class="line">		cxCaps = (tm.tmPitchAndFamily &amp; <span class="number">1</span> ? <span class="number">3</span> : <span class="number">2</span>) * cxChar / <span class="number">2</span>;</span><br><span class="line">		cyChar = tm.tmHeight + tm.tmExternalLeading;</span><br><span class="line"></span><br><span class="line">		ReleaseDC(hwnd, hdc);</span><br><span class="line">		iMaxWidth = <span class="number">40</span> * cxChar + <span class="number">22</span> * cxCaps;</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">case</span> WM_SIZE:</span><br><span class="line">	&#123;</span><br><span class="line">		cxClient = LOWORD(lParam);  <span class="comment">// 获取客户区width</span></span><br><span class="line">		cyClient = HIWORD(lParam);  <span class="comment">// 获取客户区height</span></span><br><span class="line"></span><br><span class="line">		si.cbSize = <span class="keyword">sizeof</span>(si);</span><br><span class="line">		si.fMask = SIF_RANGE | SIF_PAGE;</span><br><span class="line">		si.nMin = <span class="number">0</span>;</span><br><span class="line">		si.nMax = NUMLINES - <span class="number">1</span>;</span><br><span class="line">		si.nPage = cyClient / cyChar;</span><br><span class="line">		SetScrollInfo(hwnd, SB_VERT, &amp;si, TRUE);</span><br><span class="line"></span><br><span class="line">		si.cbSize = <span class="keyword">sizeof</span>(si);</span><br><span class="line">		si.fMask = SIF_RANGE | SIF_PAGE;</span><br><span class="line">		si.nMin = <span class="number">0</span>;</span><br><span class="line">		si.nMax = <span class="number">2</span> + iMaxWidth / cxChar;</span><br><span class="line">		si.nPage = cxClient / cxChar;</span><br><span class="line">		SetScrollInfo(hwnd, SB_HORZ, &amp;si, TRUE);</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">case</span> WM_VSCROLL:</span><br><span class="line">	&#123;</span><br><span class="line">		si.cbSize = <span class="keyword">sizeof</span>(si);</span><br><span class="line">		si.fMask = SIF_ALL;</span><br><span class="line">		GetScrollInfo(hwnd, SB_VERT, &amp;si);</span><br><span class="line">		iVertPos = si.nPos;</span><br><span class="line">		<span class="keyword">switch</span> (LOWORD(wParam))</span><br><span class="line">		&#123;</span><br><span class="line">		<span class="keyword">case</span> SB_TOP:		<span class="comment">// 滑块位置为第一行文字</span></span><br><span class="line">			si.nPos = si.nMin;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">case</span> SB_BOTTOM:		<span class="comment">// 滑块位置为最后一行文字</span></span><br><span class="line">			si.nPos = si.nMax;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">case</span> SB_LINEUP:		<span class="comment">// 滑块向上移动一行文字</span></span><br><span class="line">			si.nPos -= <span class="number">1</span>;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">case</span> SB_LINEDOWN:	<span class="comment">// 滑块向下移动一行文字</span></span><br><span class="line">			si.nPos += <span class="number">1</span>;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">case</span> SB_PAGEUP:	<span class="comment">// 滑块向上移动一屏文字</span></span><br><span class="line">			si.nPos -= si.nPage;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">case</span> SB_PAGEDOWN:	<span class="comment">// 滑块向下移动一屏文字</span></span><br><span class="line">			si.nPos += si.nPage;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">case</span> SB_THUMBPOSITION:	<span class="comment">// 拖动滚动条放下时触发</span></span><br><span class="line">			si.nPos = HIWORD(wParam);</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">case</span> SB_THUMBTRACK:	<span class="comment">// 拖动滚动条时不断触发</span></span><br><span class="line">			si.nPos = si.nTrackPos;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">default</span>:</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		si.fMask = SIF_POS;</span><br><span class="line">		SetScrollInfo(hwnd, SB_VERT, &amp;si, TRUE);	<span class="comment">// 若位置超出,则自动调整为正确位置</span></span><br><span class="line">		GetScrollInfo(hwnd, SB_VERT, &amp;si);</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> (si.nPos != iVertPos)</span><br><span class="line">		&#123;</span><br><span class="line">			ScrollWindow(hwnd, <span class="number">0</span>, cyChar * (iVertPos - si.nPos), <span class="number">0</span>, <span class="number">0</span>); <span class="comment">// 向下滚动为负,向上滚动为正,无效化滚动区域,post一条WM_PAINT</span></span><br><span class="line">			UpdateWindow(hwnd);<span class="comment">// 立刻更新无效区域,越过消息队列,直接由Windows调用窗口过程处理WM_PAINT消息</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">case</span> WM_HSCROLL:</span><br><span class="line">	&#123;</span><br><span class="line">		si.cbSize = <span class="keyword">sizeof</span>(si);</span><br><span class="line">		si.fMask = SIF_ALL;</span><br><span class="line">		GetScrollInfo(hwnd, SB_HORZ, &amp;si);</span><br><span class="line"></span><br><span class="line">		iHorzPos = si.nPos;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">switch</span> (LOWORD(wParam))</span><br><span class="line">		&#123;</span><br><span class="line">		<span class="keyword">case</span> SB_LEFT:</span><br><span class="line">			si.nPos = si.nMin;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">			</span><br><span class="line">		<span class="keyword">case</span> SB_RIGHT:</span><br><span class="line">			si.nPos = si.nMax;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">case</span> SB_LINELEFT:</span><br><span class="line">			si.nPos -= <span class="number">1</span>;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">case</span> SB_LINERIGHT:</span><br><span class="line">			si.nPos += <span class="number">1</span>;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">case</span> SB_PAGELEFT:</span><br><span class="line">			si.nPos -= si.nPage;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">case</span> SB_PAGERIGHT:</span><br><span class="line">			si.nPos += si.nPage;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">case</span> SB_THUMBTRACK:</span><br><span class="line">			si.nPos = si.nTrackPos;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">default</span>:</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		si.fMask = SIF_POS;</span><br><span class="line">		SetScrollInfo(hwnd, SB_HORZ, &amp;si, TRUE);	<span class="comment">// 若位置超出,则自动调整为正确位置</span></span><br><span class="line">		GetScrollInfo(hwnd, SB_HORZ, &amp;si);</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> (si.nPos != iHorzPos)</span><br><span class="line">		&#123;</span><br><span class="line">			ScrollWindow(hwnd, cxChar * (iHorzPos - si.nPos), <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>); <span class="comment">// 向右滚动为负,向左滚动为正,无效化滚动区域,post一条WM_PAINT</span></span><br><span class="line">			UpdateWindow(hwnd);<span class="comment">// 立刻更新无效区域,越过消息队列,直接由Windows调用窗口过程处理WM_PAINT消息</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="keyword">case</span> WM_KEYDOWN:</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">switch</span> (wParam)</span><br><span class="line">		&#123;</span><br><span class="line">		<span class="keyword">case</span> VK_HOME:	<span class="comment">// 按键Home</span></span><br><span class="line">			SendMessage(hwnd, WM_VSCROLL, SB_TOP, <span class="number">0</span>);</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> VK_END:	<span class="comment">// 按键End</span></span><br><span class="line">			SendMessage(hwnd, WM_VSCROLL, SB_BOTTOM, <span class="number">0</span>);</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> VK_PRIOR:	<span class="comment">// 按键Page Up</span></span><br><span class="line">			SendMessage(hwnd, WM_VSCROLL, SB_PAGEUP, <span class="number">0</span>);</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> VK_NEXT:	<span class="comment">// 按键Page Down</span></span><br><span class="line">			SendMessage(hwnd, WM_VSCROLL, SB_PAGEDOWN, <span class="number">0</span>);</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> VK_UP:		<span class="comment">// 按键上</span></span><br><span class="line">			SendMessage(hwnd, WM_VSCROLL, SB_LINEUP, <span class="number">0</span>);</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> VK_DOWN:	<span class="comment">// 按键下</span></span><br><span class="line">			SendMessage(hwnd, WM_VSCROLL, SB_LINEDOWN, <span class="number">0</span>);</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> VK_LEFT:	<span class="comment">// 按键左</span></span><br><span class="line">			SendMessage(hwnd, WM_HSCROLL, SB_LINELEFT, <span class="number">0</span>);</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> VK_RIGHT:	<span class="comment">// 按键右</span></span><br><span class="line">			SendMessage(hwnd, WM_HSCROLL, SB_LINERIGHT, <span class="number">0</span>);</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">default</span>:</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">case</span> WM_PAINT:</span><br><span class="line">	&#123;</span><br><span class="line">		hdc = BeginPaint(hwnd, &amp;ps);</span><br><span class="line"></span><br><span class="line">		si.cbSize = <span class="keyword">sizeof</span>(si);</span><br><span class="line">		si.fMask = SIF_POS;</span><br><span class="line"></span><br><span class="line">		GetScrollInfo(hwnd, SB_VERT, &amp;si);</span><br><span class="line">		iVertPos = si.nPos;</span><br><span class="line"></span><br><span class="line">		GetScrollInfo(hwnd, SB_HORZ, &amp;si);</span><br><span class="line">		iHorzPos = si.nPos;</span><br><span class="line"></span><br><span class="line">		iPaintBeg = max(<span class="number">0</span>, iVertPos + ps.rcPaint.top / cyChar);</span><br><span class="line">		iPaintEnd = min(NUMLINES - <span class="number">1</span>, iVertPos + ps.rcPaint.bottom / cyChar);</span><br><span class="line"></span><br><span class="line">		<span class="keyword">for</span> (i = iPaintBeg; i &lt;= iPaintEnd; ++i)</span><br><span class="line">		&#123;</span><br><span class="line">			x = cxChar * (<span class="number">1</span> - iHorzPos);</span><br><span class="line">			y = cyChar * (i - iVertPos);</span><br><span class="line"></span><br><span class="line">			TextOut(hdc, x, y, sysmetrics[i].szLabel, _tcslen(sysmetrics[i].szLabel));</span><br><span class="line">			TextOut(hdc, x + <span class="number">22</span> * cxCaps, y, sysmetrics[i].szDesc, _tcslen(sysmetrics[i].szDesc));</span><br><span class="line">			SetTextAlign(hdc, TA_RIGHT | TA_TOP);</span><br><span class="line">			<span class="keyword">int</span> iLen = swprintf_s(szBuffer, TEXT(<span class="string">"%5d"</span>), GetSystemMetrics(sysmetrics[i].iIndex));</span><br><span class="line">			TextOut(hdc, x + <span class="number">22</span> * cxCaps + <span class="number">40</span> * cxChar, y, szBuffer, iLen);</span><br><span class="line">			SetTextAlign(hdc, TA_LEFT | TA_TOP);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		EndPaint(hwnd, &amp;ps);</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">case</span> WM_DESTROY:</span><br><span class="line">	&#123;</span><br><span class="line">		PostQuitMessage(<span class="number">0</span>);</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">default</span>:</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> DefWindowProc(hwnd, message, wParam, lParam);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>加入滚动条后,效果如下</p>
 <img src="/posts/c1bee057/2020013011242516.png">
 <p><code>页面顶端的文字的位置即为滚动条的位置</code><br>
@@ -697,28 +711,35 @@ PAINTSTRUCT结构的rcPaint定义了无效区域的矩形边界(以像素为单�
     <li class="popular-posts-item">
       
       
+      <div class="popular-posts-title"><a href="\posts\17ae1cbc\" rel="bookmark">[Windows编程]第9章 子窗口控件</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\aef11d37\" rel="bookmark">[Windows编程]第8章 计时器</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\288466a6\" rel="bookmark">[Windows编程]第7章 鼠标</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\481c226a\" rel="bookmark">[Windows编程]第6章 键盘</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
       <div class="popular-posts-title"><a href="\posts\1e4abcd3\" rel="bookmark">[Windows编程]第5章 绘图基础</a></div>
-      
-    </li>
-  
-    <li class="popular-posts-item">
-      
-      
-      <div class="popular-posts-title"><a href="\posts\9734c640\" rel="bookmark">[Windows编程]第3章 窗口与消息</a></div>
-      
-    </li>
-  
-    <li class="popular-posts-item">
-      
-      
-      <div class="popular-posts-title"><a href="\posts\bc564b01\" rel="bookmark">[Windows编程]第2章 Unicode简介</a></div>
-      
-    </li>
-  
-    <li class="popular-posts-item">
-      
-      
-      <div class="popular-posts-title"><a href="\posts\c1877712\" rel="bookmark">[Windows编程]第1章 起步</a></div>
       
     </li>
   
@@ -742,7 +763,7 @@ PAINTSTRUCT结构的rcPaint定义了无效区域的矩形边界(以像素为单�
   <p><span>本文标题:</span><a href="/posts/c1bee057/">[Windows编程]第4章 文本输出</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 Brian Yi 的个人博客">Brian Yi</a></p>
   <p><span>发布时间:</span>2020年01月28日 - 21:01</p>
-  <p><span>最后更新:</span>2020年01月30日 - 11:01</p>
+  <p><span>最后更新:</span>2020年02月05日 - 10:02</p>
   <p><span>原始链接:</span><a href="/posts/c1bee057/" title="[Windows编程]第4章 文本输出">https://brianyi.github.io/posts/c1bee057/</a>
     <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://brianyi.github.io/posts/c1bee057/" aria-label="复制成功！"></i></span>
   </p>
@@ -889,7 +910,7 @@ PAINTSTRUCT结构的rcPaint定义了无效区域的矩形边界(以像素为单�
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">227</span>
+                    <span class="site-state-item-count">233</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -964,7 +985,11 @@ PAINTSTRUCT结构的rcPaint定义了无效区域的矩形边界(以像素为单�
                     
                       
                     
-                    <span class="site-state-item-count">29</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">31</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -1161,7 +1186,11 @@ PAINTSTRUCT结构的rcPaint定义了无效区域的矩形边界(以像素为单�
                     
                       
                     
-                    <span class="site-state-item-count">90</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">92</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1228,7 +1257,7 @@ PAINTSTRUCT结构的rcPaint定义了无效区域的矩形边界(以像素为单�
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#41-绘制和重绘"><span class="nav-number">1.</span> <span class="nav-text"> 4.1 绘制和重绘</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#411-wm_paint消息"><span class="nav-number">1.1.</span> <span class="nav-text"> 4.1.1 WM_PAINT消息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#412-有效矩形和无效矩形"><span class="nav-number">1.2.</span> <span class="nav-text"> 4.1.2 有效矩形和无效矩形</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#42-gdi简介"><span class="nav-number">2.</span> <span class="nav-text"> 4.2 GDI简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#421-设备环境"><span class="nav-number">2.1.</span> <span class="nav-text"> 4.2.1 设备环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#422-获取设备环境句柄方法一"><span class="nav-number">2.2.</span> <span class="nav-text"> 4.2.2 获取设备环境句柄:方法一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#424-获取设备环境句柄方法二"><span class="nav-number">2.3.</span> <span class="nav-text"> 4.2.4 获取设备环境句柄:方法二</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#425-textout函数详解"><span class="nav-number">2.4.</span> <span class="nav-text"> 4.2.5 TEXTOUT函数详解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#426-系统字体"><span class="nav-number">2.5.</span> <span class="nav-text"> 4.2.6 系统字体</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#427-字符大小"><span class="nav-number">2.6.</span> <span class="nav-text"> 4.2.7 字符大小</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4213-客户区的尺寸"><span class="nav-number">2.7.</span> <span class="nav-text"> 4.2.13 客户区的尺寸</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#44-效果更好的滚动"><span class="nav-number">3.</span> <span class="nav-text"> 4.4 效果更好的滚动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#综合运用"><span class="nav-number">4.</span> <span class="nav-text"> 综合运用</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#解题思路"><span class="nav-number"></span> <span class="nav-text"> 解题思路</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number"></span> <span class="nav-text"> 参考</span></a></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#41-绘制和重绘"><span class="nav-number">1.</span> <span class="nav-text"> 4.1 绘制和重绘</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#411-wm_paint消息"><span class="nav-number">1.1.</span> <span class="nav-text"> 4.1.1 WM_PAINT消息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#412-有效矩形和无效矩形"><span class="nav-number">1.2.</span> <span class="nav-text"> 4.1.2 有效矩形和无效矩形</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#42-gdi简介"><span class="nav-number">2.</span> <span class="nav-text"> 4.2 GDI简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#421-设备环境"><span class="nav-number">2.1.</span> <span class="nav-text"> 4.2.1 设备环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#422-获取设备环境句柄方法一"><span class="nav-number">2.2.</span> <span class="nav-text"> 4.2.2 获取设备环境句柄:方法一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#424-获取设备环境句柄方法二"><span class="nav-number">2.3.</span> <span class="nav-text"> 4.2.4 获取设备环境句柄:方法二</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#425-textout函数详解"><span class="nav-number">2.4.</span> <span class="nav-text"> 4.2.5 TEXTOUT函数详解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#426-系统字体"><span class="nav-number">2.5.</span> <span class="nav-text"> 4.2.6 系统字体</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#427-字符大小"><span class="nav-number">2.6.</span> <span class="nav-text"> 4.2.7 字符大小</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4213-客户区的尺寸"><span class="nav-number">2.7.</span> <span class="nav-text"> 4.2.13 客户区的尺寸</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#44-效果更好的滚动"><span class="nav-number">3.</span> <span class="nav-text"> 4.4 效果更好的滚动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#span-idjump-0综合运用span"><span class="nav-number">4.</span> <span class="nav-text"> 综合运用</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#解题思路"><span class="nav-number"></span> <span class="nav-text"> 解题思路</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number"></span> <span class="nav-text"> 参考</span></a></li></div>
             
             <span class="links-of-author-item ">
                 <a href="javascript:;" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索</a>
@@ -1269,7 +1298,7 @@ PAINTSTRUCT结构的rcPaint定义了无效区域的矩形边界(以像素为单�
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">1.6m</span>
+    <span title="站点总字数">1.7m</span>
   
 
   
@@ -1278,7 +1307,7 @@ PAINTSTRUCT结构的rcPaint定义了无效区域的矩形边界(以像素为单�
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">24:43</span>
+    <span title="站点阅读时长">25:47</span>
   
 </div>
 
@@ -1434,330 +1463,20 @@ PAINTSTRUCT结构的rcPaint定义了无效区域的矩形边界(以像素为单�
 
 
   
-  <script>
-    // Popup Window;
-    var isfetched = false;
-    var isXml = true;
-    // Search DB path;
-    var search_path = "search.json";
-    if (search_path.length === 0) {
-      search_path = "search.xml";
-    } else if (/json$/i.test(search_path)) {
-      isXml = false;
-    }
-    var path = "/" + search_path;
-    // monitor main search box;
-
-    var onPopupClose = function (e) {
-      $('.popup').hide();
-      $('#local-search-input').val('');
-      $('.search-result-list').remove();
-      $('#no-result').remove();
-      $(".local-search-pop-overlay").remove();
-      $('body').css('overflow', '');
-    }
-
-    function proceedsearch() {
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
-        .css('overflow', 'hidden');
-      $('.search-popup-overlay').click(onPopupClose);
-      $('.popup').toggle();
-      var $localSearchInput = $('#local-search-input');
-      $localSearchInput.attr("autocapitalize", "none");
-      $localSearchInput.attr("autocorrect", "off");
-      $localSearchInput.focus();
-    }
-
-    // search function;
-    var searchFunc = function(path, search_id, content_id) {
-      'use strict';
-
-      // start loading animation
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
-          '<div id="search-loading-icon">' +
-          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
-          '</div>' +
-          '</div>')
-        .css('overflow', 'hidden');
-      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
-
-      
-
-      $.ajax({
-        url: path,
-        dataType: isXml ? "xml" : "json",
-        async: true,
-        success: function(res) {
-          // get the contents from search data
-          isfetched = true;
-          $('.popup').detach().appendTo('.header-inner');
-          var datas = isXml ? $("entry", res).map(function() {
-            return {
-              title: $("title", this).text(),
-              content: $("content",this).text(),
-              url: $("url" , this).text()
-            };
-          }).get() : res;
-          var input = document.getElementById(search_id);
-          var resultContent = document.getElementById(content_id);
-          var inputEventFunction = function() {
-            var searchText = input.value.trim().toLowerCase();
-            var keywords = searchText.split(/[\s\-]+/);
-            if (keywords.length > 1) {
-              keywords.push(searchText);
-            }
-            var resultItems = [];
-            if (searchText.length > 0) {
-              // perform local searching
-              datas.forEach(function(data) {
-                var isMatch = false;
-                var hitCount = 0;
-                var searchTextCount = 0;
-                // fixed:local search has bug
-                if (data.title==undefined)
-                    return [];
-                var title = data.title.trim();
-                var titleInLowerCase = title.toLowerCase();
-                var content = data.content.trim().replace(/<[^>]+>/g,"");
-                
-                var contentInLowerCase = content.toLowerCase();
-                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
-                var indexOfTitle = [];
-                var indexOfContent = [];
-                // only match articles with not empty titles
-                if(title != '') {
-                  keywords.forEach(function(keyword) {
-                    function getIndexByWord(word, text, caseSensitive) {
-                      var wordLen = word.length;
-                      if (wordLen === 0) {
-                        return [];
-                      }
-                      var startPosition = 0, position = [], index = [];
-                      if (!caseSensitive) {
-                        text = text.toLowerCase();
-                        word = word.toLowerCase();
-                      }
-                      while ((position = text.indexOf(word, startPosition)) > -1) {
-                        index.push({position: position, word: word});
-                        startPosition = position + wordLen;
-                      }
-                      return index;
-                    }
-
-                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
-                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
-                  });
-                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
-                    isMatch = true;
-                    hitCount = indexOfTitle.length + indexOfContent.length;
-                  }
-                }
-
-                // show search results
-
-                if (isMatch) {
-                  // sort index by position of keyword
-
-                  [indexOfTitle, indexOfContent].forEach(function (index) {
-                    index.sort(function (itemLeft, itemRight) {
-                      if (itemRight.position !== itemLeft.position) {
-                        return itemRight.position - itemLeft.position;
-                      } else {
-                        return itemLeft.word.length - itemRight.word.length;
-                      }
-                    });
-                  });
-
-                  // merge hits into slices
-
-                  function mergeIntoSlice(text, start, end, index) {
-                    var item = index[index.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    var hits = [];
-                    var searchTextCountInSlice = 0;
-                    while (position + word.length <= end && index.length != 0) {
-                      if (word === searchText) {
-                        searchTextCountInSlice++;
-                      }
-                      hits.push({position: position, length: word.length});
-                      var wordEnd = position + word.length;
-
-                      // move to next position of hit
-
-                      index.pop();
-                      while (index.length != 0) {
-                        item = index[index.length - 1];
-                        position = item.position;
-                        word = item.word;
-                        if (wordEnd > position) {
-                          index.pop();
-                        } else {
-                          break;
-                        }
-                      }
-                    }
-                    searchTextCount += searchTextCountInSlice;
-                    return {
-                      hits: hits,
-                      start: start,
-                      end: end,
-                      searchTextCount: searchTextCountInSlice
-                    };
-                  }
-
-                  var slicesOfTitle = [];
-                  if (indexOfTitle.length != 0) {
-                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
-                  }
-
-                  var slicesOfContent = [];
-                  while (indexOfContent.length != 0) {
-                    var item = indexOfContent[indexOfContent.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    // cut out 100 characters
-                    var start = position - 20;
-                    var end = position + 80;
-                    if(start < 0){
-                      start = 0;
-                    }
-                    if (end < position + word.length) {
-                      end = position + word.length;
-                    }
-                    if(end > content.length){
-                      end = content.length;
-                    }
-                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
-                  }
-
-                  // sort slices in content by search text's count and hits' count
-
-                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
-                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
-                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
-                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
-                      return sliceRight.hits.length - sliceLeft.hits.length;
-                    } else {
-                      return sliceLeft.start - sliceRight.start;
-                    }
-                  });
-
-                  // select top N slices in content
-
-                  var upperBound = parseInt('1');
-                  if (upperBound >= 0) {
-                    slicesOfContent = slicesOfContent.slice(0, upperBound);
-                  }
-
-                  // highlight title and content
-
-                  function highlightKeyword(text, slice) {
-                    var result = '';
-                    var prevEnd = slice.start;
-                    slice.hits.forEach(function (hit) {
-                      result += text.substring(prevEnd, hit.position);
-                      var end = hit.position + hit.length;
-                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
-                      prevEnd = end;
-                    });
-                    result += text.substring(prevEnd, slice.end);
-                    return result;
-                  }
-
-                  var resultItem = '';
-
-                  if (slicesOfTitle.length != 0) {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
-                  } else {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
-                  }
-
-                  slicesOfContent.forEach(function (slice) {
-                    resultItem += "<a href='" + articleUrl + "'>" +
-                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
-                      "...</p>" + "</a>";
-                  });
-
-                  resultItem += "</li>";
-                  resultItems.push({
-                    item: resultItem,
-                    searchTextCount: searchTextCount,
-                    hitCount: hitCount,
-                    id: resultItems.length
-                  });
-                }
-              })
-            };
-            if (keywords.length === 1 && keywords[0] === "") {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
-            } else if (resultItems.length === 0) {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
-            } else {
-              resultItems.sort(function (resultLeft, resultRight) {
-                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
-                  return resultRight.searchTextCount - resultLeft.searchTextCount;
-                } else if (resultLeft.hitCount !== resultRight.hitCount) {
-                  return resultRight.hitCount - resultLeft.hitCount;
-                } else {
-                  return resultRight.id - resultLeft.id;
-                }
-              });
-              var searchResultList = '<ul class=\"search-result-list\">';
-              resultItems.forEach(function (result) {
-                searchResultList += result.item;
-              })
-              searchResultList += "</ul>";
-              resultContent.innerHTML = searchResultList;
-            }
-          }
-
-          if ('auto' === 'auto') {
-            input.addEventListener('input', inputEventFunction);
-          } else {
-            $('.search-icon').click(inputEventFunction);
-            input.addEventListener('keypress', function (event) {
-              if (event.keyCode === 13) {
-                inputEventFunction();
-              }
-            });
-          }
-
-          // remove loading animation
-          $(".local-search-pop-overlay").remove();
-          $('body').css('overflow', '');
-
-          proceedsearch();
-        }
-      });
-    }
-
-    // handle and trigger popup window;
-    $('.popup-trigger').click(function(e) {
-      e.stopPropagation();
-      if (isfetched === false) {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-      } else {
-        proceedsearch();
-      };
-    });
-
-    $('.popup-btn-close').click(onPopupClose);
-    $('.popup').click(function(e){
-      e.stopPropagation();
-    });
-    $(document).on('keyup', function (event) {
-      var shouldDismissSearchPopup = event.which === 27 &&
-        $('.search-popup').is(':visible');
-      if (shouldDismissSearchPopup) {
-        onPopupClose();
-      }
-    });
-  </script>
 
 
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/algolia-search.js?v=7.1.1"></script>
 
 
 

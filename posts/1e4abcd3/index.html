@@ -113,9 +113,9 @@
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
+      applicationID: 'BV9JEDY4W4',
+      apiKey: 'd619a118f344f8f1631c2cae6cea9406',
+      indexName: 'blog',
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
@@ -137,7 +137,15 @@
 <meta property="og:description" content="5.1 GDI的结构  5.1.1 GDI原理 图形输出设备被分为两大类:光栅设备(raster device)和矢量设备(vector device) 大多数PC输出设备都是光栅设备,意味着他们将图像表示成以点的形式构成的矩阵.(例如视频显示器,点阵打印机和激光打印机) 矢量设备则使用线条绘制图像,通常指绘图机. GDI总体上来说只是一个静态显示系统,对动画的支持很有限,如果你需要为游戏编写">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://brianyi.github.io/posts/1e4abcd3/2020013110102419.png">
-<meta property="og:updated_time" content="2020-01-31T03:03:25.242Z">
+<meta property="og:image" content="https://brianyi.github.io/posts/1e4abcd3/2020013114584432.gif">
+<meta property="og:image" content="https://brianyi.github.io/posts/1e4abcd3/2020013112305821.png">
+<meta property="og:image" content="https://brianyi.github.io/posts/1e4abcd3/2020013114584422.gif">
+<meta property="og:image" content="https://brianyi.github.io/posts/1e4abcd3/2020013114584423.gif">
+<meta property="og:image" content="https://brianyi.github.io/posts/1e4abcd3/2020013116542124.png">
+<meta property="og:image" content="https://brianyi.github.io/posts/1e4abcd3/2020013120345926.png">
+<meta property="og:image" content="https://brianyi.github.io/posts/1e4abcd3/2020013122073528.png">
+<meta property="og:image" content="https://brianyi.github.io/posts/1e4abcd3/2020020109202129.png">
+<meta property="og:updated_time" content="2020-02-05T02:45:21.319Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[Windows编程]第5章 绘图基础">
 <meta name="twitter:description" content="5.1 GDI的结构  5.1.1 GDI原理 图形输出设备被分为两大类:光栅设备(raster device)和矢量设备(vector device) 大多数PC输出设备都是光栅设备,意味着他们将图像表示成以点的形式构成的矩阵.(例如视频显示器,点阵打印机和激光打印机) 矢量设备则使用线条绘制图像,通常指绘图机. GDI总体上来说只是一个静态显示系统,对动画的支持很有限,如果你需要为游戏编写">
@@ -311,7 +319,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">90</span></a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">92</span></a>
 
   </li>
         
@@ -330,7 +338,7 @@
       
     
 
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">29</span></a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">31</span></a>
 
   </li>
         
@@ -349,7 +357,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">227</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">233</span></a>
 
   </li>
 
@@ -371,20 +379,26 @@
   
     <div class="site-search">
       
-  <div class="popup search-popup local-search-popup">
-  <div class="local-search-header clearfix">
-    <span class="search-icon">
-      <i class="fa fa-search"></i>
-    </span>
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
     <span class="popup-btn-close">
       <i class="fa fa-times-circle"></i>
     </span>
-    <div class="local-search-input-wrapper">
-      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
-    </div>
   </div>
-  <div id="local-search-result"></div>
-</div>
+
 
 
 
@@ -498,7 +512,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-01-31 11:03:25" itemprop="dateModified" datetime="2020-01-31T11:03:25+08:00">2020-01-31</time>
+                <time title="修改时间：2020-02-05 10:45:21" itemprop="dateModified" datetime="2020-02-05T10:45:21+08:00">2020-02-05</time>
               
             
           </span>
@@ -568,7 +582,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">5.4k</span>
+                <span title="本文字数">19k</span>
               
 
               
@@ -582,7 +596,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">5 分钟</span>
+                <span title="阅读时长">17 分钟</span>
               
             </div>
           
@@ -718,7 +732,9 @@ CreateBrushIndirect函数包含以上4个函数的所有功能</p>
 </ul>
 <p>Windos定义了8种映射模式,如下</p>
 <img src="/posts/1e4abcd3/2020013110102419.png">
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SetMapMode(hdc, iMapMode);  <span class="comment">// 设定映射模式</span></span><br><span class="line">iMapMode = GetMapMode(hdc); <span class="comment">// 获取映射模式</span></span><br></pre></td></tr></table></figure>
+<p>MM_ISOTROPIC,MM_ANISOTROPIC这两种映射模式的坐标轴方不改变方向,只用于解放范围,只有前面6个映射模式有坐标轴方向.<br>
+下面的代码将实现MM_LOENGLISH映射模式下的y值向下增长.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SetMapMode(hdc, MM_LOENGLISH);      <span class="comment">// 设定映射模式为MM_LOENGLISH</span></span><br><span class="line">SetMapMode(hdc, MM_ANISOTROPIC);    <span class="comment">// 放开范围限制</span></span><br><span class="line">GetViewportExtEx(hdc, &amp;size);       <span class="comment">// 获取视口范围</span></span><br><span class="line">SetViewportExtEx(hdc, size.cx, -size.cy, <span class="literal">NULL</span>); <span class="comment">// 让y值向下增长</span></span><br></pre></td></tr></table></figure>
 <p><code>映射模式是设备环境的一种属性,因此,只有当使用以设备环境句柄作为参数的GDI函数时.映射模式才会生效.</code></p>
 <h3 id="552-设备坐标系统"><a class="markdownIt-Anchor" href="#552-设备坐标系统"></a> 5.5.2 设备坐标系统</h3>
 <p>Windows会把GDI函数中指定的<strong>逻辑坐标(以逻辑坐标为单位)<strong>转换为</strong>设备坐标(以像素为单位)</strong>.<br>
@@ -728,6 +744,7 @@ CreateBrushIndirect函数包含以上4个函数的所有功能</p>
 <li>全窗口坐标: 应用程序的整个应用窗口,包括标题栏、菜单、滚动条和边框</li>
 <li>客户区坐标: 窗口内的客户区</li>
 </ul>
+<p><strong>(注意)一般来说,设备坐标(像素为单位)总是客户区坐标,左上角(0,0),x向右递增,y向下递增.</strong></p>
 <p>三种坐标可以相互转换<br>
 ClientToScreen,ScreenToClient在客户区坐标和屏幕坐标之间相互转换</p>
 <h3 id="553-视口和窗口"><a class="markdownIt-Anchor" href="#553-视口和窗口"></a> 5.5.3 视口和窗口</h3>
@@ -744,8 +761,114 @@ ClientToScreen,ScreenToClient在客户区坐标和屏幕坐标之间相互转换
     yWindow &amp;= (yViewport - yViewOrg)\times\frac{yWinExt}{yViewExt} + yWinOrg
 \end{aligned}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:4.8871em;vertical-align:-2.19355em;"></span><span class="mord"><span class="mtable"><span class="col-align-r"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.69355em;"><span style="top:-4.69355em;"><span class="pstrut" style="height:3.3603300000000003em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class="mord mathdefault">i</span><span class="mord mathdefault">n</span><span class="mord mathdefault">d</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span></span></span><span style="top:-2.34722em;"><span class="pstrut" style="height:3.3603300000000003em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class="mord mathdefault">i</span><span class="mord mathdefault">n</span><span class="mord mathdefault">d</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:2.19355em;"><span></span></span></span></span></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.69355em;"><span style="top:-4.69355em;"><span class="pstrut" style="height:3.3603300000000003em;"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mord mathdefault" style="margin-right:0.22222em;">V</span><span class="mord mathdefault">i</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mord mathdefault">p</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">t</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault">x</span><span class="mord mathdefault" style="margin-right:0.22222em;">V</span><span class="mord mathdefault">i</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.36033em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="mord mathdefault" style="margin-right:0.22222em;">V</span><span class="mord mathdefault">i</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mord mathdefault">x</span><span class="mord mathdefault">t</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class="mord mathdefault">i</span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mord mathdefault">x</span><span class="mord mathdefault">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault">x</span><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class="mord mathdefault">i</span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span></span></span><span style="top:-2.34722em;"><span class="pstrut" style="height:3.3603300000000003em;"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mord mathdefault" style="margin-right:0.22222em;">V</span><span class="mord mathdefault">i</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mord mathdefault">p</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">t</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mord mathdefault" style="margin-right:0.22222em;">V</span><span class="mord mathdefault">i</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3603299999999998em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mord mathdefault" style="margin-right:0.22222em;">V</span><span class="mord mathdefault">i</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mord mathdefault">x</span><span class="mord mathdefault">t</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class="mord mathdefault">i</span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mord mathdefault">x</span><span class="mord mathdefault">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.8804400000000001em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class="mord mathdefault">i</span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:2.19355em;"><span></span></span></span></span></span></span></span></span></span></span></span></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">LPtoDP(hdc, pPoints, iNumber);  <span class="comment">// 逻辑坐标转设备坐标</span></span><br><span class="line">DPtoLP(hdc, pPoints, iNumber);  <span class="comment">// 设备坐标转逻辑坐标</span></span><br></pre></td></tr></table></figure>
+<h3 id="554-使用mm_text"><a class="markdownIt-Anchor" href="#554-使用mm_text"></a> 5.5.4 使用MM_TEXT</h3>
+<p>设置视口原点SetViewportOrgEx,设置窗口原点SetWindowOrgEx(但不推荐一起使用)</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SetViewportOrgEx(hdc, cxClient / <span class="number">2</span>, cyClient / <span class="number">2</span>, <span class="literal">NULL</span>);    <span class="comment">// 设置视口原点</span></span><br><span class="line">SetWindowOrgEx(hdc, -cxClient / <span class="number">2</span>, -cyClient / <span class="number">2</span>, <span class="literal">NULL</span>);    <span class="comment">// 设置窗口原点</span></span><br><span class="line">GetViewportOrgEx(hdc, &amp;pt); <span class="comment">// 获取视口原点</span></span><br><span class="line">GetWindowOrgEx(hdc, &amp;pt);   <span class="comment">// 获取窗口原点</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>练习</li>
+</ul>
+<blockquote><details><summary>练习1: 设置一个笛卡尔坐标系,原点在中央,逻辑坐标单位为像素（详情请点击本行）</summary>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// SetMapMode(hdc, MM_TEXT);   // 这句可以不写,因为MM_TEXT为默认映射模式</span></span><br><span class="line"><span class="comment">// SetWindowExtEx(hdc, cxClient, cyClient, NULL);  // 这句可以不写,因为MM_TEXT模式下本身比例因子就是1</span></span><br><span class="line">SetViewportExtEx(hdc, cxClient, -cyClient, <span class="literal">NULL</span>);</span><br><span class="line">SetViewportOrgEx(hdc, cxClient / <span class="number">2</span>, cyClient / <span class="number">2</span>, <span class="literal">NULL</span>);</span><br></pre></td></tr></table></figure>
+</details></blockquote>
+<blockquote><details><summary>练习2: 设置一个笛卡尔坐标系,原点在中央,横轴[-100,100],纵轴[-50,50]（详情请点击本行）</summary>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SetMapMode(hdc, MM_ANISOTROPIC);    <span class="comment">// 由于比例因子不为1了,也就是逻辑坐标与设备坐标并不是1:1对应了,要设置模式为MM_ANISOTROPIC</span></span><br><span class="line">SetWindowExtEx(hdc, <span class="number">100</span> * <span class="number">2</span>, <span class="number">50</span> * <span class="number">2</span>, <span class="literal">NULL</span>);</span><br><span class="line">SetViewportExtEx(hdc, cxClient, -cyClient, <span class="literal">NULL</span>);</span><br><span class="line">SetViewportOrgEx(hdc, cxClient / <span class="number">2</span>, cyClient / <span class="number">2</span>, <span class="literal">NULL</span>);</span><br></pre></td></tr></table></figure>
+</details></blockquote>
+<p>下面一个简单的Demo展示从<strong>屏幕坐标,窗口客户区坐标,逻辑坐标的关联</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">LRESULT CALLBACK <span class="title">WndProc</span><span class="params">(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">static</span> POINT	ptScreenPos, ptClientPos, ptLogicPos;</span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">int</span> cxClient, cyClient;</span><br><span class="line">	HDC hdc;</span><br><span class="line">	PAINTSTRUCT ps;</span><br><span class="line">	TCHAR szBuffer[<span class="number">128</span>];</span><br><span class="line">	<span class="keyword">static</span> BOOL fIsCapture;</span><br><span class="line">	<span class="keyword">switch</span> (message)</span><br><span class="line">	&#123;</span><br><span class="line">	<span class="keyword">case</span> WM_CREATE:</span><br><span class="line">	<span class="keyword">case</span> WM_SIZE:</span><br><span class="line">		cxClient = LOWORD(lParam);</span><br><span class="line">		cyClient = HIWORD(lParam);</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">case</span> WM_KEYDOWN:</span><br><span class="line">		<span class="keyword">if</span> (wParam == VK_RETURN &amp;&amp; !fIsCapture)</span><br><span class="line">		&#123;</span><br><span class="line">			fIsCapture = TRUE;</span><br><span class="line">			SetCapture(hwnd);</span><br><span class="line">			InvalidateRect(hwnd, <span class="literal">NULL</span>, TRUE);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (wParam == VK_ESCAPE &amp;&amp; fIsCapture)</span><br><span class="line">		&#123;</span><br><span class="line">			fIsCapture = FALSE;</span><br><span class="line">			ReleaseCapture();</span><br><span class="line">			InvalidateRect(hwnd, <span class="literal">NULL</span>, TRUE);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">case</span> WM_MOUSEMOVE:</span><br><span class="line">		<span class="keyword">if</span> (fIsCapture)</span><br><span class="line">			InvalidateRect(hwnd, <span class="literal">NULL</span>, TRUE);</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">case</span> WM_PAINT:</span><br><span class="line">	&#123;</span><br><span class="line">		hdc = BeginPaint(hwnd, &amp;ps);</span><br><span class="line">		<span class="keyword">if</span> (fIsCapture)</span><br><span class="line">		&#123;</span><br><span class="line">			SaveDC(hdc);</span><br><span class="line">            <span class="comment">// 下面四行代码可以自行更改,实现不同的坐标系,这里实现的是练习2的坐标系</span></span><br><span class="line">			SetMapMode(hdc, MM_ANISOTROPIC);</span><br><span class="line">			SetWindowExtEx(hdc, <span class="number">100</span> * <span class="number">2</span>, <span class="number">50</span> * <span class="number">2</span>, <span class="literal">NULL</span>);</span><br><span class="line">			SetViewportExtEx(hdc, cxClient, -cyClient, <span class="literal">NULL</span>);</span><br><span class="line">			SetViewportOrgEx(hdc, cxClient / <span class="number">2</span>, cyClient / <span class="number">2</span>, <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line">			Ellipse(hdc, <span class="number">-1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">-1</span>);</span><br><span class="line">			GetCursorPos(&amp;ptScreenPos);</span><br><span class="line">			ptClientPos = ptScreenPos;</span><br><span class="line">			ScreenToClient(hwnd, &amp;ptClientPos);</span><br><span class="line">			ptLogicPos = ptClientPos;</span><br><span class="line">			DPtoLP(hdc, &amp;ptLogicPos, <span class="number">1</span>);</span><br><span class="line">			RestoreDC(hdc, <span class="number">-1</span>);</span><br><span class="line">			SetTextColor(hdc, RGB(<span class="number">0</span>, <span class="number">0</span>, <span class="number">255</span>));</span><br><span class="line">			TextOut(hdc, <span class="number">10</span>, <span class="number">10</span>, szBuffer, wsprintf(szBuffer, TEXT(<span class="string">"正在捕获鼠标,中间圆圈表示中心位置,按Esc则停止捕获."</span>), ptScreenPos.x, ptScreenPos.y));</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		&#123;</span><br><span class="line">			SetTextColor(hdc, RGB(<span class="number">0</span>, <span class="number">0</span>, <span class="number">255</span>));</span><br><span class="line">			TextOut(hdc, <span class="number">10</span>, <span class="number">10</span>, szBuffer, wsprintf(szBuffer, TEXT(<span class="string">"按回车(Enter)则开始捕获鼠标位置."</span>), ptScreenPos.x, ptScreenPos.y));</span><br><span class="line">		&#125;</span><br><span class="line">		SetTextColor(hdc, RGB(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>));</span><br><span class="line">		TextOut(hdc, <span class="number">10</span>, <span class="number">40</span>, szBuffer, wsprintf(szBuffer, TEXT(<span class="string">"屏幕坐标(%3d, %3d)"</span>), ptScreenPos.x, ptScreenPos.y));</span><br><span class="line">		TextOut(hdc, <span class="number">10</span>, <span class="number">70</span>, szBuffer, wsprintf(szBuffer, TEXT(<span class="string">"窗口客户区坐标(%3d, %3d)"</span>), ptClientPos.x, ptClientPos.y));</span><br><span class="line">		TextOut(hdc, <span class="number">10</span>, <span class="number">100</span>, szBuffer, wsprintf(szBuffer, TEXT(<span class="string">"逻辑坐标(%3d, %3d)"</span>), ptLogicPos.x, ptLogicPos.y));</span><br><span class="line">		EndPaint(hwnd, &amp;ps);</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">case</span> WM_DESTROY:</span><br><span class="line">	&#123;</span><br><span class="line">		PostQuitMessage(<span class="number">0</span>);</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">default</span>:</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> DefWindowProc(hwnd, message, wParam, lParam);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我依次将鼠标移动到了下面这些位置:</p>
+<ul>
+<li>屏幕坐标(0,0)</li>
+<li>窗口客户区坐标(0,0)</li>
+<li>逻辑坐标(0,0)</li>
+<li>逻辑坐标右上角(100,50),逻辑坐标右下角(100,-50),回到屏幕坐标(0,0)</li>
+</ul>
+<p>注意当要捕获窗口外鼠标的坐标时,需要按住鼠标的一个按钮(左,中,右都可)不放,然后移动才行,这是因为SetCapture函数的功能: “将鼠标捕获设置为属于当前线程的指定窗口。当鼠标位于捕获窗口上方时，或者当鼠标位于捕获窗口上方且按钮仍处于关闭状态时，SetCapture捕获鼠标输入。一次只有一个窗口可以捕获鼠标。”<br>
+效果如下</p>
+<img src="/posts/1e4abcd3/2020013114584432.gif">
+<p>那么<a href="../c1bee057#jump-0">第4章的 综合运用</a>部分绘图代码可以改为如下</p>
+<ul>
+<li><strong>方法1</strong></li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">case</span> WM_PAINT:</span><br><span class="line">&#123;   </span><br><span class="line">    ...</span><br><span class="line">    SetWindowOrgEx(hdc, cxChar * iHorzPos, cyChar * iVertPos, <span class="literal">NULL</span>);</span><br><span class="line">	<span class="keyword">for</span> (i = iPaintBeg; i &lt;= iPaintEnd; ++i)</span><br><span class="line">	&#123;</span><br><span class="line">		x = cxChar * <span class="number">1</span>;</span><br><span class="line">		y = cyChar * i;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>方法2</strong></li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">case</span> WM_PAINT:</span><br><span class="line">&#123;</span><br><span class="line">    ...</span><br><span class="line">    SetMapMode(hdc, MM_ANISOTROPIC);    <span class="comment">// 此句与下面两句实现一个坐标系,每逻辑单位表示一个字符宽度和高度</span></span><br><span class="line">    SetWindowExtEx(hdc, <span class="number">1</span>, <span class="number">1</span>, <span class="literal">NULL</span>);</span><br><span class="line">    SetViewportExtEx(hdc, cxChar, cyChar, <span class="literal">NULL</span>);    <span class="comment">// 改为cyChar * 2就可以做到隔行显示</span></span><br><span class="line">    SetWindowOrgEx(hdc, iHorzPos, iVertPos, <span class="literal">NULL</span>);</span><br><span class="line">    <span class="keyword">for</span> (i = iPaintBeg; i &lt;= iPaintEnd; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        x = <span class="number">0</span>;</span><br><span class="line">        y = i;</span><br><span class="line">        TextOut(hdc, x, y, sysmetrics[i].szLabel, _tcslen(sysmetrics[i].szLabel));</span><br><span class="line">        TextOut(hdc, x + <span class="number">32</span>, y, sysmetrics[i].szDesc, _tcslen(sysmetrics[i].szDesc));</span><br><span class="line">        SetTextAlign(hdc, TA_RIGHT | TA_TOP);</span><br><span class="line">        <span class="keyword">int</span> iLen = swprintf_s(szBuffer, TEXT(<span class="string">"%5d"</span>), GetSystemMetrics(sysmetrics[i].iIndex));</span><br><span class="line">        TextOut(hdc, x + <span class="number">32</span> + <span class="number">40</span>, y, szBuffer, iLen);</span><br><span class="line">        SetTextAlign(hdc, TA_LEFT | TA_TOP);</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>方法2可以重点关注, 运用了映射模式,逻辑坐标与物理坐标之间的关系.</p>
+<h3 id="555-度量映射模式"><a class="markdownIt-Anchor" href="#555-度量映射模式"></a> 5.5.5 度量映射模式</h3>
+<img src="/posts/1e4abcd3/2020013112305821.png">
+<h3 id="556-自定义的映射模式"><a class="markdownIt-Anchor" href="#556-自定义的映射模式"></a> 5.5.6 自定义的映射模式</h3>
+<p>这两种映射模式分别为MM_ISOTROPIC和MM_ANISOTROPIC, <strong>只有这两种映射模式下才允许你改变视口和窗口的范围</strong><br>
+<strong>Windows能够通过调整窗口和视口的范围来处理图像大小的变化,这样就不用去管窗口的大小了</strong><br>
+MM_TEXT: &quot;完全受限&quot;的映射模式,不可以改变窗口和视口的范围(都为1,因而<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mfrac><mrow><mi>x</mi><mi>V</mi><mi>i</mi><mi>e</mi><mi>w</mi><mi>E</mi><mi>x</mi><mi>t</mi></mrow><mrow><mi>x</mi><mi>W</mi><mi>i</mi><mi>n</mi><mi>E</mi><mi>x</mi><mi>t</mi></mrow></mfrac><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">\frac{xViewExt}{xWinExt}=1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.217331em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.872331em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">x</span><span class="mord mathdefault mtight" style="margin-right:0.13889em;">W</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight" style="margin-right:0.05764em;">E</span><span class="mord mathdefault mtight">x</span><span class="mord mathdefault mtight">t</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">x</span><span class="mord mathdefault mtight" style="margin-right:0.22222em;">V</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight" style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight" style="margin-right:0.05764em;">E</span><span class="mord mathdefault mtight">x</span><span class="mord mathdefault mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>).<br>
+MM_ISOTROPIC: &quot;半受限&quot;的映射模式,可以改变窗口和视口的范围,但是Windows会调整他们的值.<br>
+MM_ANISOTROPIC: &quot;不受限&quot;的映射模式,可以改变窗口和视口的范围,Windows不会调整他们的值.<br>
+<code>若原图是正方形,MM_ISOTROPIC模式下,则怎么变化窗口大小,仍为正方形. MM_ANISOTROPIC模式下,则正方形会随窗口的长宽按比例变化,可能变成矩形.</code><br>
+下面程序将在左下角绘制自适应的坐标轴,大小始终只占4/5</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">case</span> WM_PAINT:</span><br><span class="line">	&#123;</span><br><span class="line">        hdc = BeginPaint(hwnd, &amp;ps);</span><br><span class="line">		RECT rc;</span><br><span class="line">		GetClientRect(hwnd, &amp;rc);   <span class="comment">// 获取客户区大小</span></span><br><span class="line">		cxClient = rc.right;</span><br><span class="line">		cyClient = rc.bottom;</span><br><span class="line">		SelectObject(hdc, GetStockObject(WHITE_PEN));       <span class="comment">// 坐标轴绘制使用白色画笔</span></span><br><span class="line">		SetMapMode(hdc, MM_ISOTROPIC);                      <span class="comment">// 下面三行顺序永远不能变</span></span><br><span class="line">		SetWindowExtEx(hdc, <span class="number">100</span>, <span class="number">100</span>, <span class="literal">NULL</span>);                <span class="comment">// 设置逻辑窗口大小</span></span><br><span class="line">		SetViewportExtEx(hdc, cxClient, -cyClient, <span class="literal">NULL</span>);   <span class="comment">// 设置视口大小,这里正负号可以改变逻辑坐标轴方向</span></span><br><span class="line">		SetViewportOrgEx(hdc, <span class="number">0</span>, cyClient, <span class="literal">NULL</span>);           <span class="comment">// 将视口原点设置在(0,cyClient)位置,即屏幕左下角</span></span><br><span class="line">		MoveToEx(hdc, <span class="number">10</span>, <span class="number">10</span>, <span class="literal">NULL</span>);</span><br><span class="line">		LineTo(hdc, <span class="number">90</span>, <span class="number">10</span>);</span><br><span class="line">		MoveToEx(hdc, <span class="number">10</span>, <span class="number">10</span>, <span class="literal">NULL</span>);</span><br><span class="line">		LineTo(hdc, <span class="number">10</span>, <span class="number">90</span>);</span><br><span class="line">		EndPaint(hwnd, &amp;ps);</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>下面左图为运行结果, 可以看到绘制坐标轴会随窗口大小而自适应.右图MM_ANISOTROPIC则不会保持正确的高宽比.</p>
+<table>
+<tr>
+<td> <img src="/posts/1e4abcd3/2020013114584422.gif">使用MM_ISOTROPIC</td>
+<td> <img src="/posts/1e4abcd3/2020013114584423.gif">使用MM_ANISOTROPIC</td></tr>
+</table>
+<p><code>先窗口,再视口</code>这个顺序不能变.可以看到MM_ISOTROPIC与MM_ANISOTROPIC的区别.</p>
+<p>下面的代码来实现一个以厘米为单位的格尺</p>
+<blockquote><details><summary>查看代码（详情请点击本行）</summary>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">case</span> WM_PAINT:</span><br><span class="line">	&#123;</span><br><span class="line">		hdc = BeginPaint(hwnd, &amp;ps);</span><br><span class="line">		RECT rc;</span><br><span class="line">		TCHAR szBuffer[<span class="number">10</span>];</span><br><span class="line">		<span class="keyword">int</span> iLen = <span class="number">0</span>;</span><br><span class="line">		GetClientRect(hwnd, &amp;rc);</span><br><span class="line">		cxClient = rc.right;</span><br><span class="line">		cyClient = rc.bottom;</span><br><span class="line">		SelectObject(hdc, GetStockObject(WHITE_PEN));</span><br><span class="line">		SetTextColor(hdc, RGB(<span class="number">255</span>, <span class="number">255</span>, <span class="number">255</span>));</span><br><span class="line">		SetBkMode(hdc,TRANSPARENT);</span><br><span class="line">		SetMapMode(hdc, MM_LOMETRIC);</span><br><span class="line">		SetViewportOrgEx(hdc, cxClient / <span class="number">10</span>, cyClient / <span class="number">2</span>, <span class="literal">NULL</span>);</span><br><span class="line">		MoveToEx(hdc, <span class="number">0</span>, <span class="number">0</span>, <span class="literal">NULL</span>);</span><br><span class="line">		LineTo(hdc, <span class="number">30</span> * <span class="number">10</span> * <span class="number">10</span>, <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= <span class="number">30</span> * <span class="number">10</span> * <span class="number">10</span>; i += <span class="number">10</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			MoveToEx(hdc, i, <span class="number">0</span>, <span class="literal">NULL</span>);</span><br><span class="line">			LineTo(hdc, i, i % <span class="number">100</span> ? <span class="number">10</span> : <span class="number">25</span>);</span><br><span class="line">			<span class="keyword">if</span> (!(i % <span class="number">100</span>))</span><br><span class="line">			&#123;</span><br><span class="line">				iLen = swprintf(szBuffer, TEXT(<span class="string">"%d"</span>), i / <span class="number">100</span>);</span><br><span class="line">				TextOut(hdc, i, <span class="number">-10</span>, szBuffer, iLen);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		EndPaint(hwnd, &amp;ps);</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+</details></blockquote>
+<img src="/posts/1e4abcd3/2020013116542124.png">
 <h2 id="综合应用"><a class="markdownIt-Anchor" href="#综合应用"></a> 综合应用</h2>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;Windows.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;tchar.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"SysMets.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="function">LRESULT CALLBACK <span class="title">WndProc</span><span class="params">(HWND, UINT, WPARAM, LPARAM)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> WINAPI <span class="title">WinMain</span><span class="params">(HINSTANCE hInstance, HINSTANCE hPrevInstance,</span></span></span><br><span class="line"><span class="function"><span class="params">	PSTR szCmdLine, <span class="keyword">int</span> iCmdShow)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">static</span> TCHAR szAppName[] = TEXT(<span class="string">"WhatSize"</span>);</span><br><span class="line">	HWND         hwnd;</span><br><span class="line">	MSG          msg;</span><br><span class="line">	WNDCLASS     wndclass;</span><br><span class="line"></span><br><span class="line">	wndclass.style = CS_HREDRAW | CS_VREDRAW;</span><br><span class="line">	wndclass.lpfnWndProc = WndProc;</span><br><span class="line">	wndclass.cbClsExtra = <span class="number">0</span>;</span><br><span class="line">	wndclass.cbWndExtra = <span class="number">0</span>;</span><br><span class="line">	wndclass.hInstance = hInstance;</span><br><span class="line">	wndclass.hIcon = LoadIcon(<span class="literal">NULL</span>, IDI_APPLICATION);</span><br><span class="line">	wndclass.hCursor = LoadCursor(<span class="literal">NULL</span>, IDC_ARROW);</span><br><span class="line">	wndclass.hbrBackground = (HBRUSH)GetStockObject(WHITE_BRUSH);</span><br><span class="line">	wndclass.lpszMenuName = <span class="literal">NULL</span>;</span><br><span class="line">	wndclass.lpszClassName = szAppName;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (!RegisterClass(&amp;wndclass))</span><br><span class="line">	&#123;</span><br><span class="line">		MessageBox(<span class="literal">NULL</span>, TEXT(<span class="string">"This program requires Windows NT!"</span>),</span><br><span class="line">			szAppName, MB_ICONERROR);</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	hwnd = CreateWindow(szAppName, TEXT(<span class="string">"What Size is the Window?"</span>),</span><br><span class="line">		WS_OVERLAPPEDWINDOW,</span><br><span class="line">		CW_USEDEFAULT, CW_USEDEFAULT,</span><br><span class="line">		CW_USEDEFAULT, CW_USEDEFAULT,</span><br><span class="line">		<span class="literal">NULL</span>, <span class="literal">NULL</span>, hInstance, <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line">	ShowWindow(hwnd, iCmdShow);</span><br><span class="line">	UpdateWindow(hwnd);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span> (GetMessage(&amp;msg, <span class="literal">NULL</span>, <span class="number">0</span>, <span class="number">0</span>))</span><br><span class="line">	&#123;</span><br><span class="line">		TranslateMessage(&amp;msg);</span><br><span class="line">		DispatchMessage(&amp;msg);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> msg.wParam;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Show</span><span class="params">(HWND hwnd, HDC hdc, <span class="keyword">int</span> iMode, <span class="keyword">int</span> x, <span class="keyword">int</span> y, <span class="keyword">const</span> TCHAR *text)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	RECT rc;</span><br><span class="line">	TCHAR szBuffer[<span class="number">60</span>];</span><br><span class="line"></span><br><span class="line">	SaveDC(hdc);	<span class="comment">// 保存之前的设备环境,即按文字大小为逻辑单位的映射模式</span></span><br><span class="line">	GetClientRect(hwnd, &amp;rc);</span><br><span class="line">	SetMapMode(hdc, iMode);	<span class="comment">// 设置新的映射模式</span></span><br><span class="line">	DPtoLP(hdc, (PPOINT)&amp;rc, <span class="number">2</span>);</span><br><span class="line">	<span class="keyword">int</span> iLen = swprintf(szBuffer, TEXT(<span class="string">"%-20s %7d %7d %7d %7d"</span>), text, rc.left, rc.right, rc.top, rc.bottom);</span><br><span class="line">	RestoreDC(hdc, <span class="number">-1</span>);	<span class="comment">// 恢复之前的文字大小为逻辑单位的映射模式</span></span><br><span class="line"></span><br><span class="line">	TextOut(hdc, x, y, szBuffer, iLen);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">LRESULT CALLBACK <span class="title">WndProc</span><span class="params">(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">static</span> TCHAR    szHeading[] =</span><br><span class="line">		TEXT(<span class="string">"Mapping Mode            Left   Right     Top  Bottom"</span>);</span><br><span class="line">	<span class="keyword">static</span> TCHAR    szUndLine[] =</span><br><span class="line">		TEXT(<span class="string">"------------            ----   -----     ---  ------"</span>);</span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">int</span>  cxChar, cyChar;</span><br><span class="line">	HDC         hdc;</span><br><span class="line">	PAINTSTRUCT ps;</span><br><span class="line">	TEXTMETRIC  tm;</span><br><span class="line">	<span class="keyword">switch</span> (message)</span><br><span class="line">	&#123;</span><br><span class="line">	<span class="keyword">case</span> WM_CREATE:</span><br><span class="line">	&#123;</span><br><span class="line">		hdc = GetDC(hwnd);</span><br><span class="line">		SelectObject(hdc, GetStockObject(SYSTEM_FIXED_FONT));   <span class="comment">// 只为获取字符大小,ReleaseDC后便销毁了</span></span><br><span class="line">		GetTextMetrics(hdc, &amp;tm);</span><br><span class="line">		cxChar = tm.tmAveCharWidth;</span><br><span class="line">		cyChar = tm.tmHeight + tm.tmExternalLeading;</span><br><span class="line">		ReleaseDC(hwnd, hdc);</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">case</span> WM_PAINT:</span><br><span class="line">	&#123;</span><br><span class="line">		hdc = BeginPaint(hwnd, &amp;ps);</span><br><span class="line">		SelectObject(hdc, GetStockObject(SYSTEM_FIXED_FONT));   <span class="comment">// 为了采用等宽字体,若设置了CS_OWNDC,这句则可以注释</span></span><br><span class="line">		SetMapMode(hdc, MM_ANISOTROPIC);</span><br><span class="line">		SetWindowExtEx(hdc, <span class="number">1</span>, <span class="number">1</span>, <span class="literal">NULL</span>);</span><br><span class="line">		SetViewportExtEx(hdc, cxChar, cyChar, <span class="literal">NULL</span>);</span><br><span class="line">		</span><br><span class="line">        TextOut(hdc, <span class="number">1</span>, <span class="number">1</span>, szHeading, _tcslen(szHeading));</span><br><span class="line">		TextOut(hdc, <span class="number">1</span>, <span class="number">2</span>, szUndLine, _tcslen(szUndLine));</span><br><span class="line">		</span><br><span class="line">        Show(hwnd, hdc, MM_TEXT, <span class="number">1</span>, <span class="number">3</span>, TEXT(<span class="string">"TEXT (pixels)"</span>));</span><br><span class="line">		Show(hwnd, hdc, MM_LOMETRIC, <span class="number">1</span>, <span class="number">4</span>, TEXT(<span class="string">"LOMETRIC (.1 mm)"</span>));</span><br><span class="line">		Show(hwnd, hdc, MM_HIMETRIC, <span class="number">1</span>, <span class="number">5</span>, TEXT(<span class="string">"HIMETRIC (.01 mm)"</span>));</span><br><span class="line">		Show(hwnd, hdc, MM_LOENGLISH, <span class="number">1</span>, <span class="number">6</span>, TEXT(<span class="string">"LOENGLISH (.01 in)"</span>));</span><br><span class="line">		Show(hwnd, hdc, MM_HIENGLISH, <span class="number">1</span>, <span class="number">7</span>, TEXT(<span class="string">"HIENGLISH (.001 in)"</span>));</span><br><span class="line">		Show(hwnd, hdc, MM_TWIPS, <span class="number">1</span>, <span class="number">8</span>, TEXT(<span class="string">"TWIPS (1/1440 in)"</span>));</span><br><span class="line">		EndPaint(hwnd, &amp;ps);</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">case</span> WM_DESTROY:</span><br><span class="line">	&#123;</span><br><span class="line">		PostQuitMessage(<span class="number">0</span>);</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">default</span>:</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> DefWindowProc(hwnd, message, wParam, lParam);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>由于要获取不同映射模式下的客户区坐标,那么需要用SaveDC将之前的映射模式保存,然后设置新的映射模式,获取客户区坐标,通过DPtoLP转换为逻辑坐标,接着用RestoreDC恢复之前的映射模式(专门用于文本显示的映射模式)来显示文本.</p>
+<img src="/posts/1e4abcd3/2020013120345926.png">
+<h3 id="561-处理矩形"><a class="markdownIt-Anchor" href="#561-处理矩形"></a> 5.6.1 处理矩形</h3>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">FillRect(hdc, &amp;rect, hBrush);   <span class="comment">// 填充矩形</span></span><br><span class="line">FrameRect(hdc, &amp;rect, hBrush);  <span class="comment">// 边框矩形</span></span><br><span class="line">InvertRect(hdc, &amp;rect); <span class="comment">// 反色矩形</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>将矩形沿x轴和y轴移动几个单位</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">OffsetRect(&amp;rect, x, y);</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>增大或减小矩形的尺寸</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">InflateRect(&amp;rect, x, y);</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>把矩形结构的各字段设置为0</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SetRectEmpty(&amp;rect);</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>将一个矩形结构复制到另一个矩形结构</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CopyRect(&amp;DestRect, &amp;SrcRect);</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>获取两个矩形的交集</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">IntersectRect(&amp;DestRect, &amp;SrcRect1, &amp;SrcRect2);</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>获取两个矩形的并集</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UnionRect(&amp;DestRect, &amp;SrcRect1, &amp;SrcRect2);</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>判断矩形是否为空</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bEmpty = IsRectEmpty(&amp;rect);</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>判断点是否在矩形内部</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bInRect = PtInRect(&amp;rect, point);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="563-建立和绘制区域"><a class="markdownIt-Anchor" href="#563-建立和绘制区域"></a> 5.6.3 建立和绘制区域</h3>
+<p>区域是对显示器一块空间的描述,将区域选入设备环境,就可以使用这个区域来剪裁(绘制动作限制在这个区域中).<br>
+<code>区域也是GDI对象</code>,<strong>以下所有函数都使用的是逻辑坐标(这里有疑惑,为啥在程序里都是用的设备坐标,即需要LPtoDP,然后用的Device Point)</strong>.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建区域</span></span><br><span class="line">hRgn = CreateRectRgn(xLeft, yTop, xRight, yBottom);         <span class="comment">// 创建矩形区域</span></span><br><span class="line">hRgn = CreateRectRgnIndirect(&amp;rect);                        <span class="comment">// 创建矩形区域</span></span><br><span class="line">hRgn = CreateEllipticRgn(xLeft, yTop, xRight, yBottom);     <span class="comment">// 创建椭圆形区域</span></span><br><span class="line">hRgn = CreateEllipticRgnIndirect(&amp;rect);                    <span class="comment">// 创建椭圆形区域</span></span><br><span class="line">hRgn = CreatePolygonRgn(&amp;point, iCount, iPolyFillMode);     <span class="comment">// 创建多边形区域</span></span><br><span class="line"><span class="comment">// 结合区域</span></span><br><span class="line">iRgnType = CombineRgn(hDestRgn, hSrcRgn1, hSrcRgn2, iCombine);  <span class="comment">// 将两个源区域结合</span></span><br><span class="line"><span class="comment">// 绘制区域</span></span><br><span class="line">FillRgn(hdc, hRgn, hBrush);                     <span class="comment">// 类比FillRect</span></span><br><span class="line">FrameRgn(hdc, hRgn, hBrush, xFrame, yFrame);    <span class="comment">// 类比FrameRect</span></span><br><span class="line">InvertRgn(hdc, hRgn);                           <span class="comment">// 类比InvertRect</span></span><br><span class="line">PaintRgn(hdc, hRgn);</span><br><span class="line"><span class="comment">// 无效,有效区域</span></span><br><span class="line">InvalidateRgn(hwnd, hRgn, bErase);  <span class="comment">// 使区域无效,并post一个WM_PAINT消息</span></span><br><span class="line">ValidateRgn(hwnd, hRgn);            <span class="comment">// 使区域有效</span></span><br><span class="line"><span class="comment">// 区域选入设备环境(剪裁区域假定使用的是设备坐标)</span></span><br><span class="line">SelectObject(hdc, hRgn);    <span class="comment">// 将区域选入设备环境</span></span><br><span class="line">SelectClipRgn(hdc, hRgn);   <span class="comment">// 将区域选入设备环境</span></span><br></pre></td></tr></table></figure>
+<img src="/posts/1e4abcd3/2020013122073528.png">
+<h3 id="564-矩形与区域的剪裁"><a class="markdownIt-Anchor" href="#564-矩形与区域的剪裁"></a> 5.6.4 矩形与区域的剪裁</h3>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">InvalidateRgn(hwnd, hRgn, bErase);  <span class="comment">// 使区域无效</span></span><br><span class="line">ValidateRgn(hwnd, hRgn);            <span class="comment">// 使区域有效</span></span><br><span class="line">SelectObject(hdc, hRgn);            <span class="comment">// 选择要裁剪的区域</span></span><br><span class="line"><span class="comment">// or</span></span><br><span class="line">SelectClipRgn(hdc, hRgn);           <span class="comment">// 选择要裁剪的区域</span></span><br><span class="line">DeleteObject(hdc, hRgn);            <span class="comment">// 删除句柄</span></span><br></pre></td></tr></table></figure>
+<p>GDI为剪裁区域做了一个副本,因此当把区域对象选入到设备环境后可以删除它</p>
+<h2 id="综合运用"><a class="markdownIt-Anchor" href="#综合运用"></a> 综合运用</h2>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">case</span> WM_PAINT:</span><br><span class="line">	&#123;</span><br><span class="line">		hdc = BeginPaint(hwnd, &amp;ps);</span><br><span class="line">		<span class="keyword">int</span> cxWindowExt = <span class="number">100</span>, cyWindowExt = <span class="number">100</span>;	<span class="comment">// 设定逻辑坐标系的范围</span></span><br><span class="line">		<span class="keyword">int</span> r = cxWindowExt / <span class="number">2</span>;	<span class="comment">// 大圆半径(整个屏幕有一个大圆,线条从圆心出发)</span></span><br><span class="line">		<span class="comment">// 设置为笛卡尔坐标系,逻辑坐标范围x[-50,50],y[-50,50]</span></span><br><span class="line">		SetMapMode(hdc, MM_ANISOTROPIC);</span><br><span class="line">		SetWindowExtEx(hdc, cxWindowExt, cyWindowExt, <span class="literal">NULL</span>);</span><br><span class="line">		SetViewportExtEx(hdc, cxClient, -cyClient, <span class="literal">NULL</span>);</span><br><span class="line">		SetViewportOrgEx(hdc, cxClient / <span class="number">2</span>, cyClient / <span class="number">2</span>, <span class="literal">NULL</span>);</span><br><span class="line">		</span><br><span class="line">		RECT rc[<span class="number">4</span>] = &#123;	<span class="comment">// 4个小圆逻辑坐标</span></span><br><span class="line">			&#123;-r / <span class="number">2</span>, <span class="number">0</span>, r / <span class="number">2</span>, r&#125;,</span><br><span class="line">			&#123;-r / <span class="number">2</span>, <span class="number">0</span>, r / <span class="number">2</span>,-r&#125;,</span><br><span class="line">			&#123;-r,r / <span class="number">2</span>, <span class="number">0</span>,-r / <span class="number">2</span>&#125;,</span><br><span class="line">			&#123;r, r / <span class="number">2</span>, <span class="number">0</span>, -r / <span class="number">2</span>&#125; &#125;;</span><br><span class="line">		LPtoDP(hdc, (PPOINT)&amp;rc, <span class="number">8</span>);	<span class="comment">// 逻辑坐标转为设备坐标(像素为单位)</span></span><br><span class="line">		</span><br><span class="line">		HRGN hRgnTemp[<span class="number">6</span>],hRgnClip;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; ++i)</span><br><span class="line">			hRgnTemp[i] = CreateEllipticRgnIndirect(&amp;rc[i]);	<span class="comment">// 实际填充的是设备坐标(像素为单位)</span></span><br><span class="line">		hRgnTemp[<span class="number">4</span>] = CreateRectRgn(<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>);	<span class="comment">// 由于HRGN必须有效才可以使用,因此需要初始化一下</span></span><br><span class="line">		hRgnTemp[<span class="number">5</span>] = CreateRectRgn(<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line">		hRgnClip = CreateRectRgn(<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">		CombineRgn(hRgnTemp[<span class="number">4</span>], hRgnTemp[<span class="number">0</span>], hRgnTemp[<span class="number">1</span>], RGN_OR);</span><br><span class="line">		CombineRgn(hRgnTemp[<span class="number">5</span>], hRgnTemp[<span class="number">2</span>], hRgnTemp[<span class="number">3</span>], RGN_OR);</span><br><span class="line">		CombineRgn(hRgnClip, hRgnTemp[<span class="number">4</span>], hRgnTemp[<span class="number">5</span>], RGN_XOR);</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">6</span>; ++i)</span><br><span class="line">			DeleteObject(hRgnTemp[i]);</span><br><span class="line"></span><br><span class="line">		SelectClipRgn(hdc, hRgnClip); <span class="comment">// or SelectObject(hdc, hRgnClip);</span></span><br><span class="line">		DeleteObject(hRgnClip); <span class="comment">// GDI为剪裁区域做了一个副本,因此当把区域对象选入到设备环境后可以删除它</span></span><br><span class="line"></span><br><span class="line">		<span class="keyword">int</span> radius = _hypot(r, r);	<span class="comment">// 让大圆把客户区包下,因此客户区可以绘满线条</span></span><br><span class="line">		<span class="comment">// 绘制线条</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">double</span> angle = <span class="number">0.0</span>; angle &lt; <span class="number">2</span> * PI; angle += PI / <span class="number">180</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			MoveToEx(hdc, <span class="number">0</span>, <span class="number">0</span>, <span class="literal">NULL</span>);</span><br><span class="line">			LineTo(hdc, (<span class="keyword">int</span>)(radius * <span class="built_in">cos</span>(angle)), (<span class="keyword">int</span>)(radius * <span class="built_in">sin</span>(angle)));</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		EndPaint(hwnd, &amp;ps);</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<img src="/posts/1e4abcd3/2020020109202129.png">
 <h1 id="解题思路"><a class="markdownIt-Anchor" href="#解题思路"></a> 解题思路</h1>
 <h1 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h1>
 
@@ -761,28 +884,35 @@ ClientToScreen,ScreenToClient在客户区坐标和屏幕坐标之间相互转换
     <li class="popular-posts-item">
       
       
+      <div class="popular-posts-title"><a href="\posts\17ae1cbc\" rel="bookmark">[Windows编程]第9章 子窗口控件</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\aef11d37\" rel="bookmark">[Windows编程]第8章 计时器</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\288466a6\" rel="bookmark">[Windows编程]第7章 鼠标</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
+      <div class="popular-posts-title"><a href="\posts\481c226a\" rel="bookmark">[Windows编程]第6章 键盘</a></div>
+      
+    </li>
+  
+    <li class="popular-posts-item">
+      
+      
       <div class="popular-posts-title"><a href="\posts\c1bee057\" rel="bookmark">[Windows编程]第4章 文本输出</a></div>
-      
-    </li>
-  
-    <li class="popular-posts-item">
-      
-      
-      <div class="popular-posts-title"><a href="\posts\9734c640\" rel="bookmark">[Windows编程]第3章 窗口与消息</a></div>
-      
-    </li>
-  
-    <li class="popular-posts-item">
-      
-      
-      <div class="popular-posts-title"><a href="\posts\bc564b01\" rel="bookmark">[Windows编程]第2章 Unicode简介</a></div>
-      
-    </li>
-  
-    <li class="popular-posts-item">
-      
-      
-      <div class="popular-posts-title"><a href="\posts\c1877712\" rel="bookmark">[Windows编程]第1章 起步</a></div>
       
     </li>
   
@@ -806,7 +936,7 @@ ClientToScreen,ScreenToClient在客户区坐标和屏幕坐标之间相互转换
   <p><span>本文标题:</span><a href="/posts/1e4abcd3/">[Windows编程]第5章 绘图基础</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 Brian Yi 的个人博客">Brian Yi</a></p>
   <p><span>发布时间:</span>2020年01月30日 - 10:01</p>
-  <p><span>最后更新:</span>2020年01月31日 - 11:01</p>
+  <p><span>最后更新:</span>2020年02月05日 - 10:02</p>
   <p><span>原始链接:</span><a href="/posts/1e4abcd3/" title="[Windows编程]第5章 绘图基础">https://brianyi.github.io/posts/1e4abcd3/</a>
     <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://brianyi.github.io/posts/1e4abcd3/" aria-label="复制成功！"></i></span>
   </p>
@@ -875,6 +1005,10 @@ ClientToScreen,ScreenToClient在客户区坐标和屏幕坐标之间相互转换
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/posts/337fc8e9/" rel="prev" title="[备份]装机后环境恢复">
+                [备份]装机后环境恢复 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -949,7 +1083,7 @@ ClientToScreen,ScreenToClient在客户区坐标和屏幕坐标之间相互转换
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">227</span>
+                    <span class="site-state-item-count">233</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1024,7 +1158,11 @@ ClientToScreen,ScreenToClient在客户区坐标和屏幕坐标之间相互转换
                     
                       
                     
-                    <span class="site-state-item-count">29</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">31</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -1221,7 +1359,11 @@ ClientToScreen,ScreenToClient在客户区坐标和屏幕坐标之间相互转换
                     
                       
                     
-                    <span class="site-state-item-count">90</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">92</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1288,7 +1430,7 @@ ClientToScreen,ScreenToClient在客户区坐标和屏幕坐标之间相互转换
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#51-gdi的结构"><span class="nav-number">1.</span> <span class="nav-text"> 5.1 GDI的结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#511-gdi原理"><span class="nav-number">1.1.</span> <span class="nav-text"> 5.1.1 GDI原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#522-获取设备环境的信息"><span class="nav-number">1.2.</span> <span class="nav-text"> 5.2.2 获取设备环境的信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#527-保存设备环境"><span class="nav-number">1.3.</span> <span class="nav-text"> 5.2.7 保存设备环境</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#53-点和线的绘制"><span class="nav-number">2.</span> <span class="nav-text"> 5.3 点和线的绘制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#532-直线"><span class="nav-number">2.1.</span> <span class="nav-text"> 5.3.2 直线</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#535-使用现有画笔"><span class="nav-number">2.2.</span> <span class="nav-text"> 5.3.5 使用现有画笔</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#537-填充空隙"><span class="nav-number">2.3.</span> <span class="nav-text"> 5.3.7 填充空隙</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#538-绘图模式"><span class="nav-number">2.4.</span> <span class="nav-text"> 5.3.8 绘图模式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#54-绘制填充区域"><span class="nav-number">3.</span> <span class="nav-text"> 5.4 绘制填充区域</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#542-用画刷填充内部"><span class="nav-number">3.1.</span> <span class="nav-text"> 5.4.2 用画刷填充内部</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#55-gdi映射模式"><span class="nav-number">4.</span> <span class="nav-text"> 5.5 GDI映射模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#552-设备坐标系统"><span class="nav-number">4.1.</span> <span class="nav-text"> 5.5.2 设备坐标系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#553-视口和窗口"><span class="nav-number">4.2.</span> <span class="nav-text"> 5.5.3 视口和窗口</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#综合应用"><span class="nav-number">5.</span> <span class="nav-text"> 综合应用</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#解题思路"><span class="nav-number"></span> <span class="nav-text"> 解题思路</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number"></span> <span class="nav-text"> 参考</span></a></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#51-gdi的结构"><span class="nav-number">1.</span> <span class="nav-text"> 5.1 GDI的结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#511-gdi原理"><span class="nav-number">1.1.</span> <span class="nav-text"> 5.1.1 GDI原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#522-获取设备环境的信息"><span class="nav-number">1.2.</span> <span class="nav-text"> 5.2.2 获取设备环境的信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#527-保存设备环境"><span class="nav-number">1.3.</span> <span class="nav-text"> 5.2.7 保存设备环境</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#53-点和线的绘制"><span class="nav-number">2.</span> <span class="nav-text"> 5.3 点和线的绘制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#532-直线"><span class="nav-number">2.1.</span> <span class="nav-text"> 5.3.2 直线</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#535-使用现有画笔"><span class="nav-number">2.2.</span> <span class="nav-text"> 5.3.5 使用现有画笔</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#537-填充空隙"><span class="nav-number">2.3.</span> <span class="nav-text"> 5.3.7 填充空隙</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#538-绘图模式"><span class="nav-number">2.4.</span> <span class="nav-text"> 5.3.8 绘图模式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#54-绘制填充区域"><span class="nav-number">3.</span> <span class="nav-text"> 5.4 绘制填充区域</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#542-用画刷填充内部"><span class="nav-number">3.1.</span> <span class="nav-text"> 5.4.2 用画刷填充内部</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#55-gdi映射模式"><span class="nav-number">4.</span> <span class="nav-text"> 5.5 GDI映射模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#552-设备坐标系统"><span class="nav-number">4.1.</span> <span class="nav-text"> 5.5.2 设备坐标系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#553-视口和窗口"><span class="nav-number">4.2.</span> <span class="nav-text"> 5.5.3 视口和窗口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#554-使用mm_text"><span class="nav-number">4.3.</span> <span class="nav-text"> 5.5.4 使用MM_TEXT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#555-度量映射模式"><span class="nav-number">4.4.</span> <span class="nav-text"> 5.5.5 度量映射模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#556-自定义的映射模式"><span class="nav-number">4.5.</span> <span class="nav-text"> 5.5.6 自定义的映射模式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#综合应用"><span class="nav-number">5.</span> <span class="nav-text"> 综合应用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#561-处理矩形"><span class="nav-number">5.1.</span> <span class="nav-text"> 5.6.1 处理矩形</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#563-建立和绘制区域"><span class="nav-number">5.2.</span> <span class="nav-text"> 5.6.3 建立和绘制区域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#564-矩形与区域的剪裁"><span class="nav-number">5.3.</span> <span class="nav-text"> 5.6.4 矩形与区域的剪裁</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#综合运用"><span class="nav-number">6.</span> <span class="nav-text"> 综合运用</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#解题思路"><span class="nav-number"></span> <span class="nav-text"> 解题思路</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number"></span> <span class="nav-text"> 参考</span></a></li></div>
             
             <span class="links-of-author-item ">
                 <a href="javascript:;" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索</a>
@@ -1329,7 +1471,7 @@ ClientToScreen,ScreenToClient在客户区坐标和屏幕坐标之间相互转换
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">1.6m</span>
+    <span title="站点总字数">1.7m</span>
   
 
   
@@ -1338,7 +1480,7 @@ ClientToScreen,ScreenToClient在客户区坐标和屏幕坐标之间相互转换
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">24:43</span>
+    <span title="站点阅读时长">25:47</span>
   
 </div>
 
@@ -1494,330 +1636,20 @@ ClientToScreen,ScreenToClient在客户区坐标和屏幕坐标之间相互转换
 
 
   
-  <script>
-    // Popup Window;
-    var isfetched = false;
-    var isXml = true;
-    // Search DB path;
-    var search_path = "search.json";
-    if (search_path.length === 0) {
-      search_path = "search.xml";
-    } else if (/json$/i.test(search_path)) {
-      isXml = false;
-    }
-    var path = "/" + search_path;
-    // monitor main search box;
-
-    var onPopupClose = function (e) {
-      $('.popup').hide();
-      $('#local-search-input').val('');
-      $('.search-result-list').remove();
-      $('#no-result').remove();
-      $(".local-search-pop-overlay").remove();
-      $('body').css('overflow', '');
-    }
-
-    function proceedsearch() {
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
-        .css('overflow', 'hidden');
-      $('.search-popup-overlay').click(onPopupClose);
-      $('.popup').toggle();
-      var $localSearchInput = $('#local-search-input');
-      $localSearchInput.attr("autocapitalize", "none");
-      $localSearchInput.attr("autocorrect", "off");
-      $localSearchInput.focus();
-    }
-
-    // search function;
-    var searchFunc = function(path, search_id, content_id) {
-      'use strict';
-
-      // start loading animation
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
-          '<div id="search-loading-icon">' +
-          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
-          '</div>' +
-          '</div>')
-        .css('overflow', 'hidden');
-      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
-
-      
-
-      $.ajax({
-        url: path,
-        dataType: isXml ? "xml" : "json",
-        async: true,
-        success: function(res) {
-          // get the contents from search data
-          isfetched = true;
-          $('.popup').detach().appendTo('.header-inner');
-          var datas = isXml ? $("entry", res).map(function() {
-            return {
-              title: $("title", this).text(),
-              content: $("content",this).text(),
-              url: $("url" , this).text()
-            };
-          }).get() : res;
-          var input = document.getElementById(search_id);
-          var resultContent = document.getElementById(content_id);
-          var inputEventFunction = function() {
-            var searchText = input.value.trim().toLowerCase();
-            var keywords = searchText.split(/[\s\-]+/);
-            if (keywords.length > 1) {
-              keywords.push(searchText);
-            }
-            var resultItems = [];
-            if (searchText.length > 0) {
-              // perform local searching
-              datas.forEach(function(data) {
-                var isMatch = false;
-                var hitCount = 0;
-                var searchTextCount = 0;
-                // fixed:local search has bug
-                if (data.title==undefined)
-                    return [];
-                var title = data.title.trim();
-                var titleInLowerCase = title.toLowerCase();
-                var content = data.content.trim().replace(/<[^>]+>/g,"");
-                
-                var contentInLowerCase = content.toLowerCase();
-                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
-                var indexOfTitle = [];
-                var indexOfContent = [];
-                // only match articles with not empty titles
-                if(title != '') {
-                  keywords.forEach(function(keyword) {
-                    function getIndexByWord(word, text, caseSensitive) {
-                      var wordLen = word.length;
-                      if (wordLen === 0) {
-                        return [];
-                      }
-                      var startPosition = 0, position = [], index = [];
-                      if (!caseSensitive) {
-                        text = text.toLowerCase();
-                        word = word.toLowerCase();
-                      }
-                      while ((position = text.indexOf(word, startPosition)) > -1) {
-                        index.push({position: position, word: word});
-                        startPosition = position + wordLen;
-                      }
-                      return index;
-                    }
-
-                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
-                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
-                  });
-                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
-                    isMatch = true;
-                    hitCount = indexOfTitle.length + indexOfContent.length;
-                  }
-                }
-
-                // show search results
-
-                if (isMatch) {
-                  // sort index by position of keyword
-
-                  [indexOfTitle, indexOfContent].forEach(function (index) {
-                    index.sort(function (itemLeft, itemRight) {
-                      if (itemRight.position !== itemLeft.position) {
-                        return itemRight.position - itemLeft.position;
-                      } else {
-                        return itemLeft.word.length - itemRight.word.length;
-                      }
-                    });
-                  });
-
-                  // merge hits into slices
-
-                  function mergeIntoSlice(text, start, end, index) {
-                    var item = index[index.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    var hits = [];
-                    var searchTextCountInSlice = 0;
-                    while (position + word.length <= end && index.length != 0) {
-                      if (word === searchText) {
-                        searchTextCountInSlice++;
-                      }
-                      hits.push({position: position, length: word.length});
-                      var wordEnd = position + word.length;
-
-                      // move to next position of hit
-
-                      index.pop();
-                      while (index.length != 0) {
-                        item = index[index.length - 1];
-                        position = item.position;
-                        word = item.word;
-                        if (wordEnd > position) {
-                          index.pop();
-                        } else {
-                          break;
-                        }
-                      }
-                    }
-                    searchTextCount += searchTextCountInSlice;
-                    return {
-                      hits: hits,
-                      start: start,
-                      end: end,
-                      searchTextCount: searchTextCountInSlice
-                    };
-                  }
-
-                  var slicesOfTitle = [];
-                  if (indexOfTitle.length != 0) {
-                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
-                  }
-
-                  var slicesOfContent = [];
-                  while (indexOfContent.length != 0) {
-                    var item = indexOfContent[indexOfContent.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    // cut out 100 characters
-                    var start = position - 20;
-                    var end = position + 80;
-                    if(start < 0){
-                      start = 0;
-                    }
-                    if (end < position + word.length) {
-                      end = position + word.length;
-                    }
-                    if(end > content.length){
-                      end = content.length;
-                    }
-                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
-                  }
-
-                  // sort slices in content by search text's count and hits' count
-
-                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
-                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
-                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
-                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
-                      return sliceRight.hits.length - sliceLeft.hits.length;
-                    } else {
-                      return sliceLeft.start - sliceRight.start;
-                    }
-                  });
-
-                  // select top N slices in content
-
-                  var upperBound = parseInt('1');
-                  if (upperBound >= 0) {
-                    slicesOfContent = slicesOfContent.slice(0, upperBound);
-                  }
-
-                  // highlight title and content
-
-                  function highlightKeyword(text, slice) {
-                    var result = '';
-                    var prevEnd = slice.start;
-                    slice.hits.forEach(function (hit) {
-                      result += text.substring(prevEnd, hit.position);
-                      var end = hit.position + hit.length;
-                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
-                      prevEnd = end;
-                    });
-                    result += text.substring(prevEnd, slice.end);
-                    return result;
-                  }
-
-                  var resultItem = '';
-
-                  if (slicesOfTitle.length != 0) {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
-                  } else {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
-                  }
-
-                  slicesOfContent.forEach(function (slice) {
-                    resultItem += "<a href='" + articleUrl + "'>" +
-                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
-                      "...</p>" + "</a>";
-                  });
-
-                  resultItem += "</li>";
-                  resultItems.push({
-                    item: resultItem,
-                    searchTextCount: searchTextCount,
-                    hitCount: hitCount,
-                    id: resultItems.length
-                  });
-                }
-              })
-            };
-            if (keywords.length === 1 && keywords[0] === "") {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
-            } else if (resultItems.length === 0) {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
-            } else {
-              resultItems.sort(function (resultLeft, resultRight) {
-                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
-                  return resultRight.searchTextCount - resultLeft.searchTextCount;
-                } else if (resultLeft.hitCount !== resultRight.hitCount) {
-                  return resultRight.hitCount - resultLeft.hitCount;
-                } else {
-                  return resultRight.id - resultLeft.id;
-                }
-              });
-              var searchResultList = '<ul class=\"search-result-list\">';
-              resultItems.forEach(function (result) {
-                searchResultList += result.item;
-              })
-              searchResultList += "</ul>";
-              resultContent.innerHTML = searchResultList;
-            }
-          }
-
-          if ('auto' === 'auto') {
-            input.addEventListener('input', inputEventFunction);
-          } else {
-            $('.search-icon').click(inputEventFunction);
-            input.addEventListener('keypress', function (event) {
-              if (event.keyCode === 13) {
-                inputEventFunction();
-              }
-            });
-          }
-
-          // remove loading animation
-          $(".local-search-pop-overlay").remove();
-          $('body').css('overflow', '');
-
-          proceedsearch();
-        }
-      });
-    }
-
-    // handle and trigger popup window;
-    $('.popup-trigger').click(function(e) {
-      e.stopPropagation();
-      if (isfetched === false) {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-      } else {
-        proceedsearch();
-      };
-    });
-
-    $('.popup-btn-close').click(onPopupClose);
-    $('.popup').click(function(e){
-      e.stopPropagation();
-    });
-    $(document).on('keyup', function (event) {
-      var shouldDismissSearchPopup = event.which === 27 &&
-        $('.search-popup').is(':visible');
-      if (shouldDismissSearchPopup) {
-        onPopupClose();
-      }
-    });
-  </script>
 
 
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/algolia-search.js?v=7.1.1"></script>
 
 
 
