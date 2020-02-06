@@ -15,7 +15,7 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -113,9 +113,9 @@
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
-      applicationID: 'BV9JEDY4W4',
-      apiKey: 'd619a118f344f8f1631c2cae6cea9406',
-      indexName: 'blog',
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
@@ -128,23 +128,23 @@
 
 
 
-  <meta name="description" content="简介 如果自己电脑装的是win10,那么可以直接在search中键入ubuntu安装子系统.  然后就可以在windows上直接运行子系统ubuntu了. 让Windows下的子系统Ubuntu重启,运行-&amp;gt;services.msc-&amp;gt;LxssManager-&amp;gt;Restart 但WSL(Windows Subsystem for Linux)似乎有些问题,无法使用systemc">
-<meta name="keywords" content="Ubuntu">
+  <meta name="description" content="Windows  系统问题  笔记本休眠后又自动开机 控制面板-&amp;gt;电源选项-&amp;gt;更改计划设置-&amp;gt;更改高级电源设置-&amp;gt;睡眠-&amp;gt;允许使用唤醒定时器-&amp;gt;禁用 设置开机自启动 win10系统, Win+r-&amp;gt;shell:startup-&amp;gt;将运行程序拖进来   工具  VSCode   设置snippet,然后按tab就可以自动补全   首先开启tab自动补全">
+<meta name="keywords" content="问题">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[系统Ubuntu 16.04.6 LTS]常见问题解决(1)">
+<meta property="og:title" content="[问题]常见问题解决(1)">
 <meta property="og:url" content="https://brianyi.github.io/posts/fd895ecd/index.html">
 <meta property="og:site_name" content="Brian&#39;s Home">
-<meta property="og:description" content="简介 如果自己电脑装的是win10,那么可以直接在search中键入ubuntu安装子系统.  然后就可以在windows上直接运行子系统ubuntu了. 让Windows下的子系统Ubuntu重启,运行-&amp;gt;services.msc-&amp;gt;LxssManager-&amp;gt;Restart 但WSL(Windows Subsystem for Linux)似乎有些问题,无法使用systemc">
+<meta property="og:description" content="Windows  系统问题  笔记本休眠后又自动开机 控制面板-&amp;gt;电源选项-&amp;gt;更改计划设置-&amp;gt;更改高级电源设置-&amp;gt;睡眠-&amp;gt;允许使用唤醒定时器-&amp;gt;禁用 设置开机自启动 win10系统, Win+r-&amp;gt;shell:startup-&amp;gt;将运行程序拖进来   工具  VSCode   设置snippet,然后按tab就可以自动补全   首先开启tab自动补全">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://brianyi.github.io/posts/fd895ecd/202001290026217.png">
-<meta property="og:image" content="https://brianyi.github.io/posts/fd895ecd/201908152216582.png">
 <meta property="og:image" content="https://brianyi.github.io/posts/fd895ecd/2019081117140668.png">
+<meta property="og:image" content="https://brianyi.github.io/posts/fd895ecd/201908152216582.png">
 <meta property="og:image" content="https://brianyi.github.io/posts/fd895ecd/201912272036136.png">
 <meta property="og:image" content="https://brianyi.github.io/posts/fd895ecd/201912272034224.png">
-<meta property="og:updated_time" content="2020-02-01T01:54:31.955Z">
+<meta property="og:updated_time" content="2020-02-06T02:56:39.624Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="[系统Ubuntu 16.04.6 LTS]常见问题解决(1)">
-<meta name="twitter:description" content="简介 如果自己电脑装的是win10,那么可以直接在search中键入ubuntu安装子系统.  然后就可以在windows上直接运行子系统ubuntu了. 让Windows下的子系统Ubuntu重启,运行-&amp;gt;services.msc-&amp;gt;LxssManager-&amp;gt;Restart 但WSL(Windows Subsystem for Linux)似乎有些问题,无法使用systemc">
+<meta name="twitter:title" content="[问题]常见问题解决(1)">
+<meta name="twitter:description" content="Windows  系统问题  笔记本休眠后又自动开机 控制面板-&amp;gt;电源选项-&amp;gt;更改计划设置-&amp;gt;更改高级电源设置-&amp;gt;睡眠-&amp;gt;允许使用唤醒定时器-&amp;gt;禁用 设置开机自启动 win10系统, Win+r-&amp;gt;shell:startup-&amp;gt;将运行程序拖进来   工具  VSCode   设置snippet,然后按tab就可以自动补全   首先开启tab自动补全">
 <meta name="twitter:image" content="https://brianyi.github.io/posts/fd895ecd/202001290026217.png">
 
 
@@ -165,7 +165,7 @@
   };
 </script>
 
-  <title>[系统Ubuntu 16.04.6 LTS]常见问题解决(1) | Brian's Home</title>
+  <title>[问题]常见问题解决(1) | Brian's Home</title>
   
 
 
@@ -375,26 +375,20 @@
   
     <div class="site-search">
       
-  
-  <div class="algolia-popup popup search-popup">
-    <div class="algolia-search">
-      <div class="algolia-search-input-icon">
-        <i class="fa fa-search"></i>
-      </div>
-      <div class="algolia-search-input" id="algolia-search-input"></div>
-    </div>
-
-    <div class="algolia-results">
-      <div id="algolia-stats"></div>
-      <div id="algolia-hits"></div>
-      <div id="algolia-pagination" class="algolia-pagination"></div>
-    </div>
-
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
     <span class="popup-btn-close">
       <i class="fa fa-times-circle"></i>
     </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
   </div>
-
+  <div id="local-search-result"></div>
+</div>
 
 
 
@@ -464,7 +458,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">[系统Ubuntu 16.04.6 LTS]常见问题解决(1)
+          <h1 class="post-title" itemprop="name headline">[问题]常见问题解决(1)
 
               
             
@@ -508,7 +502,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-02-01 09:54:31" itemprop="dateModified" datetime="2020-02-01T09:54:31+08:00">2020-02-01</time>
+                <time title="修改时间：2020-02-06 10:56:39" itemprop="dateModified" datetime="2020-02-06T10:56:39+08:00">2020-02-06</time>
               
             
           </span>
@@ -525,7 +519,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Ubuntu/" itemprop="url" rel="index"><span itemprop="name">Ubuntu</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/问题/" itemprop="url" rel="index"><span itemprop="name">问题</span></a></span>
 
                 
                 
@@ -553,7 +547,7 @@
 
           
           
-            <span id="/posts/fd895ecd/" class="leancloud_visitors" data-flag-title="[系统Ubuntu 16.04.6 LTS]常见问题解决(1)">
+            <span id="/posts/fd895ecd/" class="leancloud_visitors" data-flag-title="[问题]常见问题解决(1)">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -578,7 +572,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">5k</span>
+                <span title="本文字数">5.5k</span>
               
 
               
@@ -612,7 +606,42 @@
       
 
       
-        <h1 id="简介"><a class="markdownIt-Anchor" href="#简介"></a> 简介</h1>
+        <h1 id="windows"><a class="markdownIt-Anchor" href="#windows"></a> Windows</h1>
+<h2 id="系统问题"><a class="markdownIt-Anchor" href="#系统问题"></a> 系统问题</h2>
+<ul>
+<li><strong>笔记本休眠后又自动开机</strong><br>
+控制面板-&gt;电源选项-&gt;更改计划设置-&gt;更改高级电源设置-&gt;睡眠-&gt;允许使用唤醒定时器-&gt;禁用</li>
+<li><strong>设置开机自启动</strong><br>
+win10系统, Win+r-&gt;shell:startup-&gt;将运行程序拖进来</li>
+</ul>
+<h2 id="工具"><a class="markdownIt-Anchor" href="#工具"></a> 工具</h2>
+<h3 id="vscode"><a class="markdownIt-Anchor" href="#vscode"></a> VSCode</h3>
+<ul>
+<li>
+<p><strong>设置snippet,然后按tab就可以自动补全</strong></p>
+<ul>
+<li>
+<p>首先开启tab自动补全<br>
+文件=&gt;首选项=&gt;设置=&gt;输入tabCompletion=&gt;onlySnippets</p>
+</li>
+<li>
+<p>设置snippet<br>
+Ctrl+Shift+P=&gt;输入snippet=&gt;首选项:配置用户代码片段=&gt;选择你要创建哪种类型文件下的snippet(我创建的是markdown)<br>
+如下所示</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">"click blockquote": &#123;</span><br><span class="line">    "scope": "markdown",</span><br><span class="line">    "prefix": "click",</span><br><span class="line">    "body": "&lt;blockquote&gt;&lt;details&gt;&lt;summary&gt;查看代码（详情请点击本行）&lt;/summary&gt;\n$1\n&lt;/details&gt;&lt;/blockquote&gt;"</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>那么我只要在任意markdown文件下键入click,然后tab就会自动补全</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>设置按键绑定snippet</strong><br>
+如果不想每次要按tab来自动补全,也可以设置按键绑定snippet<br>
+创建好snippet后,Ctrl+Shift+P=&gt;首选项:打开键盘快捷方式(JSON)</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"key"</span>: <span class="string">"ctrl+k ctrl+k"</span>,</span><br><span class="line">    <span class="attr">"command"</span>: <span class="string">"editor.action.insertSnippet"</span>,</span><br><span class="line">    <span class="attr">"when"</span>: <span class="string">"editorTextFocus"</span>,</span><br><span class="line">    <span class="attr">"args"</span>: &#123;</span><br><span class="line">        <span class="attr">"name"</span>: <span class="string">"click blockquote"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<p>我们使用上面创建的snippet,那么保存后只需按<code>ctrl+k ctrl+k</code>即可插入snippet</p>
+</li>
+</ul>
+<h1 id="linux"><a class="markdownIt-Anchor" href="#linux"></a> Linux</h1>
 <p>如果自己电脑装的是win10,那么可以直接在search中键入ubuntu安装子系统.</p>
 <img src="/posts/fd895ecd/202001290026217.png">
 <p>然后就可以在windows上直接运行子系统ubuntu了.<br>
@@ -626,16 +655,33 @@
 <p>将任务放在后台执行,也可按fg调入前台执行,Ctrl+z后再bg来后台执行<br>
 jobs看有哪些在后台运行的任务</p>
 </li>
+<li>
+<p><strong>查看系统版本</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lsb_release -a</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>查找文件</strong></p>
+<ul>
+<li><strong>which</strong><br>
+在PATH中查找</li>
+<li><strong>locate/updatedb</strong></li>
 </ul>
-<h1 id="常见问题"><a class="markdownIt-Anchor" href="#常见问题"></a> 常见问题</h1>
-<h2 id="anaconda"><a class="markdownIt-Anchor" href="#anaconda"></a> Anaconda</h2>
+<img src="/posts/fd895ecd/2019081117140668.png">
+</li>
+<li>
+<p><strong>剪贴板xsel</strong><br>
+拷贝文件内容到剪贴板<code>xsel &lt; id_rsa.pub</code></p>
+</li>
+</ul>
+<h2 id="工具-2"><a class="markdownIt-Anchor" href="#工具-2"></a> 工具</h2>
+<h3 id="anaconda"><a class="markdownIt-Anchor" href="#anaconda"></a> Anaconda</h3>
 <ul>
 <li><strong>安装anaconda</strong><br>
 官网下载: <a href="https://www.anaconda.com/distribution/">Anaconda Distribution</a><br>
 执行<code>sh Anaconda3-2019.07-Linux-x86_64.sh</code>,按步骤安装即可,安装完后,终端会变成<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(base)brian@cvlab</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h2 id="jupyter-notebook"><a class="markdownIt-Anchor" href="#jupyter-notebook"></a> Jupyter notebook</h2>
+<h3 id="jupyter-notebook"><a class="markdownIt-Anchor" href="#jupyter-notebook"></a> Jupyter notebook</h3>
 <ul>
 <li>
 <p><strong>让jupyter notebook支持c++ kernel</strong><br>
@@ -671,7 +717,7 @@ github: <a href="https://github.com/ipython-contrib/jupyter_contrib_nbextensions
 <p>可以直接通过<code>echo PATH=/usr/local/cuda-9.0/bin:${PATH} &gt; jupyter-notebook.sh</code>,<code>echo LD_LIBRARY_PATH=/usr/local/cuda-9.0/lib64:${LD_LIBRARY_PATH} &gt;&gt; jupyter-notebook.sh</code>来写入文件</p>
 </li>
 </ul>
-<h2 id="pycharm"><a class="markdownIt-Anchor" href="#pycharm"></a> PyCharm</h2>
+<h3 id="pycharm"><a class="markdownIt-Anchor" href="#pycharm"></a> PyCharm</h3>
 <ul>
 <li>
 <p><strong>本机Windows上运行PyCharm连接远程Linux服务器跑程序,matplotlib的plt.show()不显示图像</strong></p>
@@ -688,30 +734,8 @@ github: <a href="https://github.com/ipython-contrib/jupyter_contrib_nbextensions
 <img src="/posts/fd895ecd/201908152216582.png">
 </li>
 </ul>
-<h2 id="linux"><a class="markdownIt-Anchor" href="#linux"></a> Linux</h2>
+<h3 id="vnc"><a class="markdownIt-Anchor" href="#vnc"></a> vnc</h3>
 <ul>
-<li>
-<p><strong>vncviewer与windows之间复制粘贴</strong><br>
-用VNC连接到Linux之后，最纠结的问题就是无法复制粘贴。其实很简单，在Linux里面，打开一个终端，然后输入命令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vncconfig -nowin&amp;</span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p><strong>查看系统版本</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lsb_release -a</span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p><strong>查找文件</strong></p>
-<ul>
-<li><strong>which</strong><br>
-在PATH中查找</li>
-<li><strong>locate/updatedb</strong></li>
-</ul>
-<img src="/posts/fd895ecd/2019081117140668.png">
-</li>
-<li>
-<p><strong>剪贴板xsel</strong><br>
-拷贝文件内容到剪贴板<code>xsel &lt; id_rsa.pub</code></p>
-</li>
 <li>
 <p><strong>怎么安装vnc?</strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install vnc4server</span><br><span class="line">sudo apt-get install ubuntu-desktop gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal gdm x-window-system-core</span><br><span class="line">vncserver</span><br><span class="line">vim ~/.vnc/xstartup</span><br><span class="line">vncpasswd</span><br><span class="line">vncserver :1 -geometry 1600x900</span><br></pre></td></tr></table></figure>
@@ -727,6 +751,11 @@ github: <a href="https://github.com/ipython-contrib/jupyter_contrib_nbextensions
 <p><a href="https://www.teknotut.com/en/install-vnc-server-with-gnome-display-on-ubuntu-18-04/">Ubuntu 18.02 LTS版本安装vnc</a></p>
 </li>
 <li>
+<p><strong>vncviewer与windows之间复制粘贴</strong><br>
+用VNC连接到Linux之后，最纠结的问题就是无法复制粘贴。其实很简单，在Linux里面，打开一个终端，然后输入命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vncconfig -nowin&amp;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
 <p><strong>Ubuntu下载速度慢</strong><br>
 是下载源的问题,官方系统默认下载源在国外,那么我们需要重新设置下载源</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo cp /etc/apt/sources.list /etc/apt/sources.bak</span><br><span class="line">sudo vim /etc/apt/sources.list</span><br></pre></td></tr></table></figure>
@@ -736,11 +765,6 @@ github: <a href="https://github.com/ipython-contrib/jupyter_contrib_nbextensions
 <p>然后</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
 </li>
-</ul>
-<h2 id="windows"><a class="markdownIt-Anchor" href="#windows"></a> Windows</h2>
-<ul>
-<li><strong>笔记本休眠后又自动开机</strong><br>
-控制面板-&gt;电源选项-&gt;更改计划设置-&gt;更改高级电源设置-&gt;睡眠-&gt;允许使用唤醒定时器-&gt;禁用</li>
 </ul>
 <h1 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h1>
 
@@ -765,11 +789,11 @@ github: <a href="https://github.com/ipython-contrib/jupyter_contrib_nbextensions
   <!-- JS库 sweetalert 可修改路径 -->
   <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <p><span>本文标题:</span><a href="/posts/fd895ecd/">[系统Ubuntu 16.04.6 LTS]常见问题解决(1)</a></p>
+  <p><span>本文标题:</span><a href="/posts/fd895ecd/">[问题]常见问题解决(1)</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 Brian Yi 的个人博客">Brian Yi</a></p>
   <p><span>发布时间:</span>2019年08月11日 - 15:08</p>
-  <p><span>最后更新:</span>2020年02月01日 - 09:02</p>
-  <p><span>原始链接:</span><a href="/posts/fd895ecd/" title="[系统Ubuntu 16.04.6 LTS]常见问题解决(1)">https://brianyi.github.io/posts/fd895ecd/</a>
+  <p><span>最后更新:</span>2020年02月06日 - 10:02</p>
+  <p><span>原始链接:</span><a href="/posts/fd895ecd/" title="[问题]常见问题解决(1)">https://brianyi.github.io/posts/fd895ecd/</a>
     <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://brianyi.github.io/posts/fd895ecd/" aria-label="复制成功！"></i></span>
   </p>
   <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
@@ -803,7 +827,7 @@ github: <a href="https://github.com/ipython-contrib/jupyter_contrib_nbextensions
       
         <div class="post-tags">
           
-            <a href="/tags/Ubuntu/" class="fa fa-tag" style="font-size:16px;border-bottom:none;">Ubuntu</a>
+            <a href="/tags/问题/" class="fa fa-tag" style="font-size:16px;border-bottom:none;">问题</a>
           
         </div>
       
@@ -838,8 +862,8 @@ github: <a href="https://github.com/ipython-contrib/jupyter_contrib_nbextensions
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/posts/e93cd1b6/" rel="prev" title="[工具VSCode]常见问题解决(1)">
-                [工具VSCode]常见问题解决(1) <i class="fa fa-chevron-right"></i>
+              <a href="/posts/404dd2c0/" rel="prev" title="[leetcode]14.最长公共前缀">
+                [leetcode]14.最长公共前缀 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -1262,7 +1286,7 @@ github: <a href="https://github.com/ipython-contrib/jupyter_contrib_nbextensions
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text"> 简介</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#linux常用命令"><span class="nav-number">1.1.</span> <span class="nav-text"> Linux常用命令</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常见问题"><span class="nav-number">2.</span> <span class="nav-text"> 常见问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#anaconda"><span class="nav-number">2.1.</span> <span class="nav-text"> Anaconda</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jupyter-notebook"><span class="nav-number">2.2.</span> <span class="nav-text"> Jupyter notebook</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pycharm"><span class="nav-number">2.3.</span> <span class="nav-text"> PyCharm</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#linux"><span class="nav-number">2.4.</span> <span class="nav-text"> Linux</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#windows"><span class="nav-number">2.5.</span> <span class="nav-text"> Windows</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">3.</span> <span class="nav-text"> 参考</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#windows"><span class="nav-number">1.</span> <span class="nav-text"> Windows</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#系统问题"><span class="nav-number">1.1.</span> <span class="nav-text"> 系统问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工具"><span class="nav-number">1.2.</span> <span class="nav-text"> 工具</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#vscode"><span class="nav-number">1.2.1.</span> <span class="nav-text"> VSCode</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#linux"><span class="nav-number">2.</span> <span class="nav-text"> Linux</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#linux常用命令"><span class="nav-number">2.1.</span> <span class="nav-text"> Linux常用命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工具-2"><span class="nav-number">2.2.</span> <span class="nav-text"> 工具</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#anaconda"><span class="nav-number">2.2.1.</span> <span class="nav-text"> Anaconda</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jupyter-notebook"><span class="nav-number">2.2.2.</span> <span class="nav-text"> Jupyter notebook</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pycharm"><span class="nav-number">2.2.3.</span> <span class="nav-text"> PyCharm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vnc"><span class="nav-number">2.2.4.</span> <span class="nav-text"> vnc</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">3.</span> <span class="nav-text"> 参考</span></a></li></ol></div>
             
             <span class="links-of-author-item ">
                 <a href="javascript:;" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索</a>
@@ -1303,7 +1327,7 @@ github: <a href="https://github.com/ipython-contrib/jupyter_contrib_nbextensions
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">1.7m</span>
+    <span title="站点总字数">1.5m</span>
   
 
   
@@ -1312,7 +1336,7 @@ github: <a href="https://github.com/ipython-contrib/jupyter_contrib_nbextensions
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">25:47</span>
+    <span title="站点阅读时长">22:44</span>
   
 </div>
 
@@ -1468,20 +1492,345 @@ github: <a href="https://github.com/ipython-contrib/jupyter_contrib_nbextensions
 
 
   
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.json";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+        // ref: https://github.com/ForbesLindesay/unescape-html
+        var unescapeHtml = function(html) {
+          return String(html)
+            .replace(/&quot;/g, '"')
+            .replace(/&#39;/g, '\'')
+            .replace(/&#x3A;/g, ':')
+            // replace all the other &#x; chars
+            .replace(/&#(\d+);/g, function (m, p) { return String.fromCharCode(p); })
+            .replace(/&lt;/g, '<')
+            .replace(/&gt;/g, '>')
+            .replace(/&amp;/g, '&');
+        };
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                // fixed:local search has bug
+                if (data.title==undefined)
+                    return [];
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                content = unescapeHtml(content);
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('5');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
 
 
-
-  
-  
-  
-  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
-
-  
-  
-  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
-  
-
-  <script src="/js/algolia-search.js?v=7.1.1"></script>
 
 
 

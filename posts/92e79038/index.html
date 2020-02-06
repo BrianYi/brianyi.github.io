@@ -15,7 +15,7 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -113,9 +113,9 @@
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
-      applicationID: 'BV9JEDY4W4',
-      apiKey: 'd619a118f344f8f1631c2cae6cea9406',
-      indexName: 'blog',
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
@@ -128,12 +128,12 @@
 
 
 
-  <meta name="description" content="VVC/VTM7.0安装  运行环境、软件版本等说明： VTM：7.1版本 操作系统：Win10 64位操作系统 IDE：Visual Studio 2017  下载VTM: https://vcgit.hhi.fraunhofer.de/jvet/VVCSoftware_VTM 根据README.md内容,创建build文件夹,以下是提取出的关于windows平台下的编译。 Note: A w">
+  <meta name="description" content="VVC/VTM7.1安装  运行环境、软件版本等说明： VTM：7.1版本 操作系统：Win10 64位操作系统 IDE：Visual Studio 2017  下载VTM: https://vcgit.hhi.fraunhofer.de/jvet/VVCSoftware_VTM 根据README.md内容,创建build文件夹,以下是提取出的关于windows平台下的编译。 Note: A w">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[视频编解码 VTM7.1]H.266&#x2F;VVC参考软件VTM配置运行">
 <meta property="og:url" content="https://brianyi.github.io/posts/92e79038/index.html">
 <meta property="og:site_name" content="Brian&#39;s Home">
-<meta property="og:description" content="VVC/VTM7.0安装  运行环境、软件版本等说明： VTM：7.1版本 操作系统：Win10 64位操作系统 IDE：Visual Studio 2017  下载VTM: https://vcgit.hhi.fraunhofer.de/jvet/VVCSoftware_VTM 根据README.md内容,创建build文件夹,以下是提取出的关于windows平台下的编译。 Note: A w">
+<meta property="og:description" content="VVC/VTM7.1安装  运行环境、软件版本等说明： VTM：7.1版本 操作系统：Win10 64位操作系统 IDE：Visual Studio 2017  下载VTM: https://vcgit.hhi.fraunhofer.de/jvet/VVCSoftware_VTM 根据README.md内容,创建build文件夹,以下是提取出的关于windows平台下的编译。 Note: A w">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://brianyi.github.io/posts/92e79038/20191024140911763.png">
 <meta property="og:image" content="https://brianyi.github.io/posts/92e79038/201912281819578.png">
@@ -148,12 +148,14 @@
 <meta property="og:image" content="https://brianyi.github.io/posts/92e79038/2020010913332018.png">
 <meta property="og:image" content="https://brianyi.github.io/posts/92e79038/2020010913554919.png">
 <meta property="og:image" content="https://brianyi.github.io/posts/92e79038/2020010916263520.png">
+<meta property="og:image" content="https://brianyi.github.io/posts/92e79038/202002061610011.png">
+<meta property="og:image" content="https://brianyi.github.io/posts/92e79038/202002061622552.png">
 <meta property="og:image" content="https://brianyi.github.io/posts/92e79038/2020011008514822.png">
 <meta property="og:image" content="https://brianyi.github.io/posts/92e79038/2020010918232121.png">
-<meta property="og:updated_time" content="2020-01-29T02:52:20.569Z">
+<meta property="og:updated_time" content="2020-02-06T14:50:14.356Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[视频编解码 VTM7.1]H.266&#x2F;VVC参考软件VTM配置运行">
-<meta name="twitter:description" content="VVC/VTM7.0安装  运行环境、软件版本等说明： VTM：7.1版本 操作系统：Win10 64位操作系统 IDE：Visual Studio 2017  下载VTM: https://vcgit.hhi.fraunhofer.de/jvet/VVCSoftware_VTM 根据README.md内容,创建build文件夹,以下是提取出的关于windows平台下的编译。 Note: A w">
+<meta name="twitter:description" content="VVC/VTM7.1安装  运行环境、软件版本等说明： VTM：7.1版本 操作系统：Win10 64位操作系统 IDE：Visual Studio 2017  下载VTM: https://vcgit.hhi.fraunhofer.de/jvet/VVCSoftware_VTM 根据README.md内容,创建build文件夹,以下是提取出的关于windows平台下的编译。 Note: A w">
 <meta name="twitter:image" content="https://brianyi.github.io/posts/92e79038/20191024140911763.png">
 
 
@@ -384,26 +386,20 @@
   
     <div class="site-search">
       
-  
-  <div class="algolia-popup popup search-popup">
-    <div class="algolia-search">
-      <div class="algolia-search-input-icon">
-        <i class="fa fa-search"></i>
-      </div>
-      <div class="algolia-search-input" id="algolia-search-input"></div>
-    </div>
-
-    <div class="algolia-results">
-      <div id="algolia-stats"></div>
-      <div id="algolia-hits"></div>
-      <div id="algolia-pagination" class="algolia-pagination"></div>
-    </div>
-
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
     <span class="popup-btn-close">
       <i class="fa fa-times-circle"></i>
     </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
   </div>
-
+  <div id="local-search-result"></div>
+</div>
 
 
 
@@ -517,7 +513,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-01-29 10:52:20" itemprop="dateModified" datetime="2020-01-29T10:52:20+08:00">2020-01-29</time>
+                <time title="修改时间：2020-02-06 22:50:14" itemprop="dateModified" datetime="2020-02-06T22:50:14+08:00">2020-02-06</time>
               
             
           </span>
@@ -587,7 +583,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">8.1k</span>
+                <span title="本文字数">12k</span>
               
 
               
@@ -601,7 +597,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">7 分钟</span>
+                <span title="阅读时长">10 分钟</span>
               
             </div>
           
@@ -621,7 +617,7 @@
       
 
       
-        <h2 id="vvcvtm70安装"><a class="markdownIt-Anchor" href="#vvcvtm70安装"></a> VVC/VTM7.0安装</h2>
+        <h2 id="vvcvtm71安装"><a class="markdownIt-Anchor" href="#vvcvtm71安装"></a> VVC/VTM7.1安装</h2>
 <blockquote>
 <p>运行环境、软件版本等说明：<br>
 VTM：7.1版本<br>
@@ -649,6 +645,20 @@ your needs.</p>
 <p>H.266/VVC<br>
 H.265/HEVC<br>
 H.264/AVC</p>
+<p><a href="w18874(Versatile-Video-Coding(VTM-7)).docx">w18874(Versatile Video Coding (VTM 7)).docx下载</a></p>
+<h1 id="1-介绍"><a class="markdownIt-Anchor" href="#1-介绍"></a> 1 介绍</h1>
+<p>第10次JVET会议(2018年4月10日-20日,San Diego,US),JVET小组定义了第一个Versatile Video Coding(VVC)草案和VVC测试模型1(VTM1)编码方案.它决定了包含一个四叉树与嵌套的使用二划分和三划分编码块的多类型树结构作为VVC的初期的新的编码特征.用于实现VTM1编码方案(和草案VVC解码过程)的草案参考软件也已经开始开发.<br>
+第11次会议(2018年7月10日-18日,Ljubljana,SI),VVC工作草案2和VVC测试模型2(VTM2)算法描述和编码方法都发展起来,并囊括了一组新的编码特性与一些HEVC的编码元素.<br>
+第12次会议(2018年10月3日-12日,Macao,CN),VVC工作草案3和VVC测试模型3(VTM3)算法描述与编码方法发展起来,并囊括了额外的可以改善编码性能的编码工具.<br>
+从第13次会议(2019年1月9-18日,Marrakech,MA)开始,JVET专家组开始专注于简化和统一已有的编码技术,还有新的算法用于附加的编码效率.VVC工作草案4和VVC测试模型4(VTM4)算法描述和编码方法发展起来,囊括了更多的编码工具和大量的已有工具的改良.<br>
+第14次会议(2019年3月19日-27日,Geneva,CH),VVC工作草案5和VVC测试模型5(VTM5)算法描述和编码方法发展起来,囊括了非常少的新编码工具和大量的工具简化.可以支持4:2:2编码,4:4:4色度格式和4:2:0色度格式.<br>
+第15次会议(2019年7月3日-12日,Gothenburg,SE),VVC工作草案6和VVC测试模型6(VTM6)算法描述和编码方法发展起来.主要变化包括已有工具的改良,编码工具组合的统一,和HLS设计.同样,一些新的功能性,比如自适应分辨率调整,可缩放编码都得以支持.<br>
+第16次会议(2019年10月1日-11日,Geneva,CH),VVC工作草案7和VVC测试模型7(VTM7)算法描述和编码方法发展起来.从VTM6到VTM7的主要变化在于整理和简化了已经存在的工具.只有一个新的工具,命名为自适应颜色转换被追加到了4:4:4颜色格式的编码中.</p>
+<h1 id="2-范围"><a class="markdownIt-Anchor" href="#2-范围"></a> 2 范围</h1>
+<p>VVC草案6文本规范文档[1]指定了VVC的规范解码过程. VTM7.0参考软件提供展示了一个VVC的非规范编码技巧和规范的编码过程参考实现. 参考软件可以被访问 <a href="https://vcgit.hhi.fraunhofer.de/jvet/VVCSoftware_VTM.git">https://vcgit.hhi.fraunhofer.de/jvet/VVCSoftware_VTM.git</a><br>
+这个文档提供了一个VVC测试模型5的算法描述和一个编码端的描述,作为一个在VTM7.0软件中实现的算法和编码模型的指南.文档的意图在于共享对VVC编码特性的理解和VTM7.0软件中支持的参考编码方法,为了利用在标准化过程中新技术的技术影响的评估.常见的测试条件和应该被用在传统动态标准范围的矩形视频内容的实验工作的软件参考配置被描述在文件JVET-N1010[2]中.针对高动态范围和宽色域的视频内容的常见测试条件被描述在文件JVET-N1011[3]中.针对360度广角视频应用的视频内容被描述在JVET-L1012[4]中.当编码和解码360度广角视频时,一个额外的软件包360Lib需要搭配着VTM软件一起使用来处理,编/解码和计算球面质量指标.360Lib软件获取地址: <a href="https://jvet.hhi.fraunhofer.de/svn/svn_360Lib/">https://jvet.hhi.fraunhofer.de/svn/svn_360Lib/</a><br>
+另外,文档JVET-M1004[5]描述了在360Lib中使用的用来处理,编码,和衡量360度广角视频质量的算法.</p>
+<h1 id="3-vvc算法描述"><a class="markdownIt-Anchor" href="#3-vvc算法描述"></a> 3 VVC算法描述</h1>
 <h2 id="31-vvc编码结构"><a class="markdownIt-Anchor" href="#31-vvc编码结构"></a> 3.1 VVC编码结构</h2>
 <p>与之前的大多数标准一样，VVC采用了一种基于块的混合编码结构，将图像间和图像内的预测和转换编码与熵编码相结合。图1显示了VTM7编码器的一般框图。</p>
 <img src="/posts/92e79038/20191024140911764.png">
@@ -666,7 +676,15 @@ VTM7的其他特性，包括帧内预测过程、帧间图像预测过程、转�
 <li>加权矩阵乘法的内部预测</li>
 </ul>
 </li>
-<li>图片间预测</li>
+<li>图片间预测
+<ul>
+<li>空间,时间,历史和成对的均匀合并候选的块运动拷贝</li>
+<li>仿射运动内部预测</li>
+<li>子块基于时间运动向量预测</li>
+<li>…<br>
+…</li>
+</ul>
+</li>
 </ul>
 <h2 id="32-划分"><a class="markdownIt-Anchor" href="#32-划分"></a> 3.2 划分</h2>
 <h3 id="321-图片划分成ctus"><a class="markdownIt-Anchor" href="#321-图片划分成ctus"></a> 3.2.1 图片划分成CTUs</h3>
@@ -677,7 +695,7 @@ VTM7的其他特性，包括帧内预测过程、帧间图像预测过程、转�
 <h3 id="322-将图片分成子图片-片-块"><a class="markdownIt-Anchor" href="#322-将图片分成子图片-片-块"></a> 3.2.2 将图片分成子图片、片、块</h3>
 <p>图片被分成一个或多个tile rows和一个或多个tile columns。一个tile是一组CTUs的序列，它覆盖了图像的一个矩形区域。<br>
 一个slice由整数个完整的tiles组成或由一幅图片的一个tile中的整数个连续完整的CTU组成。<br>
-支持两种slice模式，即raster-scan slice模式和矩形slice模式。在栅格扫描slice模式中，一个slice包含一个图像的栅格扫描中的完整tiles序列。在矩形slice模式下，一个slice包含若干个完整的块，它们共同构成图片的一个矩形区域，或者包含若干个连续的完整CTU行，它们共同构成图片的一个矩形区域。矩形slice内的tile按照与该slice对应的矩形区域内的tile raster-scan顺序进行扫描。<br>
+支持两种slice模式，即raster-scan slice模式和rectangular slice模式。在raster-scan slice模式中，一个slice包含一个图像的栅格扫描中的完整tiles序列。在矩形slice模式下，一个slice包含若干个完整的块，它们共同构成图片的一个矩形区域，或者包含若干个连续的完整CTU行，它们共同构成图片的一个矩形区域。矩形slice内的tile按照与该slice对应的矩形区域内的tile raster-scan顺序进行扫描。<br>
 子图片包含一个或多个slice，这些slices共同覆盖了图片的矩形区域。<br>
 下图显示一个图片的raster-scan slice划分示例，其中图片被划分为12 tiles和3个raster-scan slices(光栅扫描slice)。</p>
 <img src="/posts/92e79038/20191024140911767.png">
@@ -701,7 +719,7 @@ VTM7的其他特性，包括帧内预测过程、帧间图像预测过程、转�
 </blockquote>
 <img src="/posts/92e79038/2020010913320617.png">
 <img src="/posts/92e79038/2020010913332018.png">
-<p>图9显示一个用四叉树和嵌套的多类型树编码块结构划分成多个单元的CTU，其中粗体块边表示四叉树分区，其余边表示多类型树分区。嵌套多类型树划分的四叉树提供了一种由Cus组成的内容自适应编码树结构。CU的大小可以和CTU一样大，也可以小到4×4个单位的luma样本。在4:2:0色度格式下，最大色度CB为64×64，最小色度**CB(Coding Block)**为2×2。<br>
+<p>图9显示一个用四叉树和嵌套的多类型树编码块结构划分成多个单元的CTU，其中粗体块边表示四叉树分区，其余边表示多类型树分区。嵌套多类型树划分的四叉树提供了一种由Cus组成的内容自适应编码树结构。CU的大小可以和CTU一样大，也可以小到4×4个单位的luma样本。在4:2:0色度格式下，最大色度CB为64×64，最小色度 <strong>CB(Coding Block)</strong> 为2×2。<br>
 在VVC中，最大支持的luma变换尺寸为64×64，最大支持的chroma变换尺寸为32×32。<strong>当CB的宽度或高度大于变换的最大宽度或高度时，CB将自动在水平和/或垂直方向进行分割，以满足该方向的变换大小限制。</strong></p>
 <img src="/posts/92e79038/2020010913554919.png">
 <p>以下参数由嵌套多类型树编码树scheme的四叉树的<strong>SPS语法元素</strong>定义和指定。(<code>即信息都包含在SPS中</code>)</p>
@@ -714,6 +732,7 @@ VTM7的其他特性，包括帧内预测过程、帧间图像预测过程、转�
 <li>MinBtSize: 允许的最小二叉树叶节点大小</li>
 <li>MinTtSize: 允许的最小三叉树叶节点大小</li>
 </ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Slice.h</span></span><br><span class="line"><span class="comment">/// SPS class</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SPS</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    ...</span><br><span class="line">  <span class="keyword">unsigned</span>    m_CTUSize;</span><br><span class="line">  <span class="keyword">unsigned</span>    m_partitionOverrideEnalbed;       <span class="comment">// enable partition constraints override function</span></span><br><span class="line">  <span class="keyword">unsigned</span>    m_minQT[<span class="number">3</span>];   <span class="comment">// 0: I slice luma; 1: P/B slice; 2: I slice chroma</span></span><br><span class="line">  <span class="keyword">unsigned</span>    m_maxMTTHierarchyDepth[<span class="number">3</span>];</span><br><span class="line">  <span class="keyword">unsigned</span>    m_maxBTSize[<span class="number">3</span>];</span><br><span class="line">  <span class="keyword">unsigned</span>    m_maxTTSize[<span class="number">3</span>];</span><br><span class="line">  ...</span><br></pre></td></tr></table></figure>
 <p>在一个嵌套多类型树编码树结构的四叉树(QT:QuadTree)示例中，将:</p>
 <ul>
 <li>CTU的大小设置为128×128个luma样本，对应两个64×64块的4:2:0色度样本(<code>3个channal,Y(luma)有128x128个pixel,Cb&amp;Cr分别有64x64个pixel,如果bit depth为8(值在0~255),那么Y(luma)的2x2个pixel(即4字节)对应Cb&amp;Cr的1x1+1x1=2个pixel(即2字节),那么Y(luma)的128x128=16384pixel对应Cb&amp;Cr的64x64+64x64=8192pixel,那么这样一个CTU需要占用128x128+2x64x64=24576Bytes</code>)</li>
@@ -723,10 +742,10 @@ VTM7的其他特性，包括帧内预测过程、帧间图像预测过程、转�
 <li>MinBtSize和MinTtSize(宽度和高度)设置为4×4</li>
 <li>MaxMttDepth设置为4</li>
 </ul>
-<p>首先将四叉树划分应用于CTU，生成四叉树叶子节点。四叉树的叶节点大小为16×16(比如，MinQTSize)到128×128(比如，CTU的大小)。如果叶子QT节点为128×128，则不会被二叉树进一步分割，因为其大小超过了MaxBtSize和MaxTtSize(即,64×64)。否则，叶子qdtree节点将被多类型树进一步分割。因此，四叉树的叶节点也是多类型树的根节点，其多类型树深度(mttDepth)为0。当多类型树深度达到MaxMttDepth(即4)，不考虑进一步拆分。当多类型树节点的宽度等于MinBtSize且小于或等于2 * MinTtSize时，不考虑进一步的水平分割。类似地，当多类型树节点的高度等于MinBtSize且小于或等于2 * MinTtSize时，不考虑进一步的垂直分割。<br>
-为了在VVC硬件解码器中允许64×64的Luma块和32×32的色度流水线设计，当一个luma编码块的宽度或高度大于64时，禁止TT分割，如图10所示。当色度编码块的宽度或高度大于32时，也禁止TT分割。</p>
+<p>首先将四叉树划分应用于CTU，生成四叉树叶子节点。四叉树的叶节点大小为16×16(比如，MinQTSize)到128×128(比如，CTU的大小)。如果叶子QT节点为128×128，则不会被二叉树进一步分割，因为其大小超过了MaxBtSize和MaxTtSize(即,64×64)。否则，叶子qdtree节点将被多类型树进一步分割。因此，**四叉树的叶节点也是多类型树的根节点，其多类型树深度(mttDepth)为0。当多类型树深度达到MaxMttDepth(即4)，不考虑进一步拆分。**当多类型树节点的宽度等于MinBtSize且小于或等于2 * MinTtSize时，不考虑进一步的水平分割。类似地，当多类型树节点的高度等于MinBtSize且小于或等于2 * MinTtSize时，不考虑进一步的垂直分割。<br>
+<strong>为了在VVC硬件解码器中允许64×64的Luma块和32×32的色度流水线设计，当一个luma编码块的宽度或高度大于64时，禁止TT分割</strong>，如图10所示。<strong>当色度编码块的宽度或高度大于32时，也禁止TT分割</strong>。</p>
 <img src="/posts/92e79038/2020010916263520.png">
-<p>在VTM7中，编码树方案支持luma和chroma具有单独的块树结构。目前，对于P slice和B slice，一个CTU中的luma和chroma CTBs必须共享相同的编码树结构。然而，对于I slice，luma和chroma可以有单独的块树结构。当采用单独的块树模式时，luma CTB被一个编码树结构分割成Cus，而chroma CTBs被另一个编码树结构分割成chroma Cus。<strong>这意味着I slice中的CU可能由一个luma分量的编码块或两个chroma分量的编码块组成,而P或B片中的CU总是由所有三种颜色的编码块组成，除非视频是单色的。</strong></p>
+<p>在VTM7中，编码树方案支持luma和chroma具有单独的块树结构。目前，<strong>对于P slice和B slice，一个CTU中的luma和chroma CTBs必须共享相同的编码树结构。然而，对于I slice，luma和chroma可以有单独的块树结构。当采用单独的块树模式时，luma CTB被一个编码树结构分割成Cus，而chroma CTBs被另一个编码树结构分割成chroma Cus。这意味着I slice中的CU可能由一个luma分量的编码块或两个chroma分量的编码块组成,而P或B片中的CU总是由所有三种颜色的编码块组成，除非视频是单色的。</strong></p>
 <h3 id="324-图像边界分割成cu"><a class="markdownIt-Anchor" href="#324-图像边界分割成cu"></a> 3.2.4 图像边界分割成CU</h3>
 <p>正如在HEVC中所做的，当树节点块的一部分超过底部或右侧图片边界时，树节点块被强制分割，直到每个编码CU的所有样本都位于图片边界内。VTM7中应用了以下分割规则:</p>
 <ul>
@@ -736,7 +755,34 @@ VTM7的其他特性，包括帧内预测过程、帧间图像预测过程、转�
 <li>否则，将强制使用SPLIT_BT_HOR模式分割块</li>
 </ul>
 </li>
+<li>否则,如果一个树节点块的一部分超过了图片底部边界
+<ul>
+<li>如果块是QT结点,并且块的大小大于最小QT大小,块的大小大于最大BT大小,块则被强制用QT划分模式划分</li>
+<li>否则,如果块是一个QT节点,并且块的大小大于最小QT大小,块的大小小于等于最大BT大小,块则被用QT划分模式或SPLIT_BT_HOR模式强制划分.</li>
+<li></li>
 </ul>
+</li>
+</ul>
+<h3 id="325-冗余的cu划分上的限制"><a class="markdownIt-Anchor" href="#325-冗余的cu划分上的限制"></a> 3.2.5 冗余的CU划分上的限制</h3>
+<p>带有嵌套多类型树的四叉树编码块结构提供了一个高度灵活的块划分结构.由于划分的类型支持多类型树,不同划分模式可潜在的导致相同编码块结构.在VVC中,有些冗余划分模式是不允许的.<br>
+图片11 展示了二叉树划分和三叉树划分的冗余划分模式.像图11中那样,连续在一个方向上的两层的二划分可能与三划分后再在中心进行而划分有着相同的编码块结构.这种情况下,一个三叉树划分的中间位置的二叉树划分(在给定的方向)是被语法禁止的.这一限制将被应用在所有图片的所有Cus上.</p>
+<img src="/posts/92e79038/202002061610011.png">
+<p>当上述的划分被禁止时,对应语法元素的信号被修改为与禁止情况一致.比如,当识别出图11中任何一种情况时(比如,CU的中心部分禁止二划分),用于指定是否是二划分或三划分的语法元素mtt_split_cu_binary_flag没有标记,解码器就会将其推断为0.</p>
+<h3 id="326-虚拟管道数据单元virtual-pipeline-data-unitsvpdus"><a class="markdownIt-Anchor" href="#326-虚拟管道数据单元virtual-pipeline-data-unitsvpdus"></a> 3.2.6 虚拟管道数据单元(Virtual pipeline data units(VPDUs))</h3>
+<p>虚拟管道数据单元被定义为在图片中不重叠的单元.在硬件解码器中,连续的VPDUs由多个管道阶段同时处理.VPDU大小大体上与大多数管道阶段的缓冲区大小成比例,因此保持VPDU尺寸较小很重要.在多数硬件解码器中,VPDU尺寸可以被设置为最大转换块(TB)的尺寸.然而,在VVC中,三叉树(TT)和二叉树(BT)划分可能导致VPDUs的尺寸增长.<br>
+为了保持VPDU尺寸为64x64光照样本,在VTM中将遵循以下标准划分限制(与语法信号修改),如图12所示:</p>
+<ul>
+<li>禁止TT划分: CU的宽或高,或两者等于128</li>
+<li>禁止水平BT划分: 对于一个128xCU且N<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>≤</mo><mn>64</mn></mrow><annotation encoding="application/x-tex">\le 64</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719400000000001em;vertical-align:-0.13597em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">6</span><span class="mord">4</span></span></span></span>(比如,宽等于128且高小于128)</li>
+<li>禁止垂直BT划分: 对于一个Nx128且N<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>≤</mo><mn>64</mn></mrow><annotation encoding="application/x-tex">\le 64</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719400000000001em;vertical-align:-0.13597em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">6</span><span class="mord">4</span></span></span></span>(比如,高等于128且宽小于128)</li>
+</ul>
+<img src="/posts/92e79038/202002061622552.png">
+<h3 id="327-内部色度划分和预测限制"><a class="markdownIt-Anchor" href="#327-内部色度划分和预测限制"></a> 3.2.7 内部色度划分和预测限制</h3>
+<p>自从内部图片中的双树运行应用在色度编码树相较于亮度编码树的不同划分上,双树引入了长编码管道和QTBT MinQTSizeC值范围和MinBtSize,MinTTSizeY在色度树中运行小色度块比如2x2,4x2和2x4.这对于实际的解码设计提供了困难.此外,几个预测模式比如CCLM,planar和angular模式需要乘积.为了消除上述提到的问题,在双树中小色度块大小(2x2/2x4/4x2)被限制.<br>
+在典型的硬件视频编码器和解码器中，由于相邻帧内块之间的样本处理数据依赖性，当图像具有更多的小块内块时，处理吞吐量会下降。内部块的预测生成需要从相邻块的顶部和左侧边界重建样本。因此，必须按块顺序处理内部预测。<br>
+在HEVC中，最小的intra CU是8x8 luma样品。最小的intra CU的luma成分可以进一步拆分为4个4x4的luma intra预测单元(Pus)，而最小的intra CU的色度成分不能进一步拆分。因此，最坏情况下的硬件处理吞吐量发生在4x4 chroma intra块或4x4 luma intra块被处理时。在VVC中，为了提高最坏情况下的吞吐量，通过限制chroma intra CBs的划分,小于16个chroma样本的chroma intra CBs是不被允许的。在单编码树中，最小色度内含预测单元(SCIPU)定义为色度块大小大于或等于16个色度样本，且至少有一个luma子块小于64个luma样本的编码树节点。要求在每一个SCIPU中，所有的CBs都是inter，或者所有的CBs都是非inter, 比如,要么intra或者块内复制(IBC)。对于非SCIPU，进一步要求非SCIPU的色度不能再分裂，允许SCIPU的luma再分裂。这样，最小的色度intra CB大小为16个色度样本，2x2、2x4和4x2的色度CBs都被移除。此外，在非SCIPU的情况下，不应用chrome scalling。在这里，没有额外的语法被标记，SCIPU中的第一个luma CB的预测模式可以推导出SCIPU是否是非内部的。如果当前的片是I-slice，或者当前的SCIPU在进一步分割一次后具有4x4的luma分区(因为在VVC中不允许内部4x4)，则推断SCIPU的类型为非内部的;否则，SCIPU的类型(内部或非内部)在解析SCIPU中的Cus之前由一个标志表示。此外，还考虑了对图片大小的限制，考虑到图片的宽度和高度是max (8, MinCbSizeY)的倍数，以避免图片角处出现2x2/2x4/4x2的intra chroma块。</p>
+<h2 id="33-内部预测"><a class="markdownIt-Anchor" href="#33-内部预测"></a> 3.3 内部预测</h2>
+<h3 id="331-内模式编码与67种内部预测模式"><a class="markdownIt-Anchor" href="#331-内模式编码与67种内部预测模式"></a> 3.3.1 内模式编码与67种内部预测模式</h3>
 <h3 id="335-intra-sub-partitionsisp"><a class="markdownIt-Anchor" href="#335-intra-sub-partitionsisp"></a> 3.3.5 Intra Sub-Partitions(ISP)</h3>
 <p>Intra子分区(ISP)工具根据块大小将luma内预测块垂直或水平地划分为2个或4个子分区。例如，ISP的最小块大小是4x8(或8x4)。如果块大小大于4x8(或8x4)，那么相应的块被4个子分区分割。已经注意到,𝑀×128(𝑀≤64)和128×𝑁(𝑁≤64)ISP块对于64×64的VDPU可能产生一个潜在的问题。例如,一个𝑀×128大小的CU在单树有一个𝑀×128 luma TB 和两个相应的<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mfrac><mi>𝑀</mi><mn>2</mn></mfrac><mo>×</mo><mn>64</mn></mrow><annotation encoding="application/x-tex">\frac{𝑀}{2}×64</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.217331em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.872331em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.10903em;">M</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">6</span><span class="mord">4</span></span></span></span>色度TBs。如果CU使用ISP,luma TB将分为四个𝑀×32 TBs(只有水平分裂是可能的),每个都小于64×64 block。然而，目前ISP的设计中并没有对chroma blocks进行划分。因此，两个chroma components的尺寸都大于32×32 block。类似地,一个类似的情况可以使用ISP创建128×𝑁大小的CU。因此，这两种情况是64×64解码器管道的一个问题。<strong>因此，可以使用ISP的CU尺寸被限制在最大64×64。</strong> <strong>图19</strong>展示了这两种可能性的例子。所有子分区都满足至少有16个样本的条件。</p>
 <h1 id="其他"><a class="markdownIt-Anchor" href="#其他"></a> 其他</h1>
@@ -825,7 +871,7 @@ YUV基本有以下如图这几种采样方式:</p>
   <p><span>本文标题:</span><a href="/posts/92e79038/">[视频编解码 VTM7.1]H.266/VVC参考软件VTM配置运行</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 Brian Yi 的个人博客">Brian Yi</a></p>
   <p><span>发布时间:</span>2019年12月28日 - 18:12</p>
-  <p><span>最后更新:</span>2020年01月29日 - 10:01</p>
+  <p><span>最后更新:</span>2020年02月06日 - 22:02</p>
   <p><span>原始链接:</span><a href="/posts/92e79038/" title="[视频编解码 VTM7.1]H.266/VVC参考软件VTM配置运行">https://brianyi.github.io/posts/92e79038/</a>
     <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://brianyi.github.io/posts/92e79038/" aria-label="复制成功！"></i></span>
   </p>
@@ -1313,7 +1359,7 @@ YUV基本有以下如图这几种采样方式:</p>
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#vvcvtm70安装"><span class="nav-number">1.</span> <span class="nav-text"> VVC/VTM7.0安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#31-vvc编码结构"><span class="nav-number">2.</span> <span class="nav-text"> 3.1 VVC编码结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#32-划分"><span class="nav-number">3.</span> <span class="nav-text"> 3.2 划分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#321-图片划分成ctus"><span class="nav-number">3.1.</span> <span class="nav-text"> 3.2.1 图片划分成CTUs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#322-将图片分成子图片-片-块"><span class="nav-number">3.2.</span> <span class="nav-text"> 3.2.2 将图片分成子图片、片、块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#323-使用一个树结构来划分ctus"><span class="nav-number">3.3.</span> <span class="nav-text"> 3.2.3 使用一个树结构来划分CTUs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#324-图像边界分割成cu"><span class="nav-number">3.4.</span> <span class="nav-text"> 3.2.4 图像边界分割成CU</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#335-intra-sub-partitionsisp"><span class="nav-number">3.5.</span> <span class="nav-text"> 3.3.5 Intra Sub-Partitions(ISP)</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#其他"><span class="nav-number"></span> <span class="nav-text"> 其他</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number"></span> <span class="nav-text"> 参考</span></a></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#vvcvtm71安装"><span class="nav-number">1.</span> <span class="nav-text"> VVC/VTM7.1安装</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#1-介绍"><span class="nav-number"></span> <span class="nav-text"> 1 介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-范围"><span class="nav-number"></span> <span class="nav-text"> 2 范围</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-vvc算法描述"><span class="nav-number"></span> <span class="nav-text"> 3 VVC算法描述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#31-vvc编码结构"><span class="nav-number">1.</span> <span class="nav-text"> 3.1 VVC编码结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#32-划分"><span class="nav-number">2.</span> <span class="nav-text"> 3.2 划分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#321-图片划分成ctus"><span class="nav-number">2.1.</span> <span class="nav-text"> 3.2.1 图片划分成CTUs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#322-将图片分成子图片-片-块"><span class="nav-number">2.2.</span> <span class="nav-text"> 3.2.2 将图片分成子图片、片、块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#323-使用一个树结构来划分ctus"><span class="nav-number">2.3.</span> <span class="nav-text"> 3.2.3 使用一个树结构来划分CTUs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#324-图像边界分割成cu"><span class="nav-number">2.4.</span> <span class="nav-text"> 3.2.4 图像边界分割成CU</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#325-冗余的cu划分上的限制"><span class="nav-number">2.5.</span> <span class="nav-text"> 3.2.5 冗余的CU划分上的限制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#326-虚拟管道数据单元virtual-pipeline-data-unitsvpdus"><span class="nav-number">2.6.</span> <span class="nav-text"> 3.2.6 虚拟管道数据单元(Virtual pipeline data units(VPDUs))</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#327-内部色度划分和预测限制"><span class="nav-number">2.7.</span> <span class="nav-text"> 3.2.7 内部色度划分和预测限制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#33-内部预测"><span class="nav-number">3.</span> <span class="nav-text"> 3.3 内部预测</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#331-内模式编码与67种内部预测模式"><span class="nav-number">3.1.</span> <span class="nav-text"> 3.3.1 内模式编码与67种内部预测模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#335-intra-sub-partitionsisp"><span class="nav-number">3.2.</span> <span class="nav-text"> 3.3.5 Intra Sub-Partitions(ISP)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#其他"><span class="nav-number"></span> <span class="nav-text"> 其他</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number"></span> <span class="nav-text"> 参考</span></a></li></div>
             
             <span class="links-of-author-item ">
                 <a href="javascript:;" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索</a>
@@ -1354,7 +1400,7 @@ YUV基本有以下如图这几种采样方式:</p>
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">1.7m</span>
+    <span title="站点总字数">1.5m</span>
   
 
   
@@ -1363,7 +1409,7 @@ YUV基本有以下如图这几种采样方式:</p>
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">25:47</span>
+    <span title="站点阅读时长">22:44</span>
   
 </div>
 
@@ -1519,20 +1565,345 @@ YUV基本有以下如图这几种采样方式:</p>
 
 
   
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.json";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+        // ref: https://github.com/ForbesLindesay/unescape-html
+        var unescapeHtml = function(html) {
+          return String(html)
+            .replace(/&quot;/g, '"')
+            .replace(/&#39;/g, '\'')
+            .replace(/&#x3A;/g, ':')
+            // replace all the other &#x; chars
+            .replace(/&#(\d+);/g, function (m, p) { return String.fromCharCode(p); })
+            .replace(/&lt;/g, '<')
+            .replace(/&gt;/g, '>')
+            .replace(/&amp;/g, '&');
+        };
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                // fixed:local search has bug
+                if (data.title==undefined)
+                    return [];
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                content = unescapeHtml(content);
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('5');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
 
 
-
-  
-  
-  
-  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
-
-  
-  
-  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
-  
-
-  <script src="/js/algolia-search.js?v=7.1.1"></script>
 
 
 
